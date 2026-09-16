@@ -1,0 +1,26 @@
+{
+  "/Users/ozankaraca/Desktop/EGEMED_PULSE_SCORM_1.2.zip": {
+    "sha256": "4a3aebc9f328340ffa528fb9071d455dd3445367b12483b57eb4d4c9c41da70c",
+    "bytes": 1125066
+  },
+  "/Users/ozankaraca/Desktop/EGEMED_PULSE_Onizleme.html": {
+    "sha256": "9ff7b5be7b828eef5b4cb314abc4ca34be9407284e982408283479b6a36d3731",
+    "bytes": 1605157
+  },
+  "recovered_files": {
+    "index.html": "f2ae9a4d7cf2a3a5822075c973e58bef1db55fad10e3a04f0e186a89f14de234",
+    "features.js": "ab0c8a14818477001ff03c225a57d2b905e7cfa1e3b32015208a2987820051ea",
+    "styles.css": "d4dc4ceee7c910706790d24132c11192e70e238b33119cc18fb6ea481b28d52c",
+    "scorm.js": "c58f84558c9bf8ef2f566a0190394b928721e315629314dd91d19e3b80f80ec0",
+    "landing.js": "dce8a4d9978e459c0fbbd06ade814d697fe2b5b11267ba743575e3be548bef7d",
+    "curriculum.js": "5a148fb3f362d1ecb7f9820a927b8a0289ad5f1ebdbfc45ad8e5e04d391b37fc",
+    "imsmanifest.xml": "9f0e26d0a9e1df8043eee0e8ea9ae9568bd875cadfb56675d8b3778769e4c8d0",
+    "KULLANIM.md": "7b22c64c678d7395875a2d28a7f94ec64a87ab8892c15bdf3b4be36c7a7216cf",
+    "model.js": "a9b6285aa3302133bd5028ad0b50f370b5a8e808a89f91f149b53ad94b5b38b1",
+    "app.js": "e1c7ee212eec78054f83455c7adeda42d9a68f46c5968813ccbafec0b3c8b0fb",
+    "assets/egemed-pulse-favicon.png": "85ec3fa85248756aa1466036a7dcc71bb1efc814e26730cd1d7b9e2fe3cf731a",
+    "assets/egemed-pulse-landing.png": "30054f52ad28cba57ab00bf091403d33b9365ede5e577c749ced296ddc23cf65",
+    "assets/ege-tip-logo.png": "88fdc554b38522ccf45b9c1f55caba09bb2e9ba945cd1e0fdbe68ba98b50b6b3",
+    "assets/egemed-pulse-header.png": "083787b228541b7b858cf5adf09ef8c0d42b55e8f6321393da120b084c8acf49"
+  }
+}

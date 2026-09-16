@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest identifier="EGEMED_PULSE_V5" version="5.0"
+ xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+ xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata><schema>ADL SCORM</schema><schemaversion>1.2</schemaversion></metadata>
+  <organizations default="EGEMED_ORG">
+    <organization identifier="EGEMED_ORG" structure="hierarchical">
+      <title>EGEMED PULSE — EKG ve Dolaşım Simülatörü</title>
+      <item identifier="EGEMED_ITEM" identifierref="EGEMED_SCO" isvisible="true">
+        <title>EGEMED PULSE — 13 Ritim, 50 Vaka ve 50 Soru</title>
+        <adlcp:masteryscore>80</adlcp:masteryscore>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="EGEMED_SCO" type="webcontent" adlcp:scormtype="sco" href="index.html">
+      <file href="index.html"/><file href="styles.css"/><file href="model.js"/>
+      <file href="app.js"/><file href="features.js"/><file href="curriculum.js"/><file href="landing.js"/><file href="scorm.js"/>
+      <file href="assets/ege-tip-logo.png"/><file href="assets/egemed-pulse-header.png"/><file href="assets/egemed-pulse-landing.png"/><file href="assets/egemed-pulse-favicon.png"/><file href="KULLANIM.md"/>
+    </resource>
+  </resources>
+</manifest>
