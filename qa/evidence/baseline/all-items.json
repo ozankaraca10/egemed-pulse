@@ -1,0 +1,1462 @@
+{
+  "rhythm": {
+    "normal": {
+      "title": "Normal sinüs ritmi",
+      "lead": "D2",
+      "clue": "Her QRS öncesinde P dalgası, sabit PR ve düzenli dar QRS",
+      "mechanism": "Uyarı sinüs düğümünden çıkar ve normal ileti sistemiyle ventriküllere ulaşır.",
+      "effect": "Atriyal katkı ve düzenli ventriküler doluş korunur.",
+      "stem": "Rutin kontrolde yakınması olmayan, nabzı düzenli bir kişi"
+    },
+    "af": {
+      "title": "Atriyal fibrilasyon",
+      "lead": "D2",
+      "clue": "Belirgin P dalgası yok ve R–R aralıkları düzensiz düzensiz",
+      "mechanism": "Kaotik atriyal etkinlik organize atriyal kasılmayı ortadan kaldırır.",
+      "effect": "Değişken doluş süreleri ve atriyal staz görülebilir.",
+      "stem": "Çarpıntı yakınması ve düzensiz nabzı olan bir kişi"
+    },
+    "stemi": {
+      "title": "Anterior ST elevasyonlu MI örneği",
+      "lead": "V3",
+      "clue": "V2–V4 komşu derivasyonlarında belirgin ST yükselmesi",
+      "mechanism": "Anterior bölgede transmural iskemi akım örüntüsünü değiştirir.",
+      "effect": "Etkilenen sol ventrikül segmentinde kasılma azalabilir.",
+      "stem": "Baskı tarzında göğüs ağrısı ve soğuk terlemesi olan bir kişi"
+    },
+    "pvc": {
+      "title": "Ventriküler erken atım",
+      "lead": "D2",
+      "clue": "Erken gelen geniş QRS ve ardından kompansatuvar duraklama",
+      "mechanism": "Uyarı beklenen sinüs atımından önce ventrikülden başlar.",
+      "effect": "Erken atımın doluşu ve mekanik etkinliği azalabilir.",
+      "stem": "Aralıklı tekleme hissi tarifleyen, temel ritmi düzenli bir kişi"
+    },
+    "svt": {
+      "title": "Düzenli dar kompleks SVT",
+      "lead": "D2",
+      "clue": "Yaklaşık 167/dk hızında düzenli, dar kompleks taşikardi",
+      "mechanism": "Ventrikül üstü hızlı odak veya reentri AV sistem üzerinden iletilir.",
+      "effect": "Kısalan diyastol ventrikül doluşunu azaltabilir.",
+      "stem": "Ani başlayan hızlı ve düzenli çarpıntısı olan bir kişi"
+    },
+    "inferior": {
+      "title": "İnferior ST elevasyonlu MI örneği",
+      "lead": "aVF",
+      "clue": "D2, D3 ve aVF’de ST yükselmesi; D1 ve aVL’de karşılıklı çökme",
+      "mechanism": "İnferior bölgedeki akut iskemi komşu derivasyonlarda ST değişikliği oluşturur.",
+      "effect": "İnferior duvar hareketi ve pompa etkinliği azalabilir.",
+      "stem": "Akut göğüs ağrısı, bulantı ve terlemesi olan bir kişi"
+    },
+    "vt": {
+      "title": "Monomorfik ventriküler taşikardi",
+      "lead": "V1",
+      "clue": "Hızlı, düzenli ve geniş kompleksli tek biçimli ritim",
+      "mechanism": "Hızlı ritim ventriküler dokudan köken alır.",
+      "effect": "Kısa doluş ve eşzamanlılık kaybı dolaşımı bozabilir.",
+      "stem": "Baş dönmesiyle birlikte hızlı geniş kompleks ritmi olan bir kişi"
+    },
+    "vf": {
+      "title": "Ventriküler fibrilasyon",
+      "lead": "D2",
+      "clue": "Organize QRS olmadan kaotik ve düzensiz elektriksel etkinlik",
+      "mechanism": "Ventriküllerde organize depolarizasyon bulunmaz.",
+      "effect": "Etkili ventriküler kasılma ve ileri akım oluşmaz.",
+      "stem": "Bilinçsiz, yanıtsız ve dolaşım bulgusu olmayan bir kişi"
+    },
+    "pat": {
+      "title": "Paroksismal atriyal taşikardi",
+      "lead": "D2",
+      "clue": "Farklı morfolojili P dalgalarıyla düzenli dar kompleks taşikardi",
+      "mechanism": "Sinüs düğümü dışındaki atriyal bir odak hızlı uyarı üretir.",
+      "effect": "Atriyal kasılma sürerken yüksek hız doluş süresini kısaltır.",
+      "stem": "Ani başlayıp sonlanan düzenli çarpıntısı olan bir kişi"
+    },
+    "flutter": {
+      "title": "Atriyal flutter",
+      "lead": "aVF",
+      "clue": "İnferior derivasyonlarda testere dişi F dalgaları ve 2:1 iletim",
+      "mechanism": "Düzenli makro-reentran atriyal devre yaklaşık 300/dk etkinlik üretir.",
+      "effect": "Koordineli atriyal katkı azalır; hızlı yanıt doluşu kısaltır.",
+      "stem": "Düzenli hızlı nabız ve eforla nefes darlığı olan bir kişi"
+    },
+    "sintach": {
+      "title": "Sinüs taşikardisi",
+      "lead": "D2",
+      "clue": "Yaklaşık 120/dk, her QRS öncesinde sinüs P dalgası",
+      "mechanism": "Hız artmış olsa da uyarı sinüs düğümünden çıkar.",
+      "effect": "Diyastol kısalır ancak sıralı atriyoventriküler etkinlik korunur.",
+      "stem": "Ateş sonrası düzenli hızlı nabzı olan bir kişi"
+    },
+    "lbbb": {
+      "title": "Sol dal bloğu",
+      "lead": "V6",
+      "clue": "Geniş QRS; V1’de derin negatif kompleks, V6’da geniş çentikli R",
+      "mechanism": "Sol ventrikül aktivasyonu gecikerek hücreden hücreye yayılır.",
+      "effect": "Ventriküller arası mekanik eşzamanlılık azalabilir.",
+      "stem": "Geniş QRS saptanan ve V1–V6 morfolojisi karşılaştırılan bir kişi"
+    },
+    "rbbb": {
+      "title": "Sağ dal bloğu",
+      "lead": "V1",
+      "clue": "Geniş QRS; V1’de rSR′ ve V6’da geniş terminal S",
+      "mechanism": "Sağ ventrikül aktivasyonu sağ dal iletimindeki gecikme nedeniyle geç tamamlanır.",
+      "effect": "Sağ ventrikül kasılması hafif gecikmiş olabilir.",
+      "stem": "V1’de terminal R′ ile geniş QRS saptanan bir kişi"
+    }
+  },
+  "cases": [
+    {
+      "id": 1,
+      "mode": "normal",
+      "title": "Rutin kontrol ve düzenli nabız",
+      "diagnosis": "Normal sinüs ritmi",
+      "stem": "24 yaşında, Rutin kontrolde yakınması olmayan, nabzı düzenli bir kişi. Kayıt D2, aVF, V3 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Normal sinüs ritmi",
+        "Düzenli dar kompleks SVT",
+        "Paroksismal atriyal taşikardi"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Her QRS öncesinde P dalgası, sabit PR ve düzenli dar QRS",
+      "feedback": "Her QRS öncesinde P dalgası, sabit PR ve düzenli dar QRS. Uyarı sinüs düğümünden çıkar ve normal ileti sistemiyle ventriküllere ulaşır."
+    },
+    {
+      "id": 2,
+      "mode": "af",
+      "title": "Çarpıntı ve düzensiz nabız",
+      "diagnosis": "Atriyal fibrilasyon",
+      "stem": "31 yaşında, Çarpıntı yakınması ve düzensiz nabzı olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Atriyal fibrilasyon",
+        "İnferior ST elevasyonlu MI örneği",
+        "Atriyal flutter"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Belirgin P dalgası yok ve R–R aralıkları düzensiz düzensiz",
+      "feedback": "Belirgin P dalgası yok ve R–R aralıkları düzensiz düzensiz. Kaotik atriyal etkinlik organize atriyal kasılmayı ortadan kaldırır."
+    },
+    {
+      "id": 3,
+      "mode": "stemi",
+      "title": "Göğüs ağrısı ve prekordiyal değişiklik",
+      "diagnosis": "Anterior ST elevasyonlu MI örneği",
+      "stem": "38 yaşında, Baskı tarzında göğüs ağrısı ve soğuk terlemesi olan bir kişi. Kayıt D2, aVL, V3 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Anterior ST elevasyonlu MI örneği",
+        "Monomorfik ventriküler taşikardi",
+        "Sinüs taşikardisi"
+      ],
+      "correct": 0,
+      "lead": "V3",
+      "clue": "V2–V4 komşu derivasyonlarında belirgin ST yükselmesi",
+      "feedback": "V2–V4 komşu derivasyonlarında belirgin ST yükselmesi. Anterior bölgede transmural iskemi akım örüntüsünü değiştirir."
+    },
+    {
+      "id": 4,
+      "mode": "pvc",
+      "title": "Aralıklı tekleme hissi",
+      "diagnosis": "Ventriküler erken atım",
+      "stem": "45 yaşında, Aralıklı tekleme hissi tarifleyen, temel ritmi düzenli bir kişi. Kayıt D2, aVR, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Ventriküler erken atım",
+        "Ventriküler fibrilasyon",
+        "Sol dal bloğu"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Erken gelen geniş QRS ve ardından kompansatuvar duraklama",
+      "feedback": "Erken gelen geniş QRS ve ardından kompansatuvar duraklama. Uyarı beklenen sinüs atımından önce ventrikülden başlar."
+    },
+    {
+      "id": 5,
+      "mode": "svt",
+      "title": "Ani başlayan hızlı çarpıntı",
+      "diagnosis": "Düzenli dar kompleks SVT",
+      "stem": "52 yaşında, Ani başlayan hızlı ve düzenli çarpıntısı olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Düzenli dar kompleks SVT",
+        "Paroksismal atriyal taşikardi",
+        "Sağ dal bloğu"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Yaklaşık 167/dk hızında düzenli, dar kompleks taşikardi",
+      "feedback": "Yaklaşık 167/dk hızında düzenli, dar kompleks taşikardi. Ventrikül üstü hızlı odak veya reentri AV sistem üzerinden iletilir."
+    },
+    {
+      "id": 6,
+      "mode": "inferior",
+      "title": "Göğüs ağrısı, bulantı ve terleme",
+      "diagnosis": "İnferior ST elevasyonlu MI örneği",
+      "stem": "59 yaşında, Akut göğüs ağrısı, bulantı ve terlemesi olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "İnferior ST elevasyonlu MI örneği",
+        "Atriyal flutter",
+        "Normal sinüs ritmi"
+      ],
+      "correct": 0,
+      "lead": "aVF",
+      "clue": "D2, D3 ve aVF’de ST yükselmesi; D1 ve aVL’de karşılıklı çökme",
+      "feedback": "D2, D3 ve aVF’de ST yükselmesi; D1 ve aVL’de karşılıklı çökme. İnferior bölgedeki akut iskemi komşu derivasyonlarda ST değişikliği oluşturur."
+    },
+    {
+      "id": 7,
+      "mode": "vt",
+      "title": "Baş dönmesi ve geniş kompleks ritim",
+      "diagnosis": "Monomorfik ventriküler taşikardi",
+      "stem": "66 yaşında, Baş dönmesiyle birlikte hızlı geniş kompleks ritmi olan bir kişi. Kayıt D2, aVR, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Monomorfik ventriküler taşikardi",
+        "Sinüs taşikardisi",
+        "Atriyal fibrilasyon"
+      ],
+      "correct": 0,
+      "lead": "V1",
+      "clue": "Hızlı, düzenli ve geniş kompleksli tek biçimli ritim",
+      "feedback": "Hızlı, düzenli ve geniş kompleksli tek biçimli ritim. Hızlı ritim ventriküler dokudan köken alır."
+    },
+    {
+      "id": 8,
+      "mode": "vf",
+      "title": "Bilinç kaybı ve dolaşım bulgusu yokluğu",
+      "diagnosis": "Ventriküler fibrilasyon",
+      "stem": "73 yaşında, Bilinçsiz, yanıtsız ve dolaşım bulgusu olmayan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Ventriküler fibrilasyon",
+        "Sol dal bloğu",
+        "Anterior ST elevasyonlu MI örneği"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Organize QRS olmadan kaotik ve düzensiz elektriksel etkinlik",
+      "feedback": "Organize QRS olmadan kaotik ve düzensiz elektriksel etkinlik. Ventriküllerde organize depolarizasyon bulunmaz."
+    },
+    {
+      "id": 9,
+      "mode": "pat",
+      "title": "Ataklar halinde düzenli çarpıntı",
+      "diagnosis": "Paroksismal atriyal taşikardi",
+      "stem": "80 yaşında, Ani başlayıp sonlanan düzenli çarpıntısı olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Paroksismal atriyal taşikardi",
+        "Sağ dal bloğu",
+        "Ventriküler erken atım"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Farklı morfolojili P dalgalarıyla düzenli dar kompleks taşikardi",
+      "feedback": "Farklı morfolojili P dalgalarıyla düzenli dar kompleks taşikardi. Sinüs düğümü dışındaki atriyal bir odak hızlı uyarı üretir."
+    },
+    {
+      "id": 10,
+      "mode": "flutter",
+      "title": "Hızlı nabız ve efor dispnesi",
+      "diagnosis": "Atriyal flutter",
+      "stem": "29 yaşında, Düzenli hızlı nabız ve eforla nefes darlığı olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Atriyal flutter",
+        "Normal sinüs ritmi",
+        "Düzenli dar kompleks SVT"
+      ],
+      "correct": 0,
+      "lead": "aVF",
+      "clue": "İnferior derivasyonlarda testere dişi F dalgaları ve 2:1 iletim",
+      "feedback": "İnferior derivasyonlarda testere dişi F dalgaları ve 2:1 iletim. Düzenli makro-reentran atriyal devre yaklaşık 300/dk etkinlik üretir."
+    },
+    {
+      "id": 11,
+      "mode": "sintach",
+      "title": "Ateş sonrası hızlı nabız",
+      "diagnosis": "Sinüs taşikardisi",
+      "stem": "36 yaşında, Ateş sonrası düzenli hızlı nabzı olan bir kişi. Kayıt D2, aVF, V3 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Sinüs taşikardisi",
+        "Atriyal fibrilasyon",
+        "İnferior ST elevasyonlu MI örneği"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Yaklaşık 120/dk, her QRS öncesinde sinüs P dalgası",
+      "feedback": "Yaklaşık 120/dk, her QRS öncesinde sinüs P dalgası. Hız artmış olsa da uyarı sinüs düğümünden çıkar."
+    },
+    {
+      "id": 12,
+      "mode": "lbbb",
+      "title": "Geniş QRS ve iletim gecikmesi",
+      "diagnosis": "Sol dal bloğu",
+      "stem": "43 yaşında, Geniş QRS saptanan ve V1–V6 morfolojisi karşılaştırılan bir kişi. Kayıt D1, aVL, V6 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Sol dal bloğu",
+        "Anterior ST elevasyonlu MI örneği",
+        "Monomorfik ventriküler taşikardi"
+      ],
+      "correct": 0,
+      "lead": "V6",
+      "clue": "Geniş QRS; V1’de derin negatif kompleks, V6’da geniş çentikli R",
+      "feedback": "Geniş QRS; V1’de derin negatif kompleks, V6’da geniş çentikli R. Sol ventrikül aktivasyonu gecikerek hücreden hücreye yayılır."
+    },
+    {
+      "id": 13,
+      "mode": "rbbb",
+      "title": "Prekordiyal derivasyonlarda iletim gecikmesi",
+      "diagnosis": "Sağ dal bloğu",
+      "stem": "50 yaşında, V1’de terminal R′ ile geniş QRS saptanan bir kişi. Kayıt D1, aVR, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Sağ dal bloğu",
+        "Ventriküler erken atım",
+        "Ventriküler fibrilasyon"
+      ],
+      "correct": 0,
+      "lead": "V1",
+      "clue": "Geniş QRS; V1’de rSR′ ve V6’da geniş terminal S",
+      "feedback": "Geniş QRS; V1’de rSR′ ve V6’da geniş terminal S. Sağ ventrikül aktivasyonu sağ dal iletimindeki gecikme nedeniyle geç tamamlanır."
+    },
+    {
+      "id": 14,
+      "mode": "normal",
+      "title": "Rutin kontrol ve düzenli nabız",
+      "diagnosis": "Normal sinüs ritmi",
+      "stem": "57 yaşında, Rutin kontrolde yakınması olmayan, nabzı düzenli bir kişi. Kayıt D2, aVF, V3 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Normal sinüs ritmi",
+        "Düzenli dar kompleks SVT",
+        "Paroksismal atriyal taşikardi"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Her QRS öncesinde P dalgası, sabit PR ve düzenli dar QRS",
+      "feedback": "Her QRS öncesinde P dalgası, sabit PR ve düzenli dar QRS. Uyarı sinüs düğümünden çıkar ve normal ileti sistemiyle ventriküllere ulaşır."
+    },
+    {
+      "id": 15,
+      "mode": "af",
+      "title": "Çarpıntı ve düzensiz nabız",
+      "diagnosis": "Atriyal fibrilasyon",
+      "stem": "64 yaşında, Çarpıntı yakınması ve düzensiz nabzı olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Atriyal fibrilasyon",
+        "İnferior ST elevasyonlu MI örneği",
+        "Atriyal flutter"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Belirgin P dalgası yok ve R–R aralıkları düzensiz düzensiz",
+      "feedback": "Belirgin P dalgası yok ve R–R aralıkları düzensiz düzensiz. Kaotik atriyal etkinlik organize atriyal kasılmayı ortadan kaldırır."
+    },
+    {
+      "id": 16,
+      "mode": "stemi",
+      "title": "Göğüs ağrısı ve prekordiyal değişiklik",
+      "diagnosis": "Anterior ST elevasyonlu MI örneği",
+      "stem": "71 yaşında, Baskı tarzında göğüs ağrısı ve soğuk terlemesi olan bir kişi. Kayıt D2, aVL, V3 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Anterior ST elevasyonlu MI örneği",
+        "Monomorfik ventriküler taşikardi",
+        "Sinüs taşikardisi"
+      ],
+      "correct": 0,
+      "lead": "V3",
+      "clue": "V2–V4 komşu derivasyonlarında belirgin ST yükselmesi",
+      "feedback": "V2–V4 komşu derivasyonlarında belirgin ST yükselmesi. Anterior bölgede transmural iskemi akım örüntüsünü değiştirir."
+    },
+    {
+      "id": 17,
+      "mode": "pvc",
+      "title": "Aralıklı tekleme hissi",
+      "diagnosis": "Ventriküler erken atım",
+      "stem": "78 yaşında, Aralıklı tekleme hissi tarifleyen, temel ritmi düzenli bir kişi. Kayıt D2, aVR, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Ventriküler erken atım",
+        "Ventriküler fibrilasyon",
+        "Sol dal bloğu"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Erken gelen geniş QRS ve ardından kompansatuvar duraklama",
+      "feedback": "Erken gelen geniş QRS ve ardından kompansatuvar duraklama. Uyarı beklenen sinüs atımından önce ventrikülden başlar."
+    },
+    {
+      "id": 18,
+      "mode": "svt",
+      "title": "Ani başlayan hızlı çarpıntı",
+      "diagnosis": "Düzenli dar kompleks SVT",
+      "stem": "27 yaşında, Ani başlayan hızlı ve düzenli çarpıntısı olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Düzenli dar kompleks SVT",
+        "Paroksismal atriyal taşikardi",
+        "Sağ dal bloğu"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Yaklaşık 167/dk hızında düzenli, dar kompleks taşikardi",
+      "feedback": "Yaklaşık 167/dk hızında düzenli, dar kompleks taşikardi. Ventrikül üstü hızlı odak veya reentri AV sistem üzerinden iletilir."
+    },
+    {
+      "id": 19,
+      "mode": "inferior",
+      "title": "Göğüs ağrısı, bulantı ve terleme",
+      "diagnosis": "İnferior ST elevasyonlu MI örneği",
+      "stem": "34 yaşında, Akut göğüs ağrısı, bulantı ve terlemesi olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "İnferior ST elevasyonlu MI örneği",
+        "Atriyal flutter",
+        "Normal sinüs ritmi"
+      ],
+      "correct": 0,
+      "lead": "aVF",
+      "clue": "D2, D3 ve aVF’de ST yükselmesi; D1 ve aVL’de karşılıklı çökme",
+      "feedback": "D2, D3 ve aVF’de ST yükselmesi; D1 ve aVL’de karşılıklı çökme. İnferior bölgedeki akut iskemi komşu derivasyonlarda ST değişikliği oluşturur."
+    },
+    {
+      "id": 20,
+      "mode": "vt",
+      "title": "Baş dönmesi ve geniş kompleks ritim",
+      "diagnosis": "Monomorfik ventriküler taşikardi",
+      "stem": "41 yaşında, Baş dönmesiyle birlikte hızlı geniş kompleks ritmi olan bir kişi. Kayıt D2, aVR, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Monomorfik ventriküler taşikardi",
+        "Sinüs taşikardisi",
+        "Atriyal fibrilasyon"
+      ],
+      "correct": 0,
+      "lead": "V1",
+      "clue": "Hızlı, düzenli ve geniş kompleksli tek biçimli ritim",
+      "feedback": "Hızlı, düzenli ve geniş kompleksli tek biçimli ritim. Hızlı ritim ventriküler dokudan köken alır."
+    },
+    {
+      "id": 21,
+      "mode": "vf",
+      "title": "Bilinç kaybı ve dolaşım bulgusu yokluğu",
+      "diagnosis": "Ventriküler fibrilasyon",
+      "stem": "48 yaşında, Bilinçsiz, yanıtsız ve dolaşım bulgusu olmayan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Ventriküler fibrilasyon",
+        "Sol dal bloğu",
+        "Anterior ST elevasyonlu MI örneği"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Organize QRS olmadan kaotik ve düzensiz elektriksel etkinlik",
+      "feedback": "Organize QRS olmadan kaotik ve düzensiz elektriksel etkinlik. Ventriküllerde organize depolarizasyon bulunmaz."
+    },
+    {
+      "id": 22,
+      "mode": "pat",
+      "title": "Ataklar halinde düzenli çarpıntı",
+      "diagnosis": "Paroksismal atriyal taşikardi",
+      "stem": "55 yaşında, Ani başlayıp sonlanan düzenli çarpıntısı olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Paroksismal atriyal taşikardi",
+        "Sağ dal bloğu",
+        "Ventriküler erken atım"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Farklı morfolojili P dalgalarıyla düzenli dar kompleks taşikardi",
+      "feedback": "Farklı morfolojili P dalgalarıyla düzenli dar kompleks taşikardi. Sinüs düğümü dışındaki atriyal bir odak hızlı uyarı üretir."
+    },
+    {
+      "id": 23,
+      "mode": "flutter",
+      "title": "Hızlı nabız ve efor dispnesi",
+      "diagnosis": "Atriyal flutter",
+      "stem": "62 yaşında, Düzenli hızlı nabız ve eforla nefes darlığı olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Atriyal flutter",
+        "Normal sinüs ritmi",
+        "Düzenli dar kompleks SVT"
+      ],
+      "correct": 0,
+      "lead": "aVF",
+      "clue": "İnferior derivasyonlarda testere dişi F dalgaları ve 2:1 iletim",
+      "feedback": "İnferior derivasyonlarda testere dişi F dalgaları ve 2:1 iletim. Düzenli makro-reentran atriyal devre yaklaşık 300/dk etkinlik üretir."
+    },
+    {
+      "id": 24,
+      "mode": "sintach",
+      "title": "Ateş sonrası hızlı nabız",
+      "diagnosis": "Sinüs taşikardisi",
+      "stem": "69 yaşında, Ateş sonrası düzenli hızlı nabzı olan bir kişi. Kayıt D2, aVF, V3 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Sinüs taşikardisi",
+        "Atriyal fibrilasyon",
+        "İnferior ST elevasyonlu MI örneği"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Yaklaşık 120/dk, her QRS öncesinde sinüs P dalgası",
+      "feedback": "Yaklaşık 120/dk, her QRS öncesinde sinüs P dalgası. Hız artmış olsa da uyarı sinüs düğümünden çıkar."
+    },
+    {
+      "id": 25,
+      "mode": "lbbb",
+      "title": "Geniş QRS ve iletim gecikmesi",
+      "diagnosis": "Sol dal bloğu",
+      "stem": "76 yaşında, Geniş QRS saptanan ve V1–V6 morfolojisi karşılaştırılan bir kişi. Kayıt D1, aVL, V6 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Sol dal bloğu",
+        "Anterior ST elevasyonlu MI örneği",
+        "Monomorfik ventriküler taşikardi"
+      ],
+      "correct": 0,
+      "lead": "V6",
+      "clue": "Geniş QRS; V1’de derin negatif kompleks, V6’da geniş çentikli R",
+      "feedback": "Geniş QRS; V1’de derin negatif kompleks, V6’da geniş çentikli R. Sol ventrikül aktivasyonu gecikerek hücreden hücreye yayılır."
+    },
+    {
+      "id": 26,
+      "mode": "rbbb",
+      "title": "Prekordiyal derivasyonlarda iletim gecikmesi",
+      "diagnosis": "Sağ dal bloğu",
+      "stem": "25 yaşında, V1’de terminal R′ ile geniş QRS saptanan bir kişi. Kayıt D1, aVR, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Sağ dal bloğu",
+        "Ventriküler erken atım",
+        "Ventriküler fibrilasyon"
+      ],
+      "correct": 0,
+      "lead": "V1",
+      "clue": "Geniş QRS; V1’de rSR′ ve V6’da geniş terminal S",
+      "feedback": "Geniş QRS; V1’de rSR′ ve V6’da geniş terminal S. Sağ ventrikül aktivasyonu sağ dal iletimindeki gecikme nedeniyle geç tamamlanır."
+    },
+    {
+      "id": 27,
+      "mode": "normal",
+      "title": "Rutin kontrol ve düzenli nabız",
+      "diagnosis": "Normal sinüs ritmi",
+      "stem": "32 yaşında, Rutin kontrolde yakınması olmayan, nabzı düzenli bir kişi. Kayıt D2, aVF, V3 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Normal sinüs ritmi",
+        "Düzenli dar kompleks SVT",
+        "Paroksismal atriyal taşikardi"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Her QRS öncesinde P dalgası, sabit PR ve düzenli dar QRS",
+      "feedback": "Her QRS öncesinde P dalgası, sabit PR ve düzenli dar QRS. Uyarı sinüs düğümünden çıkar ve normal ileti sistemiyle ventriküllere ulaşır."
+    },
+    {
+      "id": 28,
+      "mode": "af",
+      "title": "Çarpıntı ve düzensiz nabız",
+      "diagnosis": "Atriyal fibrilasyon",
+      "stem": "39 yaşında, Çarpıntı yakınması ve düzensiz nabzı olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Atriyal fibrilasyon",
+        "İnferior ST elevasyonlu MI örneği",
+        "Atriyal flutter"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Belirgin P dalgası yok ve R–R aralıkları düzensiz düzensiz",
+      "feedback": "Belirgin P dalgası yok ve R–R aralıkları düzensiz düzensiz. Kaotik atriyal etkinlik organize atriyal kasılmayı ortadan kaldırır."
+    },
+    {
+      "id": 29,
+      "mode": "stemi",
+      "title": "Göğüs ağrısı ve prekordiyal değişiklik",
+      "diagnosis": "Anterior ST elevasyonlu MI örneği",
+      "stem": "46 yaşında, Baskı tarzında göğüs ağrısı ve soğuk terlemesi olan bir kişi. Kayıt D2, aVL, V3 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Anterior ST elevasyonlu MI örneği",
+        "Monomorfik ventriküler taşikardi",
+        "Sinüs taşikardisi"
+      ],
+      "correct": 0,
+      "lead": "V3",
+      "clue": "V2–V4 komşu derivasyonlarında belirgin ST yükselmesi",
+      "feedback": "V2–V4 komşu derivasyonlarında belirgin ST yükselmesi. Anterior bölgede transmural iskemi akım örüntüsünü değiştirir."
+    },
+    {
+      "id": 30,
+      "mode": "pvc",
+      "title": "Aralıklı tekleme hissi",
+      "diagnosis": "Ventriküler erken atım",
+      "stem": "53 yaşında, Aralıklı tekleme hissi tarifleyen, temel ritmi düzenli bir kişi. Kayıt D2, aVR, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Ventriküler erken atım",
+        "Ventriküler fibrilasyon",
+        "Sol dal bloğu"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Erken gelen geniş QRS ve ardından kompansatuvar duraklama",
+      "feedback": "Erken gelen geniş QRS ve ardından kompansatuvar duraklama. Uyarı beklenen sinüs atımından önce ventrikülden başlar."
+    },
+    {
+      "id": 31,
+      "mode": "svt",
+      "title": "Ani başlayan hızlı çarpıntı",
+      "diagnosis": "Düzenli dar kompleks SVT",
+      "stem": "60 yaşında, Ani başlayan hızlı ve düzenli çarpıntısı olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Düzenli dar kompleks SVT",
+        "Paroksismal atriyal taşikardi",
+        "Sağ dal bloğu"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Yaklaşık 167/dk hızında düzenli, dar kompleks taşikardi",
+      "feedback": "Yaklaşık 167/dk hızında düzenli, dar kompleks taşikardi. Ventrikül üstü hızlı odak veya reentri AV sistem üzerinden iletilir."
+    },
+    {
+      "id": 32,
+      "mode": "inferior",
+      "title": "Göğüs ağrısı, bulantı ve terleme",
+      "diagnosis": "İnferior ST elevasyonlu MI örneği",
+      "stem": "67 yaşında, Akut göğüs ağrısı, bulantı ve terlemesi olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "İnferior ST elevasyonlu MI örneği",
+        "Atriyal flutter",
+        "Normal sinüs ritmi"
+      ],
+      "correct": 0,
+      "lead": "aVF",
+      "clue": "D2, D3 ve aVF’de ST yükselmesi; D1 ve aVL’de karşılıklı çökme",
+      "feedback": "D2, D3 ve aVF’de ST yükselmesi; D1 ve aVL’de karşılıklı çökme. İnferior bölgedeki akut iskemi komşu derivasyonlarda ST değişikliği oluşturur."
+    },
+    {
+      "id": 33,
+      "mode": "vt",
+      "title": "Baş dönmesi ve geniş kompleks ritim",
+      "diagnosis": "Monomorfik ventriküler taşikardi",
+      "stem": "74 yaşında, Baş dönmesiyle birlikte hızlı geniş kompleks ritmi olan bir kişi. Kayıt D2, aVR, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Monomorfik ventriküler taşikardi",
+        "Sinüs taşikardisi",
+        "Atriyal fibrilasyon"
+      ],
+      "correct": 0,
+      "lead": "V1",
+      "clue": "Hızlı, düzenli ve geniş kompleksli tek biçimli ritim",
+      "feedback": "Hızlı, düzenli ve geniş kompleksli tek biçimli ritim. Hızlı ritim ventriküler dokudan köken alır."
+    },
+    {
+      "id": 34,
+      "mode": "vf",
+      "title": "Bilinç kaybı ve dolaşım bulgusu yokluğu",
+      "diagnosis": "Ventriküler fibrilasyon",
+      "stem": "81 yaşında, Bilinçsiz, yanıtsız ve dolaşım bulgusu olmayan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Ventriküler fibrilasyon",
+        "Sol dal bloğu",
+        "Anterior ST elevasyonlu MI örneği"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Organize QRS olmadan kaotik ve düzensiz elektriksel etkinlik",
+      "feedback": "Organize QRS olmadan kaotik ve düzensiz elektriksel etkinlik. Ventriküllerde organize depolarizasyon bulunmaz."
+    },
+    {
+      "id": 35,
+      "mode": "pat",
+      "title": "Ataklar halinde düzenli çarpıntı",
+      "diagnosis": "Paroksismal atriyal taşikardi",
+      "stem": "30 yaşında, Ani başlayıp sonlanan düzenli çarpıntısı olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Paroksismal atriyal taşikardi",
+        "Sağ dal bloğu",
+        "Ventriküler erken atım"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Farklı morfolojili P dalgalarıyla düzenli dar kompleks taşikardi",
+      "feedback": "Farklı morfolojili P dalgalarıyla düzenli dar kompleks taşikardi. Sinüs düğümü dışındaki atriyal bir odak hızlı uyarı üretir."
+    },
+    {
+      "id": 36,
+      "mode": "flutter",
+      "title": "Hızlı nabız ve efor dispnesi",
+      "diagnosis": "Atriyal flutter",
+      "stem": "37 yaşında, Düzenli hızlı nabız ve eforla nefes darlığı olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Atriyal flutter",
+        "Normal sinüs ritmi",
+        "Düzenli dar kompleks SVT"
+      ],
+      "correct": 0,
+      "lead": "aVF",
+      "clue": "İnferior derivasyonlarda testere dişi F dalgaları ve 2:1 iletim",
+      "feedback": "İnferior derivasyonlarda testere dişi F dalgaları ve 2:1 iletim. Düzenli makro-reentran atriyal devre yaklaşık 300/dk etkinlik üretir."
+    },
+    {
+      "id": 37,
+      "mode": "sintach",
+      "title": "Ateş sonrası hızlı nabız",
+      "diagnosis": "Sinüs taşikardisi",
+      "stem": "44 yaşında, Ateş sonrası düzenli hızlı nabzı olan bir kişi. Kayıt D2, aVF, V3 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Sinüs taşikardisi",
+        "Atriyal fibrilasyon",
+        "İnferior ST elevasyonlu MI örneği"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Yaklaşık 120/dk, her QRS öncesinde sinüs P dalgası",
+      "feedback": "Yaklaşık 120/dk, her QRS öncesinde sinüs P dalgası. Hız artmış olsa da uyarı sinüs düğümünden çıkar."
+    },
+    {
+      "id": 38,
+      "mode": "lbbb",
+      "title": "Geniş QRS ve iletim gecikmesi",
+      "diagnosis": "Sol dal bloğu",
+      "stem": "51 yaşında, Geniş QRS saptanan ve V1–V6 morfolojisi karşılaştırılan bir kişi. Kayıt D1, aVL, V6 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Sol dal bloğu",
+        "Anterior ST elevasyonlu MI örneği",
+        "Monomorfik ventriküler taşikardi"
+      ],
+      "correct": 0,
+      "lead": "V6",
+      "clue": "Geniş QRS; V1’de derin negatif kompleks, V6’da geniş çentikli R",
+      "feedback": "Geniş QRS; V1’de derin negatif kompleks, V6’da geniş çentikli R. Sol ventrikül aktivasyonu gecikerek hücreden hücreye yayılır."
+    },
+    {
+      "id": 39,
+      "mode": "rbbb",
+      "title": "Prekordiyal derivasyonlarda iletim gecikmesi",
+      "diagnosis": "Sağ dal bloğu",
+      "stem": "58 yaşında, V1’de terminal R′ ile geniş QRS saptanan bir kişi. Kayıt D1, aVR, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Sağ dal bloğu",
+        "Ventriküler erken atım",
+        "Ventriküler fibrilasyon"
+      ],
+      "correct": 0,
+      "lead": "V1",
+      "clue": "Geniş QRS; V1’de rSR′ ve V6’da geniş terminal S",
+      "feedback": "Geniş QRS; V1’de rSR′ ve V6’da geniş terminal S. Sağ ventrikül aktivasyonu sağ dal iletimindeki gecikme nedeniyle geç tamamlanır."
+    },
+    {
+      "id": 40,
+      "mode": "normal",
+      "title": "Rutin kontrol ve düzenli nabız",
+      "diagnosis": "Normal sinüs ritmi",
+      "stem": "65 yaşında, Rutin kontrolde yakınması olmayan, nabzı düzenli bir kişi. Kayıt D2, aVF, V3 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Normal sinüs ritmi",
+        "Düzenli dar kompleks SVT",
+        "Paroksismal atriyal taşikardi"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Her QRS öncesinde P dalgası, sabit PR ve düzenli dar QRS",
+      "feedback": "Her QRS öncesinde P dalgası, sabit PR ve düzenli dar QRS. Uyarı sinüs düğümünden çıkar ve normal ileti sistemiyle ventriküllere ulaşır."
+    },
+    {
+      "id": 41,
+      "mode": "af",
+      "title": "Çarpıntı ve düzensiz nabız",
+      "diagnosis": "Atriyal fibrilasyon",
+      "stem": "72 yaşında, Çarpıntı yakınması ve düzensiz nabzı olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Atriyal fibrilasyon",
+        "İnferior ST elevasyonlu MI örneği",
+        "Atriyal flutter"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Belirgin P dalgası yok ve R–R aralıkları düzensiz düzensiz",
+      "feedback": "Belirgin P dalgası yok ve R–R aralıkları düzensiz düzensiz. Kaotik atriyal etkinlik organize atriyal kasılmayı ortadan kaldırır."
+    },
+    {
+      "id": 42,
+      "mode": "stemi",
+      "title": "Göğüs ağrısı ve prekordiyal değişiklik",
+      "diagnosis": "Anterior ST elevasyonlu MI örneği",
+      "stem": "79 yaşında, Baskı tarzında göğüs ağrısı ve soğuk terlemesi olan bir kişi. Kayıt D2, aVL, V3 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Anterior ST elevasyonlu MI örneği",
+        "Monomorfik ventriküler taşikardi",
+        "Sinüs taşikardisi"
+      ],
+      "correct": 0,
+      "lead": "V3",
+      "clue": "V2–V4 komşu derivasyonlarında belirgin ST yükselmesi",
+      "feedback": "V2–V4 komşu derivasyonlarında belirgin ST yükselmesi. Anterior bölgede transmural iskemi akım örüntüsünü değiştirir."
+    },
+    {
+      "id": 43,
+      "mode": "pvc",
+      "title": "Aralıklı tekleme hissi",
+      "diagnosis": "Ventriküler erken atım",
+      "stem": "28 yaşında, Aralıklı tekleme hissi tarifleyen, temel ritmi düzenli bir kişi. Kayıt D2, aVR, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Ventriküler erken atım",
+        "Ventriküler fibrilasyon",
+        "Sol dal bloğu"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Erken gelen geniş QRS ve ardından kompansatuvar duraklama",
+      "feedback": "Erken gelen geniş QRS ve ardından kompansatuvar duraklama. Uyarı beklenen sinüs atımından önce ventrikülden başlar."
+    },
+    {
+      "id": 44,
+      "mode": "svt",
+      "title": "Ani başlayan hızlı çarpıntı",
+      "diagnosis": "Düzenli dar kompleks SVT",
+      "stem": "35 yaşında, Ani başlayan hızlı ve düzenli çarpıntısı olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Düzenli dar kompleks SVT",
+        "Paroksismal atriyal taşikardi",
+        "Sağ dal bloğu"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Yaklaşık 167/dk hızında düzenli, dar kompleks taşikardi",
+      "feedback": "Yaklaşık 167/dk hızında düzenli, dar kompleks taşikardi. Ventrikül üstü hızlı odak veya reentri AV sistem üzerinden iletilir."
+    },
+    {
+      "id": 45,
+      "mode": "inferior",
+      "title": "Göğüs ağrısı, bulantı ve terleme",
+      "diagnosis": "İnferior ST elevasyonlu MI örneği",
+      "stem": "42 yaşında, Akut göğüs ağrısı, bulantı ve terlemesi olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "İnferior ST elevasyonlu MI örneği",
+        "Atriyal flutter",
+        "Normal sinüs ritmi"
+      ],
+      "correct": 0,
+      "lead": "aVF",
+      "clue": "D2, D3 ve aVF’de ST yükselmesi; D1 ve aVL’de karşılıklı çökme",
+      "feedback": "D2, D3 ve aVF’de ST yükselmesi; D1 ve aVL’de karşılıklı çökme. İnferior bölgedeki akut iskemi komşu derivasyonlarda ST değişikliği oluşturur."
+    },
+    {
+      "id": 46,
+      "mode": "vt",
+      "title": "Baş dönmesi ve geniş kompleks ritim",
+      "diagnosis": "Monomorfik ventriküler taşikardi",
+      "stem": "49 yaşında, Baş dönmesiyle birlikte hızlı geniş kompleks ritmi olan bir kişi. Kayıt D2, aVR, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Monomorfik ventriküler taşikardi",
+        "Sinüs taşikardisi",
+        "Atriyal fibrilasyon"
+      ],
+      "correct": 0,
+      "lead": "V1",
+      "clue": "Hızlı, düzenli ve geniş kompleksli tek biçimli ritim",
+      "feedback": "Hızlı, düzenli ve geniş kompleksli tek biçimli ritim. Hızlı ritim ventriküler dokudan köken alır."
+    },
+    {
+      "id": 47,
+      "mode": "vf",
+      "title": "Bilinç kaybı ve dolaşım bulgusu yokluğu",
+      "diagnosis": "Ventriküler fibrilasyon",
+      "stem": "56 yaşında, Bilinçsiz, yanıtsız ve dolaşım bulgusu olmayan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Ventriküler fibrilasyon",
+        "Sol dal bloğu",
+        "Anterior ST elevasyonlu MI örneği"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Organize QRS olmadan kaotik ve düzensiz elektriksel etkinlik",
+      "feedback": "Organize QRS olmadan kaotik ve düzensiz elektriksel etkinlik. Ventriküllerde organize depolarizasyon bulunmaz."
+    },
+    {
+      "id": 48,
+      "mode": "pat",
+      "title": "Ataklar halinde düzenli çarpıntı",
+      "diagnosis": "Paroksismal atriyal taşikardi",
+      "stem": "63 yaşında, Ani başlayıp sonlanan düzenli çarpıntısı olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Paroksismal atriyal taşikardi",
+        "Sağ dal bloğu",
+        "Ventriküler erken atım"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Farklı morfolojili P dalgalarıyla düzenli dar kompleks taşikardi",
+      "feedback": "Farklı morfolojili P dalgalarıyla düzenli dar kompleks taşikardi. Sinüs düğümü dışındaki atriyal bir odak hızlı uyarı üretir."
+    },
+    {
+      "id": 49,
+      "mode": "flutter",
+      "title": "Hızlı nabız ve efor dispnesi",
+      "diagnosis": "Atriyal flutter",
+      "stem": "70 yaşında, Düzenli hızlı nabız ve eforla nefes darlığı olan bir kişi. Kayıt D2, aVF, V1 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Atriyal flutter",
+        "Normal sinüs ritmi",
+        "Düzenli dar kompleks SVT"
+      ],
+      "correct": 0,
+      "lead": "aVF",
+      "clue": "İnferior derivasyonlarda testere dişi F dalgaları ve 2:1 iletim",
+      "feedback": "İnferior derivasyonlarda testere dişi F dalgaları ve 2:1 iletim. Düzenli makro-reentran atriyal devre yaklaşık 300/dk etkinlik üretir."
+    },
+    {
+      "id": 50,
+      "mode": "sintach",
+      "title": "Ateş sonrası hızlı nabız",
+      "diagnosis": "Sinüs taşikardisi",
+      "stem": "77 yaşında, Ateş sonrası düzenli hızlı nabzı olan bir kişi. Kayıt D2, aVF, V3 derivasyonlarıyla birlikte gösteriliyor.",
+      "question": "EKG bulgularıyla en uyumlu seçenek hangisidir?",
+      "options": [
+        "Sinüs taşikardisi",
+        "Atriyal fibrilasyon",
+        "İnferior ST elevasyonlu MI örneği"
+      ],
+      "correct": 0,
+      "lead": "D2",
+      "clue": "Yaklaşık 120/dk, her QRS öncesinde sinüs P dalgası",
+      "feedback": "Yaklaşık 120/dk, her QRS öncesinde sinüs P dalgası. Hız artmış olsa da uyarı sinüs düğümünden çıkar."
+    }
+  ],
+  "questions": [
+    {
+      "text": "“Her QRS öncesinde P dalgası, sabit PR ve düzenli dar QRS” bulgusu hangi ritim veya örnekle en iyi eşleşir?",
+      "options": [
+        "Ventriküler erken atım",
+        "Normal sinüs ritmi",
+        "Ventriküler fibrilasyon"
+      ],
+      "correct": 1,
+      "feedback": "Doğru eşleşme: Normal sinüs ritmi. Uyarı sinüs düğümünden çıkar ve normal ileti sistemiyle ventriküllere ulaşır."
+    },
+    {
+      "text": "“Belirgin P dalgası yok ve R–R aralıkları düzensiz düzensiz” bulgusu hangi ritim veya örnekle en iyi eşleşir?",
+      "options": [
+        "Düzenli dar kompleks SVT",
+        "Atriyal fibrilasyon",
+        "Paroksismal atriyal taşikardi"
+      ],
+      "correct": 1,
+      "feedback": "Doğru eşleşme: Atriyal fibrilasyon. Kaotik atriyal etkinlik organize atriyal kasılmayı ortadan kaldırır."
+    },
+    {
+      "text": "“V2–V4 komşu derivasyonlarında belirgin ST yükselmesi” bulgusu hangi ritim veya örnekle en iyi eşleşir?",
+      "options": [
+        "İnferior ST elevasyonlu MI örneği",
+        "Anterior ST elevasyonlu MI örneği",
+        "Atriyal flutter"
+      ],
+      "correct": 1,
+      "feedback": "Doğru eşleşme: Anterior ST elevasyonlu MI örneği. Anterior bölgede transmural iskemi akım örüntüsünü değiştirir."
+    },
+    {
+      "text": "“Erken gelen geniş QRS ve ardından kompansatuvar duraklama” bulgusu hangi ritim veya örnekle en iyi eşleşir?",
+      "options": [
+        "Monomorfik ventriküler taşikardi",
+        "Ventriküler erken atım",
+        "Sinüs taşikardisi"
+      ],
+      "correct": 1,
+      "feedback": "Doğru eşleşme: Ventriküler erken atım. Uyarı beklenen sinüs atımından önce ventrikülden başlar."
+    },
+    {
+      "text": "“Yaklaşık 167/dk hızında düzenli, dar kompleks taşikardi” bulgusu hangi ritim veya örnekle en iyi eşleşir?",
+      "options": [
+        "Ventriküler fibrilasyon",
+        "Düzenli dar kompleks SVT",
+        "Sol dal bloğu"
+      ],
+      "correct": 1,
+      "feedback": "Doğru eşleşme: Düzenli dar kompleks SVT. Ventrikül üstü hızlı odak veya reentri AV sistem üzerinden iletilir."
+    },
+    {
+      "text": "“D2, D3 ve aVF’de ST yükselmesi; D1 ve aVL’de karşılıklı çökme” bulgusu hangi ritim veya örnekle en iyi eşleşir?",
+      "options": [
+        "Paroksismal atriyal taşikardi",
+        "İnferior ST elevasyonlu MI örneği",
+        "Sağ dal bloğu"
+      ],
+      "correct": 1,
+      "feedback": "Doğru eşleşme: İnferior ST elevasyonlu MI örneği. İnferior bölgedeki akut iskemi komşu derivasyonlarda ST değişikliği oluşturur."
+    },
+    {
+      "text": "“Hızlı, düzenli ve geniş kompleksli tek biçimli ritim” bulgusu hangi ritim veya örnekle en iyi eşleşir?",
+      "options": [
+        "Atriyal flutter",
+        "Monomorfik ventriküler taşikardi",
+        "Normal sinüs ritmi"
+      ],
+      "correct": 1,
+      "feedback": "Doğru eşleşme: Monomorfik ventriküler taşikardi. Hızlı ritim ventriküler dokudan köken alır."
+    },
+    {
+      "text": "“Organize QRS olmadan kaotik ve düzensiz elektriksel etkinlik” bulgusu hangi ritim veya örnekle en iyi eşleşir?",
+      "options": [
+        "Sinüs taşikardisi",
+        "Ventriküler fibrilasyon",
+        "Atriyal fibrilasyon"
+      ],
+      "correct": 1,
+      "feedback": "Doğru eşleşme: Ventriküler fibrilasyon. Ventriküllerde organize depolarizasyon bulunmaz."
+    },
+    {
+      "text": "“Farklı morfolojili P dalgalarıyla düzenli dar kompleks taşikardi” bulgusu hangi ritim veya örnekle en iyi eşleşir?",
+      "options": [
+        "Sol dal bloğu",
+        "Paroksismal atriyal taşikardi",
+        "Anterior ST elevasyonlu MI örneği"
+      ],
+      "correct": 1,
+      "feedback": "Doğru eşleşme: Paroksismal atriyal taşikardi. Sinüs düğümü dışındaki atriyal bir odak hızlı uyarı üretir."
+    },
+    {
+      "text": "“İnferior derivasyonlarda testere dişi F dalgaları ve 2:1 iletim” bulgusu hangi ritim veya örnekle en iyi eşleşir?",
+      "options": [
+        "Sağ dal bloğu",
+        "Atriyal flutter",
+        "Ventriküler erken atım"
+      ],
+      "correct": 1,
+      "feedback": "Doğru eşleşme: Atriyal flutter. Düzenli makro-reentran atriyal devre yaklaşık 300/dk etkinlik üretir."
+    },
+    {
+      "text": "“Yaklaşık 120/dk, her QRS öncesinde sinüs P dalgası” bulgusu hangi ritim veya örnekle en iyi eşleşir?",
+      "options": [
+        "Normal sinüs ritmi",
+        "Sinüs taşikardisi",
+        "Düzenli dar kompleks SVT"
+      ],
+      "correct": 1,
+      "feedback": "Doğru eşleşme: Sinüs taşikardisi. Hız artmış olsa da uyarı sinüs düğümünden çıkar."
+    },
+    {
+      "text": "“Geniş QRS; V1’de derin negatif kompleks, V6’da geniş çentikli R” bulgusu hangi ritim veya örnekle en iyi eşleşir?",
+      "options": [
+        "Atriyal fibrilasyon",
+        "Sol dal bloğu",
+        "İnferior ST elevasyonlu MI örneği"
+      ],
+      "correct": 1,
+      "feedback": "Doğru eşleşme: Sol dal bloğu. Sol ventrikül aktivasyonu gecikerek hücreden hücreye yayılır."
+    },
+    {
+      "text": "“Geniş QRS; V1’de rSR′ ve V6’da geniş terminal S” bulgusu hangi ritim veya örnekle en iyi eşleşir?",
+      "options": [
+        "Anterior ST elevasyonlu MI örneği",
+        "Sağ dal bloğu",
+        "Monomorfik ventriküler taşikardi"
+      ],
+      "correct": 1,
+      "feedback": "Doğru eşleşme: Sağ dal bloğu. Sağ ventrikül aktivasyonu sağ dal iletimindeki gecikme nedeniyle geç tamamlanır."
+    },
+    {
+      "text": "Normal sinüs ritmi değerlendirilirken bu örnekte öncelikle hangi derivasyon seçilmelidir?",
+      "options": [
+        "D2",
+        "V1",
+        "V6"
+      ],
+      "correct": 0,
+      "feedback": "Bu öğretim örneğinde odak derivasyon D2 olarak seçilmiştir; tanısal değerlendirme 12 derivasyon ve klinik bağlam gerektirir."
+    },
+    {
+      "text": "Atriyal fibrilasyon değerlendirilirken bu örnekte öncelikle hangi derivasyon seçilmelidir?",
+      "options": [
+        "D2",
+        "V1",
+        "V6"
+      ],
+      "correct": 0,
+      "feedback": "Bu öğretim örneğinde odak derivasyon D2 olarak seçilmiştir; tanısal değerlendirme 12 derivasyon ve klinik bağlam gerektirir."
+    },
+    {
+      "text": "Anterior ST elevasyonlu MI örneği değerlendirilirken bu örnekte öncelikle hangi derivasyon seçilmelidir?",
+      "options": [
+        "V3",
+        "V1",
+        "D2"
+      ],
+      "correct": 0,
+      "feedback": "Bu öğretim örneğinde odak derivasyon V3 olarak seçilmiştir; tanısal değerlendirme 12 derivasyon ve klinik bağlam gerektirir."
+    },
+    {
+      "text": "Ventriküler erken atım değerlendirilirken bu örnekte öncelikle hangi derivasyon seçilmelidir?",
+      "options": [
+        "D2",
+        "V1",
+        "V6"
+      ],
+      "correct": 0,
+      "feedback": "Bu öğretim örneğinde odak derivasyon D2 olarak seçilmiştir; tanısal değerlendirme 12 derivasyon ve klinik bağlam gerektirir."
+    },
+    {
+      "text": "Düzenli dar kompleks SVT değerlendirilirken bu örnekte öncelikle hangi derivasyon seçilmelidir?",
+      "options": [
+        "D2",
+        "V1",
+        "V6"
+      ],
+      "correct": 0,
+      "feedback": "Bu öğretim örneğinde odak derivasyon D2 olarak seçilmiştir; tanısal değerlendirme 12 derivasyon ve klinik bağlam gerektirir."
+    },
+    {
+      "text": "İnferior ST elevasyonlu MI örneği değerlendirilirken bu örnekte öncelikle hangi derivasyon seçilmelidir?",
+      "options": [
+        "aVF",
+        "V1",
+        "D2"
+      ],
+      "correct": 0,
+      "feedback": "Bu öğretim örneğinde odak derivasyon aVF olarak seçilmiştir; tanısal değerlendirme 12 derivasyon ve klinik bağlam gerektirir."
+    },
+    {
+      "text": "Monomorfik ventriküler taşikardi değerlendirilirken bu örnekte öncelikle hangi derivasyon seçilmelidir?",
+      "options": [
+        "V1",
+        "aVL",
+        "D2"
+      ],
+      "correct": 0,
+      "feedback": "Bu öğretim örneğinde odak derivasyon V1 olarak seçilmiştir; tanısal değerlendirme 12 derivasyon ve klinik bağlam gerektirir."
+    },
+    {
+      "text": "Ventriküler fibrilasyon değerlendirilirken bu örnekte öncelikle hangi derivasyon seçilmelidir?",
+      "options": [
+        "D2",
+        "V1",
+        "V6"
+      ],
+      "correct": 0,
+      "feedback": "Bu öğretim örneğinde odak derivasyon D2 olarak seçilmiştir; tanısal değerlendirme 12 derivasyon ve klinik bağlam gerektirir."
+    },
+    {
+      "text": "Paroksismal atriyal taşikardi değerlendirilirken bu örnekte öncelikle hangi derivasyon seçilmelidir?",
+      "options": [
+        "D2",
+        "V1",
+        "V6"
+      ],
+      "correct": 0,
+      "feedback": "Bu öğretim örneğinde odak derivasyon D2 olarak seçilmiştir; tanısal değerlendirme 12 derivasyon ve klinik bağlam gerektirir."
+    },
+    {
+      "text": "Atriyal flutter değerlendirilirken bu örnekte öncelikle hangi derivasyon seçilmelidir?",
+      "options": [
+        "aVF",
+        "V1",
+        "D2"
+      ],
+      "correct": 0,
+      "feedback": "Bu öğretim örneğinde odak derivasyon aVF olarak seçilmiştir; tanısal değerlendirme 12 derivasyon ve klinik bağlam gerektirir."
+    },
+    {
+      "text": "Sinüs taşikardisi değerlendirilirken bu örnekte öncelikle hangi derivasyon seçilmelidir?",
+      "options": [
+        "D2",
+        "V1",
+        "V6"
+      ],
+      "correct": 0,
+      "feedback": "Bu öğretim örneğinde odak derivasyon D2 olarak seçilmiştir; tanısal değerlendirme 12 derivasyon ve klinik bağlam gerektirir."
+    },
+    {
+      "text": "Sol dal bloğu değerlendirilirken bu örnekte öncelikle hangi derivasyon seçilmelidir?",
+      "options": [
+        "V6",
+        "V1",
+        "D2"
+      ],
+      "correct": 0,
+      "feedback": "Bu öğretim örneğinde odak derivasyon V6 olarak seçilmiştir; tanısal değerlendirme 12 derivasyon ve klinik bağlam gerektirir."
+    },
+    {
+      "text": "Sağ dal bloğu değerlendirilirken bu örnekte öncelikle hangi derivasyon seçilmelidir?",
+      "options": [
+        "V1",
+        "aVL",
+        "D2"
+      ],
+      "correct": 0,
+      "feedback": "Bu öğretim örneğinde odak derivasyon V1 olarak seçilmiştir; tanısal değerlendirme 12 derivasyon ve klinik bağlam gerektirir."
+    },
+    {
+      "text": "Normal sinüs ritmi için mekanizmayı doğru açıklayan ifade hangisidir?",
+      "options": [
+        "İnferior bölgedeki akut iskemi komşu derivasyonlarda ST değişikliği oluşturur.",
+        "EKG yalnızca damar içindeki kanın hareketini kaydeder.",
+        "Uyarı sinüs düğümünden çıkar ve normal ileti sistemiyle ventriküllere ulaşır."
+      ],
+      "correct": 2,
+      "feedback": "Uyarı sinüs düğümünden çıkar ve normal ileti sistemiyle ventriküllere ulaşır."
+    },
+    {
+      "text": "Atriyal fibrilasyon için mekanizmayı doğru açıklayan ifade hangisidir?",
+      "options": [
+        "Hızlı ritim ventriküler dokudan köken alır.",
+        "EKG yalnızca damar içindeki kanın hareketini kaydeder.",
+        "Kaotik atriyal etkinlik organize atriyal kasılmayı ortadan kaldırır."
+      ],
+      "correct": 2,
+      "feedback": "Kaotik atriyal etkinlik organize atriyal kasılmayı ortadan kaldırır."
+    },
+    {
+      "text": "Anterior ST elevasyonlu MI örneği için mekanizmayı doğru açıklayan ifade hangisidir?",
+      "options": [
+        "Ventriküllerde organize depolarizasyon bulunmaz.",
+        "EKG yalnızca damar içindeki kanın hareketini kaydeder.",
+        "Anterior bölgede transmural iskemi akım örüntüsünü değiştirir."
+      ],
+      "correct": 2,
+      "feedback": "Anterior bölgede transmural iskemi akım örüntüsünü değiştirir."
+    },
+    {
+      "text": "Ventriküler erken atım için mekanizmayı doğru açıklayan ifade hangisidir?",
+      "options": [
+        "Sinüs düğümü dışındaki atriyal bir odak hızlı uyarı üretir.",
+        "EKG yalnızca damar içindeki kanın hareketini kaydeder.",
+        "Uyarı beklenen sinüs atımından önce ventrikülden başlar."
+      ],
+      "correct": 2,
+      "feedback": "Uyarı beklenen sinüs atımından önce ventrikülden başlar."
+    },
+    {
+      "text": "Düzenli dar kompleks SVT için mekanizmayı doğru açıklayan ifade hangisidir?",
+      "options": [
+        "Düzenli makro-reentran atriyal devre yaklaşık 300/dk etkinlik üretir.",
+        "EKG yalnızca damar içindeki kanın hareketini kaydeder.",
+        "Ventrikül üstü hızlı odak veya reentri AV sistem üzerinden iletilir."
+      ],
+      "correct": 2,
+      "feedback": "Ventrikül üstü hızlı odak veya reentri AV sistem üzerinden iletilir."
+    },
+    {
+      "text": "İnferior ST elevasyonlu MI örneği için mekanizmayı doğru açıklayan ifade hangisidir?",
+      "options": [
+        "Hız artmış olsa da uyarı sinüs düğümünden çıkar.",
+        "EKG yalnızca damar içindeki kanın hareketini kaydeder.",
+        "İnferior bölgedeki akut iskemi komşu derivasyonlarda ST değişikliği oluşturur."
+      ],
+      "correct": 2,
+      "feedback": "İnferior bölgedeki akut iskemi komşu derivasyonlarda ST değişikliği oluşturur."
+    },
+    {
+      "text": "Monomorfik ventriküler taşikardi için mekanizmayı doğru açıklayan ifade hangisidir?",
+      "options": [
+        "Sol ventrikül aktivasyonu gecikerek hücreden hücreye yayılır.",
+        "EKG yalnızca damar içindeki kanın hareketini kaydeder.",
+        "Hızlı ritim ventriküler dokudan köken alır."
+      ],
+      "correct": 2,
+      "feedback": "Hızlı ritim ventriküler dokudan köken alır."
+    },
+    {
+      "text": "Ventriküler fibrilasyon için mekanizmayı doğru açıklayan ifade hangisidir?",
+      "options": [
+        "Sağ ventrikül aktivasyonu sağ dal iletimindeki gecikme nedeniyle geç tamamlanır.",
+        "EKG yalnızca damar içindeki kanın hareketini kaydeder.",
+        "Ventriküllerde organize depolarizasyon bulunmaz."
+      ],
+      "correct": 2,
+      "feedback": "Ventriküllerde organize depolarizasyon bulunmaz."
+    },
+    {
+      "text": "Paroksismal atriyal taşikardi için mekanizmayı doğru açıklayan ifade hangisidir?",
+      "options": [
+        "Uyarı sinüs düğümünden çıkar ve normal ileti sistemiyle ventriküllere ulaşır.",
+        "EKG yalnızca damar içindeki kanın hareketini kaydeder.",
+        "Sinüs düğümü dışındaki atriyal bir odak hızlı uyarı üretir."
+      ],
+      "correct": 2,
+      "feedback": "Sinüs düğümü dışındaki atriyal bir odak hızlı uyarı üretir."
+    },
+    {
+      "text": "Atriyal flutter için mekanizmayı doğru açıklayan ifade hangisidir?",
+      "options": [
+        "Kaotik atriyal etkinlik organize atriyal kasılmayı ortadan kaldırır.",
+        "EKG yalnızca damar içindeki kanın hareketini kaydeder.",
+        "Düzenli makro-reentran atriyal devre yaklaşık 300/dk etkinlik üretir."
+      ],
+      "correct": 2,
+      "feedback": "Düzenli makro-reentran atriyal devre yaklaşık 300/dk etkinlik üretir."
+    },
+    {
+      "text": "Sinüs taşikardisi için mekanizmayı doğru açıklayan ifade hangisidir?",
+      "options": [
+        "Anterior bölgede transmural iskemi akım örüntüsünü değiştirir.",
+        "EKG yalnızca damar içindeki kanın hareketini kaydeder.",
+        "Hız artmış olsa da uyarı sinüs düğümünden çıkar."
+      ],
+      "correct": 2,
+      "feedback": "Hız artmış olsa da uyarı sinüs düğümünden çıkar."
+    },
+    {
+      "text": "Sol dal bloğu için mekanizmayı doğru açıklayan ifade hangisidir?",
+      "options": [
+        "Uyarı beklenen sinüs atımından önce ventrikülden başlar.",
+        "EKG yalnızca damar içindeki kanın hareketini kaydeder.",
+        "Sol ventrikül aktivasyonu gecikerek hücreden hücreye yayılır."
+      ],
+      "correct": 2,
+      "feedback": "Sol ventrikül aktivasyonu gecikerek hücreden hücreye yayılır."
+    },
+    {
+      "text": "Sağ dal bloğu için mekanizmayı doğru açıklayan ifade hangisidir?",
+      "options": [
+        "Ventrikül üstü hızlı odak veya reentri AV sistem üzerinden iletilir.",
+        "EKG yalnızca damar içindeki kanın hareketini kaydeder.",
+        "Sağ ventrikül aktivasyonu sağ dal iletimindeki gecikme nedeniyle geç tamamlanır."
+      ],
+      "correct": 2,
+      "feedback": "Sağ ventrikül aktivasyonu sağ dal iletimindeki gecikme nedeniyle geç tamamlanır."
+    },
+    {
+      "text": "Normal sinüs ritmi için olası dolaşım etkisi hangisidir?",
+      "options": [
+        "Elektriksel etkinlik mekanik yanıtı hiçbir zaman etkilemez.",
+        "Atriyal katkı ve düzenli ventriküler doluş korunur.",
+        "Kısa doluş ve eşzamanlılık kaybı dolaşımı bozabilir."
+      ],
+      "correct": 1,
+      "feedback": "Atriyal katkı ve düzenli ventriküler doluş korunur."
+    },
+    {
+      "text": "Atriyal fibrilasyon için olası dolaşım etkisi hangisidir?",
+      "options": [
+        "Elektriksel etkinlik mekanik yanıtı hiçbir zaman etkilemez.",
+        "Değişken doluş süreleri ve atriyal staz görülebilir.",
+        "Etkili ventriküler kasılma ve ileri akım oluşmaz."
+      ],
+      "correct": 1,
+      "feedback": "Değişken doluş süreleri ve atriyal staz görülebilir."
+    },
+    {
+      "text": "Anterior ST elevasyonlu MI örneği için olası dolaşım etkisi hangisidir?",
+      "options": [
+        "Elektriksel etkinlik mekanik yanıtı hiçbir zaman etkilemez.",
+        "Etkilenen sol ventrikül segmentinde kasılma azalabilir.",
+        "Atriyal kasılma sürerken yüksek hız doluş süresini kısaltır."
+      ],
+      "correct": 1,
+      "feedback": "Etkilenen sol ventrikül segmentinde kasılma azalabilir."
+    },
+    {
+      "text": "Ventriküler erken atım için olası dolaşım etkisi hangisidir?",
+      "options": [
+        "Elektriksel etkinlik mekanik yanıtı hiçbir zaman etkilemez.",
+        "Erken atımın doluşu ve mekanik etkinliği azalabilir.",
+        "Koordineli atriyal katkı azalır; hızlı yanıt doluşu kısaltır."
+      ],
+      "correct": 1,
+      "feedback": "Erken atımın doluşu ve mekanik etkinliği azalabilir."
+    },
+    {
+      "text": "Düzenli dar kompleks SVT için olası dolaşım etkisi hangisidir?",
+      "options": [
+        "Elektriksel etkinlik mekanik yanıtı hiçbir zaman etkilemez.",
+        "Kısalan diyastol ventrikül doluşunu azaltabilir.",
+        "Diyastol kısalır ancak sıralı atriyoventriküler etkinlik korunur."
+      ],
+      "correct": 1,
+      "feedback": "Kısalan diyastol ventrikül doluşunu azaltabilir."
+    },
+    {
+      "text": "İnferior ST elevasyonlu MI örneği için olası dolaşım etkisi hangisidir?",
+      "options": [
+        "Elektriksel etkinlik mekanik yanıtı hiçbir zaman etkilemez.",
+        "İnferior duvar hareketi ve pompa etkinliği azalabilir.",
+        "Ventriküller arası mekanik eşzamanlılık azalabilir."
+      ],
+      "correct": 1,
+      "feedback": "İnferior duvar hareketi ve pompa etkinliği azalabilir."
+    },
+    {
+      "text": "Monomorfik ventriküler taşikardi için olası dolaşım etkisi hangisidir?",
+      "options": [
+        "Elektriksel etkinlik mekanik yanıtı hiçbir zaman etkilemez.",
+        "Kısa doluş ve eşzamanlılık kaybı dolaşımı bozabilir.",
+        "Sağ ventrikül kasılması hafif gecikmiş olabilir."
+      ],
+      "correct": 1,
+      "feedback": "Kısa doluş ve eşzamanlılık kaybı dolaşımı bozabilir."
+    },
+    {
+      "text": "Ventriküler fibrilasyon için olası dolaşım etkisi hangisidir?",
+      "options": [
+        "Elektriksel etkinlik mekanik yanıtı hiçbir zaman etkilemez.",
+        "Etkili ventriküler kasılma ve ileri akım oluşmaz.",
+        "Atriyal katkı ve düzenli ventriküler doluş korunur."
+      ],
+      "correct": 1,
+      "feedback": "Etkili ventriküler kasılma ve ileri akım oluşmaz."
+    },
+    {
+      "text": "Paroksismal atriyal taşikardi için olası dolaşım etkisi hangisidir?",
+      "options": [
+        "Elektriksel etkinlik mekanik yanıtı hiçbir zaman etkilemez.",
+        "Atriyal kasılma sürerken yüksek hız doluş süresini kısaltır.",
+        "Değişken doluş süreleri ve atriyal staz görülebilir."
+      ],
+      "correct": 1,
+      "feedback": "Atriyal kasılma sürerken yüksek hız doluş süresini kısaltır."
+    },
+    {
+      "text": "Atriyal flutter için olası dolaşım etkisi hangisidir?",
+      "options": [
+        "Elektriksel etkinlik mekanik yanıtı hiçbir zaman etkilemez.",
+        "Koordineli atriyal katkı azalır; hızlı yanıt doluşu kısaltır.",
+        "Etkilenen sol ventrikül segmentinde kasılma azalabilir."
+      ],
+      "correct": 1,
+      "feedback": "Koordineli atriyal katkı azalır; hızlı yanıt doluşu kısaltır."
+    },
+    {
+      "text": "Sinüs taşikardisi için olası dolaşım etkisi hangisidir?",
+      "options": [
+        "Elektriksel etkinlik mekanik yanıtı hiçbir zaman etkilemez.",
+        "Diyastol kısalır ancak sıralı atriyoventriküler etkinlik korunur.",
+        "Erken atımın doluşu ve mekanik etkinliği azalabilir."
+      ],
+      "correct": 1,
+      "feedback": "Diyastol kısalır ancak sıralı atriyoventriküler etkinlik korunur."
+    }
+  ]
+}

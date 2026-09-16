@@ -1,0 +1,640 @@
+{
+  "date": "2026-09-16T13:27:41.787Z",
+  "kind": "Real Chromium browser + separately identified direct model checks",
+  "observations": [
+    {
+      "id": "CONTENT",
+      "cases": 50,
+      "questions": 50,
+      "caseClinicalStems": 13,
+      "optionCounts": [
+        3
+      ],
+      "duplicateOptions": []
+    },
+    {
+      "id": "MODEL-normal",
+      "residual": 0.3999999999999654,
+      "augmentedResidual": 0.2599999999999774,
+      "nonfinite": 0,
+      "qrs": 0.08,
+      "rate": 75
+    },
+    {
+      "id": "MODEL-af",
+      "residual": 0.41460008114167657,
+      "augmentedResidual": 0.26652535097357266,
+      "nonfinite": 0,
+      "qrs": 0.08,
+      "rate": 91
+    },
+    {
+      "id": "MODEL-stemi",
+      "residual": 0.3999999999999654,
+      "augmentedResidual": 0.2599999999999774,
+      "nonfinite": 0,
+      "qrs": 0.08,
+      "rate": 75
+    },
+    {
+      "id": "MODEL-pvc",
+      "residual": 0.43199999999860783,
+      "augmentedResidual": 0.280799999999095,
+      "nonfinite": 0,
+      "qrs": 0.14,
+      "rate": 54
+    },
+    {
+      "id": "MODEL-svt",
+      "residual": 0.3687500000011137,
+      "augmentedResidual": 0.23968750000072397,
+      "nonfinite": 0,
+      "qrs": 0.08,
+      "rate": 167
+    },
+    {
+      "id": "MODEL-inferior",
+      "residual": 0.3999999999999654,
+      "augmentedResidual": 0.2599999999999774,
+      "nonfinite": 0,
+      "qrs": 0.08,
+      "rate": 75
+    },
+    {
+      "id": "MODEL-vt",
+      "residual": 0.4319999999999946,
+      "augmentedResidual": 0.2807999999999965,
+      "nonfinite": 0,
+      "qrs": 0.18,
+      "rate": 158
+    },
+    {
+      "id": "MODEL-vf",
+      "residual": 0.8239793101623629,
+      "augmentedResidual": 0.9853181557567661,
+      "nonfinite": 0,
+      "qrs": 0.08,
+      "rate": 0
+    },
+    {
+      "id": "MODEL-pat",
+      "residual": 0.39999999999995184,
+      "augmentedResidual": 0.25999999999996865,
+      "nonfinite": 0,
+      "qrs": 0.08,
+      "rate": 150
+    },
+    {
+      "id": "MODEL-flutter",
+      "residual": 0.4349999999998264,
+      "augmentedResidual": 0.3024999999999687,
+      "nonfinite": 0,
+      "qrs": 0.08,
+      "rate": 150
+    },
+    {
+      "id": "MODEL-sintach",
+      "residual": 0.39999999999989133,
+      "augmentedResidual": 0.2599999999999293,
+      "nonfinite": 0,
+      "qrs": 0.08,
+      "rate": 120
+    },
+    {
+      "id": "MODEL-lbbb",
+      "residual": 0.9191999999999835,
+      "augmentedResidual": 0.453299999999992,
+      "nonfinite": 0,
+      "qrs": 0.16,
+      "rate": 75
+    },
+    {
+      "id": "MODEL-rbbb",
+      "residual": 0.6479619047618896,
+      "augmentedResidual": 0.3082285714285642,
+      "nonfinite": 0,
+      "qrs": 0.14,
+      "rate": 75
+    },
+    {
+      "id": "LANDING-17s",
+      "before": 0.079,
+      "after": 16,
+      "landingVisible": true
+    },
+    {
+      "id": "PROGRAMMATIC",
+      "before": 0.017,
+      "after": 1.29
+    },
+    {
+      "id": "EXPLICIT-16s-speed2",
+      "before": 0.272,
+      "after": 16,
+      "simTime": 35.21799999999978
+    },
+    {
+      "id": "HELP-MODAL",
+      "delta": 0,
+      "open": true
+    },
+    {
+      "id": "OTHER-MODAL",
+      "delta": 1.125
+    },
+    {
+      "id": "LAYOUT-1366",
+      "viewport": {
+        "w": 1366,
+        "h": 768
+      },
+      "documentWidth": 1366,
+      "cards": [
+        {
+          "mode": "normal",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "af",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "stemi",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "pvc",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "svt",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "inferior",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "vt",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "vf",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "pat",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "flutter",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "sintach",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "lbbb",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "rbbb",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        }
+      ],
+      "font": "12px",
+      "leadSelectors": [
+        {
+          "x": 769,
+          "width": 58
+        },
+        {
+          "x": 1020.5,
+          "width": 58
+        },
+        {
+          "x": 1272,
+          "width": 58
+        }
+      ],
+      "ecg": {
+        "x": 593.5,
+        "y": 242,
+        "width": 744.5,
+        "height": 86.484375,
+        "top": 242,
+        "right": 1338,
+        "bottom": 328.484375,
+        "left": 593.5
+      }
+    },
+    {
+      "id": "LAYOUT-1920",
+      "viewport": {
+        "w": 1920,
+        "h": 1080
+      },
+      "documentWidth": 1920,
+      "cards": [
+        {
+          "mode": "normal",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "af",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "stemi",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "pvc",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "svt",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "inferior",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "vt",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "vf",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "pat",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "flutter",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "sintach",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "lbbb",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        },
+        {
+          "mode": "rbbb",
+          "height": 68,
+          "bottom": 149,
+          "railBottom": 151,
+          "scrollHeight": 66,
+          "clientHeight": 66
+        }
+      ],
+      "font": "12px",
+      "leadSelectors": [
+        {
+          "x": 1108.78125,
+          "width": 58
+        },
+        {
+          "x": 1467.390625,
+          "width": 58
+        },
+        {
+          "x": 1826,
+          "width": 58
+        }
+      ],
+      "ecg": {
+        "x": 826.171875,
+        "y": 242,
+        "width": 1065.828125,
+        "height": 242.5,
+        "top": 242,
+        "right": 1892,
+        "bottom": 484.5,
+        "left": 826.171875
+      }
+    },
+    {
+      "id": "LAYOUT-390",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "documentWidth": 390,
+      "cards": [
+        {
+          "mode": "normal",
+          "height": 64,
+          "bottom": 184,
+          "railBottom": 186,
+          "scrollHeight": 62,
+          "clientHeight": 62
+        },
+        {
+          "mode": "af",
+          "height": 64,
+          "bottom": 184,
+          "railBottom": 186,
+          "scrollHeight": 62,
+          "clientHeight": 62
+        },
+        {
+          "mode": "stemi",
+          "height": 64,
+          "bottom": 184,
+          "railBottom": 186,
+          "scrollHeight": 62,
+          "clientHeight": 62
+        },
+        {
+          "mode": "pvc",
+          "height": 64,
+          "bottom": 184,
+          "railBottom": 186,
+          "scrollHeight": 62,
+          "clientHeight": 62
+        },
+        {
+          "mode": "svt",
+          "height": 64,
+          "bottom": 184,
+          "railBottom": 186,
+          "scrollHeight": 62,
+          "clientHeight": 62
+        },
+        {
+          "mode": "inferior",
+          "height": 64,
+          "bottom": 184,
+          "railBottom": 186,
+          "scrollHeight": 62,
+          "clientHeight": 62
+        },
+        {
+          "mode": "vt",
+          "height": 64,
+          "bottom": 184,
+          "railBottom": 186,
+          "scrollHeight": 62,
+          "clientHeight": 62
+        },
+        {
+          "mode": "vf",
+          "height": 64,
+          "bottom": 184,
+          "railBottom": 186,
+          "scrollHeight": 62,
+          "clientHeight": 62
+        },
+        {
+          "mode": "pat",
+          "height": 64,
+          "bottom": 184,
+          "railBottom": 186,
+          "scrollHeight": 62,
+          "clientHeight": 62
+        },
+        {
+          "mode": "flutter",
+          "height": 64,
+          "bottom": 184,
+          "railBottom": 186,
+          "scrollHeight": 62,
+          "clientHeight": 62
+        },
+        {
+          "mode": "sintach",
+          "height": 64,
+          "bottom": 184,
+          "railBottom": 186,
+          "scrollHeight": 62,
+          "clientHeight": 62
+        },
+        {
+          "mode": "lbbb",
+          "height": 64,
+          "bottom": 184,
+          "railBottom": 186,
+          "scrollHeight": 62,
+          "clientHeight": 62
+        },
+        {
+          "mode": "rbbb",
+          "height": 64,
+          "bottom": 184,
+          "railBottom": 186,
+          "scrollHeight": 62,
+          "clientHeight": 62
+        }
+      ],
+      "font": "12px",
+      "leadSelectors": [
+        {
+          "x": 50,
+          "width": 58
+        },
+        {
+          "x": 166,
+          "width": 58
+        },
+        {
+          "x": 282,
+          "width": 58
+        }
+      ],
+      "ecg": {
+        "x": 21,
+        "y": 868,
+        "width": 348,
+        "height": 308,
+        "top": 868,
+        "right": 369,
+        "bottom": 1176,
+        "left": 21
+      }
+    },
+    {
+      "id": "FOCUS-anatomy",
+      "expanded": "anatomy",
+      "collapsed": ""
+    },
+    {
+      "id": "FOCUS-ecg",
+      "expanded": "ecg",
+      "collapsed": ""
+    },
+    {
+      "id": "FOCUS-explanation",
+      "expanded": "explanation",
+      "collapsed": ""
+    },
+    {
+      "id": "FULLSCREEN",
+      "element": "appRoot",
+      "dialogVisible": true,
+      "closeEnabled": true
+    },
+    {
+      "id": "QUIZ-WITH-ZERO-CASES",
+      "view": "quiz",
+      "answers": 0,
+      "ecgCanvases": 0
+    },
+    {
+      "id": "CASE-BEFORE-ANSWER",
+      "expandVisible": true,
+      "leadMenus": 0,
+      "canvas": {
+        "width": 791,
+        "height": 363
+      }
+    },
+    {
+      "id": "CASE-RESIZE",
+      "before": {
+        "width": 300,
+        "height": 150,
+        "cssWidth": 789,
+        "cssHeight": 361
+      },
+      "after": {
+        "width": 1137,
+        "height": 675,
+        "cssWidth": 1135,
+        "cssHeight": 673
+      }
+    },
+    {
+      "id": "VF-FLOW",
+      "movingParticles": 28,
+      "total": 58
+    },
+    {
+      "id": "SCORM-SET-FALSE",
+      "reportedSuccess": true,
+      "bytes": 1573
+    },
+    {
+      "id": "SCORM-FINISH",
+      "dialogOpen": true,
+      "closeEnabled": false,
+      "continueEnabled": false,
+      "calls": 1
+    },
+    {
+      "id": "MALFORMED-RESTORE",
+      "errors": [
+        "Cannot read properties of undefined (reading 'text')",
+        "Cannot read properties of undefined (reading 'lead')"
+      ],
+      "controllerExists": true
+    }
+  ],
+  "errors": []
+}

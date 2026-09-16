@@ -1,0 +1,61 @@
+{
+  "hidden": {
+    "hidden": false,
+    "value": 2.402,
+    "prior": 0.668
+  },
+  "paused": {
+    "before": 3.17,
+    "after": 3.17
+  },
+  "resizeBefore": {
+    "w": 791,
+    "cw": 789,
+    "h": 363,
+    "ch": 361
+  },
+  "resizeAfter": {
+    "w": 791,
+    "cw": 1135,
+    "h": 363,
+    "ch": 673
+  },
+  "fullscreen1920": {
+    "fullscreen": "appRoot",
+    "dialog": {
+      "x": 590,
+      "y": 81,
+      "width": 740,
+      "height": 918,
+      "top": 81,
+      "right": 1330,
+      "bottom": 999,
+      "left": 590
+    },
+    "closeDisabled": false
+  },
+  "suspendMax": 2688,
+  "afSelect": {
+    "rect": {
+      "x": 837.1796875,
+      "y": 241,
+      "width": 139.5,
+      "height": 25,
+      "top": 241,
+      "right": 976.6796875,
+      "bottom": 266,
+      "left": 837.1796875
+    },
+    "parent": {
+      "x": 815.1796875,
+      "y": 205,
+      "width": 1087.8203125,
+      "height": 36,
+      "top": 205,
+      "right": 1903,
+      "bottom": 241,
+      "left": 815.1796875
+    },
+    "overflow": "hidden"
+  }
+}

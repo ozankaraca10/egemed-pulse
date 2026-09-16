@@ -1,0 +1,1476 @@
+[
+  {
+    "id": "C001",
+    "mode": "normal",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "ECG",
+      "CYCLE"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C002",
+    "mode": "af",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "AF2024"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C003",
+    "mode": "stemi",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "ACS2023"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C004",
+    "mode": "pvc",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "VA2022"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C005",
+    "mode": "svt",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C006",
+    "mode": "inferior",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "ACS2023"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C007",
+    "mode": "vt",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "VA2022",
+      "ALS2025"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C008",
+    "mode": "vf",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "VA2022",
+      "ALS2025"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C009",
+    "mode": "pat",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C010",
+    "mode": "flutter",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C011",
+    "mode": "sintach",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C012",
+    "mode": "lbbb",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "BBB2009"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C013",
+    "mode": "rbbb",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "BBB2009"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C014",
+    "mode": "normal",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "ECG",
+      "CYCLE"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C015",
+    "mode": "af",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "AF2024"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C016",
+    "mode": "stemi",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "ACS2023"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C017",
+    "mode": "pvc",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "VA2022"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C018",
+    "mode": "svt",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C019",
+    "mode": "inferior",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "ACS2023"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C020",
+    "mode": "vt",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "VA2022",
+      "ALS2025"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C021",
+    "mode": "vf",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "VA2022",
+      "ALS2025"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C022",
+    "mode": "pat",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C023",
+    "mode": "flutter",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C024",
+    "mode": "sintach",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C025",
+    "mode": "lbbb",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "BBB2009"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C026",
+    "mode": "rbbb",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "BBB2009"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C027",
+    "mode": "normal",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "ECG",
+      "CYCLE"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C028",
+    "mode": "af",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "AF2024"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C029",
+    "mode": "stemi",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "ACS2023"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C030",
+    "mode": "pvc",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "VA2022"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C031",
+    "mode": "svt",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C032",
+    "mode": "inferior",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "ACS2023"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C033",
+    "mode": "vt",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "VA2022",
+      "ALS2025"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C034",
+    "mode": "vf",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "VA2022",
+      "ALS2025"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C035",
+    "mode": "pat",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C036",
+    "mode": "flutter",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C037",
+    "mode": "sintach",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C038",
+    "mode": "lbbb",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "BBB2009"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C039",
+    "mode": "rbbb",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "BBB2009"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C040",
+    "mode": "normal",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "ECG",
+      "CYCLE"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C041",
+    "mode": "af",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "AF2024"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C042",
+    "mode": "stemi",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "ACS2023"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C043",
+    "mode": "pvc",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "VA2022"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C044",
+    "mode": "svt",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C045",
+    "mode": "inferior",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "ACS2023"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C046",
+    "mode": "vt",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "VA2022",
+      "ALS2025"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C047",
+    "mode": "vf",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "VA2022",
+      "ALS2025"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C048",
+    "mode": "pat",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C049",
+    "mode": "flutter",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "C050",
+    "mode": "sintach",
+    "objective": "EKG örüntüsünü klinik bağlamla ayırt etme",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "3 seçenek; 13 çekirdek öykünün yaş tekrarı; her doğru yanıt 0; seçilen çeldirici gerekçesi yok; C014 ve sonrası çekirdek olgu tekrarları",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005",
+      "PULSE-006"
+    ]
+  },
+  {
+    "id": "Q001",
+    "mode": "normal",
+    "objective": "Örüntü tanıma",
+    "sources": [
+      "ECG",
+      "CYCLE"
+    ],
+    "review": "Örüntü eşleştirme; 3 seçenek; EKG yok; yanıt yeri sabit 1",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q002",
+    "mode": "af",
+    "objective": "Örüntü tanıma",
+    "sources": [
+      "AF2024"
+    ],
+    "review": "Örüntü eşleştirme; 3 seçenek; EKG yok; yanıt yeri sabit 1",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q003",
+    "mode": "stemi",
+    "objective": "Örüntü tanıma",
+    "sources": [
+      "ACS2023"
+    ],
+    "review": "Örüntü eşleştirme; 3 seçenek; EKG yok; yanıt yeri sabit 1",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q004",
+    "mode": "pvc",
+    "objective": "Örüntü tanıma",
+    "sources": [
+      "VA2022"
+    ],
+    "review": "Örüntü eşleştirme; 3 seçenek; EKG yok; yanıt yeri sabit 1",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q005",
+    "mode": "svt",
+    "objective": "Örüntü tanıma",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "Örüntü eşleştirme; 3 seçenek; EKG yok; yanıt yeri sabit 1",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q006",
+    "mode": "inferior",
+    "objective": "Örüntü tanıma",
+    "sources": [
+      "ACS2023"
+    ],
+    "review": "Örüntü eşleştirme; 3 seçenek; EKG yok; yanıt yeri sabit 1",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q007",
+    "mode": "vt",
+    "objective": "Örüntü tanıma",
+    "sources": [
+      "VA2022",
+      "ALS2025"
+    ],
+    "review": "Örüntü eşleştirme; 3 seçenek; EKG yok; yanıt yeri sabit 1",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q008",
+    "mode": "vf",
+    "objective": "Örüntü tanıma",
+    "sources": [
+      "VA2022",
+      "ALS2025"
+    ],
+    "review": "Örüntü eşleştirme; 3 seçenek; EKG yok; yanıt yeri sabit 1",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q009",
+    "mode": "pat",
+    "objective": "Örüntü tanıma",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "Örüntü eşleştirme; 3 seçenek; EKG yok; yanıt yeri sabit 1",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q010",
+    "mode": "flutter",
+    "objective": "Örüntü tanıma",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "Örüntü eşleştirme; 3 seçenek; EKG yok; yanıt yeri sabit 1",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q011",
+    "mode": "sintach",
+    "objective": "Örüntü tanıma",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "Örüntü eşleştirme; 3 seçenek; EKG yok; yanıt yeri sabit 1",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q012",
+    "mode": "lbbb",
+    "objective": "Örüntü tanıma",
+    "sources": [
+      "BBB2009"
+    ],
+    "review": "Örüntü eşleştirme; 3 seçenek; EKG yok; yanıt yeri sabit 1",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q013",
+    "mode": "rbbb",
+    "objective": "Örüntü tanıma",
+    "sources": [
+      "BBB2009"
+    ],
+    "review": "Örüntü eşleştirme; 3 seçenek; EKG yok; yanıt yeri sabit 1",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q014",
+    "mode": "normal",
+    "objective": "Derivasyon seçimi",
+    "sources": [
+      "ECG",
+      "CYCLE"
+    ],
+    "review": "Modelin keyfi odak derivasyonunu klinik öncelik gibi soruyor; tek klinik doğru yanıt savunulamaz",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q015",
+    "mode": "af",
+    "objective": "Derivasyon seçimi",
+    "sources": [
+      "AF2024"
+    ],
+    "review": "Modelin keyfi odak derivasyonunu klinik öncelik gibi soruyor; tek klinik doğru yanıt savunulamaz",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q016",
+    "mode": "stemi",
+    "objective": "Derivasyon seçimi",
+    "sources": [
+      "ACS2023"
+    ],
+    "review": "Modelin keyfi odak derivasyonunu klinik öncelik gibi soruyor; tek klinik doğru yanıt savunulamaz",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q017",
+    "mode": "pvc",
+    "objective": "Derivasyon seçimi",
+    "sources": [
+      "VA2022"
+    ],
+    "review": "Modelin keyfi odak derivasyonunu klinik öncelik gibi soruyor; tek klinik doğru yanıt savunulamaz",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q018",
+    "mode": "svt",
+    "objective": "Derivasyon seçimi",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "Modelin keyfi odak derivasyonunu klinik öncelik gibi soruyor; tek klinik doğru yanıt savunulamaz",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q019",
+    "mode": "inferior",
+    "objective": "Derivasyon seçimi",
+    "sources": [
+      "ACS2023"
+    ],
+    "review": "Modelin keyfi odak derivasyonunu klinik öncelik gibi soruyor; tek klinik doğru yanıt savunulamaz",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q020",
+    "mode": "vt",
+    "objective": "Derivasyon seçimi",
+    "sources": [
+      "VA2022",
+      "ALS2025"
+    ],
+    "review": "Modelin keyfi odak derivasyonunu klinik öncelik gibi soruyor; tek klinik doğru yanıt savunulamaz",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q021",
+    "mode": "vf",
+    "objective": "Derivasyon seçimi",
+    "sources": [
+      "VA2022",
+      "ALS2025"
+    ],
+    "review": "Modelin keyfi odak derivasyonunu klinik öncelik gibi soruyor; tek klinik doğru yanıt savunulamaz",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q022",
+    "mode": "pat",
+    "objective": "Derivasyon seçimi",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "Modelin keyfi odak derivasyonunu klinik öncelik gibi soruyor; tek klinik doğru yanıt savunulamaz",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q023",
+    "mode": "flutter",
+    "objective": "Derivasyon seçimi",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "Modelin keyfi odak derivasyonunu klinik öncelik gibi soruyor; tek klinik doğru yanıt savunulamaz",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q024",
+    "mode": "sintach",
+    "objective": "Derivasyon seçimi",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "Modelin keyfi odak derivasyonunu klinik öncelik gibi soruyor; tek klinik doğru yanıt savunulamaz",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q025",
+    "mode": "lbbb",
+    "objective": "Derivasyon seçimi",
+    "sources": [
+      "BBB2009"
+    ],
+    "review": "Modelin keyfi odak derivasyonunu klinik öncelik gibi soruyor; tek klinik doğru yanıt savunulamaz",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q026",
+    "mode": "rbbb",
+    "objective": "Derivasyon seçimi",
+    "sources": [
+      "BBB2009"
+    ],
+    "review": "Modelin keyfi odak derivasyonunu klinik öncelik gibi soruyor; tek klinik doğru yanıt savunulamaz",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q027",
+    "mode": "normal",
+    "objective": "Elektriksel mekanizma",
+    "sources": [
+      "ECG",
+      "CYCLE"
+    ],
+    "review": "Mekanizma sorusu; mutlak ve bariz yanlış kan-hareketi çeldiricisi",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q028",
+    "mode": "af",
+    "objective": "Elektriksel mekanizma",
+    "sources": [
+      "AF2024"
+    ],
+    "review": "Mekanizma sorusu; mutlak ve bariz yanlış kan-hareketi çeldiricisi",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q029",
+    "mode": "stemi",
+    "objective": "Elektriksel mekanizma",
+    "sources": [
+      "ACS2023"
+    ],
+    "review": "Mekanizma sorusu; mutlak ve bariz yanlış kan-hareketi çeldiricisi",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q030",
+    "mode": "pvc",
+    "objective": "Elektriksel mekanizma",
+    "sources": [
+      "VA2022"
+    ],
+    "review": "Mekanizma sorusu; mutlak ve bariz yanlış kan-hareketi çeldiricisi",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q031",
+    "mode": "svt",
+    "objective": "Elektriksel mekanizma",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "Mekanizma sorusu; mutlak ve bariz yanlış kan-hareketi çeldiricisi",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q032",
+    "mode": "inferior",
+    "objective": "Elektriksel mekanizma",
+    "sources": [
+      "ACS2023"
+    ],
+    "review": "Mekanizma sorusu; mutlak ve bariz yanlış kan-hareketi çeldiricisi",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q033",
+    "mode": "vt",
+    "objective": "Elektriksel mekanizma",
+    "sources": [
+      "VA2022",
+      "ALS2025"
+    ],
+    "review": "Mekanizma sorusu; mutlak ve bariz yanlış kan-hareketi çeldiricisi",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q034",
+    "mode": "vf",
+    "objective": "Elektriksel mekanizma",
+    "sources": [
+      "VA2022",
+      "ALS2025"
+    ],
+    "review": "Mekanizma sorusu; mutlak ve bariz yanlış kan-hareketi çeldiricisi",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q035",
+    "mode": "pat",
+    "objective": "Elektriksel mekanizma",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "Mekanizma sorusu; mutlak ve bariz yanlış kan-hareketi çeldiricisi",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q036",
+    "mode": "flutter",
+    "objective": "Elektriksel mekanizma",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "Mekanizma sorusu; mutlak ve bariz yanlış kan-hareketi çeldiricisi",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q037",
+    "mode": "sintach",
+    "objective": "Elektriksel mekanizma",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "Mekanizma sorusu; mutlak ve bariz yanlış kan-hareketi çeldiricisi",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q038",
+    "mode": "lbbb",
+    "objective": "Elektriksel mekanizma",
+    "sources": [
+      "BBB2009"
+    ],
+    "review": "Mekanizma sorusu; mutlak ve bariz yanlış kan-hareketi çeldiricisi",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q039",
+    "mode": "rbbb",
+    "objective": "Elektriksel mekanizma",
+    "sources": [
+      "BBB2009"
+    ],
+    "review": "Mekanizma sorusu; mutlak ve bariz yanlış kan-hareketi çeldiricisi",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q040",
+    "mode": "normal",
+    "objective": "Mekanik yanıtın sınırları",
+    "sources": [
+      "ECG",
+      "CYCLE"
+    ],
+    "review": "Dolaşım etkileri farklı örüntülerde de mümkün; seçilen çeldiriciye özgü eleme gerekçesi yok",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q041",
+    "mode": "af",
+    "objective": "Mekanik yanıtın sınırları",
+    "sources": [
+      "AF2024"
+    ],
+    "review": "Dolaşım etkileri farklı örüntülerde de mümkün; seçilen çeldiriciye özgü eleme gerekçesi yok",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q042",
+    "mode": "stemi",
+    "objective": "Mekanik yanıtın sınırları",
+    "sources": [
+      "ACS2023"
+    ],
+    "review": "Dolaşım etkileri farklı örüntülerde de mümkün; seçilen çeldiriciye özgü eleme gerekçesi yok",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q043",
+    "mode": "pvc",
+    "objective": "Mekanik yanıtın sınırları",
+    "sources": [
+      "VA2022"
+    ],
+    "review": "Dolaşım etkileri farklı örüntülerde de mümkün; seçilen çeldiriciye özgü eleme gerekçesi yok",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q044",
+    "mode": "svt",
+    "objective": "Mekanik yanıtın sınırları",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "Dolaşım etkileri farklı örüntülerde de mümkün; seçilen çeldiriciye özgü eleme gerekçesi yok",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q045",
+    "mode": "inferior",
+    "objective": "Mekanik yanıtın sınırları",
+    "sources": [
+      "ACS2023"
+    ],
+    "review": "Dolaşım etkileri farklı örüntülerde de mümkün; seçilen çeldiriciye özgü eleme gerekçesi yok",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q046",
+    "mode": "vt",
+    "objective": "Mekanik yanıtın sınırları",
+    "sources": [
+      "VA2022",
+      "ALS2025"
+    ],
+    "review": "Dolaşım etkileri farklı örüntülerde de mümkün; seçilen çeldiriciye özgü eleme gerekçesi yok",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q047",
+    "mode": "vf",
+    "objective": "Mekanik yanıtın sınırları",
+    "sources": [
+      "VA2022",
+      "ALS2025"
+    ],
+    "review": "Dolaşım etkileri farklı örüntülerde de mümkün; seçilen çeldiriciye özgü eleme gerekçesi yok",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q048",
+    "mode": "pat",
+    "objective": "Mekanik yanıtın sınırları",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "Dolaşım etkileri farklı örüntülerde de mümkün; seçilen çeldiriciye özgü eleme gerekçesi yok",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q049",
+    "mode": "flutter",
+    "objective": "Mekanik yanıtın sınırları",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "Dolaşım etkileri farklı örüntülerde de mümkün; seçilen çeldiriciye özgü eleme gerekçesi yok",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  },
+  {
+    "id": "Q050",
+    "mode": "sintach",
+    "objective": "Mekanik yanıtın sınırları",
+    "sources": [
+      "SVT2019"
+    ],
+    "review": "Dolaşım etkileri farklı örüntülerde de mümkün; seçilen çeldiriciye özgü eleme gerekçesi yok",
+    "findingIds": [
+      "PULSE-003",
+      "PULSE-004",
+      "PULSE-005"
+    ]
+  }
+]
