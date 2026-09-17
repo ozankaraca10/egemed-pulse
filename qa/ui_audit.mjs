@@ -43,6 +43,8 @@ const hitTest=async(p,selector)=>{await p.evaluate(sel=>{const el=document.query
 // 2) Tüm görünüm × boyutlarda yatay taşma, footer bütünlüğü, tıklanabilirlik
 const expectedFooter=w=>{
   const full='EGEMED Pulse™ Etkileşimli EKG Simülatörü, Ege Üniversitesi Tıp Fakültesi Dekanlığı tarafından geliştirilmiştir. Tüm hakları saklıdır © 2026';
+  const signal='Sinyaller sentetiktir · klinik tanı için kullanılmaz';
+  if(w>1280)return {text:full+' '+signal,pseudo:''};
   if(w>1100)return {text:full,pseudo:''};
   if(w>860)return {text:'EGEMED Pulse™ Etkileşimli EKG Simülatörü Tüm hakları saklıdır © 2026',pseudo:'sub'};
   if(w>720)return {text:'EGEMED Pulse™ Tüm hakları saklıdır © 2026',pseudo:'brand'};

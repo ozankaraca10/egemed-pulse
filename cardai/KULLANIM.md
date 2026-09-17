@@ -55,7 +55,7 @@ Kompakt sürüm 6 devam kaydı gözlemleri, 10+10 örneklemi, yanıtları, türe
 
 Kayıt yaklaşık 10 saniyede bir ve önemli etkileşimlerde denenir. Aktif öğrenme süresi açılış, açık dialog ve gizli sekme sürelerini dışlar. Çekirdek ilerleme kaydı ile isteğe bağlı etkileşim raporunun başarısı ayrı gösterilir. Başarısız kayıtta ilerleme bellekte kalır ve sonraki kayıt denemeleri sürer; kayıt durumu ekranda ayrı bir gösterge olarak tutulmaz. Tarayıcının ani kapanışı son kayıt denemesini garanti etmez.
 
-Ayrı bir bitirme düğmesi yoktur. İlerleme düzenli olarak kaydedilir; sekme kapanırken uygulama son kaydı yapıp LMS bitirme çağrısını (LMSFinish) **otomatik** dener. Yeni bir LMS kaydı için dersi LMS'den yeniden açın.
+Değerlendirme sonuç ekranındaki **"Modülden Çık"** düğmesi isteğe bağlıdır; onay sonrası kaydı LMS'e bitmiş olarak bildirir. Bu düğme kullanılmasa da ilerleme düzenli olarak kaydedilir; sekme kapanırken uygulama son kaydı yapıp LMS bitirme çağrısını (LMSFinish) **otomatik** dener. Yeni bir LMS kaydı için dersi LMS'den yeniden açın.
 
 ## Model ve kaynak sınırları
 

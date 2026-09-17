@@ -21,10 +21,10 @@ Erişim kanıtı: SVT tam metni ve ilgili flutter bölümü, AHA ALS sayfası, K
 
 - O1: P, düzenlilik, hız, PR, QRS ve ST–T ile sistematik okuma — ECG, AF2024, SVT2019, VA2022, BBB2009, ACS2023.
 - O2: Benzer örüntüleri ayrıştırma — AF2024, SVT2019, VA2022, BBB2009.
-- O3: Derivasyon grupları ve bölgesel/matematiksel ilişkiler — ECG, ACS2023, BBB2009.
+- O3: Derivasyon grupları ve hangi bölgeyi/duvarı yansıttıkları — ECG, ACS2023, BBB2009.
 - O4: Elektriksel ve mekanik etkinlik ayrımı — CYCLE, ALS2025.
 - O5: Klinik bağlam, EKG'nin çıkarım sınırları ve acil değerlendirme gereksinimi — AF2024, SVT2019, VA2022, ACS2023, ALS2025.
-- O6: Çizilen sinyalde zaman/voltaj ölçümü ve hız kontrolü ile hasta hızı ayrımı — ECG, CYCLE; sayısal hedefler sentetik modelin kendi fidüsiyel noktalarından türetilir.
+- O6: Hız, aralık ve düzen (dar/geniş QRS, normal/uzamış PR, düzenli/düzensiz ritim) ile çizilen sinyalde zaman/voltaj ölçümü — ECG, CYCLE; sayısal hedefler sentetik modelin kendi fidüsiyel noktalarından türetilir; formül türetme veya piksel/oynatma hızı sorusu yoktur.
 
 Başlangıçtaki 100 maddenin tek tek envanteri ve hedef/kaynak incelemesi `qa/evidence/baseline/item-review.json` içindedir. Hedef ve kaynaklar başlangıç ürününde mevcut değildir; bunlar denetçinin eşleştirmesidir. 200+200 düzeltme havuzunda her madde kalıcı kimlik, örüntü, kaynak kimlikleri, öğrenme hedefi, tek doğru yanıt ve her seçeneğe özgü gerekçe taşımalıdır. Kaynak bağlantısı tek başına madde geçerliği kanıtı değildir.
 

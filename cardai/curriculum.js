@@ -1,948 +1,579 @@
-/* Authored bounded synthetic scenarios. No patient records, no clinical validation claim.
-   Each row supplies different evidence / a different interpretation task. Reused option
-   banks are editorial option sets, not demographic story generators. */
+/* Authored bounded synthetic clinical vignettes (Revizyon 2 — Ausculta hizalama, Faz B).
+   No patient records, no clinical validation claim. Vignettes and vitals are synthetic;
+   option banks are editorial option sets shared across authored rows, not per-row generators. */
 (function(root){'use strict';
 const banks={};
 function bank(id,objective,rows){banks[id]={objective,options:rows.map(r=>r[0]),explanations:rows.map(r=>r[1])};}
-bank('sinus','O2',[
-['Normal sinüs örüntüsü','Düzenli dar QRS, uygun P ekseni ve sabit P–QRS ilişkisi sinüs örüntüsünü destekler.'],
-['Atriyal fibrilasyon örüntüsü','AF için ayrık sinüs P yerine düzensiz atriyal etkinlik ve düzensiz R–R beklenir.'],
-['Sabit2:1 atriyal flutter','Flutterda yaklaşık300/dk sürekli F etkinliği ve2:1 ventriküler yanıt beklenir.'],
-['Fokal atriyal taşikardi','Fokal AT’de sinüs P’sinden farklı atriyal morfoloji ve artmış atriyal hız beklenir.'],
-['AV düğüm bağımlı taşikardi olasılığı','Bu olasılık hızlı düzenli dar taşikardide düşünülebilir; normal hızdaki sinüs P ilişkisinin açıklaması değildir.']]);
-bank('af','O2',[
-['Atriyal fibrilasyon örüntüsü','Ayrık tutarlı P yokluğu ile düzensiz düzensiz R–R birlikte AF’yi destekler.'],
-['Sinüs aritmisi örüntüsü','Sinüs aritmisinde her QRS öncesindeki sinüs P ilişkisi korunur; burada korunmamıştır.'],
-['Sabit2:1 atriyal flutter','Sabit2:1 flutter örneği düzenli ventriküler aralık ve düzenli F etkinliği gerektirir.'],
-['Sık ventriküler erken atımlar','PVC açıklaması erken geniş farklı kompleks gerektirir; düzensiz dar komplekslerin tamamını açıklamaz.'],
-['Fokal atriyal taşikardi','Düzenli ayrık ektopik P dizisi fokal AT’yi destekler; kaotik atriyal tabanla uyuşmaz.']]);
-bank('svt','O2',[
-['Mekanizması belirlenemeyen düzenli dar kompleks taşikardi','Hızlı düzenli dar QRS vardır; görünmeyen P tek başına AVNRT ile AVRT’yi ayıramaz.'],
-['Sinüs taşikardisi için yeterli sinüs P kanıtı','Sinüs taşikardisi için QRS öncesinde uygun ayrık P ilişkisi aranır; bu kanıt verilmemiştir.'],
-['Fokal AT için yeterli ektopik P kanıtı','Fokal AT SVT grubundadır; ancak alt tip tanısı için ayrık ektopik P kanıtı burada yoktur.'],
-['Atriyal fibrilasyon için yeterli düzensizlik','AF’nin düzensiz düzensiz ventriküler yanıtı bu düzenli örnekte bulunmaz.'],
-['Monomorfik VT için yeterli geniş kompleks kanıtı','VT değerlendirmesinde geniş kompleks ve ek ventriküler kanıt aranır; bu kayıt dardır.']]);
-bank('at','O2',[
-['Fokal atriyal taşikardiyle uyumlu örüntü','Düzenli dar taşikardide ayrık, sinüs dışı morfolojili P ve sabit P–QRS ilişkisi fokal AT’yi destekler.'],
-['Sinüs taşikardisiyle uyumlu örüntü','Sinüs taşikardisinde sinüs P ekseni korunur; inferior ters P bu iddiayı zayıflatır.'],
-['Tipik2:1 flutter ile uyumlu örüntü','Flutterda sürekli F dizisi beklenir; ayrık P arasındaki izoelektrik taban bununla uyuşmaz.'],
-['AF ile uyumlu örüntü','AF düzenli ayrık ektopik P dizisi oluşturmaz; R–R düzensizliği beklenir.'],
-['PVC dizisiyle uyumlu örüntü','PVC erken geniş ventriküler komplekstir; sürekli dar P–QRS dizisini açıklamaz.']]);
-bank('flutter','O2',[
-['Sabit2:1 atriyal flutter örüntüsü','Düzenli300/dk F etkinliği ve150/dk ventriküler yanıt2:1 flutter örneğine uyar.'],
-['Fokal atriyal taşikardi örüntüsü','Fokal AT’de ayrık ektopik P ve arada izoelektrik hat beklenebilir; sürekli F tabanı farklıdır.'],
-['Atriyal fibrilasyon örüntüsü','AF’de atriyal etkinlik düzensizdir; düzenli F dizisi ve sabit iletim bu açıklamayı desteklemez.'],
-['Sinüs taşikardisi örüntüsü','Sinüs P–QRS dizisi sürekli iki F dalgası başına bir QRS ilişkisini açıklamaz.'],
-['Ventriküler erken atım örüntüsü','Erken geniş kompleks bulunmadan düzenli F etkinliği PVC diye sınıflanamaz.']]);
-bank('tach','O2',[
-['Sinüs taşikardisi örüntüsü','Uygun sinüs P, sabit PR ve hızlı düzenli dar kompleksler sinüs taşikardisini destekler.'],
-['P’si gösterilmemiş AVNRT/AVRT olasılığı','AVNRT/AVRT olasılığı hızla tek başına kanıtlanmaz; burada ayrık sinüs P ilişkisi vardır.'],
-['Fokal atriyal taşikardi örüntüsü','Fokal AT için sinüs dışı P morfolojisi aranır; bu örnekte sinüs P ekseni korunur.'],
-['Sabit2:1 flutter örüntüsü','İki F dalgası başına bir QRS ve sürekli atriyal taban burada bulunmaz.'],
-['Atriyal fibrilasyon örüntüsü','AF’de sabit ayrık sinüs P ve düzenli R–R dizisi beklenmez.']]);
-bank('pvc','O2',[
-['Ventriküler erken atımla uyumlu örüntü','Beklenenden erken, geniş farklı QRS ve ilişkili öncül P yokluğu PVC’yi destekler.'],
-['Normal zamanında sinüs atımı','Sinüs atımı beklenen zamanda ve önceki sinüs atımlarıyla benzer P–QRS dizisinde olmalıdır.'],
-['Sabit dal bloğunda sinüs atımı','Sabit BBB tüm uygun atımlarda geniş ileti morfolojisi oluşturur; tek erken farklı kompleksle eş değildir.'],
-['Tek başına atriyal fibrilasyon','AF tüm R–R dizisinde düzensizlik ve ayrık P yokluğu yapar; izole erken geniş kompleksi açıklamaz.'],
-['Sabit2:1 flutter atımı','Flutter açıklaması düzenli F dizisi gerektirir; sinüs tabanındaki tek erken komplekse uymaz.']]);
-bank('vt','O2',[
-['VT olarak öncelikle değerlendirilmesi gereken geniş taşikardi','Hızlı düzenli geniş taşikardi, özellikle ek ventriküler kanıtla VT kuşkusu doğurur; klinik doğrulama gerekir.'],
-['Normal sinüs örüntüsü','Normal sinüs hızı ve dar QRS bu hızlı geniş örneğin özellikleri değildir.'],
-['Dar kompleks sinüs taşikardisi','Sinüs taşikardisi etiketi bu geniş QRS ve ventriküler kanıtı yeterince açıklamaz.'],
-['Kaotik VF örüntüsü','VF’de düzenli seçilebilir tek biçimli QRS yoktur; bu kayıtta organize geniş kompleks vardır.'],
-['İzole ventriküler erken atım','PVC tek erken komplekstir; ardışık hızlı geniş kompleks dizisi farklı bir örüntüdür.']]);
-bank('vf','O2',[
-['Ventriküler fibrilasyonla uyumlu elektriksel örüntü','Kaotik değişken etkinlik içinde ayrık organize QRS seçilemiyorsa VF örüntüsü düşünülür.'],
-['Monomorfik ventriküler taşikardi','Monomorfik VT’de düzenli tek biçimli organize geniş kompleksler seçilebilir.'],
-['Atriyal fibrilasyon','AF’de atriyal düzensizliğe rağmen ventriküler QRS kompleksleri genellikle seçilebilir.'],
-['Atriyal flutter','Flutter düzenli atriyal F etkinliği ile seçilebilir ventriküler kompleksler gösterir.'],
-['Asistoli benzeri düz taban','Asistoli düz veya çok düşük etkinlikli tabandır; bu kayıttaki belirgin kaotik dalgaları açıklamaz.']]);
-bank('lbbb','O2',[
-['Sol dal bloğuyla uyumlu ileti örüntüsü','Geniş QRS, V1 negatif kompleks ve lateral geniş çentikli R birlikte LBBB’yi destekler.'],
-['Sağ dal bloğuyla uyumlu ileti örüntüsü','RBBB’de sağ prekordiyal terminal R′ ve lateral terminal S beklenir; burada ters dağılım vardır.'],
-['Normal dar kompleks ileti','Normal80ms QRS bu160ms geniş ve derivasyona özgü morfolojiyi açıklamaz.'],
-['İzole PVC örüntüsü','PVC erken farklı komplekstir; her sinüs atımında sabit geniş morfoloji PVC lehine değildir.'],
-['VF ile uyumlu etkinlik','VF’de düzenli ayrık P–QRS dizisi ve tekrarlayan lateral R morfolojisi bulunmaz.']]);
-bank('rbbb','O2',[
-['Sağ dal bloğuyla uyumlu ileti örüntüsü','Geniş QRS, V1 terminal R′ ve lateral geniş terminal S birlikte RBBB’yi destekler.'],
-['Sol dal bloğuyla uyumlu ileti örüntüsü','LBBB’de V1 çoğunlukla negatif ve lateral geniş R vardır; sağ terminal R′ dağılımı farklıdır.'],
-['Normal dar kompleks ileti','140ms genişliği ile sağ ve lateral terminal morfoloji normal80ms iletiye uymaz.'],
-['İzole PVC örüntüsü','Tüm sinüs atımlarındaki aynı terminal ileti gecikmesi, tek erken ventriküler atımdan ayrılır.'],
-['Atriyal flutter örüntüsü','Flutter atriyal F etkinliğiyle tanımlanır; terminal QRS yönü tek başına flutter kanıtı değildir.']]);
-bank('anterior','O3',[
-['Anterior prekordiyal ST dağılımı','V1–V4 komşu prekordiyallerindeki yükselme anterior dağılımdır; semptomlar ayrıca değerlendirilir.'],
-['İnferior ekstremite ST dağılımı','İnferior dağılımda II,III,aVF’de birlikte yükselme aranır; verilen başlıca değişimler prekordiyaldir.'],
-['Sağ dal bloğunun terminal ileti dağılımı','RBBB terminal QRS morfolojisidir; komşu prekordiyal ST yükselmesinin eş anlamlısı değildir.'],
-['Atriyal flutter taban dağılımı','Flutter F etkinliği atriyal tabanı değiştirir; bu örnekte düzenli P ve bölgesel ST platosu vardır.'],
-['İzole erken ventriküler atım dağılımı','PVC erken geniş kompleks gerektirir; düzenli dar komplekslerin bölgesel ST değişimini açıklamaz.']]);
-bank('inferior','O3',[
-['İnferior ST yükselmesi ve lateral karşılıklı çökme','II,III,aVF yükselmesi ile I,aVL çökmesi birlikte inferior dağılımı destekler.'],
-['Anterior baskın prekordiyal yükselme','Anterior dağılım V1–V4’te baskın yükselmedir; verilen baskın grup ekstremite inferior grubudur.'],
-['Tam RBBB terminal morfolojisi','Sağ terminal R′ ve geniş QRS olmadan ST dağılımı RBBB diye açıklanamaz.'],
-['Tipik2:1 flutter tabanı','Sürekli F etkinliği olmadan komşu ST platosu flutter olarak adlandırılamaz.'],
-['Normal izoelektrik ST örüntüsü','Inferior pozitif ve lateral negatif ST değerleri izoelektrik örüntüyle uyuşmaz.']]);
-bank('pulse','O4',[
-['Mekanik nabız ayrıca klinik olarak değerlendirilir','EKG elektriksel etkinliği gösterir; seçilebilir QRS klinik nabzın varlığını kanıtlamaz.'],
-['Elektriksel hız klinik nabızla birebir aynıdır','Nabız açığı veya etkisiz mekanik atımlar olabilir; birebir eşitlik EKG’den çıkarılamaz.'],
-['QRS genişliği nabız basıncını belirler','Genişlik aktivasyon süresidir; arter basıncı veya nabız basıncı ölçümü değildir.'],
-['T genliği atım hacmini doğrudan verir','T genliği repolarizasyon voltajıdır; atım hacmi için kalibre edilmiş ölçüm değildir.'],
-['PR süresi mekanik debiyi doğrudan verir','PR atriyoventriküler elektriksel iletim ölçüsüdür; debi hesabına tek başına dönüştürülemez.']]);
-bank('vfFlow','O4',[
-['Etkili ileri akım ve organize ejeksiyon yok','VF’nin kaotik ventriküler etkinliği etkili pompa oluşturmaz; tüm ileri akım parçacıkları durur.'],
-['Düzenli düşük hacimli ejeksiyon sürer','Düşük ama organize ejeksiyon çizmek VF’de etkili pompa olduğu izlenimini verir ve yanlıştır.'],
-['Yalnız koroner ileri akım korunur','Modelde VF için koroner parçacıkları da durur; etkili dolaşım ayrıca kanıtlanmış değildir.'],
-['Yalnız pulmoner ileri akım korunur','Organize sağ ventrikül ejeksiyonu olmadan pulmoner ileri akım korunmuş gibi gösterilemez.'],
-['Kaotik elektriksel dalga düzenli nabız üretir','Kaotik elektriksel etkinlik düzenli mekanik nabızla eşleştirilemez.']]);
-bank('vfRate','O6',[
-['Organize QRS hızı hesaplanamaz','R–R tanımı ayrık tekrarlayan QRS gerektirir; VF’de böyle bir seri yoktur.'],
-['Dalga tepe sayısı ventriküler atım hızıdır','VF dalga tepeleri organize ventriküler atımlar değildir; tepeleri saymak atım hızını vermez.'],
-['Atriyal F hızı300/dk olarak alınır','F dalgası düzenli flutter etkinliğidir; VF’nin kaotik ventriküler sinyalini tanımlamaz.'],
-['Son sinüs R–R değeri hâlâ geçerlidir','Ritim değiştiğinde önceki sinüs R–R yeni VF için hız ölçüsü olarak kullanılamaz.'],
-['Simülasyon oynatma çarpanı klinik hızı verir','Oynatma çarpanı ekran zamanını değiştirir; ölçülemeyen VF hızını klinik değere dönüştürmez.']]);
-bank('mechanic','O4',[
-['Tüm kapaklar kapalı; izovolümetrik kasılma','QRS sonrası basıncın yükseldiği erken sistolde AV kapaklar kapanır, çıkışlar henüz açılmaz; ejeksiyon başlamaz.'],
-['Çıkış kapakları açık; ventriküler ejeksiyon','Çıkışlar açıldığında ejeksiyon evresidir; verilen erken anda çıkışlar kapalı ve basınç yükselmektedir.'],
-['AV kapaklar açık; pasif ventriküler doluş','Pasif doluşta AV giriş açıktır; verilen kasılma başlangıcında AV kapaklar kapalıdır.'],
-['Tüm kapaklar kapalı; izovolümetrik gevşeme','Gevşeme ejeksiyon sonrasındaki basınç düşüşüdür; QRS sonrası erken basınç yükselişiyle aynı faz değildir.'],
-['AV kapaklar açık; atriyal sistol','Atriyal sistol doluşun sonunda açık AV girişine katkı yapar; kapalı AV erken ventriküler kasılma değildir.']]);bank('fill','O4',[
-['AV kapaklar açık; ventriküler doluş','Diyastolik girişte AV kapaklar açık, semilüner çıkışlar kapalıdır; ventrikül hacmi geri kazanılır.'],
-['Çıkış kapakları açık; ventriküler ejeksiyon','Bu düzen ventrikülden ileri çıkıştır; verilen açık AV girişli doluş fazını tanımlamaz.'],
-['Tüm kapaklar kapalı; izovolümetrik kasılma','Kapalı AV erken kasılmada hacim sabittir; açık AV ve artan doluş hacmiyle uyuşmaz.'],
-['Tüm kapaklar kapalı; izovolümetrik gevşeme','Gevşeme sonunda AV açılmadan hacim değişmez; verilen aktif giriş bu fazdan sonradır.'],
-['AV kapaklar kapalı; yalnız atriyal sistol','Atriyal kasılmanın ventrikül doluşuna katkısı açık AV girişini gerektirir; kapalı AV düzeni verilen doluş değildir.']]);bank('eject','O4',[
-['Çıkış kapakları açık; ventriküler ejeksiyon','Ventrikül basıncı çıkış basıncını aşınca semilüner kapaklar açılır; AV kapaklar kapalı kalır.'],
-['AV kapaklar açık; pasif ventriküler doluş','AV açık ve çıkış kapalı düzeni ventriküle giriş fazıdır; verilen ileri çıkış fazı değildir.'],
-['Tüm kapaklar kapalı; izovolümetrik kasılma','Kasılma başlangıcında çıkış henüz kapalıdır; verilen açık semilüner kapakla farklıdır.'],
-['Tüm kapaklar kapalı; izovolümetrik gevşeme','Ejeksiyon bittikten sonra çıkış kapanır; verilen açık çıkış ve ileri akım bu evreye uymaz.'],
-['AV kapaklar açık; atriyal sistol','Atriyal sistol açık AV üzerinden doluşa katkıdır; kapalı AV ve açık çıkışlı ventriküler ejeksiyon değildir.']]);bank('p','O1',[
-['P: atriyal depolarizasyon','P atriyal elektriksel aktivasyondur; mekanik atriyal yanıt kısa gecikmeyle izler.'],
-['P: atriyal repolarizasyon','Atriyal repolarizasyon ayrı düşük genlikli etkinliktir; çoğu kez QRS ile örtüşür, P değildir.'],
-['P: ventriküler depolarizasyon','Ventriküler depolarizasyon QRS ile kaydedilir; P ayrık atriyal etkinliktir.'],
-['P: ventriküler repolarizasyon','Ventriküler repolarizasyon T ile değerlendirilir; P’nin atriyal kaynağından farklıdır.'],
-['P: yalnız AV düğüm içi iletim','AV düğüm içi gecikme PR bağlamında değerlendirilir; P’nin görünen kitlesel kaynağı atriyal depolarizasyondur.']]);bank('qrs','O1',[
-['QRS: ventriküler depolarizasyon','QRS ventriküler kitlenin elektriksel aktivasyonudur; mekanik ejeksiyon daha sonra başlayabilir.'],
-['QRS: atriyal depolarizasyon','Ayrık atriyal depolarizasyon P ile değerlendirilir; QRS’nin baskın kaynağı ventriküler kitledir.'],
-['QRS: ventriküler repolarizasyon','Ventriküler repolarizasyon esas olarak T dalgasıyla değerlendirilir; QRS depolarizasyondur.'],
-['QRS: yalnız atriyal repolarizasyon','Atriyal repolarizasyon QRS altında örtüşebilir, fakat toplam QRS’nin baskın ventriküler aktivasyon tanımının yerine geçmez.'],
-['QRS: yalnız AV düğüm gecikmesi','AV düğüm gecikmesi ventrikül aktivasyonundan önceki PR bağlamındadır; QRS’nin genişliği kitlesel ventriküler aktivasyondur.']]);bank('t','O1',[
-['T: ventriküler repolarizasyon','T ventriküler elektriksel repolarizasyondur; mekanik gevşeme ve ejeksiyon zamanlarıyla birebir eş değildir.'],
-['T: atriyal repolarizasyon','Atriyal repolarizasyon genellikle QRS altında örtüşür; görünen T’nin ana kaynağı ventrikülerdir.'],
-['T: ventriküler depolarizasyon','Ventriküler depolarizasyon QRS’nin başlangıç ve destek aralığıyla tanımlanır; T sonraki repolarizasyondur.'],
-['T: sonraki atriyal depolarizasyon','Sonraki atriyal depolarizasyon yeni P etkinliğidir; aynı kompleksin T desteğiyle karıştırılmaz.'],
-['T: gecikmiş terminal sağ ventrikül depolarizasyonu','RBBB’de terminal sağ aktivasyon QRS içindeki R′/S bileşenidir; sonrasında görülen T farklı elektriksel olaydır.']]);bank('pr','O6',[
-['P başlangıcından QRS başlangıcına ölçülür','PR aralığı P’nin ilk sapması ile QRS’nin ilk sapması arasındadır; yalnız sessiz PR segmenti değildir.'],
-['P tepesinden R tepesine ölçülür','Tepe–tepe süresi PR tanımından iki dalganın başlangıçlarını çıkarır ve farklı ölçüm verir.'],
-['P sonundan QRS sonuna ölçülür','Bu sınırlar PR segmentiyle QRS süresini karıştırır; standart PR aralığı değildir.'],
-['QRS sonundan T sonuna ölçülür','QRS sonu–T sonu ventriküler repolarizasyon bölgesini kapsar; PR değildir.'],
-['Bir R tepesinden sonraki R’ye ölçülür','R–R döngü aralığıdır; atriyoventriküler PR aralığından farklıdır.']]);
-bank('prNone','O6',[
-['Ayrık ilişkili P olmadığı için PR ölçülemez','PR için tanımlanabilir P başlangıcı ve ilişkili QRS başlangıcı gerekir; bu önkoşul burada yoktur.'],
-['Son görülen T başlangıcı P yerine kullanılır','T ventriküler repolarizasyondur; atriyal P başlangıcının yerine konamaz.'],
-['Her taban dalgası aynı P kabul edilir','Düzensiz f veya sürekli F etkinliği ayrık ilişkili P gibi seçilerek PR üretilemez.'],
-['R–R değeri PR olarak kaydedilir','R–R ventriküler döngü süresidir; P başlangıcı yokluğunu gidermez.'],
-['Varsayılan175ms her kayda atanır','Bir öğretim presetinin başka ritimlerde uygulanması ölçülmüş PR varmış izlenimi verir.']]);
-bank('duration','O6',[
-['QRS ilk sapmadan son dönüşe ölçülür','QRS destek aralığı ventriküler depolarizasyonun ilk ve son sınırıdır; R tepe genişliği yeterli değildir.'],
-['Yalnız R tepesinin çevresi ölçülür','R tepesinin dar çevresi Q,S veya terminal R′/S bileşenlerini dışlar ve toplam QRS’yi küçültür.'],
-['P başlangıcından QRS sonuna ölçülür','Bu sınırlar PR ve QRS’yi birlikte içerir; QRS süresi tek başına değildir.'],
-['J noktasından T sonuna ölçülür','J–T repolarizasyon bölümüdür; QRS başlangıcı–sonu süresini ölçmez.'],
-['T tepeleri arası süre ölçülür','T–T ritim düzenliliği hakkında bilgi verebilir; kompleks aktivasyon süresi değildir.']]);
-bank('qt','O6',[
-['QRS başlangıcından T sonuna ölçülür','QT ventriküler depolarizasyon ve repolarizasyonu kapsar; sentetik değer kalp hızına göre klinik QTc değildir.'],
-['R tepesinden T tepesine ölçülür','Tepe–tepe aralığı QRS başlangıcı ile T sonunu dışlar; toplam QT değildir.'],
-['P başlangıcından T başlangıcına ölçülür','Bu aralık atriyal ve ventriküler sınırları karıştırır; QT’nin standart sınırları değildir.'],
-['QRS sonundan T başlangıcına ölçülür','Bu çoğunlukla ST segmentini tanımlar; QRS ve T desteğinin tamamını kapsamaz.'],
-['İki QRS başlangıcı arası ölçülür','Bu ventriküler döngü aralığıdır; bir kompleksin depolarizasyon/repolarizasyon süresi değildir.']]);
-bank('st','O6',[
-['J sonrası ST voltajı uygun tabana göre ölçülür','Model J+20ms değerini mV olarak verir; klinik taban ve komşu derivasyon değerlendirmesi ayrıca gerekir.'],
-['R tepe voltajı ST yüksekliği kabul edilir','R ventriküler depolarizasyon genliğidir; J sonrası ST düzeyiyle eş değildir.'],
-['P tepe voltajı ST yüksekliği kabul edilir','P atriyal depolarizasyondur; ST’nin ölçüm konumu ve tabanı farklıdır.'],
-['R–R süresi ST yüksekliği kabul edilir','R–R milisaniye birimlidir; ST yüksekliği voltaj farkı olarak mV ile ifade edilir.'],
-['T tepe konumu J noktası kabul edilir','J QRS’nin sonudur; T tepesi daha sonraki repolarizasyon olayıdır.']]);
-bank('speed','O6',[
-['Ekran oynatması değişir; modelin zaman ölçütü değişmez','2× ekran akışını hızlandırır; gerçek16s izleme ve sinyalin saniye/mV tanımları korunur.'],
-['Gerçek16s izleme8s’ye iner','Öğretim izleme eşiği monotonic gerçek zamandır; oynatma çarpanı bu eşiği kısaltmaz.'],
-['PR ve QRS metadatası ikiye katlanır','Elektriksel destek süreleri modelin kendi saniye koordinatlarındadır; oynatma bunları yeniden tanımlamaz.'],
-['QRS voltajı oynatma hızıyla ikiye katlanır','Hız çarpanı zaman akışına uygulanır; mV genliğini çarpmaz.'],
-['Oynatma hızı hastanın nabzı diye raporlanır','Arayüz hızı klinik nabız değildir; mekanik nabız ayrıca değerlendirilmelidir.']]);
-bank('limb','O3',[
-['II=I+III aynı anda sağlanır','Bipolar ekstremite derivasyonları aynı elektrot potansiyellerinin farklarından oluşur; Einthoven ilişkisi geçerlidir.'],
-['II=I−III aynı anda sağlanır','İşaret burada ters çevrilmiştir; doğru yeniden düzenleme III=II−I’dir.'],
-['II=−I−III aynı anda sağlanır','Bu toplamın polaritesini ters çevirir; standart elektrot yönleriyle uyuşmaz.'],
-['II=(I+III)/2 aynı anda sağlanır','Bipolar II için ortalama değil toplam gerekir; yarıya bölmek voltajı yanlış küçültür.'],
-['II ve I ve III bağımsız voltajlardır','Aynı üç ekstremite elektrodundan gelen bu derivasyonlar bağımsız rastgele sinyaller değildir.']]);
-bank('avr','O3',[
-['aVR=−(I+II)/2','Sağ kol potansiyeli diğer iki ekstremitenin ortalamasına karşı ölçülür; I,II dönüşümü negatif yarım toplamdır.'],
-['aVR=(I+II)/2','Sağ kol referans yönü için gereken eksi işareti kaybolmuştur.'],
-['aVR=I−II/2','Bu ifade aVL içindir; sağ kol aVR yerine sol kol yönünü verir.'],
-['aVR=II−I/2','Bu ifade aVF içindir; sağ kol yerine inferior artırılmış yönü verir.'],
-['aVR=II−I','Bu bipolar III ifadesidir; artırılmış aVR değildir.']]);
-bank('avl','O3',[
-['aVL=I−II/2','Sol kol artırılmış potansiyeli I eksi II’nin yarısıyla ifade edilir.'],
-['aVL=II−I/2','Bu artırılmış inferior aVF ifadesidir; sol kol aVL değildir.'],
-['aVL=−(I+II)/2','Bu artırılmış sağ kol aVR ifadesidir; sol kol yönünü ters bir referansla karıştırır.'],
-['aVL=II−I','Bu bipolar III ifadesidir; artırılmış sol kol potansiyeli değildir.'],
-['aVL=(I+II)/2','Pozitif yarım toplam standart aVL dönüşümü değildir; hem katsayı hem yön hatası vardır.']]);
-bank('avf','O3',[
-['aVF=II−I/2','Artırılmış inferior potansiyel II eksi I’nin yarısıyla ifade edilir.'],
-['aVF=I−II/2','Bu aVL ifadesidir; inferior yön yerine sol kol artırılmış potansiyelini verir.'],
-['aVF=−(I+II)/2','Bu aVR ifadesidir; inferior derivasyonu sağ kol yönüyle karıştırır.'],
-['aVF=II−I','Bu bipolar III ifadesidir; artırılmış inferior referansla aynı değildir.'],
-['aVF=(I+II)/2','Bu katsayılar standart aVF dönüşümünü karşılamaz; I bileşeninin işareti yanlıştır.']]);
-bank('afAtrial','O4',[
-['Organize atriyal kasılma katkısı kaybolur','AF’de organize ayrık atriyal depolarizasyon/kasılma yoktur; pasif ventriküler doluş yine sürebilir.'],
-['Her f dalgası güçlü bir atriyal kasılmadır','Düzensiz f etkinliği koordineli atriyal mekanik kasılmalar dizisi gibi yorumlanamaz.'],
-['Ventriküler doluş bütünüyle durur','Atriyal katkı kaybı pasif doluşun tamamen kaybolması değildir; AV ve diyastol koşulları önemlidir.'],
-['Sinüs düğümünün düzenli P dizisi korunur','Bu AF örneğinde ayrık sinüs P dizisi yoktur; düzenli P varsayımı verilen sinyalle çelişir.'],
-['Her QRS etkili arter nabzını kanıtlar','Ventriküler elektriksel aktivasyon mekanik perfüzyonun klinik kanıtı değildir.']]);
-bank('afRR','O1',[
-['Birden fazla ardışık R–R birlikte incelenir','AF hız ve düzensizlik değerlendirmesinde tek aralık yerine yeterli süre boyunca birden çok kompleks değerlendirilir.'],
-['En kısa R–R tüm ritmin ortalamasıdır','En kısa aralık anlık en yüksek hızdır; değişken döngülerin ortalaması değildir.'],
-['En uzun R–R tüm ritmin ortalamasıdır','En uzun aralık anlık en düşük hızdır; tüm örneğin ortalama hızını temsil etmez.'],
-['f dalga tepeleri ventrikül atımı sayılır','Atriyal f dalgaları ventriküler QRS değildir; ventriküler hız için QRS sayılır.'],
-['Önceki sinüs hızı yeni AF hızı kabul edilir','Ritim değişikliği sonrası hız yeni gözlenen QRS dizisinden değerlendirilmelidir.']]);
-bank('afRisk','O5',[
-['Tromboemboli riski klinik risk verileriyle değerlendirilir','AF’de risk değerlendirmesi yaş,komorbidite ve kılavuz kapsamlı klinik veriler gerektirir; şerit puan hesaplamaz.'],
-['Risk yalnız atriyal f frekansından derecelenir','Atriyal elektriksel frekans klinik risk verilerinin yerine geçmez; komorbidite ve ilgili klinik değerlendirme gerekir.'],
-['Dar QRS tromboemboli riskini dışlar','QRS genişliği atriyal staz veya klinik tromboemboli riskini tek başına dışlamaz.'],
-['Kontrollü hız bütün AF risklerini ortadan kaldırır','Ventrikül hız kontrolü tromboemboli değerlendirmesini gereksiz kılmaz.'],
-['Tek kısa şerit AF süresini kesin bildirir','Kısa örnek başlangıç zamanını veya toplam AF yükünü belirlemez.']]);
-bank('pvcPause','O1',[
-['Erken aralıkla duraklama toplamı iki temel döngüdür','Bu sentetik PVC dizisinde480+1120=1600ms, iki800ms sinüs döngüsüne eşittir.'],
-['Yalnız erken480ms temel döngü kabul edilir','Erken kompleksin kısa aralığı temel sinüs hızını tanımlamaz; önceki800ms dizisi dikkate alınır.'],
-['Yalnız1120ms bütün ritmin döngüsüdür','Duraklama postektopik aralıktır; düzenli temel sinüs döngüsünün yerine konamaz.'],
-['Toplam1600ms bir atriyal PR aralığıdır','Bu iki ventriküler döngünün toplamıdır; P başlangıcı–QRS başlangıcı PR ölçümü değildir.'],
-['Her PVC mutlaka bu duraklamayı oluşturur','Kompansatuvar duraklama bu örnekte verilmiştir; bütün PVC olgularına zorunlu genellenemez.']]);
-bank('pvcT','O1',[
-['Geniş erken QRS sonrası sekonder diskordan T','Bu örnekte ventriküler aktivasyon yolu değiştiğinden sonraki repolarizasyon yönü ana QRS’ye karşıttır.'],
-['Her diskordan T kesin akut oklüzyondur','Geniş kompleks sonrası sekonder repolarizasyon olabilir; tek başına akut oklüzyon tanısı koydurmaz.'],
-['T değişimi yeni atriyal P dizisidir','T ventriküler repolarizasyondur; atriyal P etkinliğine yeniden adlandırılamaz.'],
-['Sekonder T değişimi ayrı bir atriyal taşikardi kanıtıdır','Geniş erken ventriküler aktivasyon sonrası T değişimi repolarizasyondur; bağımsız atriyal kaynak kanıtı değildir.'],
-['Repolarizasyon yönü nabız yönünü gösterir','EKG polaritesi mekanik kan akım yönünün kaydı değildir.']]);
-bank('bbbLimits','O5',[
-['Önceki EKG ve klinik bağlamla yorumlanır','Dal bloğu ileti örüntüsüdür; yeni/eski oluşu ve iskemi kuşkusu semptomlar,seri EKG ve ek verilerle değerlendirilir.'],
-['Dal bloğu tek başına kesin akut MI’dır','BBB tek başına akut MI veya koroner oklüzyon etiyolojisini kesinleştirmez.'],
-['Dal bloğu tek başına güvenli eve dönüş ölçütüdür','Klinik belirtiler,yapısal hastalık ve değişimin süresi değerlendirilmeden güvenlik sonucu çıkarılamaz.'],
-['Dal bloğu tüm atımlarda nabızsızlık demektir','Gecikmiş elektriksel ileti her atımın mekanik olarak etkisiz olduğunu kanıtlamaz.'],
-['Dal bloğu kesin hangi ilaç gerektiğini gösterir','İleti örüntüsü klinik neden ve tedavi kararının yerine geçmez.']]);
-bank('lMorph','O3',[
-['V1 negatif, lateral geniş çentikli R','LBBB örneğinde sağ prekordiyal QS/rS ve I,aVL,V5,V6’da geniş çentikli R birlikte değerlendirilir.'],
-['V1 terminal R′, lateral terminal S','Bu dağılım RBBB için tipiktir; verilen LBBB örneğinin karşıt terminal yönüdür.'],
-['Tüm derivasyonlarda aynı QRS polaritesi','Derivasyon yönleri farklıdır; aynı polarite varsayımı sağ/lateral morfolojiyi siler.'],
-['İnferior sürekli F, her iki F’ye QRS','Bu atriyal flutter iletim ilişkisi olup LBBB’nin terminal ventriküler morfolojisi değildir.'],
-['Organize QRS yok, kaotik taban var','Bu VF örüntüsüdür; BBB’de düzenli organize geniş QRS kalır.']]);
-bank('rMorph','O3',[
-['V1 terminal R′, lateral geniş terminal S','RBBB örneğinde geç sağ aktivasyon sağ prekordiyal R′ ve lateral terminal S ile görülür.'],
-['V1 negatif, lateral geniş çentikli R','Bu LBBB’nin tipik sağ/lateral yön dağılımıdır; sağ terminal R′ örneğinden ayrılır.'],
-['Tüm derivasyonlarda dar aynı QRS','RBBB geniş terminal aktivasyon içerir; normal dar ve eş morfoloji bu kanıtı açıklamaz.'],
-['İnferior F dizisi terminal R′ yerine geçer','F atriyal etkinliktir; terminal ventriküler QRS bileşeniyle aynı yapı değildir.'],
-['Her T tepesi yeni R′ kompleksidir','Terminal R′ QRS içinde yer alır; sonraki T dalgası repolarizasyondur.']]);
-bank('flutterRatio','O1',[
-['Atriyal300/dk ve ventriküler150/dk:2:1','300/150=2; her iki düzenli atriyal F dalgasından biri ventriküler kompleksiyle ilişkilidir.'],
-['Atriyal150/dk ve ventriküler300/dk:2:1','Atriyal ve ventriküler hızlar ters çevrilmiştir; bu örnekte atriyal etkinlik daha hızlıdır.'],
-['Atriyal300/dk ve ventriküler300/dk:2:1','Eşit hızlar1:1 olur; iki F başına bir QRS için ventriküler hız yarıdır.'],
-['Atriyal300/dk ve ventriküler100/dk:2:1','300/100=3; bu3:1 olur ve kayıttaki400ms R–R ile uyuşmaz.'],
-['Atriyal300/dk ve ventriküler75/dk:2:1','300/75=4; bu4:1 olur,2:1 örneği değildir.']]);
-bank('flutterPolarity','O3',[
-['İnferior negatif F, V1 pozitif F','Tipik karşı-saat yönlü flutter öğretim örneğinde inferior negatif ve V1 pozitif F etkinliği gösterilir.'],
-['İnferior pozitif F, V1 negatif F','Bu ters polarite verilen tipik öğretim örneğiyle uyuşmaz; flutterın tüm tiplerine genellenmez.'],
-['Her derivasyonda F pozitif ve eşittir','Aynı atriyal kaynak farklı derivasyon eksenlerine farklı yansır; eş polarite/genlik beklenmez.'],
-['F yalnız QRS içinde görünür','Flutter F etkinliği ventriküler komplekslerden bağımsız sürekli atriyal dizidir.'],
-['F mekanik arter basınç dalgasıdır','F elektriksel atriyal etkinliktir; arter basıncının kaydı değildir.']]);
-bank('tachCause','O5',[
-['Sinüs hız artışının klinik nedeni araştırılır','Ateş,ağrı,hipovolemi ve diğer nedenler sinüs hızını artırabilir; EKG kökeni gösterir ama nedeni tek başına seçmez.'],
-['Sinüs P korunması sistemik nedenleri dışlar','Sinüs kökeni sistemik stres yanıtıyla uyumludur; neden araştırmasını kaldırmaz.'],
-['120/dk hızı primer AVNRT mekanizmasını kanıtlar','Hızlar örtüşebilir; uygun sinüs P dizisi varken yalnız hız AVNRT mekanizması kanıtı değildir.'],
-['Çarpıntının ani tarifi sinüs P kanıtını geçersiz kılar','Öykü önemlidir fakat elektriksel P ekseni ve ilişki birlikte değerlendirilir; tek semptom tarifi kökeni kesin değiştirmez.'],
-['Dar QRS klinik hacim kaybını dışlar','QRS genişliği ventriküler ileti süresidir; hacim kaybı veya hipoperfüzyonu dışlayan ölçüm değildir.']]);bank('vtContext','O5',[
-['Nabız ve hemodinamik durum ayrıca belirlenir','VT nabızlı veya nabızsız olabilir; acil yaklaşım klinik nabız,perfüzyon ve ilgili algoritmayla ayrılır.'],
-['Geniş QRS bütün VT’leri nabızsız yapar','QRS genişliği elektriksel aktivasyondur; klinik nabzın varlığını tek başına göstermez.'],
-['Düzenli QRS bütün VT’leri stabil yapar','Elektriksel düzenlilik dolaşım kararlılığına eş değildir; hipotansiyon veya arrest olabilir.'],
-['T polaritesi VT için kan basıncıdır','Repolarizasyon yönü kan basıncı değeri değildir; basınç ayrıca ölçülür.'],
-['Animasyon perfüzyonun gerçek ölçümüdür','Şematik düşük akım hasta debisi veya perfüzyon ölçümü değildir.']]);
-bank('svtLimits','O5',[
-['Kesin mekanizma için ek EKG ve klinik veri gerekir','Düzenli dar taşikardi SVT örüntüsüdür; tek şerit AVNRT,AVRT veya AT mekanizmasını kesin ayırmaz.'],
-['P seçilmiyorsa kesin AVNRT vardır','P görünmemesi tek başına AVNRT için özgül değildir; başka mekanizmalarda da P örtüşebilir.'],
-['Hız167/dk ise kesin AVRT vardır','Hız değeri mekanizmaların örtüşen aralıklarından biridir; AVRT’ye özgül kanıt değildir.'],
-['Dar QRS varsa kesin fokal AT vardır','Dar QRS supraventriküler iletimi destekler; fokal AT için ayrık atriyal kanıt gerekir.'],
-['Düzenli hız varsa klinik değerlendirme gereksizdir','Düzenlilik belirtileri ve hemodinamik durumu değerlendirme gereğini kaldırmaz.']]);
-bank('atLimits','O5',[
-['Fokal AT desteklenir; paroksismal başlangıç kanıtlanmaz','Değişik P morfolojisi atriyal kökeni destekler; kısa sürekli şerit başlangıç/sonlanmanın ani oluşunu göstermez.'],
-['Tek sürekli şerit atağın ani başladığını kanıtlar','Başlangıç bölümü kaydedilmeden paroksismal başlangıç davranışı gözlenmiş sayılamaz.'],
-['Tek sürekli şerit atağın toplam süresini verir','Kayıt penceresi toplam atağın başlangıç ve sonunu içermez; süre kesin belirlenemez.'],
-['Ters P her zaman aynı anatomik odağı belirler','P ekseni köken hakkında ipucu verir; tam anatomik odak tek sentetik derivasyonla kesinleştirilmez.'],
-['Fokal AT tanımı SVT grubunun dışındadır','Fokal AT supraventriküler taşikardi alt türüdür; iki etiketi dışlayan seçenekler örtüşme yaratır.']]);
-bank('ischemiaLimits','O5',[
-['Bölgesel ST örüntüsü klinik bağlam ve seri EKG ister','ST dağılımı eğitim örneğidir; belirtiler,komşu derivasyonlar,seri EKG ve klinik inceleme birlikte yorumlanır.'],
-['Tek ST değerinden kesin sorumlu damar seçilir','ST bölgesi olası anatomik ipucu verir; tek sentetik değer kesin koroner damar tanısı değildir.'],
-['Düzenli sinüs ritmi akut iskemiyi dışlar','Akut iskemi sırasında sinüs düzeni korunabilir; ritim düzeni ST ve belirtileri dışlamaz.'],
-['Karşılıklı çökme yoksa her iskemi dışlanır','Karşılıklı değişim destekleyici olabilir; yokluğu tüm klinik iskemi olasılığını sıfırlamaz.'],
-['Şematik duvar hareketi gerçek ejeksiyon fraksiyonudur','Animasyon kalibre edilmiş ultrason veya hacim ölçümü değildir; hasta EF’si vermez.']]);
-function numberBank(id,label,correct,other,explanations){bank(id,'O6',[[correct,label],...other.map((x,i)=>[x,explanations[i]])]);}
-numberBank('rr800','R–R800ms ise60/0,8=75/dk elektriksel hızdır.','75/dk',['60/dk','90/dk','120/dk','150/dk'],['60/dk1000ms gerektirir;800ms değil.','90/dk yaklaşık667ms gerektirir.','120/dk500ms gerektirir.','150/dk400ms gerektirir.']);
-numberBank('rr500','60/0,5=120/dk; uygun sinüs P ile sinüs taşikardisi örneğidir.','120/dk',['75/dk','100/dk','150/dk','167/dk'],['75/dk800ms döngüdür.','100/dk600ms döngüdür.','150/dk400ms döngüdür.','167/dk yaklaşık360ms döngüdür.']);
-numberBank('rr400','60/0,4=150/dk ventriküler elektriksel hızdır.','150/dk',['75/dk','100/dk','120/dk','300/dk'],['75/dk800ms döngüdür.','100/dk600ms döngüdür.','120/dk500ms döngüdür.','300/dk200ms; flutter atriyal hızını ventrikülle karıştırır.']);
-numberBank('rr360','60/0,36 yaklaşık166,7/dk elektriksel hızdır.','Yaklaşık167/dk',['120/dk','150/dk','180/dk','200/dk'],['120/dk500ms gerektirir.','150/dk400ms gerektirir.','180/dk yaklaşık333ms gerektirir.','200/dk300ms gerektirir.']);
-numberBank('rr380','60/0,38 yaklaşık157,9/dk elektriksel hızdır.','Yaklaşık158/dk',['120/dk','140/dk','180/dk','200/dk'],['120/dk500ms gerektirir.','140/dk yaklaşık429ms gerektirir.','180/dk yaklaşık333ms gerektirir.','200/dk300ms gerektirir.']);
-numberBank('pr175','P ilk sapması−215ms, QRS ilk sapması−40ms: fark175ms.','175ms',['130ms','155ms','215ms','255ms'],['130ms P merkezinden QRS başlangıcına gitme hatasıdır.','155ms verilen iki başlangıcın farkı değildir.','215ms P başlangıcından R tepesine ölçüm hatasıdır.','255ms P başlangıcından QRS sonuna ölçüm hatasıdır.']);
-numberBank('pr140','Ektopik P başlangıcı−180ms, QRS başlangıcı−40ms: fark140ms.','140ms',['95ms','120ms','180ms','220ms'],['95ms P tepesinden QRS başlangıcına ölçüm hatasıdır.','120ms verilen ilk sapmaların farkı değildir.','180ms R tepesini QRS başlangıcı yerine alma hatasıdır.','220ms QRS sonunu PR sınırı alma hatasıdır.']);
-numberBank('q80','−40ms ile+40ms arasındaki QRS desteği80ms’dir.','80ms',['40ms','60ms','100ms','140ms'],['40ms yalnız R’den son dönüşe yarı desteği sayar.','60ms başlangıç veya terminal bileşenin bir kısmını dışlar.','100ms iki sınırın verilen farkından fazladır.','140ms geniş PVC/RBBB örneğiyle karıştırır.']);
-numberBank('q140','−60ms ile+80ms arasındaki geniş QRS desteği140ms’dir.','140ms',['80ms','110ms','160ms','200ms'],['80ms normal dar QRS örneğidir.','110ms terminal desteğin bir kısmını dışlar.','160ms LBBB öğretim genişliğidir.','200ms verilen ilk/son sapma farkından60ms uzundur.']);
-numberBank('q160','−70ms ile+90ms arasındaki geniş QRS desteği160ms’dir.','160ms',['80ms','120ms','180ms','240ms'],['80ms normal dar aktivasyondur.','120ms bu sinyalin son terminal bölümünü dışlar.','180ms VT örneğinin genişliğidir.','240ms verilen160ms destekten80ms uzundur.']);
-numberBank('q180','−70ms ile+110ms arasındaki VT QRS desteği180ms’dir.','180ms',['80ms','140ms','220ms','270ms'],['80ms normal dar QRS örneğidir.','140ms PVC/RBBB örneğinin genişliğidir.','220ms verilen sınırların farkından uzundur.','270ms verilen180ms destekten90ms uzundur.']);
-numberBank('st32','V3’te J+20ms sentetik ST düzeyi+0,32mV’dir.','+0,32mV',['+0,032mV','−0,32mV','+3,2mV','0mV'],['Ondalık kayması yüksekliği10kat küçültür.','Polarite yükselmeden çökmeye çevrilmiştir.','Ondalık kayması yüksekliği10kat büyütür.','Yükselmiş ST platosunu izoelektrik kabul eder.']);
-numberBank('st20','II’de J+20ms sentetik inferior ST düzeyi+0,20mV’dir.','+0,20mV',['−0,20mV','+0,02mV','+2,0mV','0mV'],['Polarite ters çevrilmiştir; II’de yükselme vardır.','Ondalık kayması10kat küçültür.','Ondalık kayması10kat büyütür.','Pozitif ST platosu sıfır değildir.']);
-numberBank('iii28','II0,20mV−I(−0,08mV)=III0,28mV.','+0,28mV',['+0,12mV','−0,28mV','+0,14mV','+0,20mV'],['Negatif I’yi çıkarmak yerine toplama hatasıdır.','III polaritesi ters çevrilmiştir.','Bipolar farkı yanlışlıkla ikiye bölmüştür.','II değerini III yerine kopyalamıştır.']);
-numberBank('avf24','aVF=II−I/2=0,20−(−0,08)/2=0,24mV.','+0,24mV',['+0,16mV','+0,28mV','−0,06mV','−0,18mV'],['Negatif I yarısını çıkarma işareti yanlış uygulanmıştır.','III=II−I ile aVF karıştırılmıştır.','aVR=−(I+II)/2 sonucudur.','aVL=I−II/2 sonucudur.']);
-numberBank('avl18','aVL=I−II/2=−0,08−0,10=−0,18mV.','−0,18mV',['+0,18mV','−0,06mV','+0,24mV','−0,08mV'],['Polarite ters çevrilmiş ve lateral çökme yükselmeye dönüşmüştür.','Bu aVR sonucudur; aVL değildir.','Bu aVF sonucudur; aVL değildir.','I değeri artırılmış dönüşüm yapılmadan kopyalanmıştır.']);
-bank('afProfile','O1',[
-['Düzensizlik korunur; hızlı profil daha kısa R–R içerir','Hızlı AF profili340–560ms, kontrollü profil600–1000ms döngüler üretir; ikisi de düzensizdir.'],
-['Hızlı profilde düzenli sinüs P yeniden oluşur','Ventriküler hız profili atriyal kökeni sinüse dönüştürmez; ayrık P yokluğu sürer.'],
-['Kontrollü profilde PR175ms yeniden ölçülebilir','Hızın yavaşlaması ayrık ilişkili P oluşturmaz; AF’de PR tanımlanamaz.'],
-['Hızlı profilde geniş VT QRS zorunludur','Bu iki AF profilinde QRS80ms tutulur; hız profili VT morfolojisi değildir.'],
-['Kontrollü profil AF tanımını kaldırır','AF örüntüsü yalnız hızla tanımlanmaz; P yokluğu ve düzensizlik sürer.']]);
-bank('pvcOrigin','O2',[
-['Beklenen sinüs atımından önce ventriküler aktivasyon','Öncül ilişkili P olmayan erken geniş farklı kompleks bu örnekte ventriküler erken aktivasyondur.'],
-['Her atımda sabit sağ dal gecikmesi','Sabit RBBB tüm atımlarda terminal ileti morfolojisi verir; burada tek erken farklı kompleks vardır.'],
-['Her atımda sabit sol dal gecikmesi','Sabit LBBB’nin tüm sinüs komplekslerindeki genişliği izole erken olaydan ayrıdır.'],
-['Düzenli hızlı atriyal F devresi','Flutterın sürekli F dizisi tek erken geniş kompleksin kaynağı değildir.'],
-['Koordineli sinüs hızının kademeli artışı','Kademeli sinüs hız artışı, uygun P ilişkisiyle dar temel diziyi hızlandırır; izole farklı PVC’yi açıklamaz.']]);
-bank('bbbDelay','O4',[
-['Gecikmiş aktivasyon şematik eşzamanlılığı azaltabilir','Dal gecikmesi ventriküler aktivasyon sırasını değiştirir; animasyon bu varsayımı gösterir, basınç/debi ölçmez.'],
-['BBB’de bütün ventriküler depolarizasyon kaybolur','Geniş organize QRS etkinliğin kaybolmadığını, aktivasyonun uzadığını gösterir.'],
-['Gecikme yalnız atriyal F frekansıdır','BBB intraventriküler iletimdir; flutterın atriyal frekansı farklı süreçtir.'],
-['Terminal R veya S doğrudan ejeksiyon hacmidir','Terminal QRS yönü aktivasyon vektörünü gösterir; hacim veya EF ölçümü değildir.'],
-['Kısa animasyon gecikmesi kesin hasta gecikmesidir','60ms görsel ayrıştırma şematik seçimdir; ölçülmüş hastaya özgü mekanik gecikme değildir.']]);
-bank('ischemiaFlow','O4',[
-['Bölgesel azalma şematiktir; global ileri akım sürebilir','İskemik örnekte bir bölge zayıf gösterilir, tüm pompa durdurulmaz; gerçek debi klinik veri gerektirir.'],
-['Bölgesel ST yükselmesi VF ile eş akımsızlıktır','Bölgesel iskemi ile VF’nin organize pompa yokluğu aynı mekanik durum değildir.'],
-['Düzenli QRS global debinin normal olduğunu ölçer','Elektriksel düzenlilik normal global hemodinamiyi kanıtlamaz; ayrıca klinik değerlendirme gerekir.'],
-['Rengin koyuluğu gerçek koroner stenoz yüzdesidir','Renk öğretim şemasıdır; stenoz yüzdesi veya koroner anatomiyi kalibre etmez.'],
-['Her ST milivoltu sabit bir EF kaybıdır','ST voltajını sabit ejeksiyon fraksiyonu kaybına dönüştüren doğrulanmış model yoktur.']]);
-bank('fastFill','O4',[
-['Kısa döngü diyastolik doluş süresini kısaltabilir','Hız artınca döngü kısalır; şematik doluş azalabilir, fakat hasta debisi veya nabzı bundan hesaplanmaz.'],
-['Hız artışı her hastada atım hacmini aynı oranda artırır','Atım hacmi doluş,kasılma ve yük koşullarına bağlıdır; yalnız elektriksel hızdan sabit oran çıkmaz.'],
-['Dar QRS kısalan diyastolü tamamen telafi eder','Dar ileti süresi, hız nedeniyle kısalan doluş süresini kendiliğinden ortadan kaldırmaz.'],
-['Atriyal P görünürse doluş süresi hızdan bağımsızdır','Atriyal etkinlik var olsa da daha kısa döngü doluş penceresini kısaltabilir.'],
-['Kısalan R–R doğrudan kan basıncı değeridir','R–R elektriksel döngü süresidir; kan basıncına mmsHg olarak doğrudan çevrilmez.']]);
-bank('timeScale','O6',[
-['Yatay süre ve dikey voltaj ayrı birimlerdir','EKG’de yatay eksen saniye, dikey eksen mV’dir;25mm/sn ve10mm/mV orantısı korunur.'],
-['Yatay piksel her ekranda gerçek1mm’dir','Ekran cihazı fiziksel milimetreye kalibre edilmez; çizim ölçeği bir orantı/etiketleme varsayımıdır.'],
-['Dikey bir kare daima bir saniyedir','Dikey kare voltaj eksenindedir; yatay zamanla yer değiştirilemez.'],
-['QRS yüksekliği kompleks süresini verir','Yükseklik mV, genişlik saniyedir; iki eksen ayrı ölçümlerdir.'],
-['Canvas genişlemesi hastanın elektriksel hızını artırır','Resize görsel piksel yoğunluğunu değiştirir; modelin saniye ve hız koordinatlarını değiştirmez.']]);
+bank("af","O2",[["Atriyal fibrilasyon","P yok ve R–R düzensiz: AF."],["Sinüs aritmisi","Sinüs aritmisinde her atımda P vardır; burada yok."],["Atriyal flutter","Flutter'da düzenli iletim olur; burada düzensiz."],["Sık PVC","PVC'de tek erken geniş atım olur; burada tüm atımlar dar ve düzensiz."],["Fokal atriyal taşikardi","Fokal AT'de düzenli P-QRS ilişkisi olur; burada yok."]]);
+bank("afAtrial","O4",[["Organize atriyal katkı kaybolur","AF'de atriyum düzenli kasılmaz."],["Her f dalgası güçlü kasılmadır","Düzensiz f dalgaları etkili kasılma değildir."],["Ventrikül doluşu tamamen durur","Pasif doluş sürebilir; tamamen durmaz."],["Sinüs P dizisi korunur","AF'de ayrı sinüs P yoktur."],["Her QRS nabzı kanıtlar","QRS elektriksel olaydır, nabzı garanti etmez."]]);
+bank("afEarly","O2",[["AF, tek erken atımdan farklıdır","Tüm ritim düzensizse AF; tek atım farklıysa PVC."],["Her kısa R–R PVC'dir","AF'de kısa aralıklar normal düzensizliktir."],["Her uzun R–R kompansatuvar duraklamadır","AF'de uzun aralık da düzensizliğin parçasıdır."],["Dar QRS düzenli sinüs demektir","AF'de QRS dar olsa da ritim düzensizdir."],["Düzensizlik ventrikül kaynaklıdır","Düzensizlik burada atriyal kaynaklıdır."]]);
+bank("afProfile","O1",[["Düzensizlik sürer, hızlı profilde R–R kısalır","Her iki profil de düzensiz, yalnız hız farklı."],["Hızlı profilde sinüs P döner","Hız artsa da ayrı P oluşmaz."],["Kontrollüde PR yeniden ölçülür","AF'de PR hiçbir profilde ölçülmez."],["Hızlı profil VT gerektirir","İkisinde de QRS dar kalır, VT değildir."],["Kontrollü profil AF'yi ortadan kaldırır","Hız yavaşlasa da düzensizlik sürer."]]);
+bank("afRR","O1",[["Birden fazla R–R birlikte incelenir","Tek aralık yanıltır; birkaç atım karşılaştırılmalı."],["En kısa R–R ortalamadır","En kısa aralık yalnız o anki en yüksek hızdır."],["En uzun R–R ortalamadır","En uzun aralık yalnız o anki en düşük hızdır."],["Taban dalgası sayısı hızdır","Taban dalgaları atriyaldir, ventrikül hızını vermez."],["Önceki hız geçerli sayılır","Ritim değişince yeni hız yeniden ölçülmeli."]]);
+bank("afResidual","O4",[["Pasif doluş sürebilir","Atriyal katkı kaybolsa da pasif giriş devam edebilir."],["Pasif doluş da durur","Pasif doluş ayrı bir basınç farkına bağlıdır."],["f genliği doluş hacmini verir","f dalgası elektriksel sinyaldir, hacim ölçmez."],["Dar QRS katkıyı geri getirir","QRS genişliği atriyal katkıyı etkilemez."],["Hız düşünce doluş tam olur","Hız azalması ayrı P oluşturmaz."]]);
+bank("afRisk","O5",[["Klinik risk verileriyle değerlendirilir","Tromboemboli riski yaş ve komorbiditeyle birlikte hesaplanır."],["Yalnız atriyal hızdan hesaplanır","Şerit tek başına risk puanı vermez."],["Dar QRS riski dışlar","QRS genişliği tromboemboli riskini göstermez."],["Hız kontrolü riski sıfırlar","Hız kontrolü antikoagülasyon ihtiyacını kaldırmaz."],["Kısa kayıt AF süresini verir","Kısa şerit toplam AF süresini göstermez."]]);
+bank("anterior","O3",[["Anterior (ön duvar) dağılım","V1–V4 birlikte yükselmiş: ön duvar."],["İnferior dağılım","İnferior için II, III, aVF gerekir; burada prekordiyal."],["Sağ dal bloğu bulgusu","Bu QRS şekli değil, ST yüksekliği bulgusu."],["Flutter tabanı","Flutter sürekli dalga yapar; burada ayrı ST yüksekliği var."],["Tek erken atım bulgusu","PVC ayrı bir olaydır; burada düzenli ST değişimi var."]]);
+bank("anteriorLeadGroup","O3",[["Anterior duvar","V3–V4 kalbin ön (anterior) duvarını yansıtır."],["İnferior duvar","İnferior duvar II, III, aVF ile değerlendirilir, V3–V4 ile değil."],["Sağ ventrikül yalnızca","Sağ ventrikül daha çok V1 ve sağ prekordiyal derivasyonlarla ilişkilidir."],["Lateral duvar","Lateral duvar I, aVL, V5–V6 ile değerlendirilir."],["Atriyum yalnızca","Atriyal etkinlik tek bir prekordiyal çiftle özgül olarak gösterilmez."]]);
+bank("at","O2",[["Fokal atriyal taşikardi","Sinüsten farklı P, sabit ilişki: fokal AT."],["Sinüs taşikardisi","Sinüs taşikardisinde P ekseni normaldir; burada değişmiş."],["Atriyal flutter","Flutter'da sürekli taban dalgası olur; burada ayrı P var."],["Atriyal fibrilasyon","AF düzenli P üretmez; burada düzenli."],["PVC dizisi","PVC geniş ve erken tek atımdır; burada sürekli dar ritim var."]]);
+bank("atAxis","O1",[["İnferior ters P: ektopik eksen","Sinüsten farklı yön: odak atriyumda başka yerde."],["II pozitif, aVR negatif: sinüs ekseni","Burada P ekseni sinüsten farklı."],["Sürekli taban dalgası: flutter","Burada ayrı P var, sürekli dalga yok."],["Düzensiz ince dalga: AF","Burada düzenli tek P var, AF değil."],["Ters P: mekanik yön göstergesi","P ekseni elektriksel yöndür, mekanik yön değil."]]);
+bank("atLimits","O5",[["Fokal AT desteklenir, başlangıç bilinmez","Kısa kayıt atağın başlangıcını göstermez."],["Kayıt atağın ani başladığını kanıtlar","Başlangıç görülmeden bu iddia edilemez."],["Kayıt toplam atak süresini verir","Pencere toplam süreyi kapsamaz."],["Ters P kesin anatomik odağı verir","P ekseni ipucu verir, kesin yer vermez."],["Fokal AT, SVT dışındadır","Fokal AT, SVT grubunun bir alt türüdür."]]);
+bank("augmentedGroup","O3",[["Artırılmış ekstremite derivasyonları","aVR, aVL ve aVF birlikte artırılmış (unipolar) ekstremite derivasyon grubunu oluşturur."],["Prekordiyal derivasyonlar","Prekordiyal grup V1–V6'dır; aVR/aVL/aVF bu gruba girmez."],["Bipolar ekstremite derivasyonları","Bipolar ekstremite derivasyonları I, II, III'tür; aVR/aVL/aVF unipolardır."],["Yalnız sağ göğüs derivasyonları","Sağ göğüs derivasyonları ayrı bir prekordiyal settir; aVR/aVL/aVF değildir."],["Özefagus derivasyonları","Özefagus derivasyonu standart 12 derivasyonluk sette yer almaz."]]);
+bank("bbbDelay","O4",[["Gecikme eşzamanlılığı azaltabilir","Animasyon şematiktir, gerçek basınç ölçmez."],["Ventriküler etkinlik tamamen kaybolur","Geniş QRS etkinliğin sürdüğünü gösterir."],["Gecikme atriyal hızdır","Dal bloğu ventrikül içi iletimdir, atriyal değildir."],["Terminal yön ejeksiyon hacmidir","QRS yönü hacim ölçmez."],["Animasyon gecikmesi hastaya özeldir","Bu sabit bir öğretim gecikmesidir."]]);
+bank("bbbLimits","O5",[["Klinik bağlam ve eski EKG ile yorumlanır","Dal bloğu tek başına yeni/eski veya iskemi ayırt etmez."],["Tek başına akut MI kanıtıdır","Dal bloğu MI'yı kesinleştirmez."],["Güvenli eve dönüş ölçütüdür","Klinik bulgular değerlendirilmeden bu karar verilmez."],["Her atım nabızsız demektir","Geniş QRS mekanik nabzı ekarte etmez."],["Hangi ilaç gerektiğini gösterir","İleti örüntüsü tedavi kararını tek başına vermez."]]);
+bank("ddx_af","O2",[["Atriyal fibrilasyon","Tarif edilen bulgular Atriyal fibrilasyon ile uyumludur."],["Supraventriküler taşikardi","Supraventriküler taşikardi için beklenen bulgular burada yok."],["Ventriküler taşikardi","Ventriküler taşikardi için beklenen bulgular burada yok."],["Fokal atriyal taşikardi","Fokal atriyal taşikardi için beklenen bulgular burada yok."],["Sinüs taşikardisi","Sinüs taşikardisi için beklenen bulgular burada yok."]]);
+bank("ddx_flutter","O2",[["Atriyal flutter (2:1)","Tarif edilen bulgular Atriyal flutter (2:1) ile uyumludur."],["Ventriküler fibrilasyon","Ventriküler fibrilasyon için beklenen bulgular burada yok."],["Sinüs taşikardisi","Sinüs taşikardisi için beklenen bulgular burada yok."],["Sağ dal bloğu","Sağ dal bloğu için beklenen bulgular burada yok."],["Atriyal fibrilasyon","Atriyal fibrilasyon için beklenen bulgular burada yok."]]);
+bank("ddx_inferior","O2",[["İnferior ST yükselmeli iskemi","Tarif edilen bulgular İnferior ST yükselmeli iskemi ile uyumludur."],["Sağ dal bloğu","Sağ dal bloğu için beklenen bulgular burada yok."],["Atriyal fibrilasyon","Atriyal fibrilasyon için beklenen bulgular burada yok."],["Ventriküler erken atım","Ventriküler erken atım için beklenen bulgular burada yok."],["Ventriküler taşikardi","Ventriküler taşikardi için beklenen bulgular burada yok."]]);
+bank("ddx_lbbb","O2",[["Sol dal bloğu","Tarif edilen bulgular Sol dal bloğu ile uyumludur."],["Sağ dal bloğu","Sağ dal bloğu için beklenen bulgular burada yok."],["Atriyal fibrilasyon","Atriyal fibrilasyon için beklenen bulgular burada yok."],["Ventriküler erken atım","Ventriküler erken atım için beklenen bulgular burada yok."],["İnferior ST yükselmeli iskemi","İnferior ST yükselmeli iskemi için beklenen bulgular burada yok."]]);
+bank("ddx_normal","O2",[["Normal sinüs ritmi","Tarif edilen bulgular Normal sinüs ritmi ile uyumludur."],["Anterior ST yükselmeli iskemi","Anterior ST yükselmeli iskemi için beklenen bulgular burada yok."],["Supraventriküler taşikardi","Supraventriküler taşikardi için beklenen bulgular burada yok."],["Ventriküler taşikardi","Ventriküler taşikardi için beklenen bulgular burada yok."],["Fokal atriyal taşikardi","Fokal atriyal taşikardi için beklenen bulgular burada yok."]]);
+bank("ddx_pat","O2",[["Fokal atriyal taşikardi","Tarif edilen bulgular Fokal atriyal taşikardi ile uyumludur."],["İnferior ST yükselmeli iskemi","İnferior ST yükselmeli iskemi için beklenen bulgular burada yok."],["Ventriküler fibrilasyon","Ventriküler fibrilasyon için beklenen bulgular burada yok."],["Sinüs taşikardisi","Sinüs taşikardisi için beklenen bulgular burada yok."],["Sağ dal bloğu","Sağ dal bloğu için beklenen bulgular burada yok."]]);
+bank("ddx_pvc","O2",[["Ventriküler erken atım","Tarif edilen bulgular Ventriküler erken atım ile uyumludur."],["Fokal atriyal taşikardi","Fokal atriyal taşikardi için beklenen bulgular burada yok."],["Sinüs taşikardisi","Sinüs taşikardisi için beklenen bulgular burada yok."],["Sağ dal bloğu","Sağ dal bloğu için beklenen bulgular burada yok."],["Atriyal fibrilasyon","Atriyal fibrilasyon için beklenen bulgular burada yok."]]);
+bank("ddx_rbbb","O2",[["Sağ dal bloğu","Tarif edilen bulgular Sağ dal bloğu ile uyumludur."],["Atriyal fibrilasyon","Atriyal fibrilasyon için beklenen bulgular burada yok."],["Ventriküler erken atım","Ventriküler erken atım için beklenen bulgular burada yok."],["İnferior ST yükselmeli iskemi","İnferior ST yükselmeli iskemi için beklenen bulgular burada yok."],["Ventriküler fibrilasyon","Ventriküler fibrilasyon için beklenen bulgular burada yok."]]);
+bank("ddx_sintach","O2",[["Sinüs taşikardisi","Tarif edilen bulgular Sinüs taşikardisi ile uyumludur."],["Atriyal flutter (2:1)","Atriyal flutter (2:1) için beklenen bulgular burada yok."],["Sağ dal bloğu","Sağ dal bloğu için beklenen bulgular burada yok."],["Atriyal fibrilasyon","Atriyal fibrilasyon için beklenen bulgular burada yok."],["Ventriküler erken atım","Ventriküler erken atım için beklenen bulgular burada yok."]]);
+bank("ddx_stemi","O2",[["Anterior ST yükselmeli iskemi","Tarif edilen bulgular Anterior ST yükselmeli iskemi ile uyumludur."],["Ventriküler taşikardi","Ventriküler taşikardi için beklenen bulgular burada yok."],["Fokal atriyal taşikardi","Fokal atriyal taşikardi için beklenen bulgular burada yok."],["Sinüs taşikardisi","Sinüs taşikardisi için beklenen bulgular burada yok."],["Sağ dal bloğu","Sağ dal bloğu için beklenen bulgular burada yok."]]);
+bank("ddx_svt","O2",[["Supraventriküler taşikardi","Tarif edilen bulgular Supraventriküler taşikardi ile uyumludur."],["Sinüs taşikardisi","Sinüs taşikardisi için beklenen bulgular burada yok."],["Sağ dal bloğu","Sağ dal bloğu için beklenen bulgular burada yok."],["Atriyal fibrilasyon","Atriyal fibrilasyon için beklenen bulgular burada yok."],["Ventriküler erken atım","Ventriküler erken atım için beklenen bulgular burada yok."]]);
+bank("ddx_vf","O2",[["Ventriküler fibrilasyon","Tarif edilen bulgular Ventriküler fibrilasyon ile uyumludur."],["Ventriküler erken atım","Ventriküler erken atım için beklenen bulgular burada yok."],["İnferior ST yükselmeli iskemi","İnferior ST yükselmeli iskemi için beklenen bulgular burada yok."],["Fokal atriyal taşikardi","Fokal atriyal taşikardi için beklenen bulgular burada yok."],["Sinüs taşikardisi","Sinüs taşikardisi için beklenen bulgular burada yok."]]);
+bank("ddx_vt","O2",[["Ventriküler taşikardi","Tarif edilen bulgular Ventriküler taşikardi ile uyumludur."],["Atriyal fibrilasyon","Atriyal fibrilasyon için beklenen bulgular burada yok."],["Ventriküler erken atım","Ventriküler erken atım için beklenen bulgular burada yok."],["İnferior ST yükselmeli iskemi","İnferior ST yükselmeli iskemi için beklenen bulgular burada yok."],["Fokal atriyal taşikardi","Fokal atriyal taşikardi için beklenen bulgular burada yok."]]);
+bank("eject","O4",[["Çıkış kapakları açık: ejeksiyon","Basınç yeterince yükselince kan dışarı pompalanır."],["Tüm kapaklar kapalı: izovolümetrik kasılma","Bu erken evre, çıkış henüz kapalıdır."],["AV kapaklar açık: pasif doluş","Bu giriş fazıdır, ejeksiyon değildir."],["Tüm kapaklar kapalı: gevşeme","Gevşeme ejeksiyondan sonra gelir."],["AV kapaklar açık: atriyal sistol","Bu doluşun son parçasıdır, ejeksiyon değil."]]);
+bank("fNotP","O1",[["Sürekli F, ayrı sinüs P değildir","Flutter tabanı düzenli ve süreklidir, tek P değildir."],["Her F bir QRS'dir","F atriyum, QRS ventrikül olayıdır; sayıları farklıdır."],["F, T dalgasının başka adıdır","F atriyal, T ventriküler bir olaydır."],["Ters F sinüs P ile aynıdır","F sürekli devre etkinliğidir, sinüs P değildir."],["F varlığı normal atriyal katkı gösterir","Sürekli F koordineli katkıyı göstermez."]]);
+bank("fNotQRS","O1",[["f, QRS sayımından ayrılır","Ventrikül hızı ayrı QRS dizisinden bulunur."],["Her f tepesi bir atımdır","f taban etkinliğidir, QRS değildir."],["En geniş f QRS süresidir","f genliği QRS süresine dönüşmez."],["f varlığı geniş QRS kanıtıdır","AF tabanı QRS genişliğini göstermez."],["f yoksa kesin sinüs vardır","İnce f görünmeyebilir; P ve düzen ayrıca bakılmalı."]]);
+bank("fastFill","O4",[["Kısa döngü doluşu kısaltabilir","Hız artınca diyastol kısalır."],["Hız artışı atım hacmini sabit artırır","Atım hacmi doluş ve yüke bağlıdır."],["Dar QRS kısalan doluşu telafi eder","QRS genişliği doluş süresini değiştirmez."],["P varsa doluş hızdan bağımsızdır","Kısa döngü doluşu yine de kısaltabilir."],["Kısa R–R kan basıncı değeridir","R–R zaman ölçüsüdür, basınç değildir."]]);
+bank("fill","O4",[["AV kapaklar açık: ventrikül doluşu","Kan diyastolde ventriküle geçer."],["Çıkış kapakları açık: ejeksiyon","Bu ileri pompalama fazıdır, doluş değil."],["Tüm kapaklar kapalı: kasılma","Kasılmada hacim sabittir, doluş yoktur."],["Tüm kapaklar kapalı: gevşeme","Gevşemede AV henüz açılmamıştır."],["AV kapaklar kapalı: atriyal sistol","Bu doluş fazı AV açıkken olur."]]);
+bank("firstStep_af","O5",[["Hız/ritim kontrolü ve antikoagülasyon değerlendirmesi","AF yönetiminde hız/ritim kontrolü ve inme riski birlikte ele alınır."],["Hemen taburcu edilir","Bulgu ciddi olabilir; taburcu öncesi değerlendirme gerekir."],["Yalnızca gözlem yeterlidir","Bu bulgu daha aktif bir yaklaşım gerektirebilir; yalnız izlem yetmez."],["Karar tamamen hastaya bırakılır","İlk yaklaşım klinik ekip tarafından yönlendirilir."],["Yalnız görüntüleme istenir","İlk adım görüntülemeden önce klinik değerlendirmedir."]]);
+bank("firstStep_flutter","O5",[["Hız/ritim kontrolü ve antikoagülasyon değerlendirmesi","Flutter yönetimi AF ile benzer ilkeleri izler."],["Hemen taburcu edilir","Bulgu ciddi olabilir; taburcu öncesi değerlendirme gerekir."],["Yalnızca gözlem yeterlidir","Bu bulgu daha aktif bir yaklaşım gerektirebilir; yalnız izlem yetmez."],["Karar tamamen hastaya bırakılır","İlk yaklaşım klinik ekip tarafından yönlendirilir."],["Yalnız görüntüleme istenir","İlk adım görüntülemeden önce klinik değerlendirmedir."]]);
+bank("firstStep_inferior","O5",[["Acil reperfüzyon değerlendirmesi","İnferior ST yükselmesi de acil değerlendirme gerektirir."],["Hemen taburcu edilir","Bulgu ciddi olabilir; taburcu öncesi değerlendirme gerekir."],["Yalnızca gözlem yeterlidir","Bu bulgu daha aktif bir yaklaşım gerektirebilir; yalnız izlem yetmez."],["Karar tamamen hastaya bırakılır","İlk yaklaşım klinik ekip tarafından yönlendirilir."],["Yalnız görüntüleme istenir","İlk adım görüntülemeden önce klinik değerlendirmedir."]]);
+bank("firstStep_lbbb","O5",[["Klinik bağlamla birlikte değerlendirme","Dal bloğu tek başına acil işlem gerektirmez; bağlam önemlidir."],["Hemen taburcu edilir","Bulgu ciddi olabilir; taburcu öncesi değerlendirme gerekir."],["Yalnızca gözlem yeterlidir","Bu bulgu daha aktif bir yaklaşım gerektirebilir; yalnız izlem yetmez."],["Karar tamamen hastaya bırakılır","İlk yaklaşım klinik ekip tarafından yönlendirilir."],["Yalnız görüntüleme istenir","İlk adım görüntülemeden önce klinik değerlendirmedir."]]);
+bank("firstStep_normal","O5",[["Bulgu yoksa rutin izlem yeterlidir","Belirti ve ek risk yoksa acil işlem gerekmez."],["Hemen taburcu edilir","Bulgu ciddi olabilir; taburcu öncesi değerlendirme gerekir."],["Yalnızca gözlem yeterlidir","Bu bulgu daha aktif bir yaklaşım gerektirebilir; yalnız izlem yetmez."],["Karar tamamen hastaya bırakılır","İlk yaklaşım klinik ekip tarafından yönlendirilir."],["Yalnız görüntüleme istenir","İlk adım görüntülemeden önce klinik değerlendirmedir."]]);
+bank("firstStep_pat","O5",[["Altta yatan neden ve semptomla birlikte değerlendirme","Tekrarlayan atriyal taşikardide neden araştırması önemlidir."],["Hemen taburcu edilir","Bulgu ciddi olabilir; taburcu öncesi değerlendirme gerekir."],["Yalnızca gözlem yeterlidir","Bu bulgu daha aktif bir yaklaşım gerektirebilir; yalnız izlem yetmez."],["Karar tamamen hastaya bırakılır","İlk yaklaşım klinik ekip tarafından yönlendirilir."],["Yalnız görüntüleme istenir","İlk adım görüntülemeden önce klinik değerlendirmedir."]]);
+bank("firstStep_pvc","O5",[["Sıklık ve semptomla birlikte değerlendirme","İzole erken atım çoğu zaman yalnızca izlem gerektirir."],["Hemen taburcu edilir","Bulgu ciddi olabilir; taburcu öncesi değerlendirme gerekir."],["Yalnızca gözlem yeterlidir","Bu bulgu daha aktif bir yaklaşım gerektirebilir; yalnız izlem yetmez."],["Karar tamamen hastaya bırakılır","İlk yaklaşım klinik ekip tarafından yönlendirilir."],["Yalnız görüntüleme istenir","İlk adım görüntülemeden önce klinik değerlendirmedir."]]);
+bank("firstStep_rbbb","O5",[["Klinik bağlamla birlikte değerlendirme","Dal bloğu tek başına acil işlem gerektirmez; bağlam önemlidir."],["Hemen taburcu edilir","Bulgu ciddi olabilir; taburcu öncesi değerlendirme gerekir."],["Yalnızca gözlem yeterlidir","Bu bulgu daha aktif bir yaklaşım gerektirebilir; yalnız izlem yetmez."],["Karar tamamen hastaya bırakılır","İlk yaklaşım klinik ekip tarafından yönlendirilir."],["Yalnız görüntüleme istenir","İlk adım görüntülemeden önce klinik değerlendirmedir."]]);
+bank("firstStep_sintach","O5",[["Altta yatan nedeni bulup tedavi etmek","Sinüs taşikardisi çoğunlukla ikincildir; asıl neden tedavi edilir."],["Hemen taburcu edilir","Bulgu ciddi olabilir; taburcu öncesi değerlendirme gerekir."],["Yalnızca gözlem yeterlidir","Bu bulgu daha aktif bir yaklaşım gerektirebilir; yalnız izlem yetmez."],["Karar tamamen hastaya bırakılır","İlk yaklaşım klinik ekip tarafından yönlendirilir."],["Yalnız görüntüleme istenir","İlk adım görüntülemeden önce klinik değerlendirmedir."]]);
+bank("firstStep_svt","O5",[["Stabilse vagal manevra ve monitörizasyon","Hemodinamisi stabil dar kompleks taşikardide ilk adım budur."],["Hemen taburcu edilir","Bulgu ciddi olabilir; taburcu öncesi değerlendirme gerekir."],["Yalnızca gözlem yeterlidir","Bu bulgu daha aktif bir yaklaşım gerektirebilir; yalnız izlem yetmez."],["Karar tamamen hastaya bırakılır","İlk yaklaşım klinik ekip tarafından yönlendirilir."],["Yalnız görüntüleme istenir","İlk adım görüntülemeden önce klinik değerlendirmedir."]]);
+bank("firstStep_vf","O5",[["Nabız yok: KPR başlat ve defibrilasyona hazırlan","VF nabızsız arrest ritmidir; acil resüsitasyon gerekir."],["Hemen taburcu edilir","Bulgu ciddi olabilir; taburcu öncesi değerlendirme gerekir."],["Yalnızca gözlem yeterlidir","Bu bulgu daha aktif bir yaklaşım gerektirebilir; yalnız izlem yetmez."],["Karar tamamen hastaya bırakılır","İlk yaklaşım klinik ekip tarafından yönlendirilir."],["Yalnız görüntüleme istenir","İlk adım görüntülemeden önce klinik değerlendirmedir."]]);
+bank("firstStep_vt","O5",[["Nabız/hemodinami değerlendirilip ileri yaşam desteği yaklaşımı","Geniş kompleks taşikardide önce nabız ve hemodinami kontrol edilir."],["Hemen taburcu edilir","Bulgu ciddi olabilir; taburcu öncesi değerlendirme gerekir."],["Yalnızca gözlem yeterlidir","Bu bulgu daha aktif bir yaklaşım gerektirebilir; yalnız izlem yetmez."],["Karar tamamen hastaya bırakılır","İlk yaklaşım klinik ekip tarafından yönlendirilir."],["Yalnız görüntüleme istenir","İlk adım görüntülemeden önce klinik değerlendirmedir."]]);
+bank("flutter","O2",[["Sabit 2:1 atriyal flutter","Testere dişi taban ve 2:1 iletim: flutter."],["Fokal atriyal taşikardi","Fokal AT'de ayrı P ve düz taban olur; burada sürekli dalga var."],["Atriyal fibrilasyon","AF'de düzensiz taban olur; burada düzenli."],["Sinüs taşikardisi","Sinüs P–QRS ilişkisi 1:1'dir; burada 2:1."],["PVC dizisi","PVC tek erken geniş atımdır; burada sürekli düzenli ritim var."]]);
+bank("flutterCount","O6",[["30F ve15QRS","300/dk=5F/s ve150/dk=2,5QRS/s:6s’de30F ve15QRS."],["15F ve30QRS","Atriyal ve ventriküler kaynak sayıları ters çevrilmiştir."],["30F ve30QRS","Ventriküler sayıyı atriyal sayıya eşitlemek1:1 varsayımıdır."],["15F ve15QRS","Atriyal sayım300/dk yerine150/dk alınmıştır."],["60F ve15QRS","Atriyal frekans yanlışlıkla iki katına çıkarılmıştır."]]);
+bank("flutterPolarity","O3",[["İnferior negatif, V1 pozitif F","Tipik flutter yönü budur."],["İnferior pozitif, V1 negatif F","Bu ters yön tipik örneğe uymaz."],["Her derivasyonda eşit F","F dalgası derivasyona göre farklı görünür."],["F yalnız QRS içinde görünür","F sürekli, QRS'den bağımsız sürer."],["F bir basınç dalgasıdır","F elektriksel bir atriyal dalgadır."]]);
+bank("flutterRatio","O1",[["300/dk atriyal, 150/dk ventrikül: 2:1","İki F dalgasından biri QRS ile iletilir."],["150 atriyal, 300 ventrikül: 2:1","Hızlar burada ters çevrilmiş."],["300 atriyal, 300 ventrikül: 2:1","Eşit hız 1:1 iletim demektir."],["300 atriyal, 100 ventrikül: 2:1","Bu oran 3:1'dir, 2:1 değil."],["300 atriyal, 75 ventrikül: 2:1","Bu oran 4:1'dir, 2:1 değil."]]);
+bank("inferior","O3",[["İnferior dağılım (II, III, aVF)","II, III, aVF yükselmiş, I ve aVL çökmüş: inferior."],["Anterior dağılım","Anterior için V1–V4 gerekir; burada ekstremite grubu etkilenmiş."],["Sağ dal bloğu bulgusu","Bu ST yüksekliği, QRS şekli değil."],["Flutter tabanı","Flutter sürekli dalga yapar; burada ayrı ST yüksekliği var."],["Normal ST örüntüsü","ST burada belirgin değişmiş, normal değil."]]);
+bank("inferiorLeadGroup","O3",[["II, III, aVF — inferior duvar","Bu üç derivasyon kalbin inferior (alt) duvarını gösterir."],["I, aVL, V5–V6 — lateral duvar","Bu grup lateral duvarı gösterir, inferior duvarı değil."],["V1, V2 — septal bölge","V1–V2 septal bölgeyi gösterir, inferior duvarı değil."],["V3, V4 — anterior duvar","V3–V4 anterior duvarı gösterir, inferior duvarı değil."],["aVR tek başına — sağ üst köşe","aVR tek başına sağ üst yönü gösterir; inferior grup değildir."]]);
+bank("ischemiaFlow","O4",[["Bölgesel azalma şematik, global akım sürebilir","Bir bölge zayıf gösterilir, tüm pompa durmaz."],["ST yükselmesi VF ile aynı akımsızlıktır","Bölgesel iskemi VF'deki tam pompa kaybı değildir."],["Düzenli QRS normal debiyi kanıtlar","Elektriksel düzen debiyi ölçmez."],["Renk koyuluğu gerçek stenoz yüzdesidir","Renk şematiktir, stenoz oranı vermez."],["Her ST mV'u sabit EF kaybıdır","ST voltajı EF kaybına dönüştürülemez."]]);
+bank("ischemiaLimits","O5",[["Klinik bağlam ve seri EKG gerekir","Tek ST bulgusu kesin damar veya tanı vermez."],["Tek ST değeri damarı kesinleştirir","ST bölgesi ipucu verir, kesin tanı vermez."],["Düzenli ritim iskemiyi dışlar","Ritim düzenli olsa da iskemi sürebilir."],["Karşılıklı çökme yoksa iskemi yoktur","Karşılıklı değişim olmaması iskemiyi dışlamaz."],["Animasyon gerçek EF ölçer","Şematik hareket EF ölçümü değildir."]]);
+bank("lMorph","O3",[["V1 negatif, yan derivasyonlarda geniş R","LBBB'de sağ ve sol taraf zıt yönde etkilenir."],["V1 çift çıkıntı, yanda geniş S","Bu RBBB örüntüsüdür, LBBB değildir."],["Tüm derivasyonlar aynı yönde","Sağ ve sol taraf burada zıt yönlüdür."],["Sürekli taban dalgası","Bu QRS şekli sorusu, taban dalgası değil."],["Organize QRS yok","Burada düzenli geniş QRS var, VF değil."]]);
+bank("lateralLeadGroup","O3",[["I, aVL, V5–V6 — lateral duvar","Bu üç derivasyon grubu kalbin lateral duvarını gösterir."],["II, III, aVF — inferior duvar","Bu grup inferior duvarı gösterir, lateral duvarı değil."],["V1, V2 — septal bölge","V1–V2 septal bölgeyi gösterir, lateral duvarı değil."],["V3, V4 — anterior duvar","V3–V4 anterior duvarı gösterir, lateral duvarı değil."],["V1–V6 tümü — tüm prekordiyum","Tüm prekordiyal grup tek başına lateral duvarı özgül olarak göstermez."]]);
+bank("lbbb","O2",[["Sol dal bloğu (LBBB)","Geniş QRS, V1 negatif, yanda geniş R: LBBB."],["Sağ dal bloğu (RBBB)","RBBB'de V1'de pozitif çıkıntı olur; burada negatif."],["Dar QRS iletisi","QRS burada geniş, dar değil."],["İzole PVC","PVC tek atımdır; burada her atım aynı geniş."],["Ventriküler fibrilasyon","VF'de düzenli QRS yoktur; burada düzenli."]]);
+bank("leadAll","O3",[["Derivasyon aynı kaynağın farklı görünümüdür","Lead değiştirmek şekli değiştirir, ritmi değiştirmez."],["Lead değiştirmek ritmi değiştirir","Görünüm değişir, kaynak aynı kalır."],["Tüm lead'ler aynı şekli gösterir","Her derivasyon farklı açıdan bakar."],["Negatif QRS ventrikül kaynağını kanıtlar","Polarite yön farkından da olabilir."],["Tek lead 12 derivasyona eşittir","Diğer derivasyonlar ek bilgi taşır."]]);
+bank("limits","O5",[["Örüntü desteklenir, neden ayrıca sorulur","EKG bulgusu tanı verir, nedeni klinik öykü belirler."],["Kısa kayıt başlangıç zamanını verir","Bir pencere toplam süreyi göstermez."],["QRS genişliği tek başına riski verir","Risk için klinik bağlam da gerekir."],["P ekseni kesin odağı belirler","P ekseni ipucudur, kesin yer vermez."],["Hız tek başına dolaşımı gösterir","Nabız ve basınç ayrıca değerlendirilir."]]);
+bank("mechanic","O4",[["Tüm kapaklar kapalı: izovolümetrik kasılma","Basınç yükselirken hacim henüz sabittir."],["Çıkış kapakları açık: ejeksiyon","Bu erken evrede çıkış henüz kapalıdır."],["AV kapaklar açık: pasif doluş","Bu kasılma başlangıcı, doluş değildir."],["Tüm kapaklar kapalı: gevşeme","Gevşeme ejeksiyon sonrasıdır."],["AV kapaklar açık: atriyal sistol","Bu anda AV kapak kapalıdır."]]);
+bank("noQrs","O1",[["Organize QRS sınırı yok","Kaotik dalgada ayrık kompleks tanımlanamaz."],["Her pozitif tepe QRS sayılır","Tek tepe kompleks sınırını vermez."],["İki çukur arası QRS genişliğidir","Çukur aralığı kompleks süresi değildir."],["Eski VT süresi buraya uygulanır","Ritim değişince eski süre geçerli değildir."],["F süresi QRS yerine yazılır","F atriyal bir dalgadır, QRS değildir."]]);
+bank("organizedCompare","O2",[["VT düzenli geniş; VF kaotik","VT'de tekrarlayan şekil, VF'de düzensiz dalga."],["VT kaotik; VF düzenli geniş","Bu tanımlar burada ters çevrilmiş."],["İkisi de düzenli dar ritimdir","VT geniş, VF organize değildir."],["İkisi de yalnız atriyal hızdır","İkisi de ventriküler bir ritimdir."],["Ayrım yalnız ST yüksekliğidir","Asıl ayrım QRS düzeni ve şeklidir."]]);
+bank("p","O1",[["P: atriyal depolarizasyon","P dalgası atriyumun elektriksel uyarılmasıdır."],["P: atriyal repolarizasyon","Atriyal repolarizasyon genelde QRS altında gizlenir."],["P: ventriküler depolarizasyon","Bu olay QRS ile kaydedilir."],["P: ventriküler repolarizasyon","Bu olay T dalgası ile kaydedilir."],["P: yalnız AV düğüm iletimi","AV düğüm gecikmesi PR aralığında değerlendirilir."]]);
+bank("pWaveVisibleYesBank","O6",[["Evet, her QRS öncesinde var","Bu örnekte her QRS'den önce ayrık bir P dalgası seçilebiliyor."],["Hayır, seçilemiyor","Bu örnekte ayrık P dalgası seçilebiliyor."],["Yalnızca aVR'de var","P dalgası tüm derivasyonlarda aynı zamanlamada oluşur; tek derivasyona özgü değildir."],["Yalnızca ara sıra var","Bu örnekte P dalgası her atımda düzenli biçimde bulunur."],["Evet ama QRS'den sonra","P dalgası bu örnekte QRS'den önce gelir."]]);
+bank("pr","O6",[["P başlangıcından QRS başlangıcına","PR aralığı bu iki noktayla ölçülür."],["P tepesinden R tepesine","Bu ölçüm PR tanımına uymaz."],["P sonundan QRS sonuna","Bu, PR segmentini QRS ile karıştırır."],["QRS sonundan T sonuna","Bu aralık PR değil, repolarizasyon bölgesidir."],["Bir R'den sonrakine","Bu R–R aralığıdır, PR değildir."]]);
+bank("pr140","O6",[["140ms","Ektopik P başlangıcı−180ms, QRS başlangıcı−40ms: fark140ms."],["95ms","95ms P tepesinden QRS başlangıcına ölçüm hatasıdır."],["120ms","120ms verilen ilk sapmaların farkı değildir."],["180ms","180ms R tepesini QRS başlangıcı yerine alma hatasıdır."],["220ms","220ms QRS sonunu PR sınırı alma hatasıdır."]]);
+bank("pr175","O6",[["175ms","P ilk sapması−215ms, QRS ilk sapması−40ms: fark175ms."],["130ms","130ms P merkezinden QRS başlangıcına gitme hatasıdır."],["155ms","155ms verilen iki başlangıcın farkı değildir."],["215ms","215ms P başlangıcından R tepesine ölçüm hatasıdır."],["255ms","255ms P başlangıcından QRS sonuna ölçüm hatasıdır."]]);
+bank("prL175","O6",[["175ms","P−245ms,QRS−70ms:175ms; geniş QRS PR sınırını değiştirmez."],["130ms","P tepesinden ölçme ilk45ms’yi dışlar."],["160ms","QRS160ms süresi PR yerine yazılmıştır."],["245ms","P’den R referansına gitme70ms fazlalık ekler."],["335ms","P’den QRS sonuna gitme QRS160ms’yi de içerir."]]);
+bank("prR175","O6",[["175ms","P−235ms,QRS−60ms:175ms; terminal sağ gecikme QRS içindedir."],["130ms","P merkezinden ölçme ilk45ms’yi dışlar."],["140ms","QRS140ms süresi PR yerine kullanılmıştır."],["235ms","P’den R referansına ölçme60ms fazlalık ekler."],["315ms","QRS sonu kullanılarak140ms kompleks de eklenmiştir."]]);
+bank("precordialSeptal","O3",[["Septum ve sağ ventrikül yakını","V1–V2 septal bölgeyi ve sağ ventrikülün yakınını yansıtır."],["Sol lateral duvar","Sol lateral duvar V5–V6 ve I, aVL ile değerlendirilir."],["İnferior duvar","İnferior duvar II, III, aVF ile değerlendirilir."],["Yüksek lateral duvar","Yüksek lateral duvar aVL ile değerlendirilir."],["Sadece sağ atriyum","Sağ atriyum tek başına V1–V2 ile özgül olarak tanımlanmaz."]]);
+bank("pulse","O4",[["Nabız ayrıca klinik olarak bakılır","EKG elektrik gösterir, nabzı kanıtlamaz."],["Elektriksel hız nabza birebir eşittir","Nabız açığı olabilir; eşitlik varsayılamaz."],["QRS genişliği nabız basıncını verir","Genişlik zaman ölçüsüdür, basınç değildir."],["T genliği atım hacmini verir","T genliği repolarizasyon voltajıdır."],["PR süresi debiyi verir","PR iletim süresidir, debi ölçmez."]]);
+bank("pvc","O2",[["Ventriküler erken atım (PVC)","Erken, geniş, öncesinde P yok: PVC."],["Normal sinüs atımı","Sinüs atımı zamanında gelir; bu atım erken."],["Dal bloğu atımı","Dal bloğunda her atım geniştir; burada tek atım geniş."],["AF atımı","AF'de tüm ritim düzensizdir; burada tek atım farklı."],["Flutter atımı","Flutter düzenli taban ister; burada yok."]]);
+bank("pvcOrigin","O2",[["Ventrikülden erken uyarı","Öncül P yok, QRS geniş: ventrikül kaynaklı."],["Sabit sağ dal gecikmesi","Sabit blokta her atım geniştir; burada tek atım."],["Sabit sol dal gecikmesi","Sabit blokta her atım geniştir; burada tek atım."],["Hızlı atriyal devre","Atriyal kaynak dar QRS yapar; burada geniş."],["Sinüs hızının artışı","Sinüs hızlanması ayrı erken geniş atım yapmaz."]]);
+bank("pvcPause","O1",[["İki temel döngü toplamı","480+1120=1600 ms, iki 800 ms döngüye eşit."],["Yalnız 480 ms temel döngüdür","Erken aralık temel hızı göstermez."],["Yalnız 1120 ms geçerlidir","Duraklama tek başına döngüyü tanımlamaz."],["1600 ms bir PR aralığıdır","Bu iki R–R döngüsüdür, PR değildir."],["Her PVC bu duraklamayı yapar","Kompansatuvar duraklama her olguda aynı değildir."]]);
+bank("pvcT","O1",[["Geniş QRS sonrası ters T","Farklı aktivasyon yolu ters repolarizasyon yapar."],["Her ters T akut oklüzyondur","Geniş QRS sonrası ters T tek başına oklüzyon değildir."],["T değişimi yeni P dizisidir","T ventrikül olayıdır, P değildir."],["Bu ayrı bir atriyal taşikardidir","Bu tek atımın repolarizasyonudur, yeni ritim değil."],["Bu nabız yönünü gösterir","EKG yönü mekanik akım yönü değildir."]]);
+bank("q140","O6",[["140ms","−60ms ile+80ms arasındaki geniş QRS desteği140ms’dir."],["80ms","80ms normal dar QRS örneğidir."],["110ms","110ms terminal desteğin bir kısmını dışlar."],["160ms","160ms LBBB öğretim genişliğidir."],["200ms","200ms verilen ilk/son sapma farkından60ms uzundur."]]);
+bank("q160","O6",[["160ms","−70ms ile+90ms arasındaki geniş QRS desteği160ms’dir."],["80ms","80ms normal dar aktivasyondur."],["120ms","120ms bu sinyalin son terminal bölümünü dışlar."],["180ms","180ms VT örneğinin genişliğidir."],["240ms","240ms verilen160ms destekten80ms uzundur."]]);
+bank("q180","O6",[["180ms","−70ms ile+110ms arasındaki VT QRS desteği180ms’dir."],["80ms","80ms normal dar QRS örneğidir."],["140ms","140ms PVC/RBBB örneğinin genişliğidir."],["220ms","220ms verilen sınırların farkından uzundur."],["270ms","270ms verilen180ms destekten90ms uzundur."]]);
+bank("q80","O6",[["80ms","−40ms ile+40ms arasındaki QRS desteği80ms’dir."],["40ms","40ms yalnız R’den son dönüşe yarı desteği sayar."],["60ms","60ms başlangıç veya terminal bileşenin bir kısmını dışlar."],["100ms","100ms iki sınırın verilen farkından fazladır."],["140ms","140ms geniş PVC/RBBB örneğiyle karıştırır."]]);
+bank("qrs","O1",[["QRS: ventriküler depolarizasyon","QRS ventrikül kasının elektriksel uyarılmasıdır."],["QRS: atriyal depolarizasyon","Bu olay P dalgasıyla kaydedilir."],["QRS: ventriküler repolarizasyon","Bu olay T dalgasıyla kaydedilir."],["QRS: yalnız atriyal repolarizasyon","QRS'in ana kaynağı ventrikül kasıdır."],["QRS: yalnız AV düğüm gecikmesi","AV gecikmesi PR aralığında değerlendirilir."]]);
+bank("qrsWidthCause","O5",[["Genişlik ve klinik bulgu birlikte yorumlanır","Tek genişlik VT ile bloğu kesin ayırmaz."],["120 ms üstü her QRS VT'dir","Dal bloğu da geniş QRS yapabilir."],["140 ms her QRS kesin RBBB'dir","PVC de bu genişlikte olabilir."],["160 ms her QRS kesin LBBB'dir","Genişlik tek başına LBBB'yi kanıtlamaz."],["Genişlik tek başına debiyi hesaplar","Genişlik zaman ölçüsüdür, debi değildir."]]);
+bank("qt245","O6",[["245ms","QRS−40ms,T sonu205ms: toplam245ms sentetik QT."],["165ms","QRS başlangıç/son sınırları yanlış daraltılmıştır."],["205ms","R tepesinden ölçerek başlangıç40ms dışlanmıştır."],["285ms","Fazladan40ms eklenmiştir; verilen fark245ms’dir."],["400ms","R–R400ms ile QT karıştırılmıştır."]]);
+bank("qt345","O6",[["345ms","QRS−70ms,T sonu275ms: toplam345ms sentetik VT QT."],["180ms","Bu QRS süresidir; T desteği eklenmemiştir."],["275ms","R referansı kullanılarak70ms başlangıç dışlanmıştır."],["380ms","VT R–R380ms döngüsü QT değildir."],["415ms","Başlangıç70ms iki kez eklenmiştir."]]);
+bank("qt410","O6",[["410ms","QRS−60ms,T sonu350ms: toplam410ms sentetik geniş kompleks QT."],["140ms","Bu yalnız QRS süresidir."],["350ms","R tepesini başlangıç alarak60ms dışlar."],["470ms","Başlangıç60ms iki kez eklenmiştir."],["800ms","R–R döngüsü QT yerine kullanılmıştır."]]);
+bank("qt430","O6",[["430ms","QRS−70ms,T sonu360ms: toplam430ms sentetik LBBB QT."],["160ms","Bu QRS süresidir; repolarizasyon bölümünü dışlar."],["360ms","R tepesinden başlama ilk70ms’yi dışlar."],["500ms","70ms başlangıç iki kez eklenmiştir."],["800ms","R–R döngüsü QT değildir."]]);
+bank("rMorph","O3",[["V1 çift çıkıntı, yanda geniş S","RBBB'de sağ taraf geç aktive olur."],["V1 negatif, yanda geniş R","Bu LBBB örüntüsüdür, RBBB değildir."],["Tüm derivasyonlar dar ve aynı","RBBB'de QRS geniş ve derivasyona göre farklıdır."],["Taban dalgası çıkıntının yerine geçer","Taban dalgası atriyaldir, QRS çıkıntısı değildir."],["Her T yeni çıkıntıdır","Çıkıntı QRS içindedir, T ayrı bir dalgadır."]]);
+bank("rbbb","O2",[["Sağ dal bloğu (RBBB)","Geniş QRS, V1 çift çıkıntı, yanda geniş S: RBBB."],["Sol dal bloğu (LBBB)","LBBB'de V1 negatiftir; burada pozitif çıkıntı var."],["Dar QRS iletisi","QRS burada geniş, dar değil."],["İzole PVC","PVC tek atımdır; burada her atım aynı geniş."],["Atriyal flutter","Flutter taban dalgasıyla tanınır; burada QRS şekli önemli."]]);
+bank("rhythmClass_af","O2",[["Düzensiz dar kompleks","Ardışık R–R aralıkları düzensiz; QRS dar."],["Düzenli dar kompleks, normal hız","Bu örnekte hız veya düzen normal aralığa uymuyor."],["Düzenli dar kompleks, hızlı","Bu örnekte hız bu kadar yüksek değil."],["Düzenli geniş kompleks","Bu örnekte QRS dar, bu kadar geniş değil."],["Kaotik, organize değil","Bu örnekte düzenli bir kompleks seçilebiliyor, kaotik değil."]]);
+bank("rhythmClass_flutter","O2",[["Düzenli dar kompleks, hızlı","Hız belirgin yüksek; ritim düzenli ve QRS dar."],["Düzenli dar kompleks, normal hız","Bu örnekte hız veya düzen normal aralığa uymuyor."],["Düzensiz dar kompleks","Bu örnekte ritim düzenli, düzensiz değil."],["Düzenli geniş kompleks","Bu örnekte QRS dar, bu kadar geniş değil."],["Kaotik, organize değil","Bu örnekte düzenli bir kompleks seçilebiliyor, kaotik değil."]]);
+bank("rhythmClass_inferior","O2",[["Düzenli dar kompleks, normal hız","Hız yaklaşık 75/dk, ritim düzenli ve QRS dar."],["Düzenli dar kompleks, hızlı","Bu örnekte hız bu kadar yüksek değil."],["Düzensiz dar kompleks","Bu örnekte ritim düzenli, düzensiz değil."],["Düzenli geniş kompleks","Bu örnekte QRS dar, bu kadar geniş değil."],["Kaotik, organize değil","Bu örnekte düzenli bir kompleks seçilebiliyor, kaotik değil."]]);
+bank("rhythmClass_lbbb","O2",[["Düzenli geniş kompleks","QRS geniş; ritim düzenli aralıklarla tekrarlıyor."],["Düzenli dar kompleks, normal hız","Bu örnekte hız veya düzen normal aralığa uymuyor."],["Düzenli dar kompleks, hızlı","Bu örnekte hız bu kadar yüksek değil."],["Düzensiz dar kompleks","Bu örnekte ritim düzenli, düzensiz değil."],["Kaotik, organize değil","Bu örnekte düzenli bir kompleks seçilebiliyor, kaotik değil."]]);
+bank("rhythmClass_normal","O2",[["Düzenli dar kompleks, normal hız","Hız yaklaşık 75/dk, ritim düzenli ve QRS dar."],["Düzenli dar kompleks, hızlı","Bu örnekte hız bu kadar yüksek değil."],["Düzensiz dar kompleks","Bu örnekte ritim düzenli, düzensiz değil."],["Düzenli geniş kompleks","Bu örnekte QRS dar, bu kadar geniş değil."],["Kaotik, organize değil","Bu örnekte düzenli bir kompleks seçilebiliyor, kaotik değil."]]);
+bank("rhythmClass_pat","O2",[["Düzenli dar kompleks, hızlı","Hız belirgin yüksek; ritim düzenli ve QRS dar."],["Düzenli dar kompleks, normal hız","Bu örnekte hız veya düzen normal aralığa uymuyor."],["Düzensiz dar kompleks","Bu örnekte ritim düzenli, düzensiz değil."],["Düzenli geniş kompleks","Bu örnekte QRS dar, bu kadar geniş değil."],["Kaotik, organize değil","Bu örnekte düzenli bir kompleks seçilebiliyor, kaotik değil."]]);
+bank("rhythmClass_pvc","O2",[["Düzensiz dar kompleks","Ardışık R–R aralıkları düzensiz; QRS dar."],["Düzenli dar kompleks, normal hız","Bu örnekte hız veya düzen normal aralığa uymuyor."],["Düzenli dar kompleks, hızlı","Bu örnekte hız bu kadar yüksek değil."],["Düzenli geniş kompleks","Bu örnekte QRS dar, bu kadar geniş değil."],["Kaotik, organize değil","Bu örnekte düzenli bir kompleks seçilebiliyor, kaotik değil."]]);
+bank("rhythmClass_rbbb","O2",[["Düzenli geniş kompleks","QRS geniş; ritim düzenli aralıklarla tekrarlıyor."],["Düzenli dar kompleks, normal hız","Bu örnekte hız veya düzen normal aralığa uymuyor."],["Düzenli dar kompleks, hızlı","Bu örnekte hız bu kadar yüksek değil."],["Düzensiz dar kompleks","Bu örnekte ritim düzenli, düzensiz değil."],["Kaotik, organize değil","Bu örnekte düzenli bir kompleks seçilebiliyor, kaotik değil."]]);
+bank("rhythmClass_sintach","O2",[["Düzenli dar kompleks, hızlı","Hız belirgin yüksek; ritim düzenli ve QRS dar."],["Düzenli dar kompleks, normal hız","Bu örnekte hız veya düzen normal aralığa uymuyor."],["Düzensiz dar kompleks","Bu örnekte ritim düzenli, düzensiz değil."],["Düzenli geniş kompleks","Bu örnekte QRS dar, bu kadar geniş değil."],["Kaotik, organize değil","Bu örnekte düzenli bir kompleks seçilebiliyor, kaotik değil."]]);
+bank("rhythmClass_stemi","O2",[["Düzenli dar kompleks, normal hız","Hız yaklaşık 75/dk, ritim düzenli ve QRS dar."],["Düzenli dar kompleks, hızlı","Bu örnekte hız bu kadar yüksek değil."],["Düzensiz dar kompleks","Bu örnekte ritim düzenli, düzensiz değil."],["Düzenli geniş kompleks","Bu örnekte QRS dar, bu kadar geniş değil."],["Kaotik, organize değil","Bu örnekte düzenli bir kompleks seçilebiliyor, kaotik değil."]]);
+bank("rhythmClass_svt","O2",[["Düzenli dar kompleks, hızlı","Hız belirgin yüksek; ritim düzenli ve QRS dar."],["Düzenli dar kompleks, normal hız","Bu örnekte hız veya düzen normal aralığa uymuyor."],["Düzensiz dar kompleks","Bu örnekte ritim düzenli, düzensiz değil."],["Düzenli geniş kompleks","Bu örnekte QRS dar, bu kadar geniş değil."],["Kaotik, organize değil","Bu örnekte düzenli bir kompleks seçilebiliyor, kaotik değil."]]);
+bank("rhythmClass_vf","O2",[["Kaotik, organize değil","Tekrarlayan, organize bir kompleks seçilemiyor."],["Düzenli dar kompleks, normal hız","Bu örnekte hız veya düzen normal aralığa uymuyor."],["Düzenli dar kompleks, hızlı","Bu örnekte hız bu kadar yüksek değil."],["Düzensiz dar kompleks","Bu örnekte ritim düzenli, düzensiz değil."],["Düzenli geniş kompleks","Bu örnekte QRS dar, bu kadar geniş değil."]]);
+bank("rhythmClass_vt","O2",[["Düzenli geniş kompleks","QRS geniş; ritim düzenli aralıklarla tekrarlıyor."],["Düzenli dar kompleks, normal hız","Bu örnekte hız veya düzen normal aralığa uymuyor."],["Düzenli dar kompleks, hızlı","Bu örnekte hız bu kadar yüksek değil."],["Düzensiz dar kompleks","Bu örnekte ritim düzenli, düzensiz değil."],["Kaotik, organize değil","Bu örnekte düzenli bir kompleks seçilebiliyor, kaotik değil."]]);
+bank("rr360","O6",[["Yaklaşık167/dk","60/0,36 yaklaşık166,7/dk elektriksel hızdır."],["120/dk","120/dk500ms gerektirir."],["150/dk","150/dk400ms gerektirir."],["180/dk","180/dk yaklaşık333ms gerektirir."],["200/dk","200/dk300ms gerektirir."]]);
+bank("rr380","O6",[["Yaklaşık158/dk","60/0,38 yaklaşık157,9/dk elektriksel hızdır."],["120/dk","120/dk500ms gerektirir."],["140/dk","140/dk yaklaşık429ms gerektirir."],["180/dk","180/dk yaklaşık333ms gerektirir."],["200/dk","200/dk300ms gerektirir."]]);
+bank("rr400","O6",[["150/dk","60/0,4=150/dk ventriküler elektriksel hızdır."],["75/dk","75/dk800ms döngüdür."],["100/dk","100/dk600ms döngüdür."],["120/dk","120/dk500ms döngüdür."],["300/dk","300/dk200ms; flutter atriyal hızını ventrikülle karıştırır."]]);
+bank("rr500","O6",[["120/dk","60/0,5=120/dk; uygun sinüs P ile sinüs taşikardisi örneğidir."],["75/dk","75/dk800ms döngüdür."],["100/dk","100/dk600ms döngüdür."],["150/dk","150/dk400ms döngüdür."],["167/dk","167/dk yaklaşık360ms döngüdür."]]);
+bank("rr800","O6",[["75/dk","R–R800ms ise60/0,8=75/dk elektriksel hızdır."],["60/dk","60/dk1000ms gerektirir;800ms değil."],["90/dk","90/dk yaklaşık667ms gerektirir."],["120/dk","120/dk500ms gerektirir."],["150/dk","150/dk400ms gerektirir."]]);
+bank("sinus","O2",[["Normal sinüs ritmi","Düzenli QRS ve her atımda aynı P: sinüs ritmi."],["Atriyal fibrilasyon","AF'de P yok ve R-R düzensizdir; burada ikisi de yok."],["Atriyal flutter","Flutter'da sürekli hızlı taban dalgası olur; burada yok."],["Fokal atriyal taşikardi","Fokal AT'de P ekseni sinüsten farklıdır; burada normal."],["AV düğüm taşikardisi","Bu tanı hızlı ritimde düşünülür; burada hız normal."]]);
+bank("sinusAxis","O1",[["II pozitif, aVR negatif P: sinüs ekseni","Bu yön sinüs kaynaklı P ile uyumludur."],["İnferior ters P: ektopik eksen","Bu örnekte P ekseni normal, ters değil."],["Sürekli taban dalgası: flutter","Burada ayrı P var, sürekli dalga yok."],["Düzensiz ince dalga: AF","Burada düzenli tek P var, AF değil."],["Geniş S: dal bloğu bulgusu","Bu P ekseni sorusu, QRS şekli değil."]]);
+bank("st","O6",[["J noktasından uygun taban ile ölçülür","ST yüksekliği J sonrası bir noktadan alınır."],["R tepe voltajı ST sayılır","R genliği depolarizasyondur, ST değildir."],["P tepe voltajı ST sayılır","P atriyal bir dalgadır, ST değildir."],["R–R süresi ST sayılır","R–R zaman ölçüsüdür, voltaj değildir."],["T tepesi J noktası sayılır","J, QRS'in bittiği yerdir; T daha sonradır."]]);
+bank("st20","O6",[["+0,20mV","II’de J+20ms sentetik inferior ST düzeyi+0,20mV’dir."],["−0,20mV","Polarite ters çevrilmiştir; II’de yükselme vardır."],["+0,02mV","Ondalık kayması10kat küçültür."],["+2,0mV","Ondalık kayması10kat büyütür."],["0mV","Pozitif ST platosu sıfır değildir."]]);
+bank("st32","O6",[["+0,32mV","V3’te J+20ms sentetik ST düzeyi+0,32mV’dir."],["+0,032mV","Ondalık kayması yüksekliği10kat küçültür."],["−0,32mV","Polarite yükselmeden çökmeye çevrilmiştir."],["+3,2mV","Ondalık kayması yüksekliği10kat büyütür."],["0mV","Yükselmiş ST platosunu izoelektrik kabul eder."]]);
+bank("stContiguous","O3",[["Komşu derivasyonlar birlikte incelenir","Bölgesel yorum tek derivasyona değil komşu gruba bakar."],["En yüksek tek R bölgeyi belirler","R genliği bölgesel ST yorumunu tek başına vermez."],["aVR her zaman anterior bölgeyi verir","Tek derivasyon tüm anterior grubun yerini tutmaz."],["Derivasyon adı damarın kesin adıdır","Derivasyon bölgesi damar anatomisini birebir vermez."],["ST mV değeri yalnız hızdır","ST voltajı ve hız farklı ölçümlerdir."]]);
+bank("svt","O2",[["Dar kompleks SVT","Hızlı, düzenli, dar QRS; P seçilemiyor: SVT."],["Sinüs taşikardisi","Sinüs taşikardisinde P görülür; burada görülmüyor."],["Fokal atriyal taşikardi","Bunun için ayrı bir P kanıtı gerekir; burada yok."],["Atriyal fibrilasyon","AF'de R–R düzensizdir; burada düzenli."],["Monomorfik VT","VT'de QRS geniştir; burada dar."]]);
+bank("svtLimits","O5",[["Kesin mekanizma için ek veri gerekir","Tek şerit AVNRT, AVRT veya AT'yi kesin ayırmaz."],["P yoksa kesin AVNRT vardır","P görünmemesi tek başına özgül değildir."],["Hız 167 ise kesin AVRT vardır","Hız aralığı mekanizmalar arasında örtüşür."],["Dar QRS varsa kesin fokal AT vardır","Dar QRS için ayrı atriyal kanıt gerekir."],["Düzenli hızda değerlendirme gerekmez","Düzenlilik klinik değerlendirmeyi gereksiz kılmaz."]]);
+bank("t","O1",[["T: ventriküler repolarizasyon","T dalgası ventrikülün elektriksel toparlanmasıdır."],["T: atriyal repolarizasyon","Bu olay genelde QRS altında gizlenir."],["T: ventriküler depolarizasyon","Bu olay QRS ile kaydedilir."],["T: yeni bir atriyal uyarı","Yeni P ayrı bir dalga olarak görülür."],["T: gecikmiş sağ ventrikül uyarısı","Bu bileşen QRS içinde yer alır."]]);
+bank("tach","O2",[["Sinüs taşikardisi","Hızlı ama normal P–QRS ilişkisi: sinüs taşikardisi."],["AVNRT/AVRT olasılığı","Bunlarda P genelde seçilemez; burada P açık."],["Fokal atriyal taşikardi","P ekseni burada normal; fokal AT'de farklı olurdu."],["Sabit 2:1 flutter","Flutter'da sürekli taban dalgası olur; burada yok."],["Atriyal fibrilasyon","AF'de P yoktur; burada var."]]);
+bank("tachCause","O5",[["Neden klinik olarak araştırılır","Ateş, ağrı, hacim kaybı gibi nedenler sorgulanır."],["Sinüs P olması nedeni dışlar","Sinüs kökeni olsa da neden araştırılmalıdır."],["120/dk hız AVNRT'yi kanıtlar","Hızlar örtüşür; tek başına kanıt değildir."],["Çarpıntı tarifi P kanıtını geçersiz kılar","Öykü ve EKG birlikte değerlendirilir."],["Dar QRS hacim kaybını dışlar","QRS genişliği hacim durumunu göstermez."]]);
+bank("urgent","O5",[["Semptomla acil değerlendirme gerekir","Süren belirtiler acil klinik değerlendirme ister."],["Düzenli ritimde yalnız rutin kontrol","Düzenlilik ciddi belirtileri rutine çevirmez."],["Önce kesin mekanizma sonra hasta bakılır","Hasta durumu mekanizmadan önce değerlendirilir."],["Tek derivasyon kesinlik verir","Aciliyet tek derivasyonla belirlenmez."],["Animasyon akımı varsa acil değildir","Şematik akış gerçek durumu göstermez."]]);
+bank("vf","O2",[["Ventriküler fibrilasyon","Kaotik, düzensiz, QRS seçilemiyor: VF."],["Monomorfik VT","VT'de düzenli tekdüze QRS olur; burada yok."],["Atriyal fibrilasyon","AF'de QRS genelde seçilebilir; burada seçilemiyor."],["Atriyal flutter","Flutter'da düzenli QRS olur; burada yok."],["Asistoli","Asistolide düz çizgi olur; burada kaotik dalga var."]]);
+bank("vfArtifact","O5",[["Klinik durum ve bağlantı doğrulanır","Uyanık, konuşan hastada VF görünümü şüphe uyandırır."],["Ekrandan kesin nabızsız VF denir","Klinikle çelişen görünüm önce doğrulanmalı."],["Dalga genliği damarı gösterir","Artefakt genliği anatomik bilgi vermez."],["Son normal hız kaydedilip geçilir","Yeni görünüm mutlaka değerlendirilmeli."],["Uyanıklık tüm ritimleri dışlar","Uyanıklık başka sorunları ekarte etmez."]]);
+bank("vfFlow","O4",[["Etkili ileri akım yok","Kaotik etkinlik organize pompa oluşturmaz."],["Düşük ama düzenli akım sürer","VF'de organize ejeksiyon yoktur."],["Yalnız koroner akım korunur","Koroner akım da bu modelde durur."],["Yalnız pulmoner akım korunur","Organize ejeksiyon olmadan bu akım sürmez."],["Kaotik sinyal düzenli nabız verir","Kaotik elektrik düzenli nabza dönüşmez."]]);
+bank("vt","O2",[["Monomorfik VT","Düzenli, geniş, hızlı, tekdüze: VT."],["Normal sinüs ritmi","Sinüste QRS dardır; burada geniş."],["Sinüs taşikardisi","Sinüs taşikardisinde QRS dardır; burada geniş."],["Ventriküler fibrilasyon","VF'de düzenli kompleks yoktur; burada var."],["İzole PVC","PVC tek atımdır; burada ardışık hızlı seri var."]]);
+bank("vtContext","O5",[["Nabız ve hemodinami ayrıca bakılır","VT nabızlı veya nabızsız olabilir."],["Geniş QRS her VT'yi nabızsız yapar","QRS genişliği nabzın varlığını göstermez."],["Düzenli QRS her VT'yi stabil yapar","Düzenlilik dolaşım kararlılığı anlamına gelmez."],["T yönü kan basıncı değeridir","T yönü elektriksel bir bulgudur."],["Animasyon gerçek perfüzyon ölçer","Şematik akış gerçek debi değildir."]]);
 const caseRows={
 normal:`
-Rutin muayenede düzenli75/dk elektriksel hız, II’de pozitif P ve her dar QRS öncesinde sabit P vardır.^Bu verilerin desteklediği örüntü hangisidir?^sinus
-Egzersiz öncesi kayıtta PR175ms ve QRS80ms; belirti yok, II’de P pozitif, aVR’de P negatiftir.^Sinüs kökeni için en uygun bütüncül sınıflama hangisidir?^sinus
-Palpasyonda dakikada70 nabız sayılmış; aynı zaman aralığındaki EKG’de75/dk organize QRS seçiliyor.^İki hızın farklılığı için hangi değerlendirme gerekir?^pulse
-Aile hekimi kaydında iki R tepesi arasında800ms bulunuyor; P–QRS ilişkisi sabit.^Elektriksel ventrikül hızı kaçtır?^rr800
-Kaliper P’nin ilk sapmasını R’ye göre−215ms, QRS’nin ilk sapmasını−40ms işaretliyor.^PR aralığı hangi değerdir?^pr175
-Kişi QRS’nin yalnız R tepesini ölçmüş; şeklin ilk sapması−40ms, son dönüşü+40ms.^Toplam QRS süresi kaçtır?^q80
-Bir öğrenci sessiz PR segmentini tüm PR aralığı sanıyor; P başlangıcı ve QRS başlangıcı görülüyor.^Hangi sınırlar standart PR’yi verir?^pr
-T dalgasından sonra kapak katmanında AV giriş açık, aort çıkışı kapalı gösteriliyor.^Bu kapak ve hacim düzeni nasıl yorumlanır?^fill
-R’den45ms sonra ventrikül kasılmaya başlamış; aort ve pulmoner çıkış henüz kapalı.^Hangi mekanik evre açıklaması tutarlıdır?^mechanic
-R’den140ms sonra semilüner kapaklar açık; AV kapaklar kapalı ve ileri parçacıklar ilerliyor.^Bu an için hangi açıklama uygundur?^eject
-R’den245ms sonra T dalgası seçiliyor; ejeksiyonun son bölümü hâlâ sürüyor.^T’nin temel elektriksel anlamı nedir?^t
-İzde QRS başlamadan önce ayrık P, atriyal animasyondan biraz önce beliriyor.^P’nin kaydettiği olay hangisidir?^p
-Bilek nabzı muayenede değerlendirilmemiş; sadece düzenli dar QRS kaydı var.^QRS’nin doğrudan temsil ettiği olay hangisidir?^qrs
-Aynı zaman noktasında I0,72mV, II1,00mV, III0,28mV kaydediliyor.^Bu üç sinyal arasındaki temel ilişki hangisidir?^limb
-Yakınması olmayan kişinin kısa normal örüntüsü var; ailede kalp hastalığı öyküsü ayrıca sorgulanıyor.^Bu kayıtla risk ve etiyoloji hakkında hangi çıkarım sınırı korunmalıdır?^limits`,
+22 yaşında kadın hasta. Başvuru: üniversite sağlık taramasında yakınması yok. Monitörde düzenli, dar QRS’li bir ritim izleniyor; her kompleksten önce aynı yönlü bir P dalgası var.^Bu bulgularla en uyumlu örüntü hangisidir?^sinus
+35 yaşında erkek hasta. Başvuru: iş yeri periyodik muayenesinde yakınması yok. Düzenli dar kompleksli ritimde P dalgasının yönü ayrıca değerlendiriliyor.^Bu P dalgası için hangi yön dağılımı destekleyicidir?^sinusAxis
+58 yaşında kadın hasta. Başvuru: ameliyat öncesi rutin değerlendirmede. Bulgu düzenli görünse de eşlik eden semptomlar ayrıca değerlendiriliyor.^Bu klinik tabloda hangi değerlendirme ilkesi önceliklidir?^urgent
+41 yaşında erkek hasta. Başvuru: ehliyet sağlık raporu için başvuruyor. İki ardışık R tepesi arası 800 ms ölçülüyor.^Bu döngü süresiyle elektriksel hız yaklaşık kaçtır?^rr800
+29 yaşında kadın hasta. Başvuru: gebelik öncesi danışmanlıkta rutin kontrol. Kaliperle P’nin ilk sapması QRS’den 215 ms önce, QRS’in ilk sapması 40 ms önce işaretleniyor.^Bu ölçümlerle PR aralığı kaç milisaniyedir?^pr175
+63 yaşında erkek hasta. Başvuru: huzurevi yıllık sağlık taramasında. Dar bir kompleksin ilk sapması 40 ms önce, son dönüşü 40 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q80
+19 yaşında erkek hasta. Başvuru: spor lisansı için sağlık raporu isteniyor. P dalgası ile QRS arasındaki ilişki kaliperle işaretleniyor.^PR aralığı hangi iki sınır arasında ölçülür?^pr
+47 yaşında kadın hasta. Başvuru: aile hekimliği yıllık kontrolünde. İzlemde giriş kapaklarının açık, çıkış kapaklarının kapalı olduğu bir an gösteriliyor.^Bu kapak ve hacim düzeni hangi mekanik evreyi gösterir?^fill
+52 yaşında erkek hasta. Başvuru: sigorta başvurusu için sağlık taramasında. Yakınma yok; bulgu rutin değerlendirmede saptanıyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_normal
+26 yaşında kadın hasta. Başvuru: iş başvurusu sağlık kontrolünde. Monitörde düzenli, dar QRS’li bir ritim izleniyor; her kompleksten önce aynı yönlü bir P dalgası var.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_normal
+70 yaşında erkek hasta. Başvuru: rutin geriatri polikliniği kontrolünde. Ventriküler kompleksten sonra gelen dalganın anlamı soruluyor.^T dalgasının temel elektriksel karşılığı nedir?^t
+33 yaşında kadın hasta. Başvuru: maraton öncesi sağlık değerlendirmesinde. QRS’den kısa süre önce ayrı bir dalga seçiliyor.^P dalgasının temel elektriksel karşılığı nedir?^p
+45 yaşında erkek hasta. Başvuru: şoförlük ehliyeti yenileme muayenesinde. Ventriküler kompleksin izde temsil ettiği olay ayrıca soruluyor.^QRS kompleksinin temel elektriksel karşılığı nedir?^qrs
+38 yaşında kadın hasta. Başvuru: check-up paketinde rutin EKG çekiliyor. Monitörde düzenli, dar QRS’li bir ritim izleniyor; her kompleksten önce aynı yönlü bir P dalgası var.^Bu ritim hangi sınıfa girer?^rhythmClass_normal
+60 yaşında erkek hasta. Başvuru: emeklilik öncesi sağlık taramasında. Kısa süreli bir kayıt elde ediliyor; önceki öykü ve ek testler henüz yok.^Bu bulgudan etiyoloji ve risk için hangi genel sınır çıkarılabilir?^limits`,
 af:`
-Çarpıntıda dar QRS dizisinin R–R aralıkları620,870,710,990ms; ayrık tutarlı P yok.^En uygun ritim örüntüsü hangisidir?^af
-Nabız muayenesinde düzensizlik var; şeritte değişken dar QRS ve ince düzensiz taban görülüyor, F dizisi yok.^Sabit flutter yerine hangi örüntü desteklenir?^af
-Monitör bir620ms aralıktan97/dk bildiriyor; izde sonra990ms aralık geliyor.^Hızı temsil etmek için hangi yaklaşım uygundur?^afRR
-Kontrollü hız seçeneğinde600–1000ms değişken döngüler var; hasta semptomları ayrı kaydediliyor.^Atriyal köken ve hız profili nasıl birlikte yorumlanır?^afProfile
-Hızlı profil340–560ms düzensiz R–R üretiyor; QRS hâlâ80ms.^Hız profilinin değiştirdiği temel özellik hangisidir?^afProfile
-F dalgası aranıyor fakat ayrık P yok; öğrenci otomatik175ms PR yazmak istiyor.^PR hakkında hangi ifade savunulabilir?^prNone
-Atriyum animasyonunda titreme var, koordine kasılma yok; AV kapaklar diyastolde açılıyor.^Doluşun atriyal bileşenine ne olur?^afAtrial
-Elektriksel QRS sayısı bilek nabzından fazla; basınç ve perfüzyon ölçümü henüz yapılmadı.^Mekanik etkinlik için hangi ek değerlendirme gerekir?^pulse
-AF kaydı ve hipertansiyon öyküsü birlikte değerlendirilmekte; yaş ve diğer risk bilgileri eksik.^Tromboemboli değerlendirmesi için hangi yaklaşım uygundur?^afRisk
-Hasta hız kontrolü sonrası daha rahat; EKG’de ayrık P yokluğu ve düzensizlik sürüyor.^Hız kontrolü ile AF riskleri arasındaki çıkarım hangisidir?^afRisk
-Bir düzensiz dar QRS’nin ilk ve son sapması−40/+40ms; tabanda f etkinliği var.^Bu ventriküler kompleksin süresi kaçtır?^q80
-Tabandaki ince f voltajı artmış, ancak organize QRS’ler hâlâ ayırt edilebiliyor.^QRS’nin elektriksel tanımı hangisidir?^qrs
-Uzun R–R sonrası diyastolde AV kapaklar açık; öğrenci pasif doluşu tamamen durmuş sanıyor.^Gözlenen kapak düzeni nasıl yorumlanmalıdır?^fill
-Aynı anda I ve II’den aVR hesaplanıyor; düzensiz f ve QRS bileşenleri birlikte dönüştürülüyor.^Doğru aVR ilişkisi hangisidir?^avr
-Kısa AF şeridi var; başlangıç zamanı ve toplam ritim yükü bilinmiyor, önceki kayıt isteniyor.^Hangi genel çıkarım sınırı doğrudur?^limits`,
+72 yaşında kadın hasta. Başvuru: çarpıntı ve düzensiz nabız yakınmasıyla. Nabız düzensiz alınıyor; monitörde dar QRS’ler arasında değişken aralıklar ve seçilemeyen bir atriyal dalga görülüyor.^Bu EKG bulgularıyla en uyumlu ritim örüntüsü hangisidir?^af
+66 yaşında erkek hasta. Başvuru: ara sıra çarpıntı hissiyle aile hekimine başvuruyor. Kaydın genelinde değişken aralıklı dar kompleksler var; yalnızca bir yerde erken ve geniş, farklı görünümlü tek bir kompleks seçiliyor.^Bu düzensizlik izole bir erken atımdan nasıl ayrılır?^afEarly
+58 yaşında kadın hasta. Başvuru: egzersiz sırasında düzensiz nabız fark ediyor. Aynı izlem şeridinde ardışık R–R aralıkları 620, 870 ve 710 ms olarak ölçülüyor.^Bu ritmin hızı en uygun şekilde nasıl değerlendirilir?^afRR
+81 yaşında erkek hasta. Başvuru: huzurevinde rutin muayenede nabız düzensiz alınıyor. Nabız düzensiz; monitör hem yavaş hem hızlı seyreden düzensiz dar kompleks dönemleri kaydediyor.^Ventrikül hız profili ile atriyal köken birlikte nasıl yorumlanır?^afProfile
+63 yaşında kadın hasta. Başvuru: yorgunluk ve çarpıntı ile acil servise başvuruyor. Monitörde ayrık, tekrarlayan bir dalganın seçilip seçilemediği sorgulanıyor.^Bu ritimde ayrık bir P dalgası seçilebiliyor mu?^pWaveVisibleYesBank
+75 yaşında erkek hasta. Başvuru: hipertansiyon izlem vizitinde düzensiz nabız saptanıyor. Bulgu düzenli görünse de eşlik eden semptomlar ayrıca değerlendiriliyor.^Bu klinik tabloda hangi değerlendirme ilkesi önceliklidir?^urgent
+54 yaşında kadın hasta. Başvuru: tiroid fazlalığı öyküsüyle çarpıntı tarif ediyor. Ekokardiyografi beklenirken monitörde atriyal duvarda organize kasılma yerine titreşim benzeri hareket tanımlanıyor.^Atriyumun organize kasılma katkısına ne olur?^afAtrial
+69 yaşında erkek hasta. Başvuru: nefes darlığı ve düzensiz nabızla başvuruyor. Nabız düzensiz alınıyor; monitörde dar QRS’ler arasında değişken aralıklar ve seçilemeyen bir atriyal dalga görülüyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_af
+60 yaşında kadın hasta. Başvuru: ameliyat öncesi değerlendirmede düzensiz nabız fark ediliyor. Uzun süredir bilinen bir ritim bozukluğu ile hipertansiyon öyküsü birlikte değerlendiriliyor.^Tromboemboli riski nasıl değerlendirilmelidir?^afRisk
+77 yaşında erkek hasta. Başvuru: baş dönmesi ve çarpıntı yakınmasıyla polikliniğe geliyor. Kısa süreli bir kayıt elde ediliyor; önceki öykü ve ek testler henüz yok.^Bu bulgudan etiyoloji ve risk için hangi genel sınır çıkarılabilir?^limits
+57 yaşında kadın hasta. Başvuru: uykusuzluk sonrası ani çarpıntı tarif ediyor. Dar bir kompleksin ilk sapması 40 ms önce, son dönüşü 40 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q80
+64 yaşında erkek hasta. Başvuru: alkol alımı sonrası çarpıntı ile acile başvuruyor. Ventriküler kompleksin izde temsil ettiği olay ayrıca soruluyor.^QRS kompleksinin temel elektriksel karşılığı nedir?^qrs
+71 yaşında kadın hasta. Başvuru: kronik akciğer hastalığı izleminde düzensiz nabız saptanıyor. Nabız düzensiz alınıyor; monitörde dar QRS’ler arasında değişken aralıklar ve seçilemeyen bir atriyal dalga görülüyor.^Bu ritim hangi sınıfa girer?^rhythmClass_af
+68 yaşında erkek hasta. Başvuru: kalp yetersizliği izlem vizitinde nabız düzensiz alınıyor. Nabız düzensiz; ritim ve hız kontrolü seçenekleri değerlendiriliyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_af
+73 yaşında kadın hasta. Başvuru: yıllık kontrolde tesadüfen düzensiz nabız fark ediliyor. Aynı kayıt üzerinde farklı bir derivasyon grubuna geçildiğinde görünüm değişiyor.^Derivasyon seçimini değiştirmenin bulguya etkisi nedir?^leadAll`,
 stemi:`
-Baskı tarzında ağrı sırasında V1–V4’te komşu ST yükselmesi; II’de düzenli P ve dar QRS korunuyor.^ST değişiminin dağılımı hangisidir?^anterior
-Göğüs ağrısında V2+0,24,V3+0,32,V4+0,24mV; inferior grupta yükselme yok.^Hangi bölgesel örüntü desteklenir?^anterior
-İskemik belirtilerle düzenli75/dk ritim görülüyor; ağrı20dakikadır sürüyor.^Ritim düzenli olsa da hangi klinik değerlendirme ilkesi geçerlidir?^urgent
-Öğrenci yalnız V3 ST yüksekliğinden kesin sorumlu koroner damarı seçmek istiyor.^Hangi çıkarım sınırı korunmalıdır?^ischemiaLimits
-Sentetik V3’te QRS sonundan20ms sonra voltaj+0,32mV; TP tabanı sıfır.^ST ölçümünün değeri kaçtır?^st32
-R tepe genliği belirgin ama ST platosu daha küçük; ölçüm aracı J sonrası bölgeyi işaretliyor.^ST yüksekliği hangi ölçümle tanımlanır?^st
-Ekranda anterior duvar bölgesi zayıf hareket ediyor; aort yolundaki parçacıklar sürüyor.^Bölgesel iskemi ve global akım nasıl ayrılır?^ischemiaFlow
-Görüntüde tek koroner dal engel işareti var; klinik anjiyografi verisi bulunmuyor.^Bu animasyondan hangi sınırlandırılmış yorum yapılabilir?^ischemiaFlow
-ST yüksekliği ve düzenli QRS var; hasta nabzı ile basıncı henüz değerlendirilmiyor.^Elektriksel kayda ek olarak ne gerekir?^pulse
-P ilk sapma−215ms ve QRS ilk sapma−40ms; ST değişimi QRS sonrasında.^Bu örnekte PR kaçtır?^pr175
-Dar QRS’nin zaman desteği−40ms’den+40ms’ye; ST yükselmesi daha sonra başlıyor.^QRS süresi kaçtır?^q80
-T’nin son sınırı görülüyor, ancak öğrenci QT için R tepesinden T tepesine gidiyor.^QT için hangi sınırlar kullanılmalıdır?^qt
-Önceki kaydı normal olan kişinin ağrısı sürüyor; yeni kayıt seri olarak karşılaştırılıyor.^Tek ST örneği yerine hangi yorum ilkesi uygundur?^ischemiaLimits
-R’den140ms sonra çıkış kapakları açık, AV kapaklar kapalı; duvar bölgesi asimetrik.^Kapak düzeninin gösterdiği mekanik evre nedir?^eject
-Aynı anda I+0,04mV ve II−0,04mV ST bileşenleri var; artırılmış sol kol türetiliyor.^aVL hangi dönüşümle elde edilir?^avl`,
+58 yaşında erkek hasta. Başvuru: 30 dakikadır süren baskı tarzı göğüs ağrısıyla acile geliyor. Ağrı sırasında alınan EKG’de komşu ön duvar derivasyonlarında ST yükselmesi izleniyor.^ST değişiminin dağılımı hangi bölgeyi işaret eder?^anterior
+64 yaşında kadın hasta. Başvuru: terleme ve göğüs ağrısıyla 112 ile getiriliyor. Birden çok komşu derivasyondaki değişim birlikte değerlendiriliyor.^Bölgesel ST değişimi yorumlanırken hangi yöntem uygundur?^stContiguous
+52 yaşında erkek hasta. Başvuru: egzersiz sırasında başlayan göğüs ağrısıyla başvuruyor. Bulgu düzenli görünse de eşlik eden semptomlar ayrıca değerlendiriliyor.^Bu klinik tabloda hangi değerlendirme ilkesi önceliklidir?^urgent
+71 yaşında kadın hasta. Başvuru: bulantı ve göğüs sıkışmasıyla acile geliyor. ST değişimi saptanıyor; anjiyografi veya ileri görüntüleme henüz yapılmamış.^Bu bulgudan sorumlu damar hakkında hangi sınır geçerlidir?^ischemiaLimits
+49 yaşında erkek hasta. Başvuru: sol kola yayılan göğüs ağrısı tarif ediyor. V3 derivasyonunda J noktasından 20 ms sonrası +0,32 mV olarak ölçülüyor.^Bu ölçümle ST yüksekliği kaç mV’tur?^st32
+60 yaşında kadın hasta. Başvuru: diyabetik hastada atipik göğüs rahatsızlığı ile başvuruyor. Göğüs ağrısı sırasında alınan izde düzenli, dar QRS'li bir ritim var; ön duvar derivasyonlarında ST değişimi ayrıca değerlendiriliyor.^Bu ritim hangi sınıfa girer?^rhythmClass_stemi
+55 yaşında erkek hasta. Başvuru: sabah uyanınca başlayan göğüs ağrısıyla geliyor. Animasyonda bir duvar bölgesinin hareketi azalırken ana damardaki akışın sürdüğü gösteriliyor.^Bölgesel bulgu ile global dolaşım arasındaki ayrım nasıl yapılmalıdır?^ischemiaFlow
+67 yaşında kadın hasta. Başvuru: nefes darlığı eşlik eden göğüs ağrısıyla başvuruyor. Aynı kayıt üzerinde farklı bir derivasyon grubuna geçildiğinde görünüm değişiyor.^Derivasyon seçimini değiştirmenin bulguya etkisi nedir?^leadAll
+46 yaşında erkek hasta. Başvuru: sigara içen hastada yeni başlayan göğüs ağrısı. Elektriksel kayıt sürerken nabız muayenesi ayrıca planlanıyor.^EKG bulgusu ile mekanik nabız arasındaki ilişki için hangi değerlendirme gerekir?^pulse
+73 yaşında kadın hasta. Başvuru: huzurevinde ani göğüs ağrısı sonrası 112 çağrılıyor. Kaliperle P’nin ilk sapması QRS’den 215 ms önce, QRS’in ilk sapması 40 ms önce işaretleniyor.^Bu ölçümlerle PR aralığı kaç milisaniyedir?^pr175
+61 yaşında erkek hasta. Başvuru: iş yerinde göğüs ağrısı ile fenalaşıyor. Dar bir kompleksin ilk sapması 40 ms önce, son dönüşü 40 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q80
+54 yaşında kadın hasta. Başvuru: çene ağrısı ile birlikte göğüs sıkışması tarif ediyor. Ventriküler kompleksten sonra gelen dalganın anlamı soruluyor.^T dalgasının temel elektriksel karşılığı nedir?^t
+68 yaşında erkek hasta. Başvuru: önceki MI öyküsüyle tekrar göğüs ağrısı ile geliyor. Kısa süreli bir kayıt elde ediliyor; önceki öykü ve ek testler henüz yok.^Bu bulgudan etiyoloji ve risk için hangi genel sınır çıkarılabilir?^limits
+50 yaşında kadın hasta. Başvuru: stres testi sırasında göğüs ağrısı gelişiyor. Göğüs ağrısı sırasında alınan izde düzenli, dar QRS'li bir ritim var; ön duvar derivasyonlarında ST değişimi ayrıca değerlendiriliyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_stemi
+63 yaşında erkek hasta. Başvuru: soğuk terleme ve göğüs ağrısıyla acile başvuruyor. Sistematik okumada hangi derivasyonların inferior duvarı temsil ettiği gözden geçiriliyor.^Hangi derivasyon grubu inferior duvarı gösterir?^inferiorLeadGroup`,
 pvc:`
-Temel800ms sinüs dizisine480ms’de gelen140ms farklı kompleks eklenmiş; ilişkili öncül P yok.^Erken olayın en uygun sınıflaması hangisidir?^pvc
-Tekleme sırasında tek erken geniş QRS ve sonraki1120ms ara var; önceki ve sonraki kompleksler dar.^Sabit dal bloğundan hangi olay ayrılır?^pvc
-Öğrenci erken atımın kaynağını P yerine QRS’nin farklı yönü ve zamanından değerlendiriyor.^Bu örnekte uyarının başlangıcı nasıl açıklanır?^pvcOrigin
-Erken480ms ve ardından1120ms aralık; temel sinüs döngüsü800ms.^Bu duraklama için doğru hesap ve yorum hangisidir?^pvcPause
-Erken kompleksin ilk sapması−60ms, son dönüşü+80ms; terminal dönüş de ölçüme dahil.^Toplam QRS süresi kaçtır?^q140
-Geniş erken pozitif QRS’nin ardından T negatif; sonraki sinüs T’si pozitif.^Bu ikincil T değişimi nasıl yorumlanır?^pvcT
-PVC sırasında bilek nabzı daha zayıf hissediliyor; basınç ve hacim ölçümü yok.^EKG ile mekanik nabız hakkında hangi sınır geçerlidir?^pulse
-Kişi tekleme hissediyor; önceki yapısal kalp hastalığı, sıklık ve semptom ilişkisi sorgulanıyor.^Tek PVC örneği etiyoloji ve risk için ne sağlar?^limits
-PVC’de P yokken sonraki sinüs atımında P başlangıcı−215ms ve QRS−40ms.^Sonraki sinüs atımının PR değeri kaçtır?^pr175
-Öğrenci öncül P’siz erken ventriküler kompleks için PR atamak istiyor.^Erken olayda PR ölçümü nasıl ele alınır?^prNone
-Bir sinüs kompleksinin desteği−40/+40ms; yanındaki erken kompleks daha geniş.^Temel sinüs QRS süresi hangisidir?^q80
-Erken geniş kompleks için sadece yüksek R lobu ölçülmüş, terminal dönüş dışlanmış.^QRS süresinin doğru ölçüm tanımı hangisidir?^duration
-Atım sonrası T içinde kaliper var; öğrenci toplam depolarizasyon–repolarizasyon süresini soruyor.^QT hangi sınırlar arasında ölçülür?^qt
-PVC sonrası daha uzun diyastolde AV kapaklar açık ve hacim geri kazanılıyor.^Bu mekanik kapak düzeni hangi evreyi gösterir?^fill
-Erken atımın mV bileşenleri I ve II’den bütün ekstremite izlerine dağıtılıyor.^PVC için de korunması gereken bipolar ilişki hangisidir?^limb`,
+45 yaşında erkek hasta. Başvuru: ara sıra tekleme hissiyle aile hekimine başvuruyor. Temel düzenli ritim sırasında, öncesinde ilişkili bir dalga olmayan erken ve geniş tek bir kompleks dikkati çekiyor.^Bu erken atımın en uygun sınıflaması hangisidir?^pvc
+38 yaşında kadın hasta. Başvuru: çarpıntı sırasında "kalp duruyor gibi" hissi tarif ediyor. Kompleks genişliği tek başına değerlendirilerek kökeni hakkında yorum yapılmak isteniyor.^QRS genişliğini tek başına yorumlarken hangi sınır geçerlidir?^qrsWidthCause
+52 yaşında erkek hasta. Başvuru: egzersiz sırasında tekleme hissiyle geliyor. Erken ve geniş tek bir kompleksten hemen önce ilişkili bir dalga seçilemiyor.^Bu erken atımın kaynağı nasıl açıklanır?^pvcOrigin
+60 yaşında kadın hasta. Başvuru: kafein alımı sonrası tekleme hissi tarif ediyor. Erken atımın öncesindeki ve sonrasındaki aralıklar 480 ms ve 1120 ms olarak ölçülüyor.^Bu duraklamanın süresi ve yorumu hangisidir?^pvcPause
+33 yaşında erkek hasta. Başvuru: stresli dönemde ara sıra çarpıntı fark ediyor. Geniş bir kompleksin ilk sapması 60 ms önce, son dönüşü 80 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q140
+48 yaşında kadın hasta. Başvuru: uykuya dalarken tekleme hissiyle uyanıyor. Erken ve geniş kompleksin hemen ardından ana yöne ters bir T dalgası izleniyor.^Bu erken atım sonrası T değişikliği nasıl yorumlanır?^pvcT
+55 yaşında erkek hasta. Başvuru: yıllık kontrolde tesadüfen erken atım saptanıyor. Elektriksel kayıt sürerken nabız muayenesi ayrıca planlanıyor.^EKG bulgusu ile mekanik nabız arasındaki ilişki için hangi değerlendirme gerekir?^pulse
+41 yaşında kadın hasta. Başvuru: egzersiz testi sırasında izole erken atım gözleniyor. Kısa süreli bir kayıt elde ediliyor; önceki öykü ve ek testler henüz yok.^Bu bulgudan etiyoloji ve risk için hangi genel sınır çıkarılabilir?^limits
+63 yaşında erkek hasta. Başvuru: yorgunluk sonrası ara sıra çarpıntı tarif ediyor. Kaliperle P’nin ilk sapması QRS’den 215 ms önce, QRS’in ilk sapması 40 ms önce işaretleniyor.^Bu ölçümlerle PR aralığı kaç milisaniyedir?^pr175
+36 yaşında kadın hasta. Başvuru: anksiyete öyküsüyle çarpıntı yakınmasıyla başvuruyor. QRS’den kısa süre önce ayrı bir dalga seçiliyor.^P dalgasının temel elektriksel karşılığı nedir?^p
+58 yaşında erkek hasta. Başvuru: holter takılan hastada tekrarlayan tekleme kaydediliyor. Dar bir kompleksin ilk sapması 40 ms önce, son dönüşü 40 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q80
+44 yaşında kadın hasta. Başvuru: alkol alımı sonrası çarpıntı hissi tarif ediyor. Standart 12 derivasyonluk kayıt üzerinde derivasyon grupları gözden geçiriliyor.^aVR, aVL ve aVF birlikte hangi derivasyon grubunu oluşturur?^augmentedGroup
+50 yaşında erkek hasta. Başvuru: düzenli spor yapan hastada ara sıra tekleme. Temel düzenli ritim sırasında, öncesinde ilişkili bir dalga olmayan erken ve geniş tek bir kompleks dikkati çekiyor.^Bu ritim hangi sınıfa girer?^rhythmClass_pvc
+29 yaşında kadın hasta. Başvuru: sınav stresi sonrası çarpıntı yakınmasıyla geliyor. İzlemde giriş kapaklarının açık, çıkış kapaklarının kapalı olduğu bir an gösteriliyor.^Bu kapak ve hacim düzeni hangi mekanik evreyi gösterir?^fill
+66 yaşında erkek hasta. Başvuru: kalp yetersizliği izleminde ara sıra erken atım saptanıyor. Sistematik okumada hangi derivasyonların yan duvarı temsil ettiği gözden geçiriliyor.^Hangi derivasyonlar lateral duvarı gösterir?^lateralLeadGroup`,
 svt:`
-Ani düzenli çarpıntıda360ms R–R,80ms QRS; ayrık P bu şeritte seçilemiyor.^Bu verilerle en uygun kapsamlı örüntü adı hangisidir?^svt
-Dar kompleks düzenli taşikardi167/dk; klinisyen AVNRT ve AVRT arasında ek veri arıyor.^Tek şeridin desteklediği sınıflama hangisidir?^svt
-R–R360ms bulunmuş; R sayımıyla ekran hızından bağımsız elektriksel hız hesaplanıyor.^Elektriksel hız yaklaşık kaçtır?^rr360
-P QRS veya T içinde örtüşebilir; kayıt sadece üç saniyelik dar taşikardi penceresi.^Kesin taşikardi mekanizması için hangi sınır geçerlidir?^svtLimits
-Öğrenci dar QRS ve görünmeyen P’den kesin AVNRT etiketini seçmek istiyor.^Mekanizma hakkında hangi sonuç savunulabilir?^svtLimits
-Çarpıntı sırasında kan basıncı ölçümü bekleniyor; ekranda organize QRS sürüyor.^Klinik nabız ve elektriksel hız nasıl ayrılmalıdır?^pulse
-Kişide presenkop ve düzenli hızlı dar kompleks var; perfüzyon verisi eksik.^Hangi klinik değerlendirme ilkesi uygundur?^urgent
-Hızlı döngüde diyastol kısa; animasyon AV girişinin açık kaldığı süreyi azaltıyor.^Yüksek hızın doluşa etkisi nasıl sınırlandırılır?^fastFill
-QRS’nin ilk ve son dönüşü−40/+40ms, PR için ayrık P bulunamıyor.^QRS süresi kaçtır?^q80
-Kayıt aracı otomatik175ms PR gösteriyor fakat P başlangıcı tanımlanamadı.^Bu PR hakkında hangi değerlendirme doğrudur?^prNone
-R’den45ms sonra çıkış kapakları hâlâ kapalı; hızlı döngü ejeksiyonu60ms’de başlatıyor.^Bu45ms anı için hangi evre açıklaması tutarlıdır?^mechanic
-R’den100ms sonra semilüner kapaklar açık, AV kapaklar kapalı; T henüz yükselmektedir.^Gözlenen mekanik durum nedir?^eject
-T desteği sona yaklaşırken elektriksel sinyal QRS’den farklı polarite gösteriyor.^T’nin temel elektriksel olayı hangisidir?^t
-Ekran2× seçilmiş; aynı360ms model aralığı daha hızlı oynuyor.^Oynatma ile ölçüm ve gözlem süresi ilişkisi hangisidir?^speed
-R’den300ms sonra AV kapaklar yeniden açılmış ve ventrikül hacmi geri kazanılıyor.^Döngünün bu kapak düzeni nasıl adlandırılır?^fill`,
+24 yaşında kadın hasta. Başvuru: aniden başlayan hızlı çarpıntı ile acile geliyor. Ani başlayan hızlı, düzenli ve dar kompleksli bir ritim izleniyor; ayrı bir atriyal dalga seçilemiyor.^Bu bulgularla en uygun kapsamlı sınıflama hangisidir?^svt
+31 yaşında erkek hasta. Başvuru: egzersiz sırasında ani başlayan çarpıntı tarif ediyor. Aynı kayıt üzerinde farklı bir derivasyon grubuna geçildiğinde görünüm değişiyor.^Derivasyon seçimini değiştirmenin bulguya etkisi nedir?^leadAll
+27 yaşında kadın hasta. Başvuru: kahve içtikten sonra ani çarpıntı ile başvuruyor. İki ardışık R tepesi arası 360 ms ölçülüyor.^Bu döngü süresiyle elektriksel hız yaklaşık kaçtır?^rr360
+45 yaşında erkek hasta. Başvuru: stresli toplantı sırasında ani çarpıntı gelişiyor. Dar kompleksli hızlı ritimde P dalgası QRS veya T ile örtüşüyor olabilir.^Kesin mekanizma için hangi sınır geçerlidir?^svtLimits
+19 yaşında kadın hasta. Başvuru: sınav öncesi ani başlayan hızlı çarpıntı tarif ediyor. Sistematik okumada V1–V2’nin hangi bölgeyi yansıttığı gözden geçiriliyor.^V1 ve V2 derivasyonları hangi bölgeyi yansıtır?^precordialSeptal
+52 yaşında erkek hasta. Başvuru: ani başlayan çarpıntı presenkopla birlikte geliyor. Kısa süreli bir kayıt elde ediliyor; önceki öykü ve ek testler henüz yok.^Bu bulgudan etiyoloji ve risk için hangi genel sınır çıkarılabilir?^limits
+36 yaşında kadın hasta. Başvuru: öksürme ile kendiliğinden geçen çarpıntı öyküsü tarif ediyor. Bulgu düzenli görünse de eşlik eden semptomlar ayrıca değerlendiriliyor.^Bu klinik tabloda hangi değerlendirme ilkesi önceliklidir?^urgent
+29 yaşında erkek hasta. Başvuru: gece ani çarpıntı ile uyanıp acile başvuruyor. Hızlı seyreden nabızda diyastolik dolum süresinin kısaldığı düşünülüyor.^Yüksek hızın ventrikül dolusuna etkisi için hangi ifade doğrudur?^fastFill
+41 yaşında kadın hasta. Başvuru: tekrarlayan ani başlangıçlı çarpıntı atakları tarif ediyor. Ani başlayan hızlı, düzenli ve dar kompleksli bir ritim izleniyor; ayrı bir atriyal dalga seçilemiyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_svt
+23 yaşında erkek hasta. Başvuru: enerji içeceği sonrası ani hızlı çarpıntı geliyor. QRS’den kısa süre önce ayrı bir dalga seçiliyor.^P dalgasının temel elektriksel karşılığı nedir?^p
+48 yaşında kadın hasta. Başvuru: ani çarpıntı sırasında baş dönmesi de tarif ediyor. İzlemde QRS’den kısa süre sonra basıncın yükseldiği, ancak çıkış kapaklarının henüz açılmadığı bir an inceleniyor.^Bu andaki kapak durumu hangi mekanik evreyi tanımlar?^mechanic
+33 yaşında erkek hasta. Başvuru: egzersiz testi sırasında ani hızlı çarpıntı gelişiyor. Hasta hemodinamik olarak stabil; ilk yaklaşım seçenekleri değerlendiriliyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_svt
+26 yaşında kadın hasta. Başvuru: ani başlayan çarpıntı kendiliğinden sonlanıyor. Ventriküler kompleksten sonra gelen dalganın anlamı soruluyor.^T dalgasının temel elektriksel karşılığı nedir?^t
+55 yaşında erkek hasta. Başvuru: ilk kez ani çarpıntı yakınmasıyla acile başvuruyor. Sistematik okumada hangi derivasyonların yan duvarı temsil ettiği gözden geçiriliyor.^Hangi derivasyonlar lateral duvarı gösterir?^lateralLeadGroup
+38 yaşında kadın hasta. Başvuru: gerginlik sonrası ani hızlı çarpıntı tarif ediyor. Ani başlayan hızlı, düzenli ve dar kompleksli bir ritim izleniyor; ayrı bir atriyal dalga seçilemiyor.^Bu ritim hangi sınıfa girer?^rhythmClass_svt`,
 inferior:`
-Akut ağrı ve bulantıda II,III,aVF’de ST yükselmesi; I,aVL’de çökme var, QRS dar.^Dağılım ve karşılıklı değişim hangisidir?^inferior
-Terlemeyle göğüs ağrısında II+0,20,III+0,28,aVF+0,24mV; V3 izoelektrik.^Hangi bölgesel EKG örüntüsü desteklenir?^inferior
-İnferior komşu değişimler ve sürmekte olan göğüs ağrısı birlikte kaydediliyor.^Hangi klinik değerlendirme ilkesi uygulanır?^urgent
-ST dağılımı biliniyor ama sağ/sol baskın koroner anatomi ve anjiyografi bilinmiyor.^Sorumlu damar konusunda hangi sınır gerekir?^ischemiaLimits
-II’de J+20ms voltaj+0,20mV; TP tabanı sıfır ve QRS bitmiştir.^ST ölçümü kaçtır?^st20
-I−0,08mV, II+0,20mV aynı anda örneklenmiş; III değeri hesaplanacak.^III ST bileşeni kaçtır?^iii28
-I−0,08 ve II+0,20mV; inferior artırılmış elektrot yönü hesaplanıyor.^aVF ST bileşeni kaçtır?^avf24
-I−0,08 ve II+0,20mV; lateral karşılıklı değişim aVL üzerinden inceleniyor.^aVL ST bileşeni kaçtır?^avl18
-Öğrenci III+0,28mV yüksekliğini global ejeksiyon fraksiyonu kaybına çeviriyor.^Animasyonun dolaşım çıkarım sınırı hangisidir?^ischemiaFlow
-İnferior duvar bölgesinde hareket azalmış, aortta akım parçacıkları sürüyor.^Bölgesel kasılma azalması nasıl yorumlanır?^ischemiaFlow
-Düzenli75/dk QRS var; semptomlar sürüyor ve nabız muayenesi bekleniyor.^Elektriksel sinyalden mekanik nabız hakkında ne yapılır?^pulse
-Kaliper ST ölçmek için R tepesine konmuş; başka öğrenci J sonrası tabanı seçiyor.^Uygun ST ölçüm tanımı hangisidir?^st
-P başlangıcı−215ms,QRS başlangıcı−40ms; inferior ST yükselmesi PR’den sonra.^PR aralığı kaçtır?^pr175
-QRS ilk sapma−40ms, son dönüş+40ms; ST düzeyi pozitiftir.^QRS süresi kaçtır?^q80
-Karşılıklı I ve aVL değişimi aynı elektrot potansiyellerinden türetilmekte.^aVL için doğru dönüşüm hangisidir?^avl`,
+61 yaşında erkek hasta. Başvuru: göğüs ağrısı ve bulantı ile acile geliyor. Ağrı sırasında alınan EKG’de II, III, aVF derivasyonlarında ST yükselmesi izleniyor.^Bu ST değişiminin dağılımı hangi bölgeyi işaret eder?^inferior
+68 yaşında kadın hasta. Başvuru: terleme ve göğüs ağrısıyla 112 ile getiriliyor. Birden çok komşu derivasyondaki değişim birlikte değerlendiriliyor.^Bölgesel ST değişimi yorumlanırken hangi yöntem uygundur?^stContiguous
+55 yaşında erkek hasta. Başvuru: sırta yayılan göğüs ağrısı tarif ediyor. Bulgu düzenli görünse de eşlik eden semptomlar ayrıca değerlendiriliyor.^Bu klinik tabloda hangi değerlendirme ilkesi önceliklidir?^urgent
+72 yaşında kadın hasta. Başvuru: bulantı ve kusma eşlik eden göğüs ağrısıyla başvuruyor. ST değişimi saptanıyor; anjiyografi veya ileri görüntüleme henüz yapılmamış.^Bu bulgudan sorumlu damar hakkında hangi sınır geçerlidir?^ischemiaLimits
+49 yaşında erkek hasta. Başvuru: egzersiz sırasında başlayan göğüs ağrısıyla geliyor. II derivasyonunda J noktasından 20 ms sonrası +0,20 mV olarak ölçülüyor.^Bu ölçümle ST yüksekliği kaç mV’tur?^st20
+64 yaşında kadın hasta. Başvuru: diyabetik hastada atipik göğüs rahatsızlığı tarif ediyor. Sistematik okumada hangi derivasyonların ön duvarı temsil ettiği gözden geçiriliyor.^V3 ve V4 derivasyonları hangi bölgeyi yansıtır?^anteriorLeadGroup
+58 yaşında erkek hasta. Başvuru: sabah uyanınca başlayan göğüs ağrısıyla acile başvuruyor. İzlemde giriş kapaklarının açık, çıkış kapaklarının kapalı olduğu bir an gösteriliyor.^Bu kapak ve hacim düzeni hangi mekanik evreyi gösterir?^fill
+70 yaşında kadın hasta. Başvuru: baş dönmesi eşlik eden göğüs ağrısı tarif ediyor. Sistematik okumada V1–V2’nin hangi bölgeyi yansıttığı gözden geçiriliyor.^V1 ve V2 derivasyonları hangi bölgeyi yansıtır?^precordialSeptal
+53 yaşında erkek hasta. Başvuru: sigara içen hastada yeni göğüs ağrısı gelişiyor. Animasyonda bir duvar bölgesinin hareketi azalırken ana damardaki akışın sürdüğü gösteriliyor.^Bölgesel bulgu ile global dolaşım arasındaki ayrım nasıl yapılmalıdır?^ischemiaFlow
+66 yaşında kadın hasta. Başvuru: huzurevinde ani göğüs ağrısı sonrası 112 çağrılıyor. Standart 12 derivasyonluk kayıt üzerinde derivasyon grupları gözden geçiriliyor.^aVR, aVL ve aVF birlikte hangi derivasyon grubunu oluşturur?^augmentedGroup
+47 yaşında erkek hasta. Başvuru: iş yerinde göğüs ağrısıyla fenalaşıyor. Göğüs ağrısı sırasında alınan izde düzenli, dar QRS'li bir ritim var; inferior derivasyonlardaki ST değişimi ayrıca değerlendiriliyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_inferior
+60 yaşında kadın hasta. Başvuru: çene ve boyuna yayılan ağrı tarif ediyor. Devam eden göğüs ağrısı ve inferior ST yükselmesi birlikte değerlendiriliyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_inferior
+73 yaşında erkek hasta. Başvuru: önceki MI öyküsüyle tekrar göğüs ağrısı ile geliyor. Kaliperle P’nin ilk sapması QRS’den 215 ms önce, QRS’in ilk sapması 40 ms önce işaretleniyor.^Bu ölçümlerle PR aralığı kaç milisaniyedir?^pr175
+52 yaşında kadın hasta. Başvuru: soğuk terlemeyle birlikte göğüs ağrısı tarif ediyor. Dar bir kompleksin ilk sapması 40 ms önce, son dönüşü 40 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q80
+65 yaşında erkek hasta. Başvuru: uzun yolculuk sonrası göğüs ağrısıyla geliyor. Göğüs ağrısı sırasında alınan izde düzenli, dar QRS'li bir ritim var; inferior derivasyonlardaki ST değişimi ayrıca değerlendiriliyor.^Bu ritim hangi sınıfa girer?^rhythmClass_inferior`,
 vt:`
-Baş dönmesinde380ms düzenli R–R ve180ms tek biçimli QRS; dar sinüs P ilişkisi gösterilemiyor.^Hangi örüntü acil VT değerlendirmesini gerektirir?^vt
-Önceki MI öyküsü olan kişide hızlı geniş kompleksler; klinik notta AV ayrışması da saptanmış.^Öncelikli elektriksel değerlendirme hangisidir?^vt
-Geniş düzenli kompleksin döngüsü380ms; öğrenci hız için QRS süresini kullanmış.^Doğru ventriküler elektriksel hız yaklaşık kaçtır?^rr380
-Dalga ilk sapması−70ms ve son dönüş+110ms; kompleksin terminal kısmı ölçüme dahil.^Çizilen QRS süresi kaçtır?^q180
-Kayıt VT örneği olarak verilmiş ama hastanın nabzı ve kan basıncı bilinmiyor.^Acil yaklaşımı ayıran ek veri hangisidir?^vtContext
-Bir hasta geniş taşikardide uyanıkken diğeri yanıtsız; ikisinde benzer organize QRS var.^VT’nin klinik nabız durumu nasıl belirlenir?^vtContext
-Geniş taşikardiye hipotansiyon ve bilinç değişikliği eşlik ediyor; tedavi kararı klinik ekibe ait.^Hangi değerlendirme ilkesi uygundur?^urgent
-Şematik döngü380ms; doluş ve kasılma eşzamanlılığı azaltılmış çiziliyor.^Hızın doluşa etkisi için hangi sınırlı ifade uygundur?^fastFill
-Pozitif geniş QRS’den sonra negatif T görülüyor; bu T yeni erken QRS sanılıyor.^T’nin elektriksel tanımı hangisidir?^t
-Öğrenci geniş QRS içinde R lobunu saymış, terminal kısmı hariç bırakmış.^QRS süresi hangi sınırlarla ölçülür?^duration
-PR kutusu boş; şeritte P ile QRS arasında tanımlanmış sabit ilişki yok.^Bu örnekte PR neden sayısal atanamaz?^prNone
-R’den70ms sonra ventrikül kasılırken semilüner kapaklar kapalı; ejeksiyon100ms’de başlayacak.^Bu an için hangi mekanik açıklama tutarlıdır?^mechanic
-R’den140ms sonra çıkış kapakları açık; ileri akım örnekte düşük fakat sıfır değil.^Kapak durumu hangi evredir?^eject
-Monitör hızı158/dk yazıyor; bilek nabzı ayrıca değerlendirilecek.^EKG elektriksel hızının klinik nabza ilişkisi hangisidir?^pulse
-Aynı ventriküler kompleksin I ve II bileşenleri diğer ekstremite voltajlarını türetiyor.^Artırılmış inferior ilişki hangisidir?^avf`,
+67 yaşında erkek hasta. Başvuru: önceki kalp krizi öyküsüyle ani çarpıntı ve baş dönmesiyle geliyor. Düzenli, geniş kompleksli hızlı bir ritim izleniyor; komplekslerle sabit ilişkili bir dalga seçilemiyor.^Bu bulgularla öncelikli elektriksel sınıflama hangisidir?^vt
+72 yaşında kadın hasta. Başvuru: kalp yetersizliği izleminde ani çarpıntı ile başvuruyor. Kompleks genişliği tek başına değerlendirilerek kökeni hakkında yorum yapılmak isteniyor.^QRS genişliğini tek başına yorumlarken hangi sınır geçerlidir?^qrsWidthCause
+58 yaşında erkek hasta. Başvuru: egzersiz sırasında ani baş dönmesi ve çarpıntı gelişiyor. İki ardışık R tepesi arası 380 ms ölçülüyor.^Bu döngü süresiyle elektriksel hız yaklaşık kaçtır?^rr380
+64 yaşında kadın hasta. Başvuru: geniş kompleks kaydıyla acile sevk ediliyor. Geniş bir kompleksin ilk sapması 70 ms önce, son dönüşü 110 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q180
+70 yaşında erkek hasta. Başvuru: yapısal kalp hastalığı öyküsüyle ani fenalaşma tarif ediyor. Geniş kompleksli hızlı ritim saptanıyor; nabız ve bilinç durumu ayrıca değerlendirilecek.^Klinik nabız ve hemodinamik durumu ayırt eden veri hangisidir?^vtContext
+55 yaşında kadın hasta. Başvuru: ani çarpıntı sonrası bilinç bulanıklığı ile başvuruyor. Kısa süreli bir kayıt elde ediliyor; önceki öykü ve ek testler henüz yok.^Bu bulgudan etiyoloji ve risk için hangi genel sınır çıkarılabilir?^limits
+61 yaşında erkek hasta. Başvuru: önceki stent öyküsüyle ani çarpıntı ve terleme tarif ediyor. Bulgu düzenli görünse de eşlik eden semptomlar ayrıca değerlendiriliyor.^Bu klinik tabloda hangi değerlendirme ilkesi önceliklidir?^urgent
+66 yaşında kadın hasta. Başvuru: ani başlayan hızlı çarpıntı ile fenalaşıyor. Hızlı seyreden nabızda diyastolik dolum süresinin kısaldığı düşünülüyor.^Yüksek hızın ventrikül dolusuna etkisi için hangi ifade doğrudur?^fastFill
+73 yaşında erkek hasta. Başvuru: kalp pili takılı hastada ani çarpıntı tarif ediyor. Ventriküler kompleksten sonra gelen dalganın anlamı soruluyor.^T dalgasının temel elektriksel karşılığı nedir?^t
+59 yaşında kadın hasta. Başvuru: ani çarpıntı sırasında göğüste sıkışma tarif ediyor. Nabız ve bilinç durumu ayrıca değerlendiriliyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_vt
+68 yaşında erkek hasta. Başvuru: geniş kompleksli hızlı ritimle 112 ile getiriliyor. Monitörde ayrık, tekrarlayan bir dalganın seçilip seçilemediği sorgulanıyor.^Bu ritimde ayrık bir P dalgası seçilebiliyor mu?^pWaveVisibleYesBank
+52 yaşında kadın hasta. Başvuru: ani baş dönmesi ve terleme ile başvuruyor. İzlemde QRS’den kısa süre sonra basıncın yükseldiği, ancak çıkış kapaklarının henüz açılmadığı bir an inceleniyor.^Bu andaki kapak durumu hangi mekanik evreyi tanımlar?^mechanic
+75 yaşında erkek hasta. Başvuru: önceki miyokard enfarktüsü öyküsüyle ani fenalaşma tarif ediyor. Düzenli, geniş kompleksli hızlı bir ritim izleniyor; komplekslerle sabit ilişkili bir dalga seçilemiyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_vt
+63 yaşında kadın hasta. Başvuru: ani çarpıntı sonrası kısa süreli bilinç kaybı tarif ediyor. Düzenli, geniş kompleksli hızlı bir ritim izleniyor; komplekslerle sabit ilişkili bir dalga seçilemiyor.^Bu ritim hangi sınıfa girer?^rhythmClass_vt
+57 yaşında erkek hasta. Başvuru: egzersiz testi sırasında ani geniş kompleks taşikardi gelişiyor. Sistematik okumada hangi derivasyonların yan duvarı temsil ettiği gözden geçiriliyor.^Hangi derivasyonlar lateral duvarı gösterir?^lateralLeadGroup`,
 vf:`
-Yanıtsız kişide kaotik değişken dalga, ayrık QRS yok; klinik ekip dolaşım bulgusu saptamıyor.^Elektriksel görünüm hangi örüntüyle uyumludur?^vf
-Önceki düzenli geniş kompleksler kaybolmuş; artık değişken genlikli organize olmayan etkinlik var.^Monomorfik VT’den hangi elektriksel örüntüye geçiş gösteriliyor?^vf
-Kaotik dalgada öğrenci saniyedeki tepeleri ventrikül hızı olarak sayıyor.^VF’de hız ölçümü için hangi ifade doğrudur?^vfRate
-R–R ve QRS kutuları boş; bir önceki normal döngü800ms idi.^Önceki hızın yeni VF’de kullanımı nasıl ele alınır?^vfRate
-Kırmızı aort parçacıkları, mavi pulmoner parçacıklar ve koroner parçacıklar aynı yerde kalıyor.^Bu mekanik gösterimin doğru açıklaması hangisidir?^vfFlow
-VF seçildiğinde koroner katman açık; ventriküler ejeksiyon kapakları kapalı gösteriliyor.^Koroner ve ileri dolaşım birlikte nasıl gösterilmelidir?^vfFlow
-Öğrenci kaotik elektriksel genliğin sürdüğünü görüp zayıf düzenli ejeksiyon bekliyor.^VF’nin pompa durumu hangisidir?^vfFlow
-Yanıtsızlık ve dolaşım bulgusu yokluğu kaotik EKG ile birlikte; eğitim izleme sayacı tamamlanmamış.^Klinik bağlamda hangi ilke önceliklidir?^urgent
-Acil ekip şüpheli VF kaydını klinik arrest bulgularıyla değerlendiriyor; uygulama tedavi ölçümü yapmıyor.^Bu örnek için klinik değerlendirme yaklaşımı hangisidir?^urgent
-Ölçüm aracı P başlangıcı istiyor; kaotik etkinlikte ayrık ilişkili P bulunamıyor.^PR hakkında hangi sonuç doğrudur?^prNone
-Farklı ekstremite voltajlarında kaotik dalga var; öğrenci bunları bağımsız rastgele üretmek istiyor.^VF’de de korunacak bipolar ilişki hangisidir?^limb
-Kaotik sinyalde I ve II anlık voltajı bilinmekte; aVR türetilecek.^Doğru dönüşüm hangisidir?^avr
-Ventriküler kaotik voltajın genliği büyümüş, klinik dolaşım hâlâ yok.^Genlik artışı etkili pompa konusunda neyi değiştirmez?^vfFlow
-Kayıt oynatma hızı2×; kaotik etkinlikten organize R–R elde edilemiyor.^Elektriksel hızın raporlanması nasıl yapılır?^vfRate
-Kısa kaotik eğitim çizimi var; gerçek hasta nedeni, süre ve müdahale yanıtı çizimden bilinmiyor.^Etiyoloji ve sonuç hakkında hangi çıkarım sınırı gerekir?^limits`,
+62 yaşında erkek hasta. Başvuru: iş yerinde aniden yere yığılıyor, yanıtsız bulunuyor. Monitörde düzenli bir kompleks seçilemiyor; genliği ve şekli sürekli değişen kaotik bir dalga izleniyor.^Bu elektriksel görünümle en uyumlu örüntü hangisidir?^vf
+58 yaşında kadın hasta. Başvuru: evde aniden bilinci kapanıyor, 112 çağrılıyor. Aynı kayıt üzerinde farklı bir derivasyon grubuna geçildiğinde görünüm değişiyor.^Derivasyon seçimini değiştirmenin bulguya etkisi nedir?^leadAll
+67 yaşında erkek hasta. Başvuru: egzersiz sırasında aniden yığılıp yanıtsız kalıyor. Hasta yanıtsız ve nabız alınamıyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_vf
+54 yaşında kadın hasta. Başvuru: restoranda aniden fenalaşıp yanıtsız bulunuyor. Sistematik okumada V1–V2’nin hangi bölgeyi yansıttığı gözden geçiriliyor.^V1 ve V2 derivasyonları hangi bölgeyi yansıtır?^precordialSeptal
+70 yaşında erkek hasta. Başvuru: önceki kalp krizi öyküsüyle aniden bilinci kapanıyor. İzlemde tüm ileri akım parçacıklarının durduğu bir an gösteriliyor.^Bu ritimde dolaşım ve pompa durumu için hangi ifade doğrudur?^vfFlow
+49 yaşında kadın hasta. Başvuru: sokakta aniden düşüp yanıtsız bulunuyor. Sistematik okumada hangi derivasyonların inferior duvarı temsil ettiği gözden geçiriliyor.^Hangi derivasyon grubu inferior duvarı gösterir?^inferiorLeadGroup
+65 yaşında erkek hasta. Başvuru: spor salonunda aniden yığılıp yanıt vermiyor. Kaotik dalga üzerinde bir öğrenci QRS sınırlarını işaretlemeye çalışıyor.^Bu kayıtta QRS genişliği hakkında hangi ifade doğrudur?^noQrs
+60 yaşında kadın hasta. Başvuru: evde aniden solunumu durup yanıtsız kalıyor. Bulgu düzenli görünse de eşlik eden semptomlar ayrıca değerlendiriliyor.^Bu klinik tabloda hangi değerlendirme ilkesi önceliklidir?^urgent
+73 yaşında erkek hasta. Başvuru: huzurevinde aniden yanıtsız bulunup 112 çağrılıyor. Monitörde kaotik bir görünüm varken hasta konuşabiliyor ve bilinci açık görünüyor.^Bu çelişkili görünüm için öncelikli değerlendirme hangisidir?^vfArtifact
+56 yaşında kadın hasta. Başvuru: iş toplantısında aniden yere yığılıyor. Ventriküler kompleksin izde temsil ettiği olay ayrıca soruluyor.^QRS kompleksinin temel elektriksel karşılığı nedir?^qrs
+68 yaşında erkek hasta. Başvuru: yapısal kalp hastalığı öyküsüyle aniden yanıtsız kalıyor. İzlemde bir anda çıkış kapaklarının açık, giriş kapaklarının kapalı olduğu gösteriliyor.^Bu andaki kapak ve akım durumu hangi mekanik evreyi tanımlar?^eject
+52 yaşında kadın hasta. Başvuru: alışveriş merkezinde aniden fenalaşıp yanıt vermiyor. QRS’den kısa süre önce ayrı bir dalga seçiliyor.^P dalgasının temel elektriksel karşılığı nedir?^p
+64 yaşında erkek hasta. Başvuru: ameliyat sonrası serviste aniden yanıtsız bulunuyor. Monitörde düzenli bir kompleks seçilemiyor; genliği ve şekli sürekli değişen kaotik bir dalga izleniyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_vf
+59 yaşında kadın hasta. Başvuru: otobüs durağında aniden yığılıp yanıtsız kalıyor. Monitörde düzenli bir kompleks seçilemiyor; genliği ve şekli sürekli değişen kaotik bir dalga izleniyor.^Bu ritim hangi sınıfa girer?^rhythmClass_vf
+71 yaşında erkek hasta. Başvuru: önceki VT öyküsüyle aniden bilinci kapanıyor. Kısa süreli bir kayıt elde ediliyor; önceki öykü ve ek testler henüz yok.^Bu bulgudan etiyoloji ve risk için hangi genel sınır çıkarılabilir?^limits`,
 pat:`
-Düzenli150/dk dar taşikardide II’de ters ayrık P ve P’ler arasında izoelektrik hat var.^En uygun alt örüntü hangisidir?^at
-Önceki sinüs kaydında P pozitifken yeni hızlı kayıtta inferior P ters; sabit P–QRS ilişkilidir.^Sinüs taşikardisinden hangi örüntü ayrılır?^at
-Her QRS öncesinde ayrık ektopik P seçiliyor; sürekli testere dişi atriyal taban bulunmuyor.^Flutterdan ayıran sınıflama hangisidir?^at
-Atak dışında veri yok; sürekli üç saniyelik şeritte ektopik P görülüyor, başlangıç kaydedilmemiş.^Paroksismal davranış için hangi sınırlama gerekir?^atLimits
-Öğrenci ters P’den kesin atriyal odak anatomisi ve ani başlangıç çıkarıyor.^Kayıt hangi sınırlandırılmış yorumu destekler?^atLimits
-R–R400ms; ayrık ektopik P başına bir dar QRS var.^Ventriküler elektriksel hız kaçtır?^rr400
-P başlangıcı−180ms ve QRS başlangıcı−40ms kaliperle işaretlenmiş.^Bu modelde PR kaçtır?^pr140
-Öğrenci ektopik P tepesini kullanmış; ilk atriyal sapma daha önce başlıyor.^PR için hangi sınırlar doğru tanımdır?^pr
-Dar QRS−40/+40ms destekli; inferior P polaritesi sinüsten farklı.^QRS süresi kaçtır?^q80
-Hızlı döngüde P görünür ama diyastol yine kısa; hasta basıncı ölçülmemiş.^Hızın doluş etkisi nasıl sınırlandırılır?^fastFill
-Her ektopik P atriyal animasyondan önce gelir; P sinüs düğümü kökenli değil.^P’nin değişmeyen elektriksel tanımı hangisidir?^p
-Kişide çarpıntı var; ritim fokal AT’yle uyumlu ama semptom şiddeti ve neden bilinmiyor.^Nedensellik ve risk için hangi genel sınır gerekir?^limits
-EKG150/dk; palpasyonda tüm atımların iletilip iletilmediği henüz değerlendirilmedi.^Mekanik nabız için ne gerekir?^pulse
-R’den45ms sonra çıkışlar kapalı, AV kapaklar kapalı;60ms sonrası ejeksiyon planlı.^Bu45ms mekanik anı hangisidir?^mechanic
-Ektopik atriyal P ve ventriküler QRS voltajları aynı ekstremite elektrot dönüşümünü kullanıyor.^aVL hangi ilişkiyle türetilir?^avl`,
+34 yaşında kadın hasta. Başvuru: tekrarlayan ani başlayan çarpıntı atakları tarif ediyor. Düzenli, dar kompleksli hızlı bir ritimde, QRS öncesinde sinüsten farklı yönde bir dalga dikkati çekiyor.^Bu bulgularla en uyumlu örüntü hangisidir?^at
+41 yaşında erkek hasta. Başvuru: stresli dönemde sık çarpıntı hissiyle başvuruyor. Düzenli dar kompleksli hızlı ritimde P dalgasının ekseni sinüs örneğine göre farklı görünüyor.^Bu P dalgası için hangi yorum uygundur?^atAxis
+27 yaşında kadın hasta. Başvuru: egzersiz sırasında hızlı çarpıntı fark ediyor. Aynı kayıt üzerinde farklı bir derivasyon grubuna geçildiğinde görünüm değişiyor.^Derivasyon seçimini değiştirmenin bulguya etkisi nedir?^leadAll
+48 yaşında erkek hasta. Başvuru: kahve tüketimi sonrası tekrarlayan çarpıntı tarif ediyor. Üç saniyelik kısa bir kayıt elde ediliyor; atağın başlangıcı ve sonu kayıtta yer almıyor.^Bu kısa kayıttan hangi sınırlı yorum çıkarılabilir?^atLimits
+30 yaşında kadın hasta. Başvuru: sabahları sık görülen çarpıntı atakları tarif ediyor. Düzenli, dar kompleksli hızlı bir ritimde, QRS öncesinde sinüsten farklı yönde bir dalga dikkati çekiyor.^Bu ritim hangi sınıfa girer?^rhythmClass_pat
+55 yaşında erkek hasta. Başvuru: tiroid izleminde çarpıntı yakınmasıyla başvuruyor. İki ardışık R tepesi arası 400 ms ölçülüyor.^Bu döngü süresiyle elektriksel hız yaklaşık kaçtır?^rr400
+38 yaşında kadın hasta. Başvuru: uykusuzluk sonrası tekrarlayan çarpıntı tarif ediyor. Kaliperle P’nin ilk sapması QRS’den 180 ms önce, QRS’in ilk sapması 40 ms önce işaretleniyor.^Bu ölçümlerle PR aralığı kaç milisaniyedir?^pr140
+44 yaşında erkek hasta. Başvuru: holter takılan hastada tekrarlayan hızlı atım kaydediliyor. Düzenli, dar kompleksli hızlı bir ritimde, QRS öncesinde sinüsten farklı yönde bir dalga dikkati çekiyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_pat
+29 yaşında kadın hasta. Başvuru: sınav döneminde sık çarpıntı hissiyle geliyor. Dar bir kompleksin ilk sapması 40 ms önce, son dönüşü 40 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q80
+52 yaşında erkek hasta. Başvuru: iş stresiyle birlikte tekrarlayan çarpıntı tarif ediyor. Bulgu düzenli görünse de eşlik eden semptomlar ayrıca değerlendiriliyor.^Bu klinik tabloda hangi değerlendirme ilkesi önceliklidir?^urgent
+36 yaşında kadın hasta. Başvuru: egzersiz sonrası tekrarlayan hızlı çarpıntı fark ediyor. QRS’den kısa süre önce ayrı bir dalga seçiliyor.^P dalgasının temel elektriksel karşılığı nedir?^p
+46 yaşında erkek hasta. Başvuru: kafeinli içecek sonrası sık çarpıntı tarif ediyor. Kısa süreli bir kayıt elde ediliyor; önceki öykü ve ek testler henüz yok.^Bu bulgudan etiyoloji ve risk için hangi genel sınır çıkarılabilir?^limits
+33 yaşında kadın hasta. Başvuru: gebelik döneminde tekrarlayan çarpıntı yakınmasıyla başvuruyor. Elektriksel kayıt sürerken nabız muayenesi ayrıca planlanıyor.^EKG bulgusu ile mekanik nabız arasındaki ilişki için hangi değerlendirme gerekir?^pulse
+58 yaşında erkek hasta. Başvuru: yıllık kontrolde tesadüfen hızlı atriyal ritim saptanıyor. Tekrarlayan çarpıntı atakları ve olası nedenler birlikte değerlendiriliyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_pat
+40 yaşında kadın hasta. Başvuru: tekrarlayan kısa süreli çarpıntı atakları tarif ediyor. İzlemde giriş kapaklarının açık, çıkış kapaklarının kapalı olduğu bir an gösteriliyor.^Bu kapak ve hacim düzeni hangi mekanik evreyi gösterir?^fill`,
 flutter:`
-Düzenli150/dk dar kompleksler arasında300/dk testere dişi F etkinliği var.^Hangi atriyal ve ventriküler örüntü desteklenir?^flutter
-II,III,aVF’de sürekli negatif F, V1’de pozitif F; iki F’ye bir QRS seçiliyor.^En uygun ritim örüntüsü hangisidir?^flutter
-F döngüsü200ms, R–R400ms; öğrenci iki elektriksel hızı tek değer sayıyor.^Doğru hız ve iletim ilişkisi hangisidir?^flutterRatio
-Atriyal etkinlik300/dk ve ventriküler150/dk ölçülmüş; aynı bölümde düzenli QRS var.^İletim oranı hangi seçenekle doğru gösterilir?^flutterRatio
-II’de F aşağı yönlü, V1’de yukarı yönlü; klinik örnek tipik karşı-saat yönlü flutter olarak sınırlandırılmış.^Beklenen derivasyon polaritesi hangisidir?^flutterPolarity
-Öğrenci her derivasyonda F’yi aynı yönde çizmek istiyor; inferior ile V1 karşılaştırılıyor.^Bu tipik öğretim örneğinin F yön dağılımı hangisidir?^flutterPolarity
-QRS aralıkları400ms; atriyal hızın300/dk olduğu ayrıca yazıyor.^Ventriküler elektriksel hız hangisidir?^rr400
-Sürekli F tabanı nedeniyle ayrı P başlangıcı tanımlanamıyor; otomatik PR kutusu boş.^PR için hangi ifade doğrudur?^prNone
-F etkinliği sürerken QRS−40/+40ms boyunca seçilebiliyor.^Ventriküler QRS süresi kaçtır?^q80
-Hasta nabzı düzenli hissediliyor;300/dk atriyal ve150/dk QRS sayımları klinik nabızla karşılaştırılıyor.^EKG’den mekanik nabız hakkında hangi sınır korunur?^pulse
-Hızlı ventriküler yanıt nedeniyle doluş penceresi kısaltılmış; akım klinik olarak ölçülmemiş.^Doluş hakkında hangi ifade uygundur?^fastFill
-R’den100ms sonra F dalgaları sürüyor; semilüner kapaklar açık ve AV kapaklar kapalı.^Elektriksel F sürerken mekanik evre hangisidir?^eject
-Kısa2:1 şerit var; öğrenci bütün flutter olgularında aynı ventriküler hızı varsayıyor.^Genelleme için hangi çıkarım sınırı gerekir?^limits
-Sürekli atriyal F’nin I ve II bileşenlerinden tüm ekstremite voltajları hesaplanıyor.^aVF için doğru dönüşüm hangisidir?^avf
-T dalgası F tabanıyla üst üste geliyor; öğrenci görünür her taban dalgasını mekanik basınç sanıyor.^T’nin temel elektriksel karşılığı nedir?^t`,
+65 yaşında erkek hasta. Başvuru: düzenli hızlı çarpıntı yakınmasıyla acile geliyor. Düzenli dar kompleksler arasında sürekli, testere dişi görünümlü bir taban etkinliği izleniyor.^Bu atriyal ve ventriküler bulgularla en uyumlu örüntü hangisidir?^flutter
+58 yaşında kadın hasta. Başvuru: egzersiz kapasitesinde azalma ve çarpıntı tarif ediyor. Taban hattında sürekli dalgalı bir etkinlik var; bir öğrenci bunu ayrık bir P dalgası sanıyor.^Bu sürekli taban etkinliği ile ayrık P dalgası arasındaki fark nedir?^fNotP
+71 yaşında erkek hasta. Başvuru: kronik akciğer hastalığı izleminde çarpıntı saptanıyor. Atriyal ve ventriküler hızlar arasındaki oran ayrıca hesaplanıyor.^Atriyal ve ventriküler hız ile iletim oranı arasındaki ilişki hangisidir?^flutterRatio
+60 yaşında kadın hasta. Başvuru: yorgunluk ve düzenli hızlı nabızla başvuruyor. Aynı kayıt üzerinde farklı bir derivasyon grubuna geçildiğinde görünüm değişiyor.^Derivasyon seçimini değiştirmenin bulguya etkisi nedir?^leadAll
+54 yaşında erkek hasta. Başvuru: hipertiroidi öyküsüyle çarpıntı tarif ediyor. İnferior ve V1 derivasyonlarında taban dalgasının yönü karşılaştırılıyor.^Bu derivasyonlardaki taban dalgası polaritesi hangi seçenekle uyumludur?^flutterPolarity
+68 yaşında kadın hasta. Başvuru: nefes darlığı ve düzenli hızlı nabızla geliyor. Düzenli dar kompleksler arasında sürekli, testere dişi görünümlü bir taban etkinliği izleniyor.^Bu ritim hangi sınıfa girer?^rhythmClass_flutter
+49 yaşında erkek hasta. Başvuru: ameliyat sonrası serviste düzenli hızlı nabız saptanıyor. İki ardışık R tepesi arası 400 ms ölçülüyor.^Bu döngü süresiyle elektriksel hız yaklaşık kaçtır?^rr400
+73 yaşında kadın hasta. Başvuru: huzurevi kontrolünde düzenli hızlı nabız fark ediliyor. Düzenli dar kompleksler arasında sürekli, testere dişi görünümlü bir taban etkinliği izleniyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_flutter
+57 yaşında erkek hasta. Başvuru: kalp yetersizliği izleminde çarpıntı ile başvuruyor. Dar bir kompleksin ilk sapması 40 ms önce, son dönüşü 40 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q80
+62 yaşında kadın hasta. Başvuru: yıllık kontrolde tesadüfen düzenli hızlı nabız saptanıyor. Elektriksel kayıt sürerken nabız muayenesi ayrıca planlanıyor.^EKG bulgusu ile mekanik nabız arasındaki ilişki için hangi değerlendirme gerekir?^pulse
+66 yaşında erkek hasta. Başvuru: egzersiz sırasında düzenli hızlı çarpıntı tarif ediyor. Hızlı seyreden nabızda diyastolik dolum süresinin kısaldığı düşünülüyor.^Yüksek hızın ventrikül dolusuna etkisi için hangi ifade doğrudur?^fastFill
+52 yaşında kadın hasta. Başvuru: tiroid izleminde çarpıntı yakınmasıyla geliyor. Ventrikül hızı ve ritim seçenekleri birlikte değerlendiriliyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_flutter
+70 yaşında erkek hasta. Başvuru: kronik böbrek hastalığı izleminde çarpıntı saptanıyor. Kısa süreli bir kayıt elde ediliyor; önceki öykü ve ek testler henüz yok.^Bu bulgudan etiyoloji ve risk için hangi genel sınır çıkarılabilir?^limits
+55 yaşında kadın hasta. Başvuru: uzun yolculuk sonrası düzenli hızlı nabız fark ediyor. Sistematik okumada hangi derivasyonların yan duvarı temsil ettiği gözden geçiriliyor.^Hangi derivasyonlar lateral duvarı gösterir?^lateralLeadGroup
+63 yaşında erkek hasta. Başvuru: solunum yolu enfeksiyonu sonrası çarpıntı tarif ediyor. Ventriküler kompleksten sonra gelen dalganın anlamı soruluyor.^T dalgasının temel elektriksel karşılığı nedir?^t`,
 sintach:`
-Ateşle düzenli120/dk, her dar QRS öncesinde uygun pozitif P ve sabit PR var.^En uygun ritim örüntüsü hangisidir?^tach
-Ağrı sırasında hız artmış, II’de pozitif ve aVR’de negatif P ilişkisi korunmuş; QRS80ms.^Sinüs kökenini destekleyen sınıflama hangisidir?^tach
-Hacim kaybı kuşkusu var; EKG’de sinüs P ve hızlı düzenli dar QRS seçiliyor.^Ritim tanımından sonra hangi klinik neden yaklaşımı uygundur?^tachCause
-Ateş ölçülmemiş; öğrenci P genliğini kullanarak neden ve sıcaklığı belirlemek istiyor.^Hangi klinik yorum sınırı korunur?^tachCause
-R–R500ms ve uygun sinüs P görülüyor; ekran oynatması1×.^Ventriküler elektriksel hız kaçtır?^rr500
-Öğrenci120/dk sayımını tüm atımların güçlü arter nabzı kanıtı sanıyor; palpasyon yapılmadı.^Mekanik nabız için hangi değerlendirme gerekir?^pulse
-Döngü500ms; önceki75/dk örneğe göre AV açık doluş penceresi daha kısa.^Yüksek hızın doluşla ilişkisi nasıl açıklanır?^fastFill
-Sinüs P ilk sapması−215ms,QRS ilk sapması−40ms; hızlı döngüde ilişki sabit.^PR süresi kaçtır?^pr175
-Dar kompleks−40ms’de başlayıp+40ms’de bitiyor; T sonraki hızlı P’ye yaklaşıyor.^QRS süresi kaçtır?^q80
-P görünür fakat sadece P tepe–R tepe aralığı ölçülmüş.^Hangi sınırlar PR aralığını verir?^pr
-Öğrenci P dalgasını hızlı arter akımının grafiği sanıyor; atriyal animasyon kısa gecikmeli.^P hangi elektriksel olayı kaydeder?^p
-R’den45ms sonra kasılma başlamış; semilüner çıkışlar60ms’ye kadar kapalı.^Bu an hangi mekanik evredir?^mechanic
-R’den110ms sonra çıkış kapakları açık; hızlı döngüde ileri akım şematiktir.^Hangi kapak açıklaması tutarlıdır?^eject
-R’den300ms sonra AV kapaklar açık ve ventrikül doluşu geri geliyor.^Bu evrenin doğru kapak ve hacim tanımı nedir?^fill
-Hızlı sinüs örneği2× oynatılıyor; gözlem tamamlama sayacı gerçek zamanla ilerliyor.^Oynatma çarpanı hangi ölçümleri değiştirir?^speed`,
+28 yaşında kadın hasta. Başvuru: ateş ve halsizlik ile hızlı nabız saptanıyor. Düzenli, dar kompleksli hızlı bir ritimde her kompleksten önce aynı yönlü bir dalga korunuyor.^Bu bulgularla en uyumlu örüntü hangisidir?^tach
+35 yaşında erkek hasta. Başvuru: egzersiz sonrası beklenenden hızlı nabız devam ediyor. Düzenli dar kompleksli ritimde P dalgasının yönü ayrıca değerlendiriliyor.^Bu P dalgası için hangi yön dağılımı destekleyicidir?^sinusAxis
+42 yaşında kadın hasta. Başvuru: ağrı nedeniyle hızlı nabızla acile başvuruyor. Hızlı sinüs ritmi saptanıyor; ateş ve ağrı gibi olası nedenler sorgulanıyor.^Hız artışının nedeni için hangi yaklaşım uygundur?^tachCause
+50 yaşında erkek hasta. Başvuru: anksiyete atağı sırasında hızlı nabız saptanıyor. Kısa süreli bir kayıt elde ediliyor; önceki öykü ve ek testler henüz yok.^Bu bulgudan etiyoloji ve risk için hangi genel sınır çıkarılabilir?^limits
+24 yaşında kadın hasta. Başvuru: solunum yolu enfeksiyonu ile ateş ve hızlı nabız. İki ardışık R tepesi arası 500 ms ölçülüyor.^Bu döngü süresiyle elektriksel hız yaklaşık kaçtır?^rr500
+60 yaşında erkek hasta. Başvuru: kan kaybı şüphesiyle hızlı nabızla değerlendiriliyor. Sistematik okumada hangi derivasyonların yan duvarı temsil ettiği gözden geçiriliyor.^Hangi derivasyonlar lateral duvarı gösterir?^lateralLeadGroup
+33 yaşında kadın hasta. Başvuru: susuzluk ve sıcak çarpması sonrası hızlı nabız saptanıyor. Hızlı seyreden nabızda diyastolik dolum süresinin kısaldığı düşünülüyor.^Yüksek hızın ventrikül dolusuna etkisi için hangi ifade doğrudur?^fastFill
+46 yaşında erkek hasta. Başvuru: ağrı kesici öncesi hızlı nabız fark ediliyor. Kaliperle P’nin ilk sapması QRS’den 215 ms önce, QRS’in ilk sapması 40 ms önce işaretleniyor.^Bu ölçümlerle PR aralığı kaç milisaniyedir?^pr175
+29 yaşında kadın hasta. Başvuru: panik atak sırasında hızlı nabız ile başvuruyor. Dar bir kompleksin ilk sapması 40 ms önce, son dönüşü 40 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q80
+55 yaşında erkek hasta. Başvuru: ateşli hastalık sırasında hızlı nabız izleniyor. Düzenli, dar kompleksli hızlı bir ritimde her kompleksten önce aynı yönlü bir dalga korunuyor.^Bu ritim hangi sınıfa girer?^rhythmClass_sintach
+37 yaşında kadın hasta. Başvuru: egzersiz testi sırasında beklenen hızlanma gözleniyor. QRS’den kısa süre önce ayrı bir dalga seçiliyor.^P dalgasının temel elektriksel karşılığı nedir?^p
+48 yaşında erkek hasta. Başvuru: kafein alımı sonrası hızlı nabız fark ediyor. Düzenli, dar kompleksli hızlı bir ritimde her kompleksten önce aynı yönlü bir dalga korunuyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_sintach
+31 yaşında kadın hasta. Başvuru: gebelikte fizyolojik hızlı nabız saptanıyor. İzlemde bir anda çıkış kapaklarının açık, giriş kapaklarının kapalı olduğu gösteriliyor.^Bu andaki kapak ve akım durumu hangi mekanik evreyi tanımlar?^eject
+58 yaşında erkek hasta. Başvuru: enfeksiyon sonrası ateşle birlikte hızlı nabız. Hızlı nabzın altında yatan neden araştırılıyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_sintach
+26 yaşında kadın hasta. Başvuru: sınav stresiyle hızlı nabız fark ediyor. Bulgu düzenli görünse de eşlik eden semptomlar ayrıca değerlendiriliyor.^Bu klinik tabloda hangi değerlendirme ilkesi önceliklidir?^urgent`,
 lbbb:`
-Düzenli75/dk sinüs dizisinde160ms QRS, V1’de negatif QS ve V6’da geniş çentikli R var.^En uygun ileti örüntüsü hangisidir?^lbbb
-I,aVL,V5,V6’da geniş R; V1’de derin S, her QRS öncesinde P korunmuş.^Sağ dal örneğinden hangi sınıflama ayrılır?^lbbb
-Öğrenci yalnız genişliği görüyor; sağ ve lateral terminal QRS yönleri birlikte gösteriliyor.^LBBB’de beklenen birlikte morfoloji hangisidir?^lMorph
-V1 ve V6 aynı atımda karşılaştırılıyor; V1 negatif, V6 pozitif geniş/çentikli.^Hangi sağ–lateral yön dağılımı bu örneğe uyar?^lMorph
-QRS ilk sapması−70ms, son dönüş+90ms; geniş çentikli R desteği ölçülüyor.^Toplam QRS süresi kaçtır?^q160
-P ilk sapma−245ms,QRS ilk sapma−70ms; dal gecikmesi QRS’nin devamında.^PR sınırları hangi standart tanımla alınır?^pr
-Geniş QRS içindeki çentik ikinci bağımsız atım sanılıyor; tek P–QRS döngüsü var.^QRS’nin temel elektriksel olayı hangisidir?^qrs
-Sol ventrikül görsel hareketi60ms gecikmeli; klinik ultrason veya basınç kaydı yok.^Bu gecikme nasıl sınırlandırılmalıdır?^bbbDelay
-Önceki EKG aynı geniş iletiyi gösteriyor; şimdi yeni göğüs ağrısı ayrıca sorgulanıyor.^Dal bloğunun klinik yorumu için hangi ilke uygundur?^bbbLimits
-Yeni fark edilen geniş QRS var; semptom ve eski kayıt bilgisi henüz tamamlanmamış.^Etiyoloji ve iskemi için hangi yaklaşım gerekir?^bbbLimits
-Lateral pozitif geniş R sonrası T negatif; öğrenci bu yönü doğrudan akım kaybı sanıyor.^T’nin temel elektriksel tanımı nedir?^t
-Sinüs elektriksel hızı75/dk; geniş komplekslerin mekanik nabzı muayeneyle değerlendirilecek.^Elektriksel hız ile nabız arasında hangi sınır geçerlidir?^pulse
-QRS terminal bölümü kaliperde dışlanmış; görünen R tepesi160ms toplam desteğin parçası.^QRS süresi hangi sınırlarla ölçülmelidir?^duration
-Kişide presenkop var; sadece eski BBB etiketi bilinmekte, klinik bulgular değerlendirilmekte.^Hangi genel klinik değerlendirme ilkesi uygundur?^urgent
-Sol/lateral geniş R’nin I ve II bileşenleri diğer ekstremite sinyallerini de belirliyor.^LBBB’de aVL dönüşümü hangisidir?^avl`,
+68 yaşında erkek hasta. Başvuru: rutin kontrolde tesadüfen geniş QRS saptanıyor. Düzenli sinüs ritmi sırasında QRS belirgin genişlemiş; sağ göğüs derivasyonunda derin negatif, sol yan derivasyonlarda geniş ve çentikli pozitif bir kompleks var.^Bu ileti örüntüsü için en uygun sınıflama hangisidir?^lbbb
+72 yaşında kadın hasta. Başvuru: ameliyat öncesi değerlendirmede geniş QRS fark ediliyor. Kompleks genişliği tek başına değerlendirilerek kökeni hakkında yorum yapılmak isteniyor.^QRS genişliğini tek başına yorumlarken hangi sınır geçerlidir?^qrsWidthCause
+60 yaşında erkek hasta. Başvuru: hipertansiyon izleminde rutin EKG’de geniş kompleks saptanıyor. Sağ göğüs ve sol yan derivasyonlar birlikte incelenerek QRS yönü karşılaştırılıyor.^Bu derivasyonlardaki morfoloji bileşimi hangisidir?^lMorph
+65 yaşında kadın hasta. Başvuru: efor dispnesi ile kardiyoloji polikliniğine başvuruyor. Geniş kompleksli bir atımda P’nin ilk sapması 245 ms önce, QRS’in ilk sapması 70 ms önce işaretleniyor.^Bu geniş kompleksli atımda PR aralığı kaç milisaniyedir?^prL175
+57 yaşında erkek hasta. Başvuru: yıllık check-up sırasında geniş QRS saptanıyor. Geniş bir kompleksin ilk sapması 70 ms önce, son dönüşü 90 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q160
+74 yaşında kadın hasta. Başvuru: kalp yetersizliği izleminde geniş kompleks izleniyor. Düzenli sinüs ritmi sırasında QRS belirgin genişlemiş; sağ göğüs derivasyonunda derin negatif, sol yan derivasyonlarda geniş ve çentikli pozitif bir kompleks var.^Bu ritim hangi sınıfa girer?^rhythmClass_lbbb
+63 yaşında erkek hasta. Başvuru: göğüs ağrısı olmayan hastada rutin EKG’de geniş QRS. Ventriküler kompleksin izde temsil ettiği olay ayrıca soruluyor.^QRS kompleksinin temel elektriksel karşılığı nedir?^qrs
+70 yaşında kadın hasta. Başvuru: huzurevi kontrolünde tesadüfen geniş kompleks saptanıyor. Kalp animasyonunda bir ventrikülün aktivasyonu diğerine göre gecikmiş gösteriliyor.^Bu ileti gecikmesi animasyonu nasıl yorumlanmalıdır?^bbbDelay
+55 yaşında erkek hasta. Başvuru: diyabet izleminde rutin EKG’de geniş QRS fark ediliyor. Aynı ileti bozukluğu önceki bir kayıtta da görülmüş; yeni bir semptom eşlik etmiyor.^Bu ileti bozukluğunun klinik yorumu için hangi ilke geçerlidir?^bbbLimits
+67 yaşında kadın hasta. Başvuru: ameliyat sonrası serviste geniş kompleks saptanıyor. Düzenli sinüs ritmi sırasında QRS belirgin genişlemiş; sağ göğüs derivasyonunda derin negatif, sol yan derivasyonlarda geniş ve çentikli pozitif bir kompleks var.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_lbbb
+61 yaşında erkek hasta. Başvuru: sigorta muayenesinde tesadüfen geniş QRS saptanıyor. Ventriküler kompleksten sonra gelen dalganın anlamı soruluyor.^T dalgasının temel elektriksel karşılığı nedir?^t
+73 yaşında kadın hasta. Başvuru: kronik böbrek hastalığı izleminde geniş kompleks izleniyor. Elektriksel kayıt sürerken nabız muayenesi ayrıca planlanıyor.^EKG bulgusu ile mekanik nabız arasındaki ilişki için hangi değerlendirme gerekir?^pulse
+58 yaşında erkek hasta. Başvuru: efor kapasitesinde azalma ile başvuruyor. Geniş QRS kaydı klinik bağlamla birlikte değerlendiriliyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_lbbb
+66 yaşında kadın hasta. Başvuru: yıllık kontrolde önceki EKG ile karşılaştırma yapılıyor. Bulgu düzenli görünse de eşlik eden semptomlar ayrıca değerlendiriliyor.^Bu klinik tabloda hangi değerlendirme ilkesi önceliklidir?^urgent
+64 yaşında erkek hasta. Başvuru: anestezi değerlendirmesinde geniş QRS fark ediliyor. Sistematik okumada hangi derivasyonların ön duvarı temsil ettiği gözden geçiriliyor.^V3 ve V4 derivasyonları hangi bölgeyi yansıtır?^anteriorLeadGroup`,
 rbbb:`
-Düzenli sinüs dizisinde140ms QRS; V1’de terminal R′, V6’da geniş terminal S var.^En uygun ileti örüntüsü hangisidir?^rbbb
-Sağ prekordiyalde rSR′ ve I’de terminal S her atımda tekrarlanıyor; erken olay yok.^Tek PVC yerine hangi ileti örüntüsü desteklenir?^rbbb
-V1 ile V6 eşzamanlı inceleniyor; sağda geç pozitif, lateralde geç negatif bileşen var.^RBBB’nin birlikte morfoloji dağılımı hangisidir?^rMorph
-Öğrenci V1’deki son R′yi T olarak etiketliyor; bu bileşen QRS bitiminden önce.^Doğru terminal QRS dağılımı hangisidir?^rMorph
-QRS ilk sapma−60ms, son dönüş+80ms; terminal R′/S destekleri de ölçülüyor.^Çizilen QRS süresi kaçtır?^q140
-P başlangıcı−235ms,QRS başlangıcı−60ms; sağ terminal ileti daha sonra uzuyor.^PR’nin başlangıç ve bitiş tanımı hangisidir?^pr
-Sağ ventrikül hareketi60ms ayrıştırılıyor; gerçek mekanik ölçüm verisi yok.^Dal gecikmesi animasyonu nasıl yorumlanır?^bbbDelay
-Önceki kayıtla aynı RBBB var; kişinin yeni dispnesi ayrıca değerlendirilmekte.^Dal bloğu klinik önem açısından nasıl ele alınır?^bbbLimits
-İlk kez fark edilen terminal R′ var; yapısal hastalık ve klinik öykü bilinmiyor.^Tek dal bloğu kaydı için hangi klinik sınır uygundur?^bbbLimits
-V1’de pozitif terminal R′ ardından negatif T; lateral terminal S ayrı görülüyor.^T dalgası hangi temel olayı kaydeder?^t
-Elektriksel75/dk sinüs aktivasyonu var; öğrenci140ms genişliği düşük basınç kanıtı sayıyor.^Mekanik nabız ve basınç hakkında ne gerekir?^pulse
-Ölçümde yalnız ilk r lobu sayılmış; terminal R′ ve S desteği dışarıda bırakılmış.^QRS süre ölçümü için hangi tanım doğrudur?^duration
-Geniş QRS hâlâ düzenli P sonrası geliyor; T daha sonra ve ayrı zaman bölgesinde.^QRS hangi elektriksel etkinliği gösterir?^qrs
-Kaçış hissi ve baş dönmesi sürüyor; klinik ekip nabız,basınç ve ek kaydı değerlendiriyor.^Semptomlu kişide hangi değerlendirme ilkesi geçerlidir?^urgent
-Terminal sağ/lateral bileşenler I ve II’den bütün ekstremite derivasyonlarına tutarlı dağıtılıyor.^aVR için doğru dönüşüm hangisidir?^avr`
+55 yaşında erkek hasta. Başvuru: rutin kontrolde tesadüfen geniş QRS saptanıyor. Düzenli sinüs ritmi sırasında QRS belirgin genişlemiş; sağ göğüs derivasyonunda geç bir ikinci pozitif çıkıntı, sol yan derivasyonlarda geniş bir son negatif dalga var.^Bu ileti örüntüsü için en uygun sınıflama hangisidir?^rbbb
+48 yaşında kadın hasta. Başvuru: ameliyat öncesi değerlendirmede geniş QRS fark ediliyor. Kompleks genişliği tek başına değerlendirilerek kökeni hakkında yorum yapılmak isteniyor.^QRS genişliğini tek başına yorumlarken hangi sınır geçerlidir?^qrsWidthCause
+62 yaşında erkek hasta. Başvuru: yıllık check-up sırasında geniş kompleks saptanıyor. Sağ göğüs ve sol yan derivasyonlar birlikte incelenerek terminal QRS yönü karşılaştırılıyor.^Bu derivasyonlardaki morfoloji bileşimi hangisidir?^rMorph
+58 yaşında kadın hasta. Başvuru: efor dispnesi ile kardiyoloji polikliniğine başvuruyor. Geniş kompleksli bir atımda P’nin ilk sapması 235 ms önce, QRS’in ilk sapması 60 ms önce işaretleniyor.^Bu geniş kompleksli atımda PR aralığı kaç milisaniyedir?^prR175
+67 yaşında erkek hasta. Başvuru: hipertansiyon izleminde rutin EKG’de geniş QRS saptanıyor. Geniş bir kompleksin ilk sapması 60 ms önce, son dönüşü 80 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q140
+52 yaşında kadın hasta. Başvuru: iş yeri sağlık taramasında geniş kompleks fark ediliyor. Düzenli sinüs ritmi sırasında QRS belirgin genişlemiş; sağ göğüs derivasyonunda geç bir ikinci pozitif çıkıntı, sol yan derivasyonlarda geniş bir son negatif dalga var.^Bu ritim hangi sınıfa girer?^rhythmClass_rbbb
+70 yaşında erkek hasta. Başvuru: kronik akciğer hastalığı izleminde geniş QRS izleniyor. Kalp animasyonunda bir ventrikülün aktivasyonu diğerine göre gecikmiş gösteriliyor.^Bu ileti gecikmesi animasyonu nasıl yorumlanmalıdır?^bbbDelay
+46 yaşında kadın hasta. Başvuru: sigorta muayenesinde tesadüfen geniş kompleks saptanıyor. Aynı ileti bozukluğu önceki bir kayıtta da görülmüş; yeni bir semptom eşlik etmiyor.^Bu ileti bozukluğunun klinik yorumu için hangi ilke geçerlidir?^bbbLimits
+63 yaşında erkek hasta. Başvuru: diyabet izleminde rutin EKG’de geniş QRS fark ediliyor. Geniş bir kompleksin ilk sapması 60 ms önce, T dalgasının son sınırı 350 ms sonra işaretleniyor.^Bu ölçümlerle ham sentetik QT değeri kaçtır?^qt410
+57 yaşında kadın hasta. Başvuru: ameliyat sonrası serviste geniş kompleks saptanıyor. Ventriküler kompleksten sonra gelen dalganın anlamı soruluyor.^T dalgasının temel elektriksel karşılığı nedir?^t
+72 yaşında erkek hasta. Başvuru: huzurevi kontrolünde tesadüfen geniş QRS saptanıyor. Elektriksel kayıt sürerken nabız muayenesi ayrıca planlanıyor.^EKG bulgusu ile mekanik nabız arasındaki ilişki için hangi değerlendirme gerekir?^pulse
+49 yaşında kadın hasta. Başvuru: yıllık kontrolde önceki EKG ile karşılaştırma yapılıyor. Geniş QRS kaydı klinik bağlamla birlikte değerlendiriliyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_rbbb
+65 yaşında erkek hasta. Başvuru: anestezi değerlendirmesinde geniş kompleks fark ediliyor. Ventriküler kompleksin izde temsil ettiği olay ayrıca soruluyor.^QRS kompleksinin temel elektriksel karşılığı nedir?^qrs
+54 yaşında kadın hasta. Başvuru: check-up paketinde tesadüfen geniş QRS saptanıyor. Bulgu düzenli görünse de eşlik eden semptomlar ayrıca değerlendiriliyor.^Bu klinik tabloda hangi değerlendirme ilkesi önceliklidir?^urgent
+68 yaşında erkek hasta. Başvuru: kalp yetersizliği izleminde geniş kompleks izleniyor. Düzenli sinüs ritmi sırasında QRS belirgin genişlemiş; sağ göğüs derivasyonunda geç bir ikinci pozitif çıkıntı, sol yan derivasyonlarda geniş bir son negatif dalga var.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_rbbb`
 };
-bank('qtNone','O6',[
-['QT tanımlanamaz; organize QRS ve T sınırı yok','QT için bir QRS başlangıcı ve ona ait T sonu gerekir; kaotik VF’de bu sınırlar seçilemez.'],
-['En yüksek kaotik tepeden en düşük tepeye ölçülür','Kaotik tepe/çukur sınırı depolarizasyon–repolarizasyon QT sınırı değildir.'],
-['Son sinüs QT’si yeni VF QT’sidir','Önceki ritmin aralığı yeni kaotik ritimde tanımlanmış bir QT oluşturmaz.'],
-['Dalga salınım periyodu QT olarak kaydedilir','VF salınım periyodu organize ventriküler kompleksin QT süresiyle aynı tanım değildir.'],
-['Atriyal F aralığı QT yerine kullanılır','F aralığı atriyal döngüdür; ventriküler QRS–T sınırının yerine konamaz.']]);
-bank('fNotP','O1',[
-['Sürekli F etkinliği ayrık sinüs P dizisi değildir','Flutter F düzenli sürekli atriyal depolarizasyondur; ayrı P ve PR tanımlarıyla karıştırılmaz.'],
-['Her F bir ventriküler QRS’dir','F atriyal etkinlik, QRS ventriküler depolarizasyondur;2:1 örnekte hızları farklıdır.'],
-['F yalnız ventriküler T’nin başka adıdır','F atriyal devre etkinliği ve T ventriküler repolarizasyon farklı kaynaklıdır.'],
-['Negatif F ayrık sinüs P ekseniyle aynı dizidir','F sürekli atriyal devre etkinliğidir; polaritesi ters olsa da ayrık sinüs P dizisi yerine geçmez.'],
-['F görülmesi atriyal katkının normal olduğunu ölçer','Sürekli atriyal elektriksel devre koordine normal mekanik atriyal katkıyı kanıtlamaz.']]);
-bank('fNotQRS','O1',[
-['AF’nin f etkinliği QRS sayımından ayrılır','İnce düzensiz f atriyal taban etkinliğidir; ventriküler elektriksel hız ayrık QRS dizisinden değerlendirilir.'],
-['Her f tepesi ventriküler atım sayılır','Atriyal taban tepeleri ventriküler depolarizasyon kompleksleri değildir.'],
-['En geniş f tepesinin süresi QRS’dir','Genlik veya taban genişliği f etkinliğini QRS’ye dönüştürmez; ayrı ventriküler sınırlar seçilir.'],
-['f varlığı geniş VT morfolojisini kanıtlar','AF tabanı ventriküler QRS genişliğinin veya VT kökeninin özgül kanıtı değildir.'],
-['f yoksa kısa şerit kesin sinüs ritmidir','İnce f görünmeyebilir; ayrık P ve R–R düzenliliği birlikte değerlendirilmelidir.']]);
-bank('leadAll','O3',[
-['Derivasyonlar aynı elektriksel kaynağın farklı izdüşümleridir','Lead seçimi morfoloji ve polariteyi değiştirir; ritmin elektriksel kaynağı veya klinik nabzı düğmeyle değişmez.'],
-['Lead değiştirmek ritim mekanizmasını değiştirir','Elektrot görünümünü seçmek aynı kaynağın izdüşümünü değiştirir; hastanın ritmini dönüştürmez.'],
-['Bütün leadler aynı morfolojiyi göstermelidir','Eksenler farklıdır; BBB/ST/P yön ve genlik farkları öğretim konusudur.'],
-['Negatif QRS ventriküler kökeni tek başına kesinleştirir','QRS polaritesi lead eksenine göre değişir; negatiflik tek başına ventriküler odak veya VT kanıtı değildir.'],
-['Seçili tek lead bütün12 derivasyon bilgisine eşittir','Bölgesel dağılım ve morfoloji için diğer derivasyonlar ek bilgi taşır.']]);
-bank('j','O6',[
-['J noktası QRS’nin bittiği ST başlangıç sınırıdır','J terminal QRS’den ST’ye geçişi tanımlar; ölçüm konumu dalga geometrisiyle ortak fidüsiyelden alınır.'],
-['J noktası P’nin ilk sapmasıdır','P başlangıcı atriyal depolarizasyon sınırıdır; QRS–ST geçişi daha sonradır.'],
-['J noktası R’nin en yüksek tepesidir','R tepesi QRS içindedir; J terminal dönüşteki QRS sonudur.'],
-['J noktası T’nin en yüksek tepesidir','T tepesi repolarizasyon içinde ve QRS sonundan daha sonradır.'],
-['J noktası bir sonraki QRS başlangıcıdır','Sonraki QRS yeni döngüdür; mevcut QRS’nin bitiş geçişiyle karışmamalıdır.']]);
-bank('rateVsRR','O6',[
-['Hız=60/R–R(saniye) organize düzenli dizide kullanılır','Düzenli seçilebilir ventriküler komplekslerde döngü saniye cinsinden alınır; düzensiz ritimde çoklu aralık gerekir.'],
-['Hız=60/QRS(saniye) kullanılır','QRS aktivasyon genişliğidir; döngü aralığı değildir ve çok yüksek yanlış hız üretir.'],
-['Hız=60/PR(saniye) kullanılır','PR atriyoventriküler iletim aralığıdır; iki ventriküler atım aralığı değildir.'],
-['Hız=1000/R–R(saniye) kullanılır','1000 katsayısı aralığı yanlış birime bağlar; saniye cinsinden aralık için dakikada60 saniye kullanılır.'],
-['Hız=R–R(ms)/60 kullanılır','Aralık önce saniyeye çevrilmeli ve ters orantı kullanılmalıdır; bu birim ve yön hatasıdır.']]);
-bank('qrsWidthCause','O5',[
-['Genişlik morfoloji ve klinik kanıtla birlikte yorumlanır','Geniş QRS yavaş veya farklı ventriküler aktivasyonu gösterir; tek genişlik VT ile aberrans etiyolojisini kesin ayırmaz.'],
-['120ms üstü her QRS kesin VT atımıdır','BBB veya başka intraventriküler gecikmeler de geniş QRS oluşturur; hız,zamanlama ve diğer kanıt önemlidir.'],
-['140ms her QRS kesin RBBB atımıdır','RBBB için terminal sağ/lateral morfoloji gerekir; PVC de bu öğretim genişliğinde olabilir.'],
-['160ms her QRS kesin LBBB atımıdır','Genişlik tek başına LBBB’nin sağ/lateral morfolojisini kanıtlamaz.'],
-['Genişlik tek başına mekanik debiyi hesaplar','Aktivasyon süresi debi veya nabız ölçümü değildir; hemodinamik veri ayrıca gerekir.']]);
-bank('sinusAxis','O1',[
-['II’de pozitif ve aVR’de negatif ayrık P destekleyicidir','Bu öğretim sinüs örneği uygun P ekseni ve her QRS öncesi ilişkiyi birlikte gösterir.'],
-['İnferior ters ayrık P sinüs örneğini destekler','Bu modelde inferior ters P ektopik atriyal örneğe aittir; sinüs ekseniyle eş tutulmaz.'],
-['Sürekli inferior testere dişi taban sinüs P’sidir','Bu flutter F etkinliğidir; ayrık sinüs P morfolojisi değildir.'],
-['Düzensiz ince taban dalgaları düzenli sinüs P’sidir','AF f etkinliği ayrık düzenli ilişkili sinüs P dizisinden farklıdır.'],
-['Lateral terminal S P ekseninin göstergesidir','Terminal S ventriküler QRS bileşenidir; atriyal P ekseni ayrı değerlendirilir.']]);
-bank('atAxis','O1',[
-['Bu örnekte inferior ters ayrık P ektopik ekseni destekler','Sinüsten farklı ayrık P morfolojisi atriyal köken değişimini destekler; tam anatomik odak kesinleşmez.'],
-['Inferior ters P her kayıtta sinüs eksenidir','Standart sinüs öğretim örneğinde inferior P pozitiftir; bu değişim sinüs dışı morfoloji olarak sınırlandırılmıştır.'],
-['Ayrık ters P sürekli flutter F tabanıdır','Ayrık P ve izoelektrik aralık sürekli flutter F devresinden farklıdır.'],
-['Ters P ventriküler erken QRS’nin parçasıdır','P atriyal etkinliktir; burada QRS öncesi ayrı ve tekrarlayan bir morfolojidir.'],
-['Ters P etkinliğin mekanik yönünü kesin gösterir','P polaritesi elektriksel eksendir; mekanik doluş yönü veya hacmi değildir.']]);
-bank('afEarly','O2',[
-['Düzensiz dar yanıt izole erken geniş PVC’den ayrılır','Tüm dizide P yokluğu/düzensizlik AF’yi; tek erken geniş farklı olay PVC’yi destekler.'],
-['Her kısa R–R mutlaka PVC’dir','AF’de kısa dar döngüler olabilir; PVC için erken farklı geniş morfoloji ve ek kanıt aranır.'],
-['Her uzun R–R mutlaka tam kompansatuvar duraklamadır','AF’nin değişken aralığı PVC sonrası iki temel döngü toplamıyla aynı kanıt değildir.'],
-['QRS80ms ise her zaman düzenli sinüs vardır','Dar QRS AF’de de görülebilir; P ve düzenlilik ayrıca değerlendirilir.'],
-['Düzensizlik tek başına ventriküler köken kanıtıdır','Düzensizliği atriyal ve ventriküler nedenlerden ayırmak için P,kompleks ve zamanlama gerekir.']]);
-bank('stContiguous','O3',[
-['Komşu derivasyonlardaki dağılım birlikte incelenir','Bölgesel ST yorumu tek lead yerine anatomik komşuluk,karşılıklı değişim ve klinik veriyi birlikte kullanır.'],
-['En yüksek tek R genliği bölgeyi belirler','R genliği depolarizasyon izdüşümüdür; ST bölgesinin tek başına belirleyicisi değildir.'],
-['aVR her durumda tek başına anterior bölgeyi verir','Tek artırılmış lead bütün anterior prekordiyal dağılımın yerine geçmez.'],
-['Bir leadin ismi sorumlu damarın kesin adıdır','Derivasyon bölgesi koroner anatomiyi kesin birebir isimlendirmez.'],
-['ST’nin mV değeri yalnız ventrikül hızıdır','ST voltaj ve R–R zaman farklı ölçütlerdir; bölgesel voltaj hız etiketi değildir.']]);
-numberBank('qt350','QRS−40ms,T sonu310ms:310−(−40)=350ms; klinik QTc değildir.','350ms',['270ms','310ms','390ms','800ms'],['QRS başlangıcının bir kısmı veya T sonu dışlanmıştır.','R tepesinden T sonuna ölçüm hatasıdır.','QRS başlangıcı yerine daha erken atriyal sınır karıştırılmıştır.','R–R döngüsü QT yerine yazılmıştır.']);
-numberBank('qt245','QRS−40ms,T sonu205ms: toplam245ms sentetik QT.','245ms',['165ms','205ms','285ms','400ms'],['QRS başlangıç/son sınırları yanlış daraltılmıştır.','R tepesinden ölçerek başlangıç40ms dışlanmıştır.','Fazladan40ms eklenmiştir; verilen fark245ms’dir.','R–R400ms ile QT karıştırılmıştır.']);
-numberBank('qt345','QRS−70ms,T sonu275ms: toplam345ms sentetik VT QT.','345ms',['180ms','275ms','380ms','415ms'],['Bu QRS süresidir; T desteği eklenmemiştir.','R referansı kullanılarak70ms başlangıç dışlanmıştır.','VT R–R380ms döngüsü QT değildir.','Başlangıç70ms iki kez eklenmiştir.']);
-numberBank('qt430','QRS−70ms,T sonu360ms: toplam430ms sentetik LBBB QT.','430ms',['160ms','360ms','500ms','800ms'],['Bu QRS süresidir; repolarizasyon bölümünü dışlar.','R tepesinden başlama ilk70ms’yi dışlar.','70ms başlangıç iki kez eklenmiştir.','R–R döngüsü QT değildir.']);
-numberBank('qt410','QRS−60ms,T sonu350ms: toplam410ms sentetik geniş kompleks QT.','410ms',['140ms','350ms','470ms','800ms'],['Bu yalnız QRS süresidir.','R tepesini başlangıç alarak60ms dışlar.','Başlangıç60ms iki kez eklenmiştir.','R–R döngüsü QT yerine kullanılmıştır.']);
-numberBank('prL175','P−245ms,QRS−70ms:175ms; geniş QRS PR sınırını değiştirmez.','175ms',['130ms','160ms','245ms','335ms'],['P tepesinden ölçme ilk45ms’yi dışlar.','QRS160ms süresi PR yerine yazılmıştır.','P’den R referansına gitme70ms fazlalık ekler.','P’den QRS sonuna gitme QRS160ms’yi de içerir.']);
-numberBank('prR175','P−235ms,QRS−60ms:175ms; terminal sağ gecikme QRS içindedir.','175ms',['130ms','140ms','235ms','315ms'],['P merkezinden ölçme ilk45ms’yi dışlar.','QRS140ms süresi PR yerine kullanılmıştır.','P’den R referansına ölçme60ms fazlalık ekler.','QRS sonu kullanılarak140ms kompleks de eklenmiştir.']);
-bank('vfArtifact','O5',[
-['Klinik durumu ve elektrot/sinyal güvenilirliğini doğrula','Uyanık,konuşan ve perfüze kişide VF benzeri monitor görünümü klinikle çelişir; artefakt/bağlantı ve gerçek ritim hızla doğrulanır.'],
-['Yalnız ekran dalgasından kesin nabızsız VF de','Klinik perfüzyon bilgisiyle çelişen görünüm doğrulanmadan kesin nabızsız VF diye etiketlenmez.'],
-['Sadece dalga genliğine göre koroner damar seç','VF benzeri artefakt veya kaotik dalga genliği koroner damar lokalizasyonu vermez.'],
-['Son normal hızı kaydedip yeni görünümü atla','Yeni monitor değişimi klinik ve sinyal güvenilirliği açısından değerlendirilmelidir; görmezden gelinmez.'],
-['Uyanıklık varsa bütün ritim değişimlerini dışla','Uyanıklık arrest görünümüyle çelişir ama diğer ritimleri veya monitor sorunlarını değerlendirmeyi kaldırmaz.']]);
-bank('noQrs','O1',[
-['Organize QRS sınırları seçilemez','VF kaotik dalgada ayrık tekrarlayan ventriküler depolarizasyon kompleksi tanımlanamaz; genişlik kutusu boş kalır.'],
-['Kaotik her pozitif tepe dar QRS kabul edilir','Pozitif tepe tek başına organize kompleksin başlangıç/sonunu tanımlamaz.'],
-['İki negatif çukur arası QRS genişliğidir','Kaotik çukur aralığı QRS destek sınırı değildir; döngü ve kompleks tanımı karıştırılır.'],
-['Eski VT180ms yeni VF QRS’sine atanır','Ritim değişince önceki kompleks süresi yeni organize olmayan dalgada geçerli olmaz.'],
-['F dalga süresi QRS genişliği yerine yazılır','Atriyal F etkinliği ventriküler QRS sınırı değildir ve bu kaotik örnekte düzenli F de yoktur.']]);
-// Editorial revision: no repeated decision bank within a pattern's15-case group.
-function revise(mode,index,row){const rows=caseRows[mode].trim().split('\n');rows[index]=row;caseRows[mode]=rows.join('\n');}
-revise('normal',1,'II’de ayrık pozitif P ve aVR’de negatif P, her80ms QRS öncesinde görülüyor; yalnız P ekseni sorgulanıyor.^Bu modelde sinüs P’sini destekleyen yön dağılımı hangisidir?^sinusAxis');
-revise('af',1,'Dizinin tamamında kısa ve uzun dar döngüler var; tek erken geniş farklı kompleks seçilmiyor.^AF düzensizliği izole PVC’den nasıl ayrılır?^afEarly');
-revise('af',4,'Hızlı AF340–560ms döngüleri nedeniyle diyastol kısa; hasta debisi ölçülmemiş.^Hız artışı ve doluş için hangi sınırlı ifade uygundur?^fastFill');
-revise('af',9,'Yavaşlayan ventrikül yanıtı sonrası kısa şerit var; AF’nin başlangıç zamanı, yükü ve nedeni bilinmiyor.^Kayıttan etiyoloji konusunda hangi sınır gerekir?^limits');
-revise('af',14,'AF sinyali II’den V1’e geçince f morfolojisi değişiyor ama düzensiz QRS dizisi aynı kaynaktan geliyor.^Lead değişimi nasıl yorumlanır?^leadAll');
-revise('stemi',1,'Yeni ağrıda V2,V3,V4 komşu yükselmesi ayrı ayrı görülüyor; öğrenci sadece en yüksek V3’e bakıyor.^Bölgesel yorum için hangi yöntem uygundur?^stContiguous');
-revise('stemi',7,'V3’ten II’ye geçince ST yüksekliği farklılaşıyor; kalbin ritmi ve klinik belirtiler değişmiyor.^Derivasyon seçiminde değişen temel özellik nedir?^leadAll');
-revise('stemi',12,'QRS’nin son dönüşünde yükselmiş ST platosuna geçiş görülüyor; kaliper sınırı R tepesinde değil.^Bu geçişin tanımı hangisidir?^j');
-revise('pvc',1,'Erken kompleks140ms ve farklı morfolojili; sonraki sinüs kompleksleri80ms, sürekli terminal dal morfolojisi yok.^Genişliğin tek başına etiyoloji sayılması nasıl önlenir?^qrsWidthCause');
-revise('svt',1,'Dar düzenli taşikardide II,V1 ve aVF görünümleri farklı; lead menüsü değiştirilirken kaynak döngü360ms kalıyor.^Lead değişiminin anlamı nedir?^leadAll');
-revise('svt',4,'Öğrenci167/dk için80ms QRS genişliğini kullanıyor; iki organize R tepesinin arası360ms.^Düzenli dizide doğru hız formülü hangisidir?^rateVsRR');
-revise('inferior',1,'II,III,aVF komşu grubu ile I,aVL karşılıklı değişimi ayrı ayrı görülüyor; tek lead tanısından kaçınılıyor.^ST bölgesini yorumlamak için hangi yöntem uygundur?^stContiguous');
-revise('inferior',9,'Dar QRS sona erdikten sonra pozitif inferior ST platosu başlıyor; ölçüm aynı terminal sınırı kullanıyor.^Bu terminal geçiş nasıl adlandırılır?^j');
-revise('vt',1,'Geniş düzenli taşikardi180ms; önceki dal bloğu ve ayrıntılı atriyal kanıt bilinmiyor.^Genişliği etiolojik kanıt olarak kullanırken hangi sınır gerekir?^qrsWidthCause');
-revise('vt',5,'Geniş taşikardi kaydı var; toplam süresi,nedeni ve yapısal kalp verileri kısa pencerede bulunmuyor.^Etiyoloji ve risk hakkında hangi genel sınır uygundur?^limits');
-revise('vf',1,'VF benzeri kaotik dalga II ve V1’de farklı yansıyor; lead seçimi elektriksel görünümü değiştiriyor.^Derivasyon değişiminin kaynağa etkisi nasıl yorumlanır?^leadAll');
-revise('vf',3,'Kaotik etkinlikte yatay eksen saniye,dikey eksen mV; ekran büyütülmüş fakat dalga kaynağı aynı.^Eksen ve fiziksel ekran ölçeği için hangi ifade doğrudur?^timeScale');
-revise('vf',5,'Ölçüm aracı QT istiyor; dalgada organize QRS başlangıcı veya ona ait T sonu seçilemiyor.^QT nasıl raporlanır?^qtNone');
-revise('vf',6,'VF’de ölçüm kutusu QRS genişliği istiyor; kaotik tepelerin farklı genişlikleri var.^Kompleks sınırları hakkında hangi ifade uygundur?^noQrs');
-revise('vf',8,'Monitor VF benzeri görünürken kişi uyanık,konuşuyor ve perfüze; bu çelişkili sentetik senaryoda gerçek ritim doğrulanacak.^Öncelikli değerlendirme hangisidir?^vfArtifact');
-revise('vf',12,'Kaotik anlık I ve II voltajı farklı; artırılmış sol kol sinyalinin de tutarlı türetilmesi isteniyor.^aVL için dönüşüm hangisidir?^avl');
-revise('vf',13,'Kaotik I ve II bileşenleri aynı elektrot anından alınmış; inferior artırılmış sinyal hesaplanıyor.^aVF için dönüşüm hangisidir?^avf');
-revise('pat',1,'Hızlı kayıtta inferior P ters ama ayrık; sinüs dışı morfoloji var, kesin anatomik odak bilinmiyor.^P ekseni için hangi yorum uygundur?^atAxis');
-revise('pat',2,'Ektopik P’ler arasındaki taban izoelektrik; V1’e geçince P izdüşümü değişiyor ama kaynak sabit.^Lead seçimiyle ne değişir?^leadAll');
-revise('pat',4,'Ektopik P ve QRS döngüsü400ms; ilk ve son atak sınırları kaydedilmemiş, hız formülü soruluyor.^Düzenli elektriksel hız hangi formülle hesaplanır?^rateVsRR');
-revise('flutter',1,'İnferior testere dişi etkinlik QRS dışında da sürekli sürüyor; öğrenci bu dalgaları sinüs P sayıyor.^F ile ayrık P arasındaki doğru ayrım hangisidir?^fNotP');
-revise('flutter',3,'Sürekli F tabanında aynı QRS II’den V1’e geçince farklı polaritede; atriyal devre hızı sabit.^Lead değişimi nasıl yorumlanır?^leadAll');
-revise('flutter',5,'R–R400ms ve QRS80ms; öğrenci hız formülünde QRS genişliğini döngü yerine kullanıyor.^Düzenli ventriküler hız için doğru formül hangisidir?^rateVsRR');
-revise('sintach',1,'Ağrıda sinüs P II’de pozitif,aVR’de negatif; hız120/dk ve QRS dar, yalnız atriyal eksen yorumlanıyor.^Sinüs P’si için hangi yön dağılımı destekleyicidir?^sinusAxis');
-revise('sintach',3,'Ateş sonrası kısa hızlı sinüs şeridi var; toplam süreç,ilaç etkisi ve yapısal kalp verileri eksik.^Etiyoloji ve risk çıkarımı nasıl sınırlandırılır?^limits');
-revise('lbbb',1,'Geniş QRS160ms; sadece genişlik kaydedilmiş, sağ/lateral morfoloji diğer izlerde ayrıca inceleniyor.^Tek genişliği mekanizma sayarken hangi sınır gerekir?^qrsWidthCause');
-revise('lbbb',3,'P ilk sapması−245ms,QRS ilk sapması−70ms; öğrenci R tepesini bitiş sanıyor.^Bu sinüs atımının PR değeri kaçtır?^prL175');
-revise('lbbb',9,'LBBB’de QRS başlangıcı−70ms,T sonu+360ms; toplam elektriksel destek soruluyor.^Sentetik QT kaçtır?^qt430');
-revise('rbbb',1,'Her sinüs atımının QRS’si140ms; sadece süre biliniyor, terminal sağ/lateral kanıt ayrıca aranıyor.^Tek genişlikle RBBB etiyolojisi kesinleştirilirken hangi sınır gerekir?^qrsWidthCause');
-revise('rbbb',3,'P başlangıcı−235ms,QRS başlangıcı−60ms; terminal R′ PR’den sonra uzuyor.^PR aralığı kaçtır?^prR175');
-revise('rbbb',8,'RBBB kompleksinde QRS başlangıcı−60ms,T sonu+350ms; klinik QTc hesabı yapılmıyor.^Sentetik QT değeri kaçtır?^qt410');
 const quizRows={
 normal:`
-İki ardışık organize kompleksin R tepeleri0,8s aralıklıdır; T tepeleri hız hesabına katılmıyor.^Elektriksel hız hangi değerdir?^rr800
-Sinüs P’nin ilk sapması−0,215s; QRS’nin ilk sapması−0,040s.^Milisaniyeye çevrilen PR kaçtır?^pr175
-Normal çizimde QRS−0,040s ile+0,040s arasında desteklenir.^Çizginin kalınlığından bağımsız aktivasyon süresi kaçtır?^q80
-Bu sinüs çiziminde T’nin son sınırıR+0,310s; QRS ilk sınırıR−0,040s.^QT’nin ham sentetik değeri kaçtır?^qt350
-P,R,T farklı tepeler taşır; öğrenci atriyoventriküler iletim süresini tanımlıyor.^PR’nin tanımında hangi iki başlangıç kullanılır?^pr
-R lobu yüksek,Q ve S daha küçük; aktivasyon süresi sorusu tüm kompleksi kapsıyor.^QRS genişliği hangi sınırlarla ölçülür?^duration
-T’nin son dönüşü ve QRS’nin ilk sapması belirlenmiş; hız düzeltmesi yapılmıyor.^QT’nin tanımı hangisidir?^qt
-I0,72mV ve II1,00mV anlık elektriksel potansiyellerdir; artırılmış sağ kol isteniyor.^aVR için doğru formül hangisidir?^avr
-Bir andaki I ve II elektriksel bileşenlerinden artırılmış sol kol görüntüsü oluşturulacak.^Doğru aVL formülü hangisidir?^avl
-Bir andaki I ve II elektriksel bileşenlerinden artırılmış inferior görüntü oluşturulacak.^Doğru aVF formülü hangisidir?^avf
-Oynatma1×’ten2×’e alınmış; sinyal fidüsiyelleri ve16s gözlem kuralı sabit.^Çarpanın etkisi hangi ifadeyle doğru açıklanır?^speed
-Bir panel büyütülünce grid pikseli değişiyor; kayıt eksenleri hâlâ saniye ve mV.^Görsel ölçek hakkında hangi ifade doğrudur?^timeScale
-QRS terminal dönüşü ile düz ST çizgisi birleşiyor; R tepesi daha önce.^Bu birleşim sınırı nedir?^j
-II yerine V1 seçiliyor; sinyal polaritesi değişiyor, döngü800ms kalıyor.^Lead değiştirmek neyi değiştirir?^leadAll
-Hesap aracı normal düzenli dizide80ms QRS yerine800ms döngü süresini seçiyor.^Hız için hangi formül uygundur?^rateVsRR`,
+24 yaşında erkek hasta. Başvuru: askerlik sağlık kurulu muayenesinde. İki ardışık R tepesi arası 800 ms ölçülüyor.^Bu döngü süresiyle elektriksel hız yaklaşık kaçtır?^rr800
+55 yaşında kadın hasta. Başvuru: menopoz sonrası rutin kardiyoloji kontrolünde. Kaliperle P’nin ilk sapması QRS’den 215 ms önce, QRS’in ilk sapması 40 ms önce işaretleniyor.^Bu ölçümlerle PR aralığı kaç milisaniyedir?^pr175
+31 yaşında erkek hasta. Başvuru: pilotluk sağlık raporu için başvuruyor. Sistematik okumada hangi derivasyonların ön duvarı temsil ettiği gözden geçiriliyor.^V3 ve V4 derivasyonları hangi bölgeyi yansıtır?^anteriorLeadGroup
+49 yaşında kadın hasta. Başvuru: diyabet izleminde rutin EKG isteniyor. Monitörde ayrık, tekrarlayan bir dalganın seçilip seçilemediği sorgulanıyor.^Bu ritimde ayrık bir P dalgası seçilebiliyor mu?^pWaveVisibleYesBank
+67 yaşında erkek hasta. Başvuru: katarakt ameliyatı öncesi anestezi değerlendirmesinde. P dalgası ile QRS arasındaki ilişki kaliperle işaretleniyor.^PR aralığı hangi iki sınır arasında ölçülür?^pr
+28 yaşında kadın hasta. Başvuru: doğum sonrası rutin kontrolde. Kısa süreli bir kayıt elde ediliyor; önceki öykü ve ek testler henüz yok.^Bu bulgudan etiyoloji ve risk için hangi genel sınır çıkarılabilir?^limits
+43 yaşında erkek hasta. Başvuru: yıllık iş sağlığı taramasında. Standart 12 derivasyonluk kayıt üzerinde derivasyon grupları gözden geçiriliyor.^aVR, aVL ve aVF birlikte hangi derivasyon grubunu oluşturur?^augmentedGroup
+36 yaşında kadın hasta. Başvuru: diş implantı öncesi genel değerlendirmede. Monitörde düzenli, dar QRS’li bir ritim izleniyor; her kompleksten önce aynı yönlü bir P dalgası var.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_normal
+59 yaşında erkek hasta. Başvuru: hipertansiyon izleminde rutin EKG çekiliyor. Ventriküler kompleksten sonra gelen dalganın anlamı soruluyor.^T dalgasının temel elektriksel karşılığı nedir?^t
+21 yaşında kadın hasta. Başvuru: üniversite spor takımı seçmelerinde. Bulgu düzenli görünse de eşlik eden semptomlar ayrıca değerlendiriliyor.^Bu klinik tabloda hangi değerlendirme ilkesi önceliklidir?^urgent
+65 yaşında kadın hasta. Başvuru: kalça protezi öncesi anestezi değerlendirmesinde. Yakınma yok; bulgu rutin değerlendirmede saptanıyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_normal
+30 yaşında erkek hasta. Başvuru: düzenli koşucu, yıllık sağlık kontrolünde. Elektriksel kayıt sürerken nabız muayenesi ayrıca planlanıyor.^EKG bulgusu ile mekanik nabız arasındaki ilişki için hangi değerlendirme gerekir?^pulse
+54 yaşında kadın hasta. Başvuru: tiroid izleminde rutin EKG isteniyor. Monitörde düzenli, dar QRS’li bir ritim izleniyor; her kompleksten önce aynı yönlü bir P dalgası var.^Bu ritim hangi sınıfa girer?^rhythmClass_normal
+40 yaşında erkek hasta. Başvuru: uzun yol sürücü belgesi muayenesinde. Aynı kayıt üzerinde farklı bir derivasyon grubuna geçildiğinde görünüm değişiyor.^Derivasyon seçimini değiştirmenin bulguya etkisi nedir?^leadAll
+27 yaşında kadın hasta. Başvuru: yeni işe giriş sağlık muayenesinde. Sistematik okumada V1–V2’nin hangi bölgeyi yansıttığı gözden geçiriliyor.^V1 ve V2 derivasyonları hangi bölgeyi yansıtır?^precordialSeptal`,
 af:`
-On ardışık dar kompleksin aralıkları değişken; tümünde tutarlı ayrık P yok, düzenli F tabanı da yok.^En uygun elektriksel örüntü hangisidir?^af
-Bu AF kaydının en kısa aralığıyla başka bir penceredeki en uzun aralık farklı hız verir.^Temsil edici hız değerlendirmesi nasıl yapılır?^afRR
-Kontrollü profilde600–1000ms, hızlı profilde340–560ms aralıklar üretiliyor.^Bu iki profil arasındaki ayrım hangisidir?^afProfile
-PR aracında f tabanından rastgele bir tepe seçilmiş; ilişkili P başlangıcı yok.^Bu aralıktaki PR durumu nedir?^prNone
-Dar QRS−40ms’den+40ms’ye sürüyor; AF tabanı desteğin dışında da devam ediyor.^Ventriküler kompleks süresi kaçtır?^q80
-Bir f dalgası QRS’den önce görülüyor, ancak sonraki döngüde aynı ilişki tekrarlanmıyor.^Bu taban etkinliği sayımda nasıl ele alınır?^fNotQRS
-Atriyumlarda ince düzensiz voltaj sürüyor; ayrı koordine kasılma gösterilmiyor.^AF’nin doluş katkısında hangi değişim beklenir?^afAtrial
-Elektriksel90/dk sayım ile palpasyon sayımı eşleştirilecek; QRS dar olması veri olarak var.^Mekanik nabız için hangi çıkarım doğrudur?^pulse
-Kontrollü hızda QRS daha seyrek, fakat ayrık sinüs P geri dönmemiş.^Klinik tromboemboli değerlendirmesi hangi ilkeye bağlıdır?^afRisk
-Kısa R–R’nin morfolojisi yine80ms dar; erken geniş ventriküler olay kanıtı yok.^Kısa AF aralığı PVC’den nasıl ayrılır?^afEarly
-f ve QRS bileşenleri I/II elektrot farklarından birlikte türetiliyor.^III için temel bipolar ilişki hangisidir?^limb
-AF’de aynı anlık I/II voltajları sağ kol artırılmış leadine aktarılıyor.^aVR nasıl hesaplanır?^avr
-Düzensiz sinyalde sol kol artırılmış leadin hem taban hem QRS’si tutarlı türetiliyor.^aVL ilişkisi hangisidir?^avl
-Hızlı AF’ye geçince daha kısa diyastol çiziliyor; doğrudan basınç/debi verisi yok.^Hız ve doluş hakkında hangi sınırlandırılmış yorum uygundur?^fastFill
-Son QRS’den sonra AV açıkken tabanda f etkinliği sürüyor; ventrikül hacmi doluşla geri geliyor.^Kapak düzeninin mekanik yorumu nedir?^fill`,
+62 yaşında erkek hasta. Başvuru: iş stresi sonrası çarpıntı hissiyle başvuruyor. Nabız düzensiz alınıyor; monitörde dar QRS’ler arasında değişken aralıklar ve seçilemeyen bir atriyal dalga görülüyor.^Bu EKG bulgularıyla en uyumlu ritim örüntüsü hangisidir?^af
+59 yaşında kadın hasta. Başvuru: kafein alımı sonrası çarpıntı tarif ediyor. Aynı izlem şeridinde ardışık R–R aralıkları 620, 870 ve 710 ms olarak ölçülüyor.^Bu ritmin hızı en uygun şekilde nasıl değerlendirilir?^afRR
+78 yaşında erkek hasta. Başvuru: düşme sonrası acil serviste nabzı düzensiz bulunuyor. Nabız düzensiz; monitör hem yavaş hem hızlı seyreden düzensiz dar kompleks dönemleri kaydediyor.^Ventrikül hız profili ile atriyal köken birlikte nasıl yorumlanır?^afProfile
+55 yaşında kadın hasta. Başvuru: tiroid izlem polikliniğinde rutin EKG çekiliyor. Nabız düzensiz; ritim ve hız kontrolü seçenekleri değerlendiriliyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_af
+66 yaşında erkek hasta. Başvuru: ameliyat sonrası serviste düzensiz nabız fark ediliyor. Dar bir kompleksin ilk sapması 40 ms önce, son dönüşü 40 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q80
+70 yaşında kadın hasta. Başvuru: nefes darlığı ile solunum polikliniğine başvuruyor. Taban etkinliği devam ederken ventriküler kompleks sayımı ayrıca yapılıyor.^Bu taban etkinliği kalp hızı hesabında nasıl ele alınmalıdır?^fNotQRS
+61 yaşında erkek hasta. Başvuru: egzersiz testi öncesi rutin EKG çekiliyor. Ekokardiyografi beklenirken monitörde atriyal duvarda organize kasılma yerine titreşim benzeri hareket tanımlanıyor.^Atriyumun organize kasılma katkısına ne olur?^afAtrial
+74 yaşında kadın hasta. Başvuru: gece çarpıntısıyla uyanma yakınmasıyla geliyor. Elektriksel kayıt sürerken nabız muayenesi ayrıca planlanıyor.^EKG bulgusu ile mekanik nabız arasındaki ilişki için hangi değerlendirme gerekir?^pulse
+67 yaşında erkek hasta. Başvuru: diyabet izlem vizitinde düzensiz nabız saptanıyor. Uzun süredir bilinen bir ritim bozukluğu ile hipertansiyon öyküsü birlikte değerlendiriliyor.^Tromboemboli riski nasıl değerlendirilmelidir?^afRisk
+52 yaşında kadın hasta. Başvuru: ilk kez çarpıntı yakınmasıyla aile hekimine başvuruyor. Kaydın genelinde değişken aralıklı dar kompleksler var; yalnızca bir yerde erken ve geniş, farklı görünümlü tek bir kompleks seçiliyor.^Bu düzensizlik izole bir erken atımdan nasıl ayrılır?^afEarly
+80 yaşında erkek hasta. Başvuru: bakımevi rutin muayenesinde düzensiz nabız fark ediliyor. Aynı kayıt üzerinde farklı bir derivasyon grubuna geçildiğinde görünüm değişiyor.^Derivasyon seçimini değiştirmenin bulguya etkisi nedir?^leadAll
+65 yaşında kadın hasta. Başvuru: solunum yolu enfeksiyonu sonrası çarpıntı tarif ediyor. Sistematik okumada hangi derivasyonların yan duvarı temsil ettiği gözden geçiriliyor.^Hangi derivasyonlar lateral duvarı gösterir?^lateralLeadGroup
+76 yaşında erkek hasta. Başvuru: kronik böbrek hastalığı izleminde düzensiz nabız saptanıyor. Nabız düzensiz alınıyor; monitörde dar QRS’ler arasında değişken aralıklar ve seçilemeyen bir atriyal dalga görülüyor.^Bu ritim hangi sınıfa girer?^rhythmClass_af
+63 yaşında kadın hasta. Başvuru: ameliyathane öncesi anestezi değerlendirmesinde. Nabız düzensiz alınıyor; monitörde dar QRS’ler arasında değişken aralıklar ve seçilemeyen bir atriyal dalga görülüyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_af
+69 yaşında erkek hasta. Başvuru: yorgunluk ve efor kapasitesinde azalma ile başvuruyor. Bulgu düzenli görünse de eşlik eden semptomlar ayrıca değerlendiriliyor.^Bu klinik tabloda hangi değerlendirme ilkesi önceliklidir?^urgent`,
 stemi:`
-V1,V2,V3,V4 birlikte yükselmiş ST içeriyor; II ve III’de aynı baskın yükselme görülmüyor.^Dağılımın doğru adı hangisidir?^anterior
-Komşu V2/V3/V4 değişimleri ve iskemik belirtiler birlikte verilmiş; tek tepeye odaklanılmıyor.^Bölgesel ST yorumu hangi yöntemle yapılır?^stContiguous
-V3 J+20ms+0,32mV, TP0mV; sayısal voltaj farkı isteniyor.^ST ölçümü hangi değerdir?^st32
-R tepesinden sonra QRS biter; ST platosu T’den önce devam eder.^ST yüksekliği için hangi yaklaşım doğru tanımdır?^st
-Kaliper mevcut QRS’nin son sapmasını belirliyor; sonraki QRS değil.^QRS–ST birleşiminin fidüsiyeli hangisidir?^j
-Düzenli sinüs dizisinde iki R arası800ms; ST yükselmesi bu süreyi değiştirmiyor.^Ventriküler elektriksel hız kaçtır?^rr800
-P−215ms ve QRS−40ms ilk sapmaları veriliyor; J noktası daha sonraki sınır.^PR değeri kaçtır?^pr175
-QRS ilk ve son sınırları−40/+40ms; sonrasında yükselmiş ST var.^QRS aktivasyon süresi kaçtır?^q80
-ST platosu yükselmiş ama T sonuR+310ms; QRS başlangıcıR−40ms.^Ham sentetik QT kaçtır?^qt350
-Bölgesel duvar hareketi zayıf gösterilirken global çıkış parçacıkları sürüyor.^İskemi şeması ile gerçek hemodinami nasıl ayrılır?^ischemiaFlow
-ST bölgesi anterior, koroner anatomi ve klinik seri veriler henüz yok.^Tek çizimden damar/klinik tanı çıkarımı için hangi sınır gerekir?^ischemiaLimits
-Devam eden göğüs ağrısı var;75/dk sinüs düzeni korunuyor.^Klinik değerlendirme gereksinimi nasıl yorumlanır?^urgent
-I+0,04,II−0,04mV anlık ST bileşenleri ve III−0,08mV birlikte gösteriliyor.^Bipolar ilişki hangisidir?^limb
-II,V3 ve aVL’yi seçmek aynı kaynakta farklı ST voltajları gösteriyor.^Lead değişimi nasıl yorumlanır?^leadAll
-Düzenli organize QRS yanında klinik perfüzyon bilgisi eksik; ST bölgesi biliniyor.^Mekanik nabız için hangi ek yaklaşım gerekir?^pulse`,
+57 yaşında kadın hasta. Başvuru: uzun yolculuk sonrası göğüs ağrısıyla geliyor. Ağrı sırasında alınan EKG’de komşu ön duvar derivasyonlarında ST yükselmesi izleniyor.^ST değişiminin dağılımı hangi bölgeyi işaret eder?^anterior
+45 yaşında erkek hasta. Başvuru: ailesinde erken MI öyküsü olan hastada göğüs ağrısı. Birden çok komşu derivasyondaki değişim birlikte değerlendiriliyor.^Bölgesel ST değişimi yorumlanırken hangi yöntem uygundur?^stContiguous
+66 yaşında kadın hasta. Başvuru: hipertansiyon öyküsüyle ani göğüs ağrısı tarif ediyor. V3 derivasyonunda J noktasından 20 ms sonrası +0,32 mV olarak ölçülüyor.^Bu ölçümle ST yüksekliği kaç mV’tur?^st32
+59 yaşında erkek hasta. Başvuru: egzersiz sonrası dinmeyen göğüs ağrısıyla başvuruyor. Göğüs ağrısı sırasında alınan izde düzenli, dar QRS'li bir ritim var; ön duvar derivasyonlarında ST değişimi ayrıca değerlendiriliyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_stemi
+72 yaşında kadın hasta. Başvuru: nefes darlığı ve göğüs ağrısıyla ambulansla getiriliyor. QRS’den kısa süre önce ayrı bir dalga seçiliyor.^P dalgasının temel elektriksel karşılığı nedir?^p
+48 yaşında erkek hasta. Başvuru: yoğun iş temposu sonrası göğüs ağrısı gelişiyor. İki ardışık R tepesi arası 800 ms ölçülüyor.^Bu döngü süresiyle elektriksel hız yaklaşık kaçtır?^rr800
+53 yaşında kadın hasta. Başvuru: sabah sporunda göğüs ağrısıyla duruyor. İzlemde bir anda çıkış kapaklarının açık, giriş kapaklarının kapalı olduğu gösteriliyor.^Bu andaki kapak ve akım durumu hangi mekanik evreyi tanımlar?^eject
+65 yaşında erkek hasta. Başvuru: geceleri tekrarlayan göğüs ağrısıyla başvuruyor. Standart 12 derivasyonluk kayıt üzerinde derivasyon grupları gözden geçiriliyor.^aVR, aVL ve aVF birlikte hangi derivasyon grubunu oluşturur?^augmentedGroup
+70 yaşında kadın hasta. Başvuru: önceki stent öyküsüyle tekrar göğüs ağrısı ile geliyor. Kısa süreli bir kayıt elde ediliyor; önceki öykü ve ek testler henüz yok.^Bu bulgudan etiyoloji ve risk için hangi genel sınır çıkarılabilir?^limits
+44 yaşında erkek hasta. Başvuru: ani başlayan şiddetli göğüs ağrısıyla acile geliyor. Animasyonda bir duvar bölgesinin hareketi azalırken ana damardaki akışın sürdüğü gösteriliyor.^Bölgesel bulgu ile global dolaşım arasındaki ayrım nasıl yapılmalıdır?^ischemiaFlow
+62 yaşında kadın hasta. Başvuru: diyabet ve hipertansiyon öyküsüyle göğüs ağrısı tarif ediyor. ST değişimi saptanıyor; anjiyografi veya ileri görüntüleme henüz yapılmamış.^Bu bulgudan sorumlu damar hakkında hangi sınır geçerlidir?^ischemiaLimits
+56 yaşında erkek hasta. Başvuru: merdiven çıkarken başlayan göğüs ağrısıyla başvuruyor. Bulgu düzenli görünse de eşlik eden semptomlar ayrıca değerlendiriliyor.^Bu klinik tabloda hangi değerlendirme ilkesi önceliklidir?^urgent
+69 yaşında kadın hasta. Başvuru: uzun süredir sigara içen hastada göğüs ağrısı. Ventriküler kompleksin izde temsil ettiği olay ayrıca soruluyor.^QRS kompleksinin temel elektriksel karşılığı nedir?^qrs
+51 yaşında erkek hasta. Başvuru: iş stresiyle birlikte göğüs sıkışması tarif ediyor. Aynı kayıt üzerinde farklı bir derivasyon grubuna geçildiğinde görünüm değişiyor.^Derivasyon seçimini değiştirmenin bulguya etkisi nedir?^leadAll
+74 yaşında kadın hasta. Başvuru: ani fenalaşma ve göğüs ağrısıyla 112 ile getiriliyor. Göğüs ağrısı sırasında alınan izde düzenli, dar QRS'li bir ritim var; ön duvar derivasyonlarında ST değişimi ayrıca değerlendiriliyor.^Bu ritim hangi sınıfa girer?^rhythmClass_stemi`,
 pvc:`
-800ms temel sinüs döngüsü içinde erken480ms aralıklı,140ms farklı QRS beliriyor.^Olayın doğru örüntü adı hangisidir?^pvc
-Öncül ilişkili P yok; ventriküler kompleks beklenen sinüs anından önce başlıyor.^Erken olayın elektriksel kaynağı nasıl açıklanır?^pvcOrigin
-Erken aralık480ms, postektopik aralık1120ms; toplam iki800ms temel döngü.^Duraklamanın bu sentetik örnekteki yorumu nedir?^pvcPause
-Geniş erken dalga−60/+80ms sınırlarına sahiptir; sonraki sinüs kompleksi dardır.^Erken QRS süresi kaçtır?^q140
-Bu PVC penceresindeki temel sinüs QRS’si−40/+40ms arasında; PVC’yle karıştırılmıyor.^Sinüs kompleksinin süresi kaçtır?^q80
-Erken olaydan sonraki T’nin ana yönü QRS’ye ters; izde sonraki sinüs T farklıdır.^Repolarizasyon değişimi nasıl sınıflanır?^pvcT
-140ms tek erken kompleks ile140ms her sinüs atımında terminal dal gecikmesi karşılaştırılıyor.^Genişlik yorumunda hangi ilke korunmalıdır?^qrsWidthCause
-Erken QRS’de P sınırı yok; sinüs aralığı için ölçülen PR bu olaya aktarılmak isteniyor.^Erken olayın PR durumu nedir?^prNone
-Komşu sinüs atımında P−215ms,QRS−40ms; yalnız bu atımda PR tanımlı.^Sinüs PR değeri kaçtır?^pr175
-PVC’de QRS−60ms,T sonu+350ms; toplam destek isteniyor.^Ham sentetik QT kaçtır?^qt410
-Öğrenci yalnız erken geniş kompleksin pozitif tepesini kaliperle kapsıyor.^Toplam QRS için hangi sınır tanımı gerekir?^duration
-Tekleme hissi verilmiş fakat sıklık,yapısal hastalık ve semptom ilişkisi bilinmiyor.^Risk ve etiyoloji için hangi sınır uygundur?^limits
-Erken elektriksel atımın palpasyonda hissedilip hissedilmediği değerlendirilmemiş.^Mekanik nabız için ne gerekir?^pulse
-Postektopik daha uzun döngüde AV kapaklar açık ve hacim toparlanıyor.^Bu kapak/hacim durumu hangi evredir?^fill
-Erken QRS ve sekonder T’nin I/II voltajları artırılmış inferior leadine birlikte aktarılıyor.^aVF’nin tutarlı dönüşümü hangisidir?^avf`,
+39 yaşında kadın hasta. Başvuru: iş yerinde ani tekleme hissiyle fark ediyor. Temel düzenli ritim sırasında, öncesinde ilişkili bir dalga olmayan erken ve geniş tek bir kompleks dikkati çekiyor.^Bu erken atımın en uygun sınıflaması hangisidir?^pvc
+47 yaşında erkek hasta. Başvuru: uykusuzluk sonrası çarpıntı tarif ediyor. Erken ve geniş tek bir kompleksten hemen önce ilişkili bir dalga seçilemiyor.^Bu erken atımın kaynağı nasıl açıklanır?^pvcOrigin
+61 yaşında kadın hasta. Başvuru: tiroid izleminde rutin EKG’de erken atım saptanıyor. Erken atımın öncesindeki ve sonrasındaki aralıklar 480 ms ve 1120 ms olarak ölçülüyor.^Bu duraklamanın süresi ve yorumu hangisidir?^pvcPause
+34 yaşında erkek hasta. Başvuru: enerji içeceği sonrası tekleme hissi tarif ediyor. Geniş bir kompleksin ilk sapması 60 ms önce, son dönüşü 80 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q140
+53 yaşında kadın hasta. Başvuru: menopoz döneminde ara sıra çarpıntı fark ediyor. Temel düzenli ritim sırasında, öncesinde ilişkili bir dalga olmayan erken ve geniş tek bir kompleks dikkati çekiyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_pvc
+42 yaşında erkek hasta. Başvuru: maraton antrenmanı sonrası tekleme hissiyle geliyor. Erken ve geniş kompleksin hemen ardından ana yöne ters bir T dalgası izleniyor.^Bu erken atım sonrası T değişikliği nasıl yorumlanır?^pvcT
+57 yaşında kadın hasta. Başvuru: yorgunluk ve ara sıra çarpıntı ile başvuruyor. Kompleks genişliği tek başına değerlendirilerek kökeni hakkında yorum yapılmak isteniyor.^QRS genişliğini tek başına yorumlarken hangi sınır geçerlidir?^qrsWidthCause
+31 yaşında erkek hasta. Başvuru: gece nöbeti sonrası tekleme hissi tarif ediyor. Sistematik okumada hangi derivasyonların ön duvarı temsil ettiği gözden geçiriliyor.^V3 ve V4 derivasyonları hangi bölgeyi yansıtır?^anteriorLeadGroup
+49 yaşında kadın hasta. Başvuru: kahve tüketimi sonrası çarpıntı yakınmasıyla geliyor. Kaliperle P’nin ilk sapması QRS’den 215 ms önce, QRS’in ilk sapması 40 ms önce işaretleniyor.^Bu ölçümlerle PR aralığı kaç milisaniyedir?^pr175
+64 yaşında erkek hasta. Başvuru: rutin check-up sırasında erken atım saptanıyor. Standart 12 derivasyonluk kayıt üzerinde derivasyon grupları gözden geçiriliyor.^aVR, aVL ve aVF birlikte hangi derivasyon grubunu oluşturur?^augmentedGroup
+37 yaşında kadın hasta. Başvuru: egzersiz sonrası soğuma döneminde tekleme fark ediyor. Temel düzenli ritim sırasında, öncesinde ilişkili bir dalga olmayan erken ve geniş tek bir kompleks dikkati çekiyor.^Bu ritim hangi sınıfa girer?^rhythmClass_pvc
+46 yaşında erkek hasta. Başvuru: iş stresiyle birlikte ara sıra çarpıntı tarif ediyor. Kısa süreli bir kayıt elde ediliyor; önceki öykü ve ek testler henüz yok.^Bu bulgudan etiyoloji ve risk için hangi genel sınır çıkarılabilir?^limits
+59 yaşında kadın hasta. Başvuru: holter raporunda izole erken atımlar bildiriliyor. Elektriksel kayıt sürerken nabız muayenesi ayrıca planlanıyor.^EKG bulgusu ile mekanik nabız arasındaki ilişki için hangi değerlendirme gerekir?^pulse
+28 yaşında erkek hasta. Başvuru: spor müsabakası sonrası tekleme hissiyle geliyor. İzlemde giriş kapaklarının açık, çıkış kapaklarının kapalı olduğu bir an gösteriliyor.^Bu kapak ve hacim düzeni hangi mekanik evreyi gösterir?^fill
+54 yaşında kadın hasta. Başvuru: uzun toplantı sonrası çarpıntı yakınmasıyla başvuruyor. Erken atımın sıklığı ve eşlik eden semptomlar birlikte değerlendiriliyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_pvc`,
 svt:`
-167/dk düzenli80ms kompleksler var; ayrık sinüs veya ektopik P bu pencerede gösterilmemiş.^Tanımlanabilecek en uygun örüntü hangisidir?^svt
-Bir R’den sonraki R’ye360ms var; dar QRS genişliği80ms ayrıca verilmiş.^Döngüden hesaplanan hız kaçtır?^rr360
-QRS desteği−40/+40ms; P seçilememesi QRS sınırlarını ortadan kaldırmıyor.^QRS süresi kaçtır?^q80
-Dar taşikardinin P’si T veya QRS ile örtüşebilir; mekanizma belirleyici ek veri yok.^Kesin AVNRT/AVRT ayrımı için hangi sınır geçerlidir?^svtLimits
-PR kutusuna varsayılan175ms konmuş ama ayrık ilişkili P başlangıcı saptanmamış.^Ölçümün doğru durumu nedir?^prNone
-Hız hesabı QRS genişliğiyle değil düzenli R–R ile yapılacak; zaman birimi saniye.^Doğru formül hangisidir?^rateVsRR
-Hızlı çizimde QRS başlangıcı−40ms,T sonu+205ms.^Ham sentetik QT kaçtır?^qt245
-Repolarizasyon için R/T tepeleri yerine QRS ilk sapması/T sonu aranıyor.^QT tanımında hangi sınırlar doğrudur?^qt
-45ms’de kasılma başlamış, semilüner kapaklar henüz açılmamış;60ms’de ejeksiyon başlayacak.^45ms’nin kapak/faz açıklaması nedir?^mechanic
-100ms’de AV kapaklar kapalı, çıkışlar açık; elektriksel T bölümü yaklaşmakta.^Mekanik anın doğru açıklaması nedir?^eject
-Döngü360ms olduğundan doluş penceresi75/dk örnekten daha kısa; hasta debisi ölçülmüyor.^Hız–doluş için hangi ifade uygundur?^fastFill
-T sona yaklaşırken prekordiyal grup V1’den V6’ya alınmış; ritim kaynağı değişmiyor.^Lead değişiminin anlamı nedir?^leadAll
-Şerit2× oynatılınca dalga akışı hızlanıyor fakat360ms model döngüsü aynı.^Oynatma ve gerçek izleme süresi nasıl ayrılır?^speed
-Organize dar hızlı QRS var; klinik palpasyon ve basınç verisi yok.^Mekanik nabız hakkında ne gerekir?^pulse
-Presenkop ve hızlı düzenli çarpıntı bildirilmiş; tüm ayrıntılar klinik ekibe ait.^Hangi klinik değerlendirme ilkesi uygundur?^urgent`,
+21 yaşında erkek hasta. Başvuru: spor müsabakası sırasında ani çarpıntı gelişiyor. Ani başlayan hızlı, düzenli ve dar kompleksli bir ritim izleniyor; ayrı bir atriyal dalga seçilemiyor.^Bu bulgularla en uygun kapsamlı sınıflama hangisidir?^svt
+44 yaşında kadın hasta. Başvuru: ani başlayan çarpıntı ile göğüste sıkışma tarif ediyor. İki ardışık R tepesi arası 360 ms ölçülüyor.^Bu döngü süresiyle elektriksel hız yaklaşık kaçtır?^rr360
+30 yaşında erkek hasta. Başvuru: sabah kalkarken ani hızlı çarpıntı fark ediyor. Dar bir kompleksin ilk sapması 40 ms önce, son dönüşü 40 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q80
+25 yaşında kadın hasta. Başvuru: kafeinli içecek sonrası ani çarpıntı ile başvuruyor. Dar kompleksli hızlı ritimde P dalgası QRS veya T ile örtüşüyor olabilir.^Kesin mekanizma için hangi sınır geçerlidir?^svtLimits
+50 yaşında erkek hasta. Başvuru: ani başlayan çarpıntı presenkop olmadan geçiyor. QRS’den kısa süre önce ayrı bir dalga seçiliyor.^P dalgasının temel elektriksel karşılığı nedir?^p
+34 yaşında kadın hasta. Başvuru: uzun süredir tekrarlayan ani çarpıntı atakları tarif ediyor. Sistematik okumada hangi derivasyonların inferior duvarı temsil ettiği gözden geçiriliyor.^Hangi derivasyon grubu inferior duvarı gösterir?^inferiorLeadGroup
+28 yaşında erkek hasta. Başvuru: egzersiz sonrası ani hızlı çarpıntı ile başvuruyor. Ventriküler kompleksin izde temsil ettiği olay ayrıca soruluyor.^QRS kompleksinin temel elektriksel karşılığı nedir?^qrs
+46 yaşında kadın hasta. Başvuru: ani çarpıntı sırasında nefes darlığı da tarif ediyor. İzlemde giriş kapaklarının açık, çıkış kapaklarının kapalı olduğu bir an gösteriliyor.^Bu kapak ve hacim düzeni hangi mekanik evreyi gösterir?^fill
+22 yaşında erkek hasta. Başvuru: ilk kez yaşadığı ani çarpıntı ile acile geliyor. İzlemde QRS’den kısa süre sonra basıncın yükseldiği, ancak çıkış kapaklarının henüz açılmadığı bir an inceleniyor.^Bu andaki kapak durumu hangi mekanik evreyi tanımlar?^mechanic
+39 yaşında kadın hasta. Başvuru: manevrayla kendiliğinden geçen çarpıntı öyküsü tarif ediyor. Hasta hemodinamik olarak stabil; ilk yaklaşım seçenekleri değerlendiriliyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_svt
+32 yaşında erkek hasta. Başvuru: stresli sınav döneminde ani çarpıntı gelişiyor. Ani başlayan hızlı, düzenli ve dar kompleksli bir ritim izleniyor; ayrı bir atriyal dalga seçilemiyor.^Bu ritim hangi sınıfa girer?^rhythmClass_svt
+43 yaşında kadın hasta. Başvuru: ani başlayan çarpıntı ile terleme tarif ediyor. Aynı kayıt üzerinde farklı bir derivasyon grubuna geçildiğinde görünüm değişiyor.^Derivasyon seçimini değiştirmenin bulguya etkisi nedir?^leadAll
+20 yaşında erkek hasta. Başvuru: gece parti sonrası ani hızlı çarpıntı fark ediyor. Sistematik okumada hangi derivasyonların yan duvarı temsil ettiği gözden geçiriliyor.^Hangi derivasyonlar lateral duvarı gösterir?^lateralLeadGroup
+37 yaşında kadın hasta. Başvuru: ani çarpıntı ataklarının sıklığı arttığı için başvuruyor. Ani başlayan hızlı, düzenli ve dar kompleksli bir ritim izleniyor; ayrı bir atriyal dalga seçilemiyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_svt
+49 yaşında erkek hasta. Başvuru: egzersiz sırasında tekrarlayan ani çarpıntı tarif ediyor. Bulgu düzenli görünse de eşlik eden semptomlar ayrıca değerlendiriliyor.^Bu klinik tabloda hangi değerlendirme ilkesi önceliklidir?^urgent`,
 inferior:`
-II,III,aVF’de pozitif ST,I/aVL’de negatif ST; V3’te baskın anterior yükselme yok.^Bu dağılım nasıl sınıflanır?^inferior
-II’de J+20ms+0,20mV ve taban0mV; QRS sona ermiş.^ST voltaj farkı kaçtır?^st20
-I−0,08 ve II+0,20mV anlık değerlerinden III hesaplanıyor.^III değeri kaçtır?^iii28
-Inferior ST anında I−0,08mV ve II+0,20mV; bu değerler inferior artırılmış lead için kullanılacak.^aVF değeri kaçtır?^avf24
-Inferior ST anında I−0,08mV ve II+0,20mV; bu değerler lateral artırılmış lead için kullanılacak.^aVL değeri kaçtır?^avl18
-Inferior grubun tümünde yükselme, lateral grupta karşılıklı çökme ayrı kanıtlar olarak okunuyor.^Bölgesel yorum yöntemi hangisidir?^stContiguous
-Ölçüm aVL T tepesine değil terminal QRS’den20ms sonrasına konacak.^ST yüksekliği için doğru tanım hangisidir?^st
-Terminal QRS sonrası plato başlıyor; öğretim modelinin ölçüm sınırı bu geçişi kullanıyor.^Bu geçiş sınırı hangisidir?^j
-Düzenli75/dk P–QRS dizisi var; inferior ST değişimi süren ağrıyla birlikte.^Klinik değerlendirme gereksinimi hangi ilkedir?^urgent
-Sadece inferior bölge verilmiş; damar anatomisi ve diğer klinik testler verilmemiş.^Kesin damar çıkarımı için hangi sınır gerekir?^ischemiaLimits
-Bir duvar bölgesinin hareketi azalırken global ileri akım şematiktir ve sürer.^Hangi dolaşım yorumu uygundur?^ischemiaFlow
-Sinüs P−215ms,QRS−40ms; ST ölçümü PR’den daha sonra.^PR kaçtır?^pr175
-Dar QRS desteği−40/+40ms; bölgesel voltaj değişimi kompleksi genişletmemiş.^QRS süresi kaçtır?^q80
-II yerine aVF seçildiğinde ST+0,20’den+0,24mV’ye değişiyor; kaynak aynı.^Lead seçimi nasıl yorumlanır?^leadAll
-Ekstremite ST bileşenleri I ve II’den artırılmış inferior sinyali türetiyor.^Genel aVF dönüşümü hangisidir?^avf`,
+57 yaşında kadın hasta. Başvuru: hipertansiyon öyküsüyle ani göğüs ağrısı tarif ediyor. Ağrı sırasında alınan EKG’de II, III, aVF derivasyonlarında ST yükselmesi izleniyor.^Bu ST değişiminin dağılımı hangi bölgeyi işaret eder?^inferior
+44 yaşında erkek hasta. Başvuru: egzersiz sonrası dinmeyen göğüs ağrısıyla başvuruyor. II derivasyonunda J noktasından 20 ms sonrası +0,20 mV olarak ölçülüyor.^Bu ölçümle ST yüksekliği kaç mV’tur?^st20
+69 yaşında kadın hasta. Başvuru: nefes darlığı ve göğüs ağrısıyla ambulansla getiriliyor. Sistematik okumada hangi derivasyonların ön duvarı temsil ettiği gözden geçiriliyor.^V3 ve V4 derivasyonları hangi bölgeyi yansıtır?^anteriorLeadGroup
+51 yaşında erkek hasta. Başvuru: merdiven çıkarken başlayan göğüs ağrısıyla geliyor. Standart 12 derivasyonluk kayıt üzerinde derivasyon grupları gözden geçiriliyor.^aVR, aVL ve aVF birlikte hangi derivasyon grubunu oluşturur?^augmentedGroup
+63 yaşında kadın hasta. Başvuru: geceleri tekrarlayan göğüs ağrısıyla başvuruyor. İzlemde giriş kapaklarının açık, çıkış kapaklarının kapalı olduğu bir an gösteriliyor.^Bu kapak ve hacim düzeni hangi mekanik evreyi gösterir?^fill
+46 yaşında erkek hasta. Başvuru: ailesinde erken MI öyküsü olan hastada göğüs ağrısı. Birden çok komşu derivasyondaki değişim birlikte değerlendiriliyor.^Bölgesel ST değişimi yorumlanırken hangi yöntem uygundur?^stContiguous
+71 yaşında kadın hasta. Başvuru: diyabet ve hipertansiyon öyküsüyle göğüs ağrısı tarif ediyor. Göğüs ağrısı sırasında alınan izde düzenli, dar QRS'li bir ritim var; inferior derivasyonlardaki ST değişimi ayrıca değerlendiriliyor.^Bu ritim hangi sınıfa girer?^rhythmClass_inferior
+54 yaşında erkek hasta. Başvuru: ani başlayan şiddetli göğüs ağrısıyla acile geliyor. Sistematik okumada V1–V2’nin hangi bölgeyi yansıttığı gözden geçiriliyor.^V1 ve V2 derivasyonları hangi bölgeyi yansıtır?^precordialSeptal
+67 yaşında kadın hasta. Başvuru: önceki stent öyküsüyle tekrar göğüs ağrısı ile geliyor. Bulgu düzenli görünse de eşlik eden semptomlar ayrıca değerlendiriliyor.^Bu klinik tabloda hangi değerlendirme ilkesi önceliklidir?^urgent
+59 yaşında erkek hasta. Başvuru: yoğun iş temposu sonrası göğüs ağrısı gelişiyor. ST değişimi saptanıyor; anjiyografi veya ileri görüntüleme henüz yapılmamış.^Bu bulgudan sorumlu damar hakkında hangi sınır geçerlidir?^ischemiaLimits
+62 yaşında kadın hasta. Başvuru: sabah sporunda göğüs ağrısıyla duruyor. Animasyonda bir duvar bölgesinin hareketi azalırken ana damardaki akışın sürdüğü gösteriliyor.^Bölgesel bulgu ile global dolaşım arasındaki ayrım nasıl yapılmalıdır?^ischemiaFlow
+48 yaşında erkek hasta. Başvuru: iş stresiyle birlikte göğüs sıkışması tarif ediyor. Kaliperle P’nin ilk sapması QRS’den 215 ms önce, QRS’in ilk sapması 40 ms önce işaretleniyor.^Bu ölçümlerle PR aralığı kaç milisaniyedir?^pr175
+74 yaşında kadın hasta. Başvuru: ani fenalaşma ve göğüs ağrısıyla 112 ile getiriliyor. Dar bir kompleksin ilk sapması 40 ms önce, son dönüşü 40 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q80
+56 yaşında erkek hasta. Başvuru: bulantı ile birlikte göğüs ağrısı tarif ediyor. Aynı kayıt üzerinde farklı bir derivasyon grubuna geçildiğinde görünüm değişiyor.^Derivasyon seçimini değiştirmenin bulguya etkisi nedir?^leadAll
+50 yaşında kadın hasta. Başvuru: terleme ve bulantı eşlik eden göğüs ağrısı tarif ediyor. Göğüs ağrısı sırasında alınan izde düzenli, dar QRS'li bir ritim var; inferior derivasyonlardaki ST değişimi ayrıca değerlendiriliyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_inferior`,
 vt:`
-Ardışık düzenli geniş tek biçimli kompleksler158/dk; ek klinik kanıtla VT kuşkusu değerlendirilmekte.^Öncelikli elektriksel sınıflama hangisidir?^vt
-R–R380ms ve QRS180ms ayrı ölçülmüş; ventriküler hız döngüden bulunacak.^Yaklaşık elektriksel hız kaçtır?^rr380
-QRS desteği−70ms’den+110ms’ye; terminal kısım ölçüme dahildir.^QRS genişliği kaçtır?^q180
-QRS başlangıcı−70ms,T sonu+275ms; klinik hız düzeltmesi istenmiyor.^Ham sentetik QT kaçtır?^qt345
-Geniş taşikardide sadece genişlik verilmiş; aberrans/VT ayrımı için ek kanıt araştırılıyor.^Genişlik için hangi sınır doğrudur?^qrsWidthCause
-Kayıt VT örneği ama perfüzyon ve nabız verisi dışarıdan eklenecek.^Klinik acil yaklaşımı hangi ek veriler ayırır?^vtContext
-P ile QRS arasında tanımlanmış sabit başlangıç ilişkisi yok; PR alanı boş.^PR için hangi ölçüm durumu doğrudur?^prNone
-70ms’de kasılma sürüyor fakat çıkışlar kapalı;100ms’den sonra çıkış açılacak.^70ms’deki mekanik faz hangisidir?^mechanic
-140ms’de çıkış kapakları açık, AV kapaklar kapalı; düşük şematik ileri akım var.^Bu mekanik durum nasıl açıklanır?^eject
-380ms döngüde300ms kasılma sonuna yaklaşılır; doluş aralığı kısadır.^Hızın doluş etkisi için hangi ifade uygundur?^fastFill
-Geniş QRS sonrası sekonder T var; kaliper toplam QRS’yi belirlemek istiyor.^QRS sınır ölçüm tanımı hangisidir?^duration
-Repolarizasyon yönü ana QRS’ye ters; öğrenci T’yi ikinci ventriküler aktivasyon sanıyor.^T’nin temel elektriksel anlamı nedir?^t
-I ve II aynı geniş kompleksin anlık bileşenleridir; artırılmış inferior voltaj türetilecek.^Doğru aVF dönüşümü hangisidir?^avf
-Monitör158/dk sayıyor; arter nabzının sayısı ve gücü henüz kaydedilmemiş.^Nabız için hangi çıkarım sınırı geçerlidir?^pulse
-Geniş taşikardi ve bilinç değişikliği birlikte verilmiş; bu eğitim aracı tedavi ölçmez.^Hangi klinik değerlendirme ilkesi geçerlidir?^urgent`,
+71 yaşında kadın hasta. Başvuru: kalp yetersizliği ile izlenen hastada ani fenalaşma. Düzenli, geniş kompleksli hızlı bir ritim izleniyor; komplekslerle sabit ilişkili bir dalga seçilemiyor.^Bu bulgularla öncelikli elektriksel sınıflama hangisidir?^vt
+60 yaşında erkek hasta. Başvuru: ani çarpıntı ile birlikte nefes darlığı tarif ediyor. Standart 12 derivasyonluk kayıt üzerinde derivasyon grupları gözden geçiriliyor.^aVR, aVL ve aVF birlikte hangi derivasyon grubunu oluşturur?^augmentedGroup
+65 yaşında kadın hasta. Başvuru: önceki defibrilatör öyküsüyle ani çarpıntı tarif ediyor. Geniş bir kompleksin ilk sapması 70 ms önce, son dönüşü 110 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q180
+54 yaşında erkek hasta. Başvuru: iş yerinde ani fenalaşma ve çarpıntı ile bulunuyor. Geniş bir kompleksin ilk sapması 70 ms önce, T dalgasının son sınırı 275 ms sonra işaretleniyor.^Bu ölçümlerle ham sentetik QT değeri kaçtır?^qt345
+69 yaşında kadın hasta. Başvuru: ani başlayan hızlı ve geniş kompleks kaydı alınıyor. Kompleks genişliği tek başına değerlendirilerek kökeni hakkında yorum yapılmak isteniyor.^QRS genişliğini tek başına yorumlarken hangi sınır geçerlidir?^qrsWidthCause
+62 yaşında erkek hasta. Başvuru: ani çarpıntı sonrası terleme ve solukluk tarif ediyor. Geniş kompleksli hızlı ritim saptanıyor; nabız ve bilinç durumu ayrıca değerlendirilecek.^Klinik nabız ve hemodinamik durumu ayırt eden veri hangisidir?^vtContext
+56 yaşında kadın hasta. Başvuru: yapısal kalp hastalığı öyküsüyle ani çarpıntı tarif ediyor. Düzenli, geniş kompleksli hızlı bir ritim izleniyor; komplekslerle sabit ilişkili bir dalga seçilemiyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_vt
+74 yaşında erkek hasta. Başvuru: huzurevinde ani fenalaşma sonrası 112 çağrılıyor. İzlemde QRS’den kısa süre sonra basıncın yükseldiği, ancak çıkış kapaklarının henüz açılmadığı bir an inceleniyor.^Bu andaki kapak durumu hangi mekanik evreyi tanımlar?^mechanic
+53 yaşında kadın hasta. Başvuru: ani çarpıntı ile birlikte göğüs ağrısı tarif ediyor. Kısa süreli bir kayıt elde ediliyor; önceki öykü ve ek testler henüz yok.^Bu bulgudan etiyoloji ve risk için hangi genel sınır çıkarılabilir?^limits
+67 yaşında erkek hasta. Başvuru: önceki kalp ameliyatı öyküsüyle ani fenalaşma tarif ediyor. Hızlı seyreden nabızda diyastolik dolum süresinin kısaldığı düşünülüyor.^Yüksek hızın ventrikül dolusuna etkisi için hangi ifade doğrudur?^fastFill
+58 yaşında kadın hasta. Başvuru: ani başlayan geniş kompleks taşikardi ile başvuruyor. Düzenli, geniş kompleksli hızlı bir ritim izleniyor; komplekslerle sabit ilişkili bir dalga seçilemiyor.^Bu ritim hangi sınıfa girer?^rhythmClass_vt
+64 yaşında erkek hasta. Başvuru: kalp yetersizliği kliniğinde ani çarpıntı ile geliyor. Ventriküler kompleksten sonra gelen dalganın anlamı soruluyor.^T dalgasının temel elektriksel karşılığı nedir?^t
+70 yaşında kadın hasta. Başvuru: ani çarpıntı sonrası düşme öyküsüyle acile geliyor. Sistematik okumada hangi derivasyonların inferior duvarı temsil ettiği gözden geçiriliyor.^Hangi derivasyon grubu inferior duvarı gösterir?^inferiorLeadGroup
+61 yaşında erkek hasta. Başvuru: önceki VT öyküsüyle ani çarpıntı tekrarlıyor. Nabız ve bilinç durumu ayrıca değerlendiriliyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_vt
+66 yaşında kadın hasta. Başvuru: ani başlayan hızlı geniş kompleks ritimle izleniyor. Bulgu düzenli görünse de eşlik eden semptomlar ayrıca değerlendiriliyor.^Bu klinik tabloda hangi değerlendirme ilkesi önceliklidir?^urgent`,
 vf:`
-Değişken genlikli kaotik etkinlikte tekrarlayan ayrık QRS dizisi yok; klinik arrest bağlamı verilmiş.^Elektriksel örüntü hangisidir?^vf
-Dalgada pozitif ve negatif tepeler var ama organize kompleks başlangıç/sonu yok.^QRS genişliği için hangi ifade doğrudur?^noQrs
-Kaotik tepe frekansı farklı pencerelerde değişiyor; bunlar organize atım değil.^Elektriksel ventrikül hızı nasıl raporlanır?^vfRate
-QT aracının iki fidüsiyeli tanımlanamıyor; önceki ritim aralıkları yeni kayda uygulanmıyor.^QT durumu hangisidir?^qtNone
-P başlangıcı görünmüyor ve QRS ile sabit atriyal ilişki kurulamıyor.^PR için hangi ifade doğrudur?^prNone
-VF modelinde aort,pulmoner,venöz ve koroner parçacıkların tamamı aynı yerde kalıyor.^İleri dolaşım için doğru açıklama nedir?^vfFlow
-Yanıtsızlık ve dolaşım bulgusu yokluğu kaotik elektriksel görünümle birlikte.^Hangi klinik değerlendirme ilkesi uygundur?^urgent
-Benzer kaotik monitor izi sırasında kişi konuşuyor ve klinik perfüzyonu normal bulunuyor.^Bu çelişki nasıl değerlendirilir?^vfArtifact
-Kaotik I/II elektriksel değerleri aynı zamanda alınmış; III dönüşümle türetiliyor.^Bipolar ilişki hangisidir?^limb
-VF’nin hem hızlı hem yavaş bileşenleri artırılmış sağ kol leadine aktarılıyor.^aVR formülü hangisidir?^avr
-Kaotik sinyalin artırılmış sol kol izdüşümü de aynı I/II potansiyellerinden alınacak.^aVL formülü hangisidir?^avl
-Kaotik sinyalin artırılmış inferior izdüşümü aynı I/II potansiyellerinden alınacak.^aVF formülü hangisidir?^avf
-II’den V2’ye geçince kaotik dalganın şekli değişiyor; seçili kaynak VF kalıyor.^Lead seçimiyle değişen özellik hangisidir?^leadAll
-Dalga ekran boyunca çizilmiş; dikey mV ve yatay saniye etiketleri farklı.^Ekran orantısı ve fiziksel ölçek için doğru ifade hangisidir?^timeScale
-Arrest görünümü eğitim için sınırlandırılmış; neden,süre ve gerçek müdahale sonucu bilinmiyor.^Bu kayıt hangi genel çıkarım sınırını korumalıdır?^limits`,
+55 yaşında kadın hasta. Başvuru: ev bahçesinde aniden düşüp yanıtsız bulunuyor. Monitörde düzenli bir kompleks seçilemiyor; genliği ve şekli sürekli değişen kaotik bir dalga izleniyor.^Bu elektriksel görünümle en uyumlu örüntü hangisidir?^vf
+66 yaşında erkek hasta. Başvuru: yüzme havuzunda aniden yanıt vermez hâle geliyor. Kaotik dalga üzerinde bir öğrenci QRS sınırlarını işaretlemeye çalışıyor.^Bu kayıtta QRS genişliği hakkında hangi ifade doğrudur?^noQrs
+61 yaşında kadın hasta. Başvuru: markette aniden yığılıp bilinci kapanıyor. Monitörde düzenli bir kompleks seçilemiyor; genliği ve şekli sürekli değişen kaotik bir dalga izleniyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_vf
+74 yaşında erkek hasta. Başvuru: huzurevi bahçesinde aniden yanıtsız bulunuyor. Monitörde düzenli bir kompleks seçilemiyor; genliği ve şekli sürekli değişen kaotik bir dalga izleniyor.^Bu ritim hangi sınıfa girer?^rhythmClass_vf
+57 yaşında kadın hasta. Başvuru: iş yerinde aniden solunumu durup yanıt vermiyor. Ventriküler kompleksin izde temsil ettiği olay ayrıca soruluyor.^QRS kompleksinin temel elektriksel karşılığı nedir?^qrs
+63 yaşında erkek hasta. Başvuru: spor müsabakası izlerken aniden yığılıyor. İzlemde tüm ileri akım parçacıklarının durduğu bir an gösteriliyor.^Bu ritimde dolaşım ve pompa durumu için hangi ifade doğrudur?^vfFlow
+50 yaşında kadın hasta. Başvuru: evde merdivenlerde aniden düşüp yanıtsız kalıyor. Bulgu düzenli görünse de eşlik eden semptomlar ayrıca değerlendiriliyor.^Bu klinik tabloda hangi değerlendirme ilkesi önceliklidir?^urgent
+69 yaşında erkek hasta. Başvuru: önceki kalp ameliyatı öyküsüyle aniden bilinci kapanıyor. Monitörde kaotik bir görünüm varken hasta konuşabiliyor ve bilinci açık görünüyor.^Bu çelişkili görünüm için öncelikli değerlendirme hangisidir?^vfArtifact
+53 yaşında kadın hasta. Başvuru: otoparkta aniden yığılıp yanıt vermiyor. Elektriksel kayıt sürerken nabız muayenesi ayrıca planlanıyor.^EKG bulgusu ile mekanik nabız arasındaki ilişki için hangi değerlendirme gerekir?^pulse
+72 yaşında erkek hasta. Başvuru: huzurevi yemekhanesinde aniden yanıtsız bulunuyor. Sistematik okumada hangi derivasyonların ön duvarı temsil ettiği gözden geçiriliyor.^V3 ve V4 derivasyonları hangi bölgeyi yansıtır?^anteriorLeadGroup
+58 yaşında kadın hasta. Başvuru: ev içinde aniden fenalaşıp yanıt vermez hâle geliyor. Sistematik okumada hangi derivasyonların inferior duvarı temsil ettiği gözden geçiriliyor.^Hangi derivasyon grubu inferior duvarı gösterir?^inferiorLeadGroup
+64 yaşında erkek hasta. Başvuru: iş yerinde merdivende aniden yığılıyor. Standart 12 derivasyonluk kayıt üzerinde derivasyon grupları gözden geçiriliyor.^aVR, aVL ve aVF birlikte hangi derivasyon grubunu oluşturur?^augmentedGroup
+60 yaşında kadın hasta. Başvuru: bahçede aniden düşüp yanıtsız bulunuyor. Aynı kayıt üzerinde farklı bir derivasyon grubuna geçildiğinde görünüm değişiyor.^Derivasyon seçimini değiştirmenin bulguya etkisi nedir?^leadAll
+67 yaşında erkek hasta. Başvuru: önceki defibrilatör öyküsüyle aniden bilinci kapanıyor. Sistematik okumada V1–V2’nin hangi bölgeyi yansıttığı gözden geçiriliyor.^V1 ve V2 derivasyonları hangi bölgeyi yansıtır?^precordialSeptal
+55 yaşında kadın hasta. Başvuru: toplu taşımada aniden yanıtsız hâle geliyor. Kısa süreli bir kayıt elde ediliyor; önceki öykü ve ek testler henüz yok.^Bu bulgudan etiyoloji ve risk için hangi genel sınır çıkarılabilir?^limits`,
 pat:`
-Sinüs dışı ayrık ters inferior P, izoelektrik aralık ve150/dk dar düzenli QRS birlikte.^Alt örüntü için hangi sınıflama savunulabilir?^at
-II’de P tersken QRS dar; önceki sinüs P pozitifti, odak anatomisi kesin verilmemiş.^P ekseni nasıl yorumlanır?^atAxis
-Üç saniyelik sürekli kayıtta ektopik P var; atağın başlangıcı ve sonu yok.^Paroksismal davranış için hangi sınır geçerlidir?^atLimits
-P’nin ilk sapması−180ms,QRS’nin ilk sapması−40ms; P merkezi daha sonra.^PR kaçtır?^pr140
-Organize ventriküler aralık400ms; atriyal P hızı da1:1 ilişkili.^Ventriküler elektriksel hız kaçtır?^rr400
-QRS’nin ilk sapması−40ms, sonu+40ms; ektopik P ayrı bir dalga.^QRS süresi kaçtır?^q80
-Hızlı atriyal örnekte T sonu+205ms,QRS ilk sapma−40ms.^Ham sentetik QT kaçtır?^qt245
-Atriyal eksen değişmiş olsa da P sınırı ilk sapma olarak belirlenebiliyor.^PR için doğru tanım hangisidir?^pr
-Ektopik P voltajı negatif; öğrenci bu olayı mekanik geri akım sanıyor.^P’nin temel elektriksel tanımı nedir?^p
-Döngü400ms; koordine atriyal etkinlik sürse de diyastol kısa.^Hız ve doluş için hangi yorum uygundur?^fastFill
-R’den45ms’de AV/çıkış kapakları kapalı;60ms’de ejeksiyon başlayacak.^45ms mekanik fazı hangisidir?^mechanic
-R’den100ms’de semilüner kapaklar açık; ayrık ektopik P bu zamandan önce görülmüştü.^Bu mekanik kapak düzeni nedir?^eject
-P ve QRS’nin anlık I/II bileşenleri aynı elektrot dönüşümünü kullanıyor.^aVL formülü hangisidir?^avl
-LeadII’den V1’e geçince ektopik P izdüşümü farklılaşıyor; atriyal kaynak değişmiyor.^Lead değişimi nasıl açıklanır?^leadAll
-150/dk elektriksel dizide palpasyon henüz yapılmamış; ektopik P’nin varlığı biliniyor.^Nabız değerlendirmesi için hangi sınır korunur?^pulse`,
+25 yaşında erkek hasta. Başvuru: spor müsabakası öncesi çarpıntı hissiyle geliyor. Düzenli, dar kompleksli hızlı bir ritimde, QRS öncesinde sinüsten farklı yönde bir dalga dikkati çekiyor.^Bu bulgularla en uyumlu örüntü hangisidir?^at
+49 yaşında kadın hasta. Başvuru: menopoz döneminde sık çarpıntı fark ediyor. Düzenli dar kompleksli hızlı ritimde P dalgasının ekseni sinüs örneğine göre farklı görünüyor.^Bu P dalgası için hangi yorum uygundur?^atAxis
+31 yaşında erkek hasta. Başvuru: gece nöbeti sonrası tekrarlayan çarpıntı tarif ediyor. Üç saniyelik kısa bir kayıt elde ediliyor; atağın başlangıcı ve sonu kayıtta yer almıyor.^Bu kısa kayıttan hangi sınırlı yorum çıkarılabilir?^atLimits
+43 yaşında kadın hasta. Başvuru: anksiyete öyküsüyle sık çarpıntı yakınmasıyla başvuruyor. Kaliperle P’nin ilk sapması QRS’den 180 ms önce, QRS’in ilk sapması 40 ms önce işaretleniyor.^Bu ölçümlerle PR aralığı kaç milisaniyedir?^pr140
+37 yaşında erkek hasta. Başvuru: alkol alımı sonrası tekrarlayan çarpıntı tarif ediyor. İki ardışık R tepesi arası 400 ms ölçülüyor.^Bu döngü süresiyle elektriksel hız yaklaşık kaçtır?^rr400
+54 yaşında kadın hasta. Başvuru: tiroid fazlalığı öyküsüyle tekrarlayan çarpıntı tarif ediyor. Ventriküler kompleksin izde temsil ettiği olay ayrıca soruluyor.^QRS kompleksinin temel elektriksel karşılığı nedir?^qrs
+28 yaşında erkek hasta. Başvuru: enerji içeceği sonrası sık çarpıntı fark ediyor. Kompleksin ilk sapması 40 ms önce, T dalgasının son sınırı 205 ms sonra işaretleniyor.^Bu ölçümlerle ham sentetik QT değeri kaçtır?^qt245
+45 yaşında kadın hasta. Başvuru: uzun toplantı sonrası tekrarlayan çarpıntı tarif ediyor. Tekrarlayan çarpıntı atakları ve olası nedenler birlikte değerlendiriliyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_pat
+32 yaşında erkek hasta. Başvuru: egzersiz testi sırasında tekrarlayan hızlı atım gözleniyor. QRS’den kısa süre önce ayrı bir dalga seçiliyor.^P dalgasının temel elektriksel karşılığı nedir?^p
+50 yaşında kadın hasta. Başvuru: düzenli olarak tekrarlayan çarpıntı atakları tarif ediyor. Hızlı seyreden nabızda diyastolik dolum süresinin kısaldığı düşünülüyor.^Yüksek hızın ventrikül dolusuna etkisi için hangi ifade doğrudur?^fastFill
+39 yaşında erkek hasta. Başvuru: gece uykudan uyanma ile birlikte çarpıntı tarif ediyor. İzlemde QRS’den kısa süre sonra basıncın yükseldiği, ancak çıkış kapaklarının henüz açılmadığı bir an inceleniyor.^Bu andaki kapak durumu hangi mekanik evreyi tanımlar?^mechanic
+47 yaşında kadın hasta. Başvuru: iş yerinde ani başlayan çarpıntı ile fark ediyor. Düzenli, dar kompleksli hızlı bir ritimde, QRS öncesinde sinüsten farklı yönde bir dalga dikkati çekiyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_pat
+35 yaşında erkek hasta. Başvuru: kahvaltı sonrası tekrarlayan çarpıntı tarif ediyor. Sistematik okumada hangi derivasyonların yan duvarı temsil ettiği gözden geçiriliyor.^Hangi derivasyonlar lateral duvarı gösterir?^lateralLeadGroup
+42 yaşında kadın hasta. Başvuru: tekrarlayan çarpıntı atakları giderek sıklaşıyor. Aynı kayıt üzerinde farklı bir derivasyon grubuna geçildiğinde görünüm değişiyor.^Derivasyon seçimini değiştirmenin bulguya etkisi nedir?^leadAll
+56 yaşında erkek hasta. Başvuru: rutin kontrolde tesadüfen ektopik atriyal ritim saptanıyor. Düzenli, dar kompleksli hızlı bir ritimde, QRS öncesinde sinüsten farklı yönde bir dalga dikkati çekiyor.^Bu ritim hangi sınıfa girer?^rhythmClass_pat`,
 flutter:`
-Sürekli düzenli F tabanında150/dk dar QRS seçiliyor; atriyal etkinlik300/dk.^Örüntü sınıflaması hangisidir?^flutter
-Bir F döngüsü200ms ve bir QRS döngüsü400ms; iki ayrı elektriksel kaynak ölçütü var.^Hız ve iletim ilişkisi hangi seçenektir?^flutterRatio
-Tipik karşı-saat yönlü öğretim örneğinde inferior taban aşağı,V1 taban yukarı yönlü.^F polarite dağılımı hangisidir?^flutterPolarity
-F dizisi QRS dışında kesintisiz sürüyor, ayrı sinüs P ve sessiz PR dizisi yok.^F ile P arasındaki ayrım nedir?^fNotP
-R–R400ms; bir öğrenci atriyal300/dk sayısını ventriküler hız yerine yazıyor.^Ventriküler hız kaçtır?^rr400
-Ventriküler kompleks−40/+40ms destekli; F etkinliği ölçüm dışında da sürüyor.^QRS süresi kaçtır?^q80
-Sürekli F tabanında ilişkili ayrık P ilk sapması tanımlanamıyor.^PR durumu nedir?^prNone
-Flutter2:1 örneğinin QRS başlangıcı−40ms,T sonu+205ms.^Ham sentetik QT kaçtır?^qt245
-Hızlı ventriküler yanıt doluş zamanını azaltabilir; F genliği debi ölçümü değildir.^Hız–doluş için hangi yorum uygundur?^fastFill
-100ms’de semilüner çıkış açıkken atriyal F etkinliği devam ediyor.^Mekanik kapak evresi nasıl açıklanır?^eject
-300ms’de AV giriş açık, çıkışlar kapalı; F etkinliği yine devam ediyor.^Bu kapak ve hacim düzeni hangi evredir?^fill
-İki F’ye bir QRS ilişkisi aynı kaynakta lead seçimi değişince de korunuyor.^Lead değişimi neyi değiştirir?^leadAll
-I/II bileşenleriyle hem F tabanı hem QRS inferior artırılmış leadine aktarılıyor.^aVF dönüşümü hangisidir?^avf
-R–R400ms elektriksel ölçütü var, fakat gerçek arter nabzı klinik muayenede ölçülecek.^Mekanik nabız için hangi sınır gerekir?^pulse
-Bu kayıt yalnız2:1 flutter öğretim örneği; değişken iletim ve toplam atak süresi gösterilmemiş.^Genelleme için hangi çıkarım sınırı uygundur?^limits`,
+59 yaşında kadın hasta. Başvuru: ameliyat öncesi değerlendirmede düzenli hızlı nabız saptanıyor. Düzenli dar kompleksler arasında sürekli, testere dişi görünümlü bir taban etkinliği izleniyor.^Bu atriyal ve ventriküler bulgularla en uyumlu örüntü hangisidir?^flutter
+74 yaşında erkek hasta. Başvuru: bakımevi rutin muayenesinde çarpıntı fark ediliyor. Atriyal ve ventriküler hızlar arasındaki oran ayrıca hesaplanıyor.^Atriyal ve ventriküler hız ile iletim oranı arasındaki ilişki hangisidir?^flutterRatio
+61 yaşında kadın hasta. Başvuru: efor kapasitesinde azalma ile başvuruyor. İnferior ve V1 derivasyonlarında taban dalgasının yönü karşılaştırılıyor.^Bu derivasyonlardaki taban dalgası polaritesi hangi seçenekle uyumludur?^flutterPolarity
+50 yaşında erkek hasta. Başvuru: alkol alımı sonrası düzenli hızlı çarpıntı tarif ediyor. Taban hattında sürekli dalgalı bir etkinlik var; bir öğrenci bunu ayrık bir P dalgası sanıyor.^Bu sürekli taban etkinliği ile ayrık P dalgası arasındaki fark nedir?^fNotP
+67 yaşında kadın hasta. Başvuru: kronik kalp hastalığı izleminde çarpıntı saptanıyor. İki ardışık R tepesi arası 400 ms ölçülüyor.^Bu döngü süresiyle elektriksel hız yaklaşık kaçtır?^rr400
+56 yaşında erkek hasta. Başvuru: iş stresiyle birlikte düzenli hızlı çarpıntı tarif ediyor. Dar bir kompleksin ilk sapması 40 ms önce, son dönüşü 40 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q80
+64 yaşında kadın hasta. Başvuru: nefes darlığı ile solunum polikliniğine başvuruyor. Sistematik okumada V1–V2’nin hangi bölgeyi yansıttığı gözden geçiriliyor.^V1 ve V2 derivasyonları hangi bölgeyi yansıtır?^precordialSeptal
+72 yaşında erkek hasta. Başvuru: huzurevinde düzenli hızlı nabız rutin kontrolde saptanıyor. Kompleksin ilk sapması 40 ms önce, T dalgasının son sınırı 205 ms sonra işaretleniyor.^Bu ölçümlerle ham sentetik QT değeri kaçtır?^qt245
+53 yaşında kadın hasta. Başvuru: tiroid fazlalığı öyküsüyle düzenli hızlı çarpıntı tarif ediyor. Hızlı seyreden nabızda diyastolik dolum süresinin kısaldığı düşünülüyor.^Yüksek hızın ventrikül dolusuna etkisi için hangi ifade doğrudur?^fastFill
+69 yaşında erkek hasta. Başvuru: kalp ameliyatı sonrası izlemde çarpıntı saptanıyor. İzlemde bir anda çıkış kapaklarının açık, giriş kapaklarının kapalı olduğu gösteriliyor.^Bu andaki kapak ve akım durumu hangi mekanik evreyi tanımlar?^eject
+58 yaşında kadın hasta. Başvuru: yorgunluk ve efor dispnesiyle başvuruyor. Düzenli dar kompleksler arasında sürekli, testere dişi görünümlü bir taban etkinliği izleniyor.^Bu ritim hangi sınıfa girer?^rhythmClass_flutter
+65 yaşında erkek hasta. Başvuru: yıllık check-up sırasında düzenli hızlı nabız fark ediliyor. Aynı kayıt üzerinde farklı bir derivasyon grubuna geçildiğinde görünüm değişiyor.^Derivasyon seçimini değiştirmenin bulguya etkisi nedir?^leadAll
+51 yaşında kadın hasta. Başvuru: egzersiz sonrası düzenli hızlı çarpıntı tarif ediyor. Düzenli dar kompleksler arasında sürekli, testere dişi görünümlü bir taban etkinliği izleniyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_flutter
+60 yaşında erkek hasta. Başvuru: kronik obstrüktif akciğer hastalığı izleminde çarpıntı saptanıyor. Ventrikül hızı ve ritim seçenekleri birlikte değerlendiriliyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_flutter
+75 yaşında kadın hasta. Başvuru: huzurevi yemekhanesinde çarpıntı yakınmasıyla fark ediliyor. Kısa süreli bir kayıt elde ediliyor; önceki öykü ve ek testler henüz yok.^Bu bulgudan etiyoloji ve risk için hangi genel sınır çıkarılabilir?^limits`,
 sintach:`
-II’de pozitif,aVR’de negatif ayrık P;120/dk dar düzenli P–QRS dizisi korunmuş.^Örüntü adı hangisidir?^tach
-Atriyal P ekseni değişmemiş; yalnız uygun pozitif II/negatif aVR yönü sorgulanıyor.^Sinüs kökenini destekleyen P dağılımı hangisidir?^sinusAxis
-Ateş ve ağrı olası nedenler olarak verilmiş; EKG sinüs kökenini gösteriyor ama nedeni seçmiyor.^Klinik neden yaklaşımı hangisidir?^tachCause
-R–R0,500s; çizgi kalınlığı veya T voltajı hız hesabına katılmayacak.^Elektriksel hız kaçtır?^rr500
-P ilk sapma−0,215s,QRS ilk sapma−0,040s.^PR’nin sayısal değeri kaçtır?^pr175
-QRS80ms’nin desteği−40/+40ms; sonraki hızlı döngü500ms.^Kompleks süresi kaçtır?^q80
-QRS ilk sapma−40ms,T sonu+205ms; hız düzeltmesi yapılmıyor.^Ham sentetik QT kaçtır?^qt245
-Hızlı sinüs çiziminde P ve QRS’nin tepeleri değil ilk sapmaları işaretleniyor.^PR ölçümü için hangi tanım doğrudur?^pr
-QRS’nin ana elektriksel kaynağı atriyal P’nin kaynağından ayrılıyor.^QRS’nin temel elektriksel tanımı hangisidir?^qrs
-T hızlı döngü sonunda görülüyor; ejeksiyonla örtüşmesi mümkün.^T’nin temel elektriksel tanımı hangisidir?^t
-45ms’de kasılma başlamış ama çıkış kapakları kapalı.^Bu kapak evresi hangi seçenekle açıklanır?^mechanic
-110ms’de çıkış kapakları açık, AV kapaklar kapalı.^Bu an için hangi açıklama tutarlıdır?^eject
-Yüksek hızda koordine atriyal P korunmuş ama döngü75/dk örneğe göre kısa.^Doluş süresi için hangi yorum uygundur?^fastFill
-Oynatma0,5× yapılınca aynı model500ms döngüyü daha yavaş gösteriyor.^Hız kontrolünün anlamı hangi ifadedir?^speed
-120/dk QRS kaydı yanında muayene nabzı ve kan basıncı henüz eklenmemiş.^Mekanik nabız hakkında hangi sınır korunur?^pulse`,
+44 yaşında erkek hasta. Başvuru: ağrılı travma sonrası hızlı nabız saptanıyor. Düzenli, dar kompleksli hızlı bir ritimde her kompleksten önce aynı yönlü bir dalga korunuyor.^Bu bulgularla en uyumlu örüntü hangisidir?^tach
+39 yaşında kadın hasta. Başvuru: tiroid fazlalığı öyküsüyle hızlı nabız tarif ediyor. Düzenli dar kompleksli ritimde P dalgasının yönü ayrıca değerlendiriliyor.^Bu P dalgası için hangi yön dağılımı destekleyicidir?^sinusAxis
+52 yaşında erkek hasta. Başvuru: dehidratasyon şüphesiyle hızlı nabız izleniyor. Hızlı sinüs ritmi saptanıyor; ateş ve ağrı gibi olası nedenler sorgulanıyor.^Hız artışının nedeni için hangi yaklaşım uygundur?^tachCause
+30 yaşında kadın hasta. Başvuru: yoğun egzersiz sonrası nabız beklenenden hızlı seyrediyor. Sistematik okumada V1–V2’nin hangi bölgeyi yansıttığı gözden geçiriliyor.^V1 ve V2 derivasyonları hangi bölgeyi yansıtır?^precordialSeptal
+41 yaşında erkek hasta. Başvuru: ateşli çocuğuna bakarken kendi de hastalanan anne baba, hızlı nabız saptanıyor. Kaliperle P’nin ilk sapması QRS’den 215 ms önce, QRS’in ilk sapması 40 ms önce işaretleniyor.^Bu ölçümlerle PR aralığı kaç milisaniyedir?^pr175
+34 yaşında kadın hasta. Başvuru: ağrı ve anksiyete birlikte hızlı nabız saptanıyor. Dar bir kompleksin ilk sapması 40 ms önce, son dönüşü 40 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q80
+49 yaşında erkek hasta. Başvuru: sıcak havada uzun yürüyüş sonrası hızlı nabız fark ediyor. Kompleksin ilk sapması 40 ms önce, T dalgasının son sınırı 205 ms sonra işaretleniyor.^Bu ölçümlerle ham sentetik QT değeri kaçtır?^qt245
+27 yaşında kadın hasta. Başvuru: grip enfeksiyonu sırasında ateş ve hızlı nabız. P dalgası ile QRS arasındaki ilişki kaliperle işaretleniyor.^PR aralığı hangi iki sınır arasında ölçülür?^pr
+56 yaşında erkek hasta. Başvuru: kan kaybı sonrası hızlı nabız ile izleniyor. Ventriküler kompleksin izde temsil ettiği olay ayrıca soruluyor.^QRS kompleksinin temel elektriksel karşılığı nedir?^qrs
+32 yaşında kadın hasta. Başvuru: stresli iş günü sonrası hızlı nabız fark ediyor. Ventriküler kompleksten sonra gelen dalganın anlamı soruluyor.^T dalgasının temel elektriksel karşılığı nedir?^t
+45 yaşında erkek hasta. Başvuru: ateşli hastalık sonrası kontrol vizitinde hızlı nabız. İzlemde QRS’den kısa süre sonra basıncın yükseldiği, ancak çıkış kapaklarının henüz açılmadığı bir an inceleniyor.^Bu andaki kapak durumu hangi mekanik evreyi tanımlar?^mechanic
+38 yaşında kadın hasta. Başvuru: egzersiz sonrası toparlanma döneminde nabız hâlâ hızlı. İzlemde bir anda çıkış kapaklarının açık, giriş kapaklarının kapalı olduğu gösteriliyor.^Bu andaki kapak ve akım durumu hangi mekanik evreyi tanımlar?^eject
+53 yaşında erkek hasta. Başvuru: ağrı kontrolü sonrası nabız yavaşlamaya başlıyor. Düzenli, dar kompleksli hızlı bir ritimde her kompleksten önce aynı yönlü bir dalga korunuyor.^Bu ritim hangi sınıfa girer?^rhythmClass_sintach
+25 yaşında kadın hasta. Başvuru: kafeinli içecek ve stres birlikte hızlı nabız yapıyor. Düzenli, dar kompleksli hızlı bir ritimde her kompleksten önce aynı yönlü bir dalga korunuyor.^Bu EKG'de öncelikle hangi tanı düşünülmelidir?^ddx_sintach
+47 yaşında erkek hasta. Başvuru: solunum yolu enfeksiyonu ile ateş ve hızlı nabız birlikte. Hızlı nabzın altında yatan neden araştırılıyor.^Bu hastada ilk yaklaşım ne olmalıdır?^firstStep_sintach`,
 lbbb:`
-Sinüs dizisinde160ms QRS, V1 negatif kompleks ve V6 geniş çentikli R; her atım aynı.^En uygun ileti sınıflaması hangisidir?^lbbb
-Sağ prekordiyal ve lateral izler eşzamanlı; terminal yön dağılımı birlikte soruluyor.^LBBB’nin beklenen morfoloji bileşimi hangisidir?^lMorph
-QRS ilk sapma−70ms, son dönüş+90ms; terminal çentik dahil.^QRS süresi kaçtır?^q160
-P ilk sapma−245ms,QRS ilk sapma−70ms; R referansı başlangıç yerine kullanılmıyor.^PR kaçtır?^prL175
-QRS ilk sapma−70ms,T sonu+360ms; ölçülen değer ham aralıktır.^Sentetik QT kaçtır?^qt430
-Şerit geniş ama yalnız genişlik dışında morfoloji veya ventriküler köken kanıtı yok.^Genişlik yorumunda hangi sınır doğrudur?^qrsWidthCause
-Sol ventrikül hareketi görsel olarak geciktirilmiş; hasta mekanik ölçümü yapılmamış.^Bu ayrıştırma nasıl yorumlanır?^bbbDelay
-Yeni göğüs ağrısı var; LBBB’nin eski olup olmadığı önceki EKG’den araştırılıyor.^Dal bloğunun klinik yorumu hangi ilkeye bağlıdır?^bbbLimits
-Çentikli R’nin iki lobu tek kompleks içinde; ayrı iki atım sayılmamalı.^QRS’nin temel elektriksel tanımı nedir?^qrs
-Terminal R ve sonraki negatif T birbirinden ayrılmış; T klinik akım ölçümü değildir.^T’nin elektriksel tanımı hangisidir?^t
-İki R referansı800ms aralıklı; geniş kompleks süresi160ms ayrıca verilmiş.^Ventriküler elektriksel hız kaçtır?^rr800
-Kaliper yalnız ilk R lobunu kapsıyor; son çentik/terminal dönüş dışarıda.^Toplam QRS ölçümü için hangi sınırlar gerekir?^duration
-Geniş QRS kaydı varken palpasyon ve basınç verisi ayrı toplanıyor.^Elektriksel hız–mekanik nabız ilişkisi nedir?^pulse
-Lateral pozitif geniş QRS’nin I/II bileşenleri artırılmış sol kola dönüştürülüyor.^aVL formülü hangisidir?^avl
-LeadV1’den V6’ya geçince QRS/T yönü değişiyor; ileti kaynağı aynı.^Lead seçiminin temel anlamı nedir?^leadAll`,
+71 yaşında kadın hasta. Başvuru: hipertansiyon ve diyabet izleminde geniş kompleks saptanıyor. Düzenli sinüs ritmi sırasında QRS belirgin genişlemiş; sağ göğüs derivasyonunda derin negatif, sol yan derivasyonlarda geniş ve çentikli pozitif bir kompleks var.^Bu ileti örüntüsü için en uygun sınıflama hangisidir?^lbbb
+59 yaşında erkek hasta. Başvuru: yeni gelişen nefes darlığı ile başvuruyor. Sağ göğüs ve sol yan derivasyonlar birlikte incelenerek QRS yönü karşılaştırılıyor.^Bu derivasyonlardaki morfoloji bileşimi hangisidir?^lMorph
+69 yaşında kadın hasta. Başvuru: kalp yetersizliği polikliniğinde rutin EKG çekiliyor. Geniş bir kompleksin ilk sapması 70 ms önce, son dönüşü 90 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q160
+62 yaşında erkek hasta. Başvuru: check-up paketinde tesadüfen geniş QRS saptanıyor. Geniş kompleksli bir atımda P’nin ilk sapması 245 ms önce, QRS’in ilk sapması 70 ms önce işaretleniyor.^Bu geniş kompleksli atımda PR aralığı kaç milisaniyedir?^prL175
+75 yaşında kadın hasta. Başvuru: huzurevi yıllık muayenesinde geniş kompleks fark ediliyor. Geniş bir kompleksin ilk sapması 70 ms önce, T dalgasının son sınırı 360 ms sonra işaretleniyor.^Bu ölçümlerle ham sentetik QT değeri kaçtır?^qt430
+56 yaşında erkek hasta. Başvuru: iş yeri sağlık taramasında geniş QRS saptanıyor. Kompleks genişliği tek başına değerlendirilerek kökeni hakkında yorum yapılmak isteniyor.^QRS genişliğini tek başına yorumlarken hangi sınır geçerlidir?^qrsWidthCause
+68 yaşında kadın hasta. Başvuru: önceki EKG kaydıyla karşılaştırılan yeni kontrolde. Kalp animasyonunda bir ventrikülün aktivasyonu diğerine göre gecikmiş gösteriliyor.^Bu ileti gecikmesi animasyonu nasıl yorumlanmalıdır?^bbbDelay
+60 yaşında erkek hasta. Başvuru: ameliyat öncesi anestezi değerlendirmesinde geniş kompleks. Aynı ileti bozukluğu önceki bir kayıtta da görülmüş; yeni bir semptom eşlik etmiyor.^Bu ileti bozukluğunun klinik yorumu için hangi ilke geçerlidir?^bbbLimits
+72 yaşında kadın hasta. Başvuru: efor dispnesi ve yorgunlukla başvuruyor. Ventriküler kompleksin izde temsil ettiği olay ayrıca soruluyor.^QRS kompleksinin temel elektriksel karşılığı nedir?^qrs
+65 yaşında erkek hasta. Başvuru: rutin kardiyoloji kontrolünde geniş QRS izleniyor. Ventriküler kompleksten sonra gelen dalganın anlamı soruluyor.^T dalgasının temel elektriksel karşılığı nedir?^t
+57 yaşında kadın hasta. Başvuru: diyabet ve hipertansiyon izleminde geniş kompleks saptanıyor. İki ardışık R tepesi arası 800 ms ölçülüyor.^Bu döngü süresiyle elektriksel hız yaklaşık kaçtır?^rr800
+63 yaşında erkek hasta. Başvuru: yıllık sağlık taramasında tesadüfen geniş QRS saptanıyor. Düzenli sinüs ritmi sırasında QRS belirgin genişlemiş; sağ göğüs derivasyonunda derin negatif, sol yan derivasyonlarda geniş ve çentikli pozitif bir kompleks var.^Bu ritim hangi sınıfa girer?^rhythmClass_lbbb
+70 yaşında kadın hasta. Başvuru: kalp yetersizliği kliniğinde rutin kontrol yapılıyor. Elektriksel kayıt sürerken nabız muayenesi ayrıca planlanıyor.^EKG bulgusu ile mekanik nabız arasındaki ilişki için hangi değerlendirme gerekir?^pulse
+59 yaşında erkek hasta. Başvuru: önceki ameliyat öyküsüyle rutin EKG’de geniş kompleks. Kısa süreli bir kayıt elde ediliyor; önceki öykü ve ek testler henüz yok.^Bu bulgudan etiyoloji ve risk için hangi genel sınır çıkarılabilir?^limits
+66 yaşında kadın hasta. Başvuru: huzurevi kontrolünde geniş QRS fark ediliyor. Aynı kayıt üzerinde farklı bir derivasyon grubuna geçildiğinde görünüm değişiyor.^Derivasyon seçimini değiştirmenin bulguya etkisi nedir?^leadAll`,
 rbbb:`
-Sinüs P sonrası140ms QRS, V1’de terminal R′ ve V6’da terminal S birlikte.^En uygun ileti sınıflaması hangisidir?^rbbb
-Sağ ve lateral terminal QRS yönleri eşzamanlı karşılaştırılıyor; P ilişkisi sabit.^RBBB’nin tipik morfoloji bileşimi hangisidir?^rMorph
-QRS−60ms’de başlayıp+80ms’de bitiyor; R′ dahil bütün destek ölçülüyor.^Toplam QRS süresi kaçtır?^q140
-P−235ms,QRS−60ms ilk sapmaları verilmiş; terminal gecikme QRS içinde.^PR kaçtır?^prR175
-QRS ilk sınırı−60ms,T son sınırı+350ms; QTc değil ham model aralığı.^Sentetik QT kaçtır?^qt410
-140ms genişlik kaydedilmiş; tek süreyi PVC veya RBBB diye kesin etiyoloji seçmek isteniyor.^Genişlik için hangi sınır geçerlidir?^qrsWidthCause
-Sağ ventrikül görsel olarak60ms ayrıştırılmış; hemodinamik doğrulama bulunmuyor.^Gecikmiş animasyon nasıl yorumlanır?^bbbDelay
-Önceki EKG yok; yeni semptomlar ve yapısal hastalık ayrıca sorgulanıyor.^Dal bloğunun klinik yorumu için hangi yaklaşım uygundur?^bbbLimits
-Terminal R′ QRS içindedir; ayrı T daha sonra ve sağda diskordan görünür.^QRS’nin temel elektriksel tanımı hangisidir?^qrs
-Sağ negatif T ventriküler repolarizasyon bölümünde; arter basıncı kaydı değil.^T için doğru elektriksel anlam nedir?^t
-R referansları800ms aralıklı;140ms aktivasyon genişliği farklı ölçüt.^Döngüden hesaplanan hız kaçtır?^rr800
-Ölçüm yalnız ilk r lobuna yerleştirilmiş; geç R′ ve lateral S dışarıda bırakılıyor.^Toplam QRS için hangi sınırlar kullanılmalıdır?^duration
-Geniş organize P–QRS dizisi var; nabzın varlığı ve gücü klinik muayeneye bırakılmış.^Nabız değerlendirmesi için hangi sınır geçerlidir?^pulse
-I/II’den artırılmış sağ kol leadine terminal QRS bileşenleri de taşınıyor.^aVR formülü hangisidir?^avr
-V1 ve V6 seçenekleri terminal yönü değiştiriyor; elektriksel kaynak sinüs ve sağ dal gecikmesi aynı.^Lead seçimi nasıl açıklanır?^leadAll`
+51 yaşında kadın hasta. Başvuru: efor kapasitesinde azalma ile başvuruyor. Düzenli sinüs ritmi sırasında QRS belirgin genişlemiş; sağ göğüs derivasyonunda geç bir ikinci pozitif çıkıntı, sol yan derivasyonlarda geniş bir son negatif dalga var.^Bu ileti örüntüsü için en uygun sınıflama hangisidir?^rbbb
+60 yaşında erkek hasta. Başvuru: yeni gelişen nefes darlığı ile başvuruyor. Sağ göğüs ve sol yan derivasyonlar birlikte incelenerek terminal QRS yönü karşılaştırılıyor.^Bu derivasyonlardaki morfoloji bileşimi hangisidir?^rMorph
+66 yaşında kadın hasta. Başvuru: rutin kardiyoloji kontrolünde geniş QRS izleniyor. Geniş bir kompleksin ilk sapması 60 ms önce, son dönüşü 80 ms sonra işaretleniyor.^Bu ölçümlerle QRS süresi kaç milisaniyedir?^q140
+45 yaşında erkek hasta. Başvuru: askerlik sağlık kurulu muayenesinde geniş QRS saptanıyor. Geniş kompleksli bir atımda P’nin ilk sapması 235 ms önce, QRS’in ilk sapması 60 ms önce işaretleniyor.^Bu geniş kompleksli atımda PR aralığı kaç milisaniyedir?^prR175
+71 yaşında kadın hasta. Başvuru: huzurevi yıllık muayenesinde geniş kompleks fark ediliyor. Geniş bir kompleksin ilk sapması 60 ms önce, T dalgasının son sınırı 350 ms sonra işaretleniyor.^Bu ölçümlerle ham sentetik QT değeri kaçtır?^qt410
+59 yaşında erkek hasta. Başvuru: iş yeri periyodik muayenesinde geniş QRS saptanıyor. Kompleks genişliği tek başına değerlendirilerek kökeni hakkında yorum yapılmak isteniyor.^QRS genişliğini tek başına yorumlarken hangi sınır geçerlidir?^qrsWidthCause
+64 yaşında kadın hasta. Başvuru: önceki EKG kaydıyla karşılaştırılan yeni kontrolde. Kalp animasyonunda bir ventrikülün aktivasyonu diğerine göre gecikmiş gösteriliyor.^Bu ileti gecikmesi animasyonu nasıl yorumlanmalıdır?^bbbDelay
+56 yaşında erkek hasta. Başvuru: ameliyat öncesi anestezi değerlendirmesinde geniş kompleks. Aynı ileti bozukluğu önceki bir kayıtta da görülmüş; yeni bir semptom eşlik etmiyor.^Bu ileti bozukluğunun klinik yorumu için hangi ilke geçerlidir?^bbbLimits
+69 yaşında kadın hasta. Başvuru: efor dispnesi ve yorgunlukla başvuruyor. Ventriküler kompleksin izde temsil ettiği olay ayrıca soruluyor.^QRS kompleksinin temel elektriksel karşılığı nedir?^qrs
+61 yaşında erkek hasta. Başvuru: diyabet ve hipertansiyon izleminde geniş kompleks saptanıyor. Ventriküler kompleksten sonra gelen dalganın anlamı soruluyor.^T dalgasının temel elektriksel karşılığı nedir?^t
+47 yaşında kadın hasta. Başvuru: yıllık sağlık taramasında tesadüfen geniş QRS saptanıyor. Sistematik okumada hangi derivasyonların yan duvarı temsil ettiği gözden geçiriliyor.^Hangi derivasyonlar lateral duvarı gösterir?^lateralLeadGroup
+73 yaşında erkek hasta. Başvuru: kalp yetersizliği kliniğinde rutin kontrol yapılıyor. Sistematik okumada V1–V2’nin hangi bölgeyi yansıttığı gözden geçiriliyor.^V1 ve V2 derivasyonları hangi bölgeyi yansıtır?^precordialSeptal
+53 yaşında kadın hasta. Başvuru: önceki ameliyat öyküsüyle rutin EKG’de geniş kompleks. Elektriksel kayıt sürerken nabız muayenesi ayrıca planlanıyor.^EKG bulgusu ile mekanik nabız arasındaki ilişki için hangi değerlendirme gerekir?^pulse
+65 yaşında erkek hasta. Başvuru: pilotluk sağlık raporu için başvuran hastada geniş QRS. Düzenli sinüs ritmi sırasında QRS belirgin genişlemiş; sağ göğüs derivasyonunda geç bir ikinci pozitif çıkıntı, sol yan derivasyonlarda geniş bir son negatif dalga var.^Bu ritim hangi sınıfa girer?^rhythmClass_rbbb
+58 yaşında kadın hasta. Başvuru: huzurevi kontrolünde geniş QRS fark ediliyor. Aynı kayıt üzerinde farklı bir derivasyon grubuna geçildiğinde görünüm değişiyor.^Derivasyon seçimini değiştirmenin bulguya etkisi nedir?^leadAll`
 };
-// Comparable clinical interpretation alternatives for the general clinical tasks.
-bank('urgent','O5',[
-['Semptom/perfüzyonla acil değerlendirme ve uygun algoritma','Süren iskemik belirtiler,instabilite veya arrest bulguları acil klinik değerlendirme gerektirir; çizim tedavi talimatı değildir.'],
-['Ritim düzenli kalıyorsa yalnız rutin kontrol','Elektriksel düzenlilik devam eden ağrı,presenkop veya dolaşım bozukluğu bağlamını rutinleştirmez.'],
-['Önce kesin elektrofizyolojik mekanizma,sonra perfüzyon','Klinik instabilite ve perfüzyon değerlendirmesi kesin mekanizma çıkarımı beklenerek geciktirilmez.'],
-['Önce tek derivasyondan damar/odak kesinliği','Tek derivasyon etiyolojik kesinlik sağlamaz; klinik aciliyet yeterli kanıtla değerlendirilir.'],
-['Animasyonda akım varsa klinik aciliyet dışlanır','Şematik parçacık akışı hastanın gerçek dolaşım kararlılığını ölçmez ve acil belirtileri dışlamaz.']]);
-bank('limits','O5',[
-['Örüntü desteklenir; etiyoloji/risk ek veri ister','EKG örüntüsü tanımlanabilir; neden,süre ve hasta riski için klinik öykü ve ek inceleme gerekir.'],
-['Kısa kayıt atağın başlangıç zamanını belirler','Kayıt yalnız bir pencereyi kapsar; başlangıç gösterilmeden toplam süre veya başlangıç kesinliği sağlanmaz.'],
-['QRS genişliği tek başına hasta riskini dereceler','Genişlik iletiyi tanımlar; semptom,yapısal hastalık ve bağlam yerine risk derecesi oluşturmaz.'],
-['P ekseni tek başına tam anatomik odağı belirler','P ekseni köken ipucudur; tam odak anatomisi yalnız sentetik izdüşümden kesinleştirilmez.'],
-['Elektriksel hız tek başına dolaşım kararlılığıdır','Hız ve düzenlilik,klinik nabız/kan basıncı/perfüzyon verisinin yerine geçmez.']]);
-const extraCases=[
-['normal','Karşılaştırma panelinde düzenli sinüs QRS ile kaotik ikinci sinyal var; ikinci sinyalin klinik kaydı doğrulanacak.','Lead görünümü farklılığını ritim dönüşümünden ayırmak için hangi ilke uygundur?','leadAll'],
-['pvc','Aynı140ms genişlikte tek erken olay ve her sinüs atımında terminal sağ gecikme karşılaştırılıyor.','Yalnız genişlikten kesin köken seçme sorunu hangi ilkeyle çözülür?','qrsWidthCause'],
-['stemi','Ağrılı hastada komşu anterior yükselme var; başka hastanın inferior dağılımı öğretim karşılaştırmasına eklenmiş.','Bölgesel yorum yöntemi tek yüksek tepe seçmekten nasıl ayrılır?','stContiguous'],
-['flutter','Sabit2:1 kayıtta atriyal200ms ve ventriküler400ms birlikte; AF örneğindeki düzensiz tabandan farklı.','Atriyal/ventriküler hız ayrımının hesaplanmış karşılığı hangisidir?','flutterRatio'],
-['rbbb','Sağ terminal R′ ve lateral S’li sinüs kaydı var; başka örneğin sol/lateral terminal yönü ters.','Gösterilen sağ/lateral morfoloji bileşimi hangisidir?','rMorph']];
-const extraQuestions=[
-['af','AF’de hızlı ve kontrollü profiller aynı dar kompleks/f taban yapısını farklı döngü aralıklarında gösteriyor.','Hız profili ile atriyal ritim kaynağı nasıl birlikte yorumlanır?','afProfile'],
-['vt','Organize geniş taşikardi ve kaotik VF eğitim karşılaştırması açık; nabız bilgisi yalnız klinik bölümden sağlanacak.','VT için acil yaklaşımı ayıran klinik veri hangisidir?','vtContext'],
-['inferior','I−0,08mV ve II+0,20mV inferior ST bileşenleri,bir anterior kayıt değerleriyle karıştırılmadan kullanılıyor.','Artırılmış inferior anlık voltaj kaçtır?','avf24'],
-['lbbb','Sol/lateral geniş çentikli R ile sağ negatif QRS birlikte; sağ dal örneğinde bunun yerine terminal R′ var.','Bu sol ileti örneğinde beklenen morfoloji bileşimi hangisidir?','lMorph'],
-['vf','Kaotik bir görüntü ile düzenli dar QRS görüntüsü ayrı sentetik kaynaklardan; kaotik görüntüde R–R tanımlanamıyor.','Kaotik örneğin organize elektriksel hızı nasıl raporlanır?','vfRate']];
-numberBank('grid200','25mm/sn orantısında5 küçük yatay kare:5×40ms=200ms.','200ms',['40ms','100ms','400ms','500ms'],['Yalnız bir küçük kare sayılmıştır.','İki küçük kareye yakın değer kullanılmıştır;5kare200ms’dir.','Her küçük kare yanlışlıkla80ms alınmıştır.','Dikey voltaj veya başka hız ölçeği zamanla karıştırılmıştır.']);
-numberBank('pvcAverage','Beş döngü toplam4,00s:5/4×60=75/dk ortalama elektriksel hız.','75/dk',['54/dk','80/dk','125/dk','150/dk'],['1120ms en uzun aralık bütün dizinin ortalaması yerine kullanılmıştır.','Toplam4s ve5döngü hesabından çıkmaz.','480ms en kısa aralık bütün dizinin ortalaması yerine kullanılmıştır.','400ms varsayımı gerçek beş döngü toplamını kullanmaz.']);
-numberBank('anteriorAVL','aVL=0,04−(−0,04)/2=+0,06mV.','+0,06mV',['+0,02mV','−0,06mV','0mV','−0,08mV'],['II’nin negatif yarısı çıkarılmak yerine eklenmiştir.','aVF sonucudur; aVL yönüyle karıştırılmıştır.','aVR’nin sıfır yarım toplamıdır; aVL değildir.','III sonucudur; artırılmış sol kol değildir.']);
-numberBank('flutterCount','300/dk=5F/s ve150/dk=2,5QRS/s:6s’de30F ve15QRS.','30F ve15QRS',['15F ve30QRS','30F ve30QRS','15F ve15QRS','60F ve15QRS'],['Atriyal ve ventriküler kaynak sayıları ters çevrilmiştir.','Ventriküler sayıyı atriyal sayıya eşitlemek1:1 varsayımıdır.','Atriyal sayım300/dk yerine150/dk alınmıştır.','Atriyal frekans yanlışlıkla iki katına çıkarılmıştır.']);
-numberBank('pToQR315','P başlangıcı−235ms,QRS sonu+80ms:315ms; PR175+QRS140.','315ms',['175ms','235ms','410ms','455ms'],['Yalnız PR sayılmış; QRS süresi eklenmemiştir.','R referansı bitiş kabul edilmiş; terminal80ms dışlanmıştır.','Bu QT410ms’dir; farklı başlangıç/bitiş sınırlarıdır.','QRS süresi iki kez eklenmiştir.']);
-numberBank('inferiorAVR','aVR=−(−0,08+0,20)/2=−0,06mV.','−0,06mV',['+0,06mV','−0,18mV','+0,24mV','+0,28mV'],['Sağ kol yönü için gereken eksi işareti kaybolmuştur.','aVL sonucudur; sağ kol değildir.','aVF sonucudur; sağ kol değildir.','III sonucudur; artırılmış sağ kol değildir.']);
-numberBank('pToQL335','P başlangıcı−245ms,QRS sonu+90ms:335ms; PR175+QRS160.','335ms',['175ms','245ms','430ms','495ms'],['Yalnız PR ölçülmüştür; QRS desteği dışlanmıştır.','R referansı terminal QRS sonu yerine kullanılmıştır.','Bu QT430ms’dir; P başlangıcından farklı ölçümdür.','QRS süresi iki kez eklenmiştir.']);
-bank('afResidual','O4',[
-['Atriyal katkı yokken pasif ventriküler doluş sürebilir','Organize atriyal kasılma kaybı,AV açık diyastoldeki pasif girişin tamamen kaybolması değildir.'],
-['Atriyal katkı kaybı pasif girişi de sıfırlar','Pasif doluş ayrı basınç farklarına bağlıdır; atriyal kasılma yokluğu tüm girişin yokluğu değildir.'],
-['f genliği pasif giriş hacmini doğrudan verir','f elektriksel atriyal voltajdır; pasif doluş hacmi için kalibre edilmiş ölçüm değildir.'],
-['Dar QRS atriyal katkıyı geri oluşturur','Ventriküler ileti genişliği organize atriyal mekanik kasılmayı geri oluşturmaz.'],
-['Kontrollü hız bütün doluşu aktif atriyal yapar','Hızın azalması P/organize atriyal katkı oluşturmaz; pasif ve aktif süreçler ayrı kalır.']]);
-bank('organizedCompare','O2',[
-['VT organize geniş kompleks; VF kaotik,komplekssiz','Bu karşılaştırmada VT ardışık seçilebilir tek biçimli geniş kompleksleri,VF organize QRS yokluğunu gösterir.'],
-['VT kaotik,komplekssiz; VF organize geniş kompleks','İki ventriküler örüntünün organize/kaotik tanımları ters çevrilmiştir.'],
-['VT ve VF aynı düzenli dar kompleks dizisidir','VT öğretim kaydı geniş,VF organize olmayan etkinliktir; ikisi dar düzenli dizi değildir.'],
-['VT ve VF yalnız atriyal F frekanslarıdır','Her ikisi ventriküler aritmidir; atriyal flutter F dizisiyle tanımlanmaz.'],
-['VT ve VF ayrımı yalnız ST yüksekliğidir','Organizasyon ve ventriküler kompleks yapısı temel ayrımdır; bölgesel ST dağılımı eş anlamlı değildir.']]);
-bank('componentTransform','O3',[
-['Tüm P,QRS,ST,T ve kaotik bileşenler birlikte dönüştürülür','Aynı elektrot farkları bütün anlık sinyale uygulanır; yalnız QRS’yi düzeltmek limb ilişkilerini tabanda/ST/T’de bozar.'],
-['Yalnız QRS dönüştürülür,diğer bileşenler bağımsızdır','Bipolar/artırılmış kimlikler bütün anlık voltaj için geçerlidir; P,ST,T veya kaotik taban istisna değildir.'],
-['Yalnız ST dönüştürülür,QRS bağımsız kalır','QRS de aynı elektrot potansiyellerinden gelir; ayrı rastgele lead voltajı ilişkiyi bozar.'],
-['AF ve VF matematik ilişkisinden muaf tutulur','Düzensiz veya kaotik elektriksel kaynak elektrot farkı tanımlarını değiştirmez.'],
-['Göğüs leadleri I+III toplamıyla zorunlu eşlenir','Einthoven kimliği ekstremite bipolar leadleri içindir; ayrı göğüs konumları aynı toplamla zorunlu belirlenmez.']]);
-extraCases[0]=['normal','Normal sinüs şeridinde kaliper iki noktayı5 küçük yatay kare ayırıyor; çizim25mm/sn orantısında.','Bu zaman aralığı kaçtır?','grid200'];
-extraCases[1]=['pvc','PVC dizisinin beş ardışık döngüsü800,800,480,1120,800ms; kısa ve uzun aralar birlikte veriliyor.','Bu beş döngüde ortalama elektriksel hız kaçtır?','pvcAverage'];
-extraCases[2]=['stemi','Anterior ST anlık bileşenleri I+0,04mV,II−0,04mV; lateral artırılmış sinyal ayrı hesaplanıyor.','aVL ST voltajı kaçtır?','anteriorAVL'];
-extraCases[3]=['flutter','Sabit2:1 öğretim ritmi300/dk atriyal,150/dk ventriküler; sayım penceresi6s olarak verilmiş.','Bu pencerenin atriyal/ventriküler çevrim sayıları hangisidir?','flutterCount'];
-extraCases[4]=['rbbb','RBBB sinüs atımında P başlangıcı−235ms,QRS sonu+80ms; PR ile QRS birleştirilerek ölçülüyor.','P başlangıcından QRS sonuna toplam süre kaçtır?','pToQR315'];
-extraQuestions[0]=['af','AF’de atriyum koordine kasılmıyor; ventriküler diyastolde AV açık kalabiliyor ve pasif giriş çizilmiş.','Atriyal katkı ile pasif doluşun ayrımı hangisidir?','afResidual'];
-extraQuestions[1]=['vt','VT kaydındaki tek biçimli geniş kompleks dizisi,ayrı verilen kaotik VF morfolojisiyle karşılaştırılıyor.','Organize elektriksel etkinlik açısından doğru karşılaştırma hangisidir?','organizedCompare'];
-extraQuestions[2]=['inferior','I−0,08mV,II+0,20mV aynı inferior ST anından; sağ kol artırılmış referans isteniyor.','aVR ST bileşeni kaçtır?','inferiorAVR'];
-extraQuestions[3]=['lbbb','LBBB atımında P başlangıcı−245ms,QRS sonu+90ms; PR ve QRS birleştirilerek ölçülecek.','Bu toplam atriyal başlangıç–ventriküler depolarizasyon sonu aralığı kaçtır?','pToQL335'];
-extraQuestions[4]=['vf','Kaotik örnekte voltaj tabanı ve hızlı salınımlar aynı ekstremite elektrot potansiyellerinden geliyor.','Tüm zamanlarda limb tutarlılığı hangi dönüşüm kapsamıyla sağlanır?','componentTransform'];
+const extraCases=[["normal","26 yaşında kadın hasta. Başvuru: kalibrasyon eğitimi amaçlı örnek kayıtta. ST segmentinin hangi noktadan ölçüldüğü ayrıca soruluyor.","ST yüksekliği hangi ölçüm noktasından değerlendirilir?","st"],
+["pvc","50 yaşında erkek hasta. Başvuru: holter değerlendirmesinde ortalama hız hesaplanıyor. Ventriküler kompleksin izde temsil ettiği olay ayrıca soruluyor.","QRS kompleksinin temel elektriksel karşılığı nedir?","qrs"],
+["stemi","55 yaşında kadın hasta. Başvuru: komşu derivasyonlar birlikte değerlendiriliyor. QRS’den kısa süre önce ayrı bir dalga seçiliyor.","P dalgasının temel elektriksel karşılığı nedir?","p"],
+["flutter","63 yaşında erkek hasta. Başvuru: altı saniyelik izlem penceresi değerlendiriliyor. Altı saniyelik bir izlem penceresinde atriyal ve ventriküler döngüler ayrı ayrı sayılıyor.","Bu izlem penceresinde kaç atriyal ve ventriküler döngü beklenir?","flutterCount"],
+["rbbb","58 yaşında kadın hasta. Başvuru: PR ve QRS birlikte ölçülüyor. QRS’den kısa süre önce ayrı bir dalga seçiliyor.","P dalgasının temel elektriksel karşılığı nedir?","p"]];
+const extraQuestions=[["af","67 yaşında erkek hasta. Başvuru: atriyal katkı ve pasif doluş birlikte değerlendiriliyor. Diyastol sırasında atriyoventriküler kapağın açık kaldığı, ancak organize bir atriyal kasılmanın izlenmediği belirtiliyor.","Ventrikül dolusuna atriyal katkı açısından ne söylenebilir?","afResidual"],
+["vt","61 yaşında kadın hasta. Başvuru: organize ve kaotik örnekler karşılaştırılıyor. Aynı hasta grubunda bir kayıtta düzenli geniş kompleksler, başka bir kayıtta kaotik ve düzensiz bir dalga karşılaştırılıyor.","Organizasyon açısından bu iki örüntü nasıl karşılaştırılır?","organizedCompare"],
+["inferior","59 yaşında erkek hasta. Başvuru: artırılmış sağ kol yönü ayrıca hesaplanıyor. QRS’den kısa süre önce ayrı bir dalga seçiliyor.","P dalgasının temel elektriksel karşılığı nedir?","p"],
+["lbbb","64 yaşında kadın hasta. Başvuru: PR ve QRS birlikte ölçülüyor. QRS’den kısa süre önce ayrı bir dalga seçiliyor.","P dalgasının temel elektriksel karşılığı nedir?","p"],
+["vf","56 yaşında erkek hasta. Başvuru: ekstremite dönüşümü tüm zamanlarda kontrol ediliyor. QRS’den kısa süre önce ayrı bir dalga seçiliyor.","P dalgasının temel elektriksel karşılığı nedir?","p"]];
 const labels={normal:'Normal sinüs ritmi',af:'Atriyal fibrilasyon',stemi:'Anterior ST yükselmesi örneği',pvc:'Ventriküler erken atım',svt:'Düzenli dar kompleks taşikardi',inferior:'İnferior ST yükselmesi örneği',vt:'Monomorfik VT örneği',vf:'VF elektriksel örneği',pat:'Fokal atriyal taşikardi',flutter:'2:1 flutter örneği',sintach:'Sinüs taşikardisi',lbbb:'LBBB örneği',rbbb:'RBBB örneği'};
 const modeSources={normal:['ECG','CYCLE'],af:['AF2024'],stemi:['ACS2023'],pvc:['VA2022'],svt:['SVT2019'],inferior:['ACS2023'],vt:['VA2022','ALS2025'],vf:['VA2022','ALS2025'],pat:['SVT2019'],flutter:['SVT2019'],sintach:['SVT2019','ECG'],lbbb:['BBB2009'],rbbb:['BBB2009']};
 const leads={normal:['II','aVF','V3'],af:['II','aVF','V1'],stemi:['II','aVL','V3'],pvc:['II','aVR','V1'],svt:['II','aVF','V1'],inferior:['II','aVF','V1'],vt:['II','aVR','V1'],vf:['II','aVF','V1'],pat:['II','aVF','V1'],flutter:['II','aVF','V1'],sintach:['II','aVF','V3'],lbbb:['I','aVL','V6'],rbbb:['I','aVR','V1']};
 function authoredRows(rows,extra){return Object.entries(rows).flatMap(([mode,text])=>text.trim().split('\n').map(row=>{const [stem,task,b]=row.split('^');return [mode,stem,task,b];})).concat(extra);}
+function defaultVitals(mode,ecgOptions){
+ if(mode==='af')return ecgOptions.afProfile==='rapid'?'Nabız=142/dk düzensiz;TA=110/72 mmHg;SpO₂=%95':'Nabız=78/dk düzensiz;TA=126/80 mmHg;SpO₂=%97';
+ if(mode==='vf')return 'Nabız=alınamıyor;TA=ölçülemiyor;Bilinç=kapalı';
+ if(mode==='vt')return 'Nabız=160/dk;TA=88/58 mmHg;SpO₂=%94';
+ if(mode==='svt')return 'Nabız=165/dk;TA=100/66 mmHg;SpO₂=%96';
+ if(mode==='flutter')return 'Nabız=150/dk düzenli;TA=104/68 mmHg;SpO₂=%96';
+ if(mode==='pat')return 'Nabız=150/dk;TA=108/70 mmHg;SpO₂=%97';
+ if(mode==='sintach')return 'Nabız=120/dk;TA=112/74 mmHg;SpO₂=%97';
+ return 'Nabız=75/dk düzenli;TA=120/78 mmHg;SpO₂=%98';
+}
+function parseVitals(text){return text.split(';').map(pair=>{const eq=pair.indexOf('=');return {k:pair.slice(0,eq),v:pair.slice(eq+1)};});}
 function display(text){return text.replace(/(\p{L})([0-9])/gu,'$1 $2').replace(/([0-9])(\p{L})/gu,'$1 $2').replace(/([,;:])(?=\p{L})/gu,'$1 ').replace(/\bV ([1-6])\b/g,'V$1');}
-function makeItems(rows,prefix){return rows.map(([mode,stem,task,bankId],i)=>{const b=banks[bankId];if(!b||!stem||!task)throw new Error('Missing authored item '+prefix+(i+1));const correct=i%5,order=Array.from({length:5},(_,j)=>(j-correct+5)%5),id=prefix+String(i+1).padStart(3,'0'),sources=new Set(modeSources[mode]);if(b.objective==='O3'||b.objective==='O6')sources.add('ECG');if(b.objective==='O4')sources.add('CYCLE');return {id,mode,title:(prefix==='C'?'Sentetik vaka ':'Sentetik değerlendirme ')+id,ariaLabel:id+' için üç derivasyonlu sentetik kayıt; zaman saniye,voltaj mV',stem:'Sınırlandırılmış sentetik eğitim senaryosu. '+display(stem),question:display(task),text:display(task),options:order.map(n=>display(b.options[n])),correct,explanations:order.map(n=>display(b.explanations[n])),feedback:display(b.explanations[0]),objectiveIds:[b.objective],sourceIds:[...sources],decisionId:bankId,ecg:{mode,options:mode==='af'?{afProfile:bankId==='fastFill'?'rapid':'controlled'}:{},leads:[...leads[mode]],start:mode==='pvc'?.6:.5+(i%5)*.08,seconds:3.2}};});}
+function makeItems(rows,prefix){return rows.map(([mode,stem,task,bankId],i)=>{const b=banks[bankId];if(!b||!stem||!task)throw new Error('Missing authored item '+prefix+(i+1));const correct=i%5,order=Array.from({length:5},(_,j)=>(j-correct+5)%5),id=prefix+String(i+1).padStart(3,'0'),sources=new Set(modeSources[mode]);if(b.objective==='O3'||b.objective==='O6')sources.add('ECG');if(b.objective==='O4')sources.add('CYCLE');const ecgOptions=mode==='af'?{afProfile:bankId==='fastFill'?'rapid':'controlled'}:{};return {id,mode,title:(prefix==='C'?'Sentetik vaka ':'Sentetik değerlendirme ')+id,ariaLabel:id+' için üç derivasyonlu sentetik kayıt; zaman saniye,voltaj mV',stem:display(stem),question:display(task),text:display(task),vitals:parseVitals(defaultVitals(mode,ecgOptions)),options:order.map(n=>display(b.options[n])),correct,explanations:order.map(n=>display(b.explanations[n])),feedback:display(b.explanations[0]),objectiveIds:[b.objective],sourceIds:[...sources],decisionId:bankId,ecg:{mode,options:ecgOptions,leads:[...leads[mode]],start:mode==='pvc'?.6:.5+(i%5)*.08,seconds:3.2}};});}
 const cases=makeItems(authoredRows(caseRows,extraCases),'C'),questions=makeItems(authoredRows(quizRows,extraQuestions),'Q');
 if(cases.length!==200||questions.length!==200)throw new Error('400 authored items required');
 function freeze(value){if(value&&typeof value==='object'){Object.values(value).forEach(freeze);Object.freeze(value);}return value;}
-root.PulseCurriculum=freeze({version:6,sessionSize:10,labels,cases,questions,byId:Object.fromEntries([...cases,...questions].map(item=>[item.id,item])),limitations:'400 sentetik madde ve13 örüntü bağımsız klinisyen veya psikometrik doğrulamadan geçmemiştir.16s gözlem yalnız akış kuralıdır.'});
+root.PulseCurriculum=freeze({version:6,sessionSize:10,labels,cases,questions,byId:Object.fromEntries([...cases,...questions].map(item=>[item.id,item])),limitations:'400 sentetik madde ve 13 örüntü bağımsız klinisyen veya psikometrik doğrulamadan geçmemiştir. Olgu vinyetleri ve vitaller sentetiktir. 16 s gözlem yalnız akış kuralıdır.'});
 })(window);

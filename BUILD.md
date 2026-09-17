@@ -35,7 +35,27 @@ ZIP içindeki `build-integrity.json` ve HTML içindeki `pulse-build-integrity` J
 Bu kontroller bir XML XSD uygunluk sertifikası veya gerçek LMS testi değildir. Kaynak kodun gerçek tarayıcı/API taklidi testleri `qa/evidence/final/` içinde ayrı raporlanır. Bağımsız klinisyen veya psikometrik validasyon yapılmamıştır.
 
 
-## Son teslim kaydı (kullanıcı kararları sonrası)
+## Son teslim kaydı (Revizyon 2 — Ausculta hizalama, doğrulama turu düzeltmeleri, 18 Eylül 2026)
+
+Kaynak kümesi SHA-256: `d8c3bca475bb178b9d17d08dabd045b501ac612d2338fefe91ffe847151bb9ba`
+
+| Çıktı | Boyut | SHA-256 |
+|---|---|---|
+| `EGEMED_PULSE_Onizleme.html` | 1921316 | `ea8ca015a01c5dd132ac21ebe9cd3d4c01f9dffa288763c9b5c1649fb527ca29` |
+| `EGEMED_PULSE_SCORM_1.2.zip` | 944019 | `7212444f773e7dc4760903106ad7e7faf4710cab48decd9544c45448645b2edc` |
+
+Tam kaynak envanteri `qa/sol_package_manifest.json` içindedir. Kaynaklar sabitlendi; bu kayıt `cardai/` değişmedikçe geçerlidir.
+
+### Önceki kayıt (Revizyon 2, ilk teslim — 18 Eylül 2026)
+
+Kaynak kümesi SHA-256: `cbf7ba0da018c7d375e33d928193895b07938458d115942d8581785babab735d`
+
+| Çıktı | Boyut | SHA-256 |
+|---|---|---|
+| `EGEMED_PULSE_Onizleme.html` | 1792516 | `b19ec8350756c0587ee8a8b7dbc0acc731592bcfbc381a8921f066154b0dbe80` |
+| `EGEMED_PULSE_SCORM_1.2.zip` | 947897 | `9a0832b21234c841056a379f341c9e755e1a100b69388abf00f19de86576ccff` |
+
+### Önceki teslim kaydı (kullanıcı kararları sonrası, Revizyon 1)
 
 Kaynak kümesi SHA-256: `c471b4a54fcf71e01f922bda547506b6a96567a570a0fd2585728359d9f3cc32`
 
@@ -43,5 +63,3 @@ Kaynak kümesi SHA-256: `c471b4a54fcf71e01f922bda547506b6a96567a570a0fd258572835
 |---|---|---|
 | `EGEMED_PULSE_Onizleme.html` | 1748007 | `f3f2eb1f15432fdf1553aeed5f14973fb17044a643e4e7fbef0039c3d88e377b` |
 | `EGEMED_PULSE_SCORM_1.2.zip` | 951930 | `a1e68d44fc67556c4829271ccaf7feee3abfcaf4700ef11523eb9fe73cd227c0` |
-
-Tam kaynak envanteri `qa/sol_package_manifest.json` içindedir. Kaynaklar sabitlendi; bu kayıt `cardai/` değişmedikçe geçerlidir.

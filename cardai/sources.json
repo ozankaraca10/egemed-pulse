@@ -7,7 +7,7 @@
     "logo": "assets/ege-tip-logo.png",
     "logoSource": "https://egelogo.ege.edu.tr/",
     "evidence": {
-      "statement": "Yapılandırılmış, göreve özgü EKG yorumlama eğitiminin yorumlama yeterliğini geliştirdiği sistematik derleme ve meta-analizle gösterilmiştir.[1]",
+      "statement": "Yapılandırılmış, göreve özgü EKG yorumlama eğitiminin yorumlama yeterliğini geliştirdiği sistematik derleme ve meta-analizle gösterilmiştir.",
       "citation": "Oh S-Y, Cook DA, Van Gerven PWM, Nicholson J, Fairbrother H, Smeenk FWJM, Pusic MV. Physician training for electrocardiogram interpretation: a systematic review and meta-analysis. Acad Med. 2022;97(4):593–602. doi:10.1097/ACM.0000000000004607",
       "doi": "10.1097/ACM.0000000000004607",
       "url": "https://doi.org/10.1097/ACM.0000000000004607"
@@ -93,7 +93,7 @@
       "org": "Cardiovascular Physiology Concepts",
       "year": 2020,
       "url": "https://cvphysiology.com/arrhythmias/a013a",
-      "use": "I, II, III ve artırılmış derivasyonların matematiksel türetimi."
+      "use": "Ekstremite ve artırılmış derivasyon gruplarının hangi duvarı/bölgeyi yansıttığı."
     },
     {
       "id": "CYCLE",
