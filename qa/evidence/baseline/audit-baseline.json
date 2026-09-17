@@ -1,137 +1,137 @@
 {
-  "date": "2026-09-16T13:27:41.787Z",
+  "date": "2026-09-17T17:54:15.306Z",
   "kind": "Real Chromium browser + separately identified direct model checks",
   "observations": [
     {
       "id": "CONTENT",
-      "cases": 50,
-      "questions": 50,
-      "caseClinicalStems": 13,
+      "cases": 200,
+      "questions": 200,
+      "caseClinicalStems": 200,
       "optionCounts": [
-        3
+        5
       ],
       "duplicateOptions": []
     },
     {
       "id": "MODEL-normal",
-      "residual": 0.3999999999999654,
-      "augmentedResidual": 0.2599999999999774,
+      "residual": 0,
+      "augmentedResidual": 5.551115123125783e-17,
       "nonfinite": 0,
       "qrs": 0.08,
       "rate": 75
     },
     {
       "id": "MODEL-af",
-      "residual": 0.41460008114167657,
-      "augmentedResidual": 0.26652535097357266,
+      "residual": 0,
+      "augmentedResidual": 5.551115123125783e-17,
       "nonfinite": 0,
       "qrs": 0.08,
-      "rate": 91
+      "rate": 97
     },
     {
       "id": "MODEL-stemi",
-      "residual": 0.3999999999999654,
-      "augmentedResidual": 0.2599999999999774,
+      "residual": 0,
+      "augmentedResidual": 5.551115123125783e-17,
       "nonfinite": 0,
       "qrs": 0.08,
       "rate": 75
     },
     {
       "id": "MODEL-pvc",
-      "residual": 0.43199999999860783,
-      "augmentedResidual": 0.280799999999095,
+      "residual": 0,
+      "augmentedResidual": 5.551115123125783e-17,
       "nonfinite": 0,
       "qrs": 0.14,
       "rate": 54
     },
     {
       "id": "MODEL-svt",
-      "residual": 0.3687500000011137,
-      "augmentedResidual": 0.23968750000072397,
+      "residual": 0,
+      "augmentedResidual": 5.551115123125783e-17,
       "nonfinite": 0,
       "qrs": 0.08,
       "rate": 167
     },
     {
       "id": "MODEL-inferior",
-      "residual": 0.3999999999999654,
-      "augmentedResidual": 0.2599999999999774,
+      "residual": 0,
+      "augmentedResidual": 5.551115123125783e-17,
       "nonfinite": 0,
       "qrs": 0.08,
       "rate": 75
     },
     {
       "id": "MODEL-vt",
-      "residual": 0.4319999999999946,
-      "augmentedResidual": 0.2807999999999965,
+      "residual": 0,
+      "augmentedResidual": 5.551115123125783e-17,
       "nonfinite": 0,
       "qrs": 0.18,
       "rate": 158
     },
     {
       "id": "MODEL-vf",
-      "residual": 0.8239793101623629,
-      "augmentedResidual": 0.9853181557567661,
+      "residual": 0,
+      "augmentedResidual": 5.551115123125783e-17,
       "nonfinite": 0,
       "qrs": 0.08,
-      "rate": 0
+      "rate": null
     },
     {
       "id": "MODEL-pat",
-      "residual": 0.39999999999995184,
-      "augmentedResidual": 0.25999999999996865,
+      "residual": 0,
+      "augmentedResidual": 5.551115123125783e-17,
       "nonfinite": 0,
       "qrs": 0.08,
       "rate": 150
     },
     {
       "id": "MODEL-flutter",
-      "residual": 0.4349999999998264,
-      "augmentedResidual": 0.3024999999999687,
+      "residual": 0,
+      "augmentedResidual": 5.551115123125783e-17,
       "nonfinite": 0,
       "qrs": 0.08,
       "rate": 150
     },
     {
       "id": "MODEL-sintach",
-      "residual": 0.39999999999989133,
-      "augmentedResidual": 0.2599999999999293,
+      "residual": 0,
+      "augmentedResidual": 5.551115123125783e-17,
       "nonfinite": 0,
       "qrs": 0.08,
       "rate": 120
     },
     {
       "id": "MODEL-lbbb",
-      "residual": 0.9191999999999835,
-      "augmentedResidual": 0.453299999999992,
+      "residual": 0,
+      "augmentedResidual": 5.551115123125783e-17,
       "nonfinite": 0,
       "qrs": 0.16,
       "rate": 75
     },
     {
       "id": "MODEL-rbbb",
-      "residual": 0.6479619047618896,
-      "augmentedResidual": 0.3082285714285642,
+      "residual": 0,
+      "augmentedResidual": 2.7755575615628914e-17,
       "nonfinite": 0,
       "qrs": 0.14,
       "rate": 75
     },
     {
       "id": "LANDING-17s",
-      "before": 0.079,
-      "after": 16,
+      "before": 0,
+      "after": 0,
       "landingVisible": true
     },
     {
       "id": "PROGRAMMATIC",
-      "before": 0.017,
-      "after": 1.29
+      "before": 0,
+      "after": 0
     },
     {
       "id": "EXPLICIT-16s-speed2",
-      "before": 0.272,
+      "before": 0.05,
       "after": 16,
-      "simTime": 35.21799999999978
+      "simTime": 35.08319999999985
     },
     {
       "id": "HELP-MODAL",
@@ -140,7 +140,7 @@
     },
     {
       "id": "OTHER-MODAL",
-      "delta": 1.125
+      "delta": 0
     },
     {
       "id": "LAYOUT-1366",
@@ -152,133 +152,133 @@
       "cards": [
         {
           "mode": "normal",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "af",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "stemi",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "pvc",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "svt",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "inferior",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "vt",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "vf",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "pat",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "flutter",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "sintach",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "lbbb",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "rbbb",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         }
       ],
-      "font": "12px",
+      "font": "14px",
       "leadSelectors": [
         {
-          "x": 769,
-          "width": 58
+          "x": 764.6875,
+          "width": 64
         },
         {
-          "x": 1020.5,
-          "width": 58
+          "x": 1014.84375,
+          "width": 64
         },
         {
-          "x": 1272,
-          "width": 58
+          "x": 1142,
+          "width": 64
         }
       ],
       "ecg": {
-        "x": 593.5,
-        "y": 242,
-        "width": 744.5,
-        "height": 86.484375,
-        "top": 242,
-        "right": 1338,
-        "bottom": 328.484375,
-        "left": 593.5
+        "x": 595.546875,
+        "y": 252.046875,
+        "width": 740.453125,
+        "height": 108,
+        "top": 252.046875,
+        "right": 1336,
+        "bottom": 360.046875,
+        "left": 595.546875
       }
     },
     {
@@ -291,133 +291,133 @@
       "cards": [
         {
           "mode": "normal",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "af",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "stemi",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "pvc",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "svt",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "inferior",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "vt",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "vf",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "pat",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "flutter",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "sintach",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "lbbb",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "rbbb",
-          "height": 68,
-          "bottom": 149,
-          "railBottom": 151,
-          "scrollHeight": 66,
-          "clientHeight": 66
+          "height": 50,
+          "bottom": 126.046875,
+          "railBottom": 131.046875,
+          "scrollHeight": 48,
+          "clientHeight": 48
         }
       ],
-      "font": "12px",
+      "font": "14px",
       "leadSelectors": [
         {
-          "x": 1108.78125,
-          "width": 58
+          "x": 1104.484375,
+          "width": 64
         },
         {
-          "x": 1467.390625,
-          "width": 58
+          "x": 1461.734375,
+          "width": 64
         },
         {
-          "x": 1826,
-          "width": 58
+          "x": 1645.125,
+          "width": 64
         }
       ],
       "ecg": {
-        "x": 826.171875,
-        "y": 242,
-        "width": 1065.828125,
-        "height": 242.5,
-        "top": 242,
-        "right": 1892,
-        "bottom": 484.5,
-        "left": 826.171875
+        "x": 828.234375,
+        "y": 256.046875,
+        "width": 1061.765625,
+        "height": 174.984375,
+        "top": 256.046875,
+        "right": 1890,
+        "bottom": 431.03125,
+        "left": 828.234375
       }
     },
     {
@@ -430,133 +430,133 @@
       "cards": [
         {
           "mode": "normal",
-          "height": 64,
-          "bottom": 184,
-          "railBottom": 186,
-          "scrollHeight": 62,
-          "clientHeight": 62
+          "height": 50,
+          "bottom": 192,
+          "railBottom": 197,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "af",
-          "height": 64,
-          "bottom": 184,
-          "railBottom": 186,
-          "scrollHeight": 62,
-          "clientHeight": 62
+          "height": 50,
+          "bottom": 192,
+          "railBottom": 197,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "stemi",
-          "height": 64,
-          "bottom": 184,
-          "railBottom": 186,
-          "scrollHeight": 62,
-          "clientHeight": 62
+          "height": 50,
+          "bottom": 192,
+          "railBottom": 197,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "pvc",
-          "height": 64,
-          "bottom": 184,
-          "railBottom": 186,
-          "scrollHeight": 62,
-          "clientHeight": 62
+          "height": 50,
+          "bottom": 192,
+          "railBottom": 197,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "svt",
-          "height": 64,
-          "bottom": 184,
-          "railBottom": 186,
-          "scrollHeight": 62,
-          "clientHeight": 62
+          "height": 50,
+          "bottom": 192,
+          "railBottom": 197,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "inferior",
-          "height": 64,
-          "bottom": 184,
-          "railBottom": 186,
-          "scrollHeight": 62,
-          "clientHeight": 62
+          "height": 50,
+          "bottom": 192,
+          "railBottom": 197,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "vt",
-          "height": 64,
-          "bottom": 184,
-          "railBottom": 186,
-          "scrollHeight": 62,
-          "clientHeight": 62
+          "height": 50,
+          "bottom": 192,
+          "railBottom": 197,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "vf",
-          "height": 64,
-          "bottom": 184,
-          "railBottom": 186,
-          "scrollHeight": 62,
-          "clientHeight": 62
+          "height": 50,
+          "bottom": 192,
+          "railBottom": 197,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "pat",
-          "height": 64,
-          "bottom": 184,
-          "railBottom": 186,
-          "scrollHeight": 62,
-          "clientHeight": 62
+          "height": 50,
+          "bottom": 192,
+          "railBottom": 197,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "flutter",
-          "height": 64,
-          "bottom": 184,
-          "railBottom": 186,
-          "scrollHeight": 62,
-          "clientHeight": 62
+          "height": 50,
+          "bottom": 192,
+          "railBottom": 197,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "sintach",
-          "height": 64,
-          "bottom": 184,
-          "railBottom": 186,
-          "scrollHeight": 62,
-          "clientHeight": 62
+          "height": 50,
+          "bottom": 192,
+          "railBottom": 197,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "lbbb",
-          "height": 64,
-          "bottom": 184,
-          "railBottom": 186,
-          "scrollHeight": 62,
-          "clientHeight": 62
+          "height": 50,
+          "bottom": 192,
+          "railBottom": 197,
+          "scrollHeight": 48,
+          "clientHeight": 48
         },
         {
           "mode": "rbbb",
-          "height": 64,
-          "bottom": 184,
-          "railBottom": 186,
-          "scrollHeight": 62,
-          "clientHeight": 62
+          "height": 50,
+          "bottom": 192,
+          "railBottom": 197,
+          "scrollHeight": 48,
+          "clientHeight": 48
         }
       ],
-      "font": "12px",
+      "font": "14px",
       "leadSelectors": [
         {
-          "x": 50,
-          "width": 58
+          "x": 27,
+          "width": 103.328125
         },
         {
-          "x": 166,
-          "width": 58
+          "x": 143.328125,
+          "width": 103.328125
         },
         {
-          "x": 282,
-          "width": 58
+          "x": 259.65625,
+          "width": 103.34375
         }
       ],
       "ecg": {
-        "x": 21,
-        "y": 868,
-        "width": 348,
-        "height": 308,
-        "top": 868,
-        "right": 369,
-        "bottom": 1176,
-        "left": 21
+        "x": 24,
+        "y": 1048.703125,
+        "width": 342,
+        "height": 228,
+        "top": 1048.703125,
+        "right": 366,
+        "bottom": 1276.703125,
+        "left": 24
       }
     },
     {
@@ -584,15 +584,15 @@
       "id": "QUIZ-WITH-ZERO-CASES",
       "view": "quiz",
       "answers": 0,
-      "ecgCanvases": 0
+      "ecgCanvases": 1
     },
     {
       "id": "CASE-BEFORE-ANSWER",
-      "expandVisible": true,
-      "leadMenus": 0,
+      "expandVisible": false,
+      "leadMenus": 12,
       "canvas": {
-        "width": 791,
-        "height": 363
+        "width": 696,
+        "height": 300
       }
     },
     {
@@ -600,39 +600,35 @@
       "before": {
         "width": 300,
         "height": 150,
-        "cssWidth": 789,
-        "cssHeight": 361
+        "cssWidth": 694,
+        "cssHeight": 298
       },
       "after": {
-        "width": 1137,
-        "height": 675,
-        "cssWidth": 1135,
-        "cssHeight": 673
+        "width": 1004,
+        "height": 300,
+        "cssWidth": 1002,
+        "cssHeight": 298
       }
     },
     {
       "id": "VF-FLOW",
-      "movingParticles": 28,
+      "movingParticles": 0,
       "total": 58
     },
     {
       "id": "SCORM-SET-FALSE",
-      "reportedSuccess": true,
-      "bytes": 1573
+      "reportedSuccess": false,
+      "bytes": 2158
     },
     {
-      "id": "SCORM-FINISH",
-      "dialogOpen": true,
-      "closeEnabled": false,
-      "continueEnabled": false,
-      "calls": 1
+      "id": "SCORM-UNLOAD-FINISH",
+      "before": 0,
+      "after": 1,
+      "status": "incomplete"
     },
     {
       "id": "MALFORMED-RESTORE",
-      "errors": [
-        "Cannot read properties of undefined (reading 'text')",
-        "Cannot read properties of undefined (reading 'lead')"
-      ],
+      "errors": [],
       "controllerExists": true
     }
   ],

@@ -1,0 +1,58 @@
+{
+  "date": "2026-09-17T17:53:25.556Z",
+  "kind": "Real Chromium; fixtures/API mocks identified per test",
+  "rows": [
+    {
+      "id": "scope",
+      "status": "INFO",
+      "details": {
+        "kind": "Node VM pure schema/unit tests; no DOM or real LMS"
+      }
+    },
+    {
+      "id": "T13-invalid-schema-and-injection",
+      "status": "PASS",
+      "details": {
+        "payloads": 6
+      }
+    },
+    {
+      "id": "T13-v1-v5-migration",
+      "status": "PASS",
+      "details": {
+        "versions": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "oldAnswersDeliberatelyUnmapped": true
+      }
+    },
+    {
+      "id": "T13-derived-score-gates",
+      "status": "PASS",
+      "details": {
+        "score": 80,
+        "caseCorrect": 0
+      }
+    },
+    {
+      "id": "T14-max-valid-suspend-roundtrip",
+      "status": "PASS",
+      "details": {
+        "bytes": 1665,
+        "characters": 1665
+      }
+    },
+    {
+      "id": "T03-random-unique-and-stable-serialization",
+      "status": "PASS",
+      "details": {
+        "samples": 1000,
+        "uniqueSamples": 1000
+      }
+    }
+  ]
+}

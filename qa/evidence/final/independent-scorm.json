@@ -1,0 +1,314 @@
+{
+  "date": "2026-09-17T17:53:25.027Z",
+  "kind": "Real Chromium; fixtures/API mocks identified per test",
+  "rows": [
+    {
+      "id": "scope",
+      "status": "INFO",
+      "details": {
+        "kind": "Real Chromium running actual scorm.js adapter with API mock; not real LMS and not full product UI"
+      }
+    },
+    {
+      "id": "T11-LMSSetValue-cmi.suspend_data-false",
+      "status": "PASS",
+      "details": {
+        "failed": {
+          "ok": false,
+          "result": {
+            "ok": false,
+            "core": "failed",
+            "interactions": "saved",
+            "errors": [
+              "LMSSetValue: returned false [cmi.suspend_data]"
+            ]
+          }
+        },
+        "retried": {
+          "ok": true,
+          "result": {
+            "ok": true,
+            "core": "saved",
+            "interactions": "saved",
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "id": "T11-LMSSetValue-cmi.core.lesson_status-101",
+      "status": "PASS",
+      "details": {
+        "failed": {
+          "ok": false,
+          "result": {
+            "ok": false,
+            "core": "failed",
+            "interactions": "saved",
+            "errors": [
+              "LMSSetValue: error 101 [cmi.core.lesson_status]"
+            ]
+          }
+        },
+        "retried": {
+          "ok": true,
+          "result": {
+            "ok": true,
+            "core": "saved",
+            "interactions": "saved",
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "id": "T11-LMSCommit-all-false",
+      "status": "PASS",
+      "details": {
+        "failed": {
+          "ok": false,
+          "result": {
+            "ok": false,
+            "core": "failed",
+            "interactions": "saved",
+            "errors": [
+              "LMSCommit: returned false"
+            ]
+          }
+        },
+        "retried": {
+          "ok": true,
+          "result": {
+            "ok": true,
+            "core": "saved",
+            "interactions": "saved",
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "id": "T11-LMSCommit-all-throw",
+      "status": "PASS",
+      "details": {
+        "failed": {
+          "ok": false,
+          "result": {
+            "ok": false,
+            "core": "failed",
+            "interactions": "saved",
+            "errors": [
+              "LMSCommit threw"
+            ]
+          }
+        },
+        "retried": {
+          "ok": true,
+          "result": {
+            "ok": true,
+            "core": "saved",
+            "interactions": "saved",
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "id": "T11-LMSSetValue-cmi.core.score.min-throw",
+      "status": "PASS",
+      "details": {
+        "failed": {
+          "ok": false,
+          "result": {
+            "ok": false,
+            "core": "failed",
+            "interactions": "saved",
+            "errors": [
+              "LMSSetValue threw [cmi.core.score.min]"
+            ]
+          }
+        },
+        "retried": {
+          "ok": true,
+          "result": {
+            "ok": true,
+            "core": "saved",
+            "interactions": "saved",
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "id": "T11-Initialize-failure",
+      "status": "PASS",
+      "details": {
+        "load": null,
+        "save": false,
+        "calls": [
+          [
+            "LMSInitialize",
+            ""
+          ]
+        ]
+      }
+    },
+    {
+      "id": "T11-Get-failure-preserve-resume",
+      "status": "PASS",
+      "details": {
+        "load": null,
+        "save": false,
+        "data": "{\"version\":6,\"marker\":\"previous-learning-progress\"}",
+        "result": {
+          "ok": false,
+          "core": "resume-read-failed",
+          "interactions": "pending",
+          "errors": [
+            "Devam kaydı okunamadı; önce yeniden okuma gerekir"
+          ]
+        }
+      }
+    },
+    {
+      "id": "T13-unreadable-schema-preserve-{\"version\":9",
+      "status": "PASS",
+      "details": {
+        "load": null,
+        "save": false,
+        "data": "{\"version\":9,\"important\":\"future-progress\"}"
+      }
+    },
+    {
+      "id": "T13-unreadable-schema-preserve-{invalid jso",
+      "status": "PASS",
+      "details": {
+        "load": null,
+        "save": false,
+        "data": "{invalid json"
+      }
+    },
+    {
+      "id": "T11-status-ledger-after-commit",
+      "status": "PASS",
+      "details": {
+        "failed": false,
+        "afterFailed": "not attempted",
+        "success": true,
+        "afterSuccess": "passed"
+      }
+    },
+    {
+      "id": "T14-oversize-no-truncation",
+      "status": "PASS",
+      "details": {
+        "ok": false,
+        "result": {
+          "ok": false,
+          "core": "oversize",
+          "interactions": "pending",
+          "errors": [
+            "suspend_data 4096 bayt sınırını aşıyor"
+          ]
+        },
+        "data": "{\"version\":6,\"marker\":\"original\"}"
+      }
+    },
+    {
+      "id": "T15-correct-response-identity-retry",
+      "status": "PASS",
+      "details": {
+        "index": 0,
+        "core": true,
+        "failed": {
+          "ok": true,
+          "core": "saved",
+          "interactions": "failed-pending",
+          "errors": [
+            "LMSSetValue: error 401 [cmi.interactions.0.id]",
+            "LMSSetValue: error 401 [cmi.interactions.0.type]",
+            "LMSSetValue: error 401 [cmi.interactions.0.correct_responses.0.pattern]",
+            "LMSSetValue: error 401 [cmi.interactions.0.student_response]",
+            "LMSSetValue: error 401 [cmi.interactions.0.result]"
+          ]
+        },
+        "retry": true,
+        "data": {
+          "cmi.core.lesson_status": "incomplete",
+          "cmi.interactions._count": "1",
+          "cmi.suspend_data": "{\"version\":6,\"mode\":\"normal\",\"time\":2,\"bestScore\":null,\"assessed\":false,\"passed\":false}",
+          "cmi.core.lesson_location": "normal:2.00",
+          "cmi.core.score.min": "0",
+          "cmi.core.score.max": "100",
+          "cmi.core.session_time": "0000:00:00.00",
+          "cmi.core.exit": "suspend",
+          "cmi.interactions.0.id": "pulse_case_sessionabc_C017",
+          "cmi.interactions.0.type": "choice",
+          "cmi.interactions.0.correct_responses.0.pattern": "c",
+          "cmi.interactions.0.student_response": "e",
+          "cmi.interactions.0.result": "wrong"
+        },
+        "result": {
+          "ok": true,
+          "core": "saved",
+          "interactions": "saved",
+          "errors": []
+        },
+        "pending": 0
+      }
+    },
+    {
+      "id": "T15-invalid-saved-index",
+      "status": "PASS",
+      "details": {
+        "index": 0,
+        "ok": true,
+        "data": {
+          "cmi.core.lesson_status": "incomplete",
+          "cmi.interactions._count": "1",
+          "cmi.suspend_data": "{\"version\":6,\"mode\":\"normal\",\"time\":2,\"bestScore\":null,\"assessed\":false,\"passed\":false}",
+          "cmi.core.lesson_location": "normal:2.00",
+          "cmi.core.score.min": "0",
+          "cmi.core.score.max": "100",
+          "cmi.core.session_time": "0000:00:00.00",
+          "cmi.core.exit": "suspend",
+          "cmi.interactions.0.id": "pulse_quiz_abc_Q200",
+          "cmi.interactions.0.type": "choice",
+          "cmi.interactions.0.correct_responses.0.pattern": "b",
+          "cmi.interactions.0.student_response": "a",
+          "cmi.interactions.0.result": "wrong"
+        },
+        "result": {
+          "ok": true,
+          "core": "saved",
+          "interactions": "saved",
+          "errors": []
+        }
+      }
+    },
+    {
+      "id": "T12-finish-failed-save-retry-once",
+      "status": "PASS",
+      "details": {
+        "saveFail": false,
+        "finishCallsAfterSaveFailure": 0,
+        "finishFail": false,
+        "success": true,
+        "ended": true,
+        "callsAfterEnded": 0
+      }
+    },
+    {
+      "id": "T14-active-session-time",
+      "status": "PASS",
+      "details": {
+        "idle": 0,
+        "active": {
+          "ms": 702.0999999940395,
+          "formatted": "0000:00:00.70"
+        },
+        "stopped": 702.0999999940395
+      }
+    }
+  ]
+}

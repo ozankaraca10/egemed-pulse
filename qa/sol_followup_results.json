@@ -1,0 +1,77 @@
+{
+  "results": [
+    {
+      "name": "visible-case-learning-time",
+      "pass": true,
+      "details": {
+        "before": 0,
+        "after": 1197.4000000059605
+      }
+    },
+    {
+      "name": "dialog-excludes-learning-time",
+      "pass": true,
+      "details": {
+        "modalStart": 1241.9000000059605,
+        "modalEnd": 1248.5999999940395
+      }
+    },
+    {
+      "name": "correct-expand-visible",
+      "pass": true
+    },
+    {
+      "name": "expand-correct-mode",
+      "pass": true
+    },
+    {
+      "name": "return-exact-case-context",
+      "pass": true
+    },
+    {
+      "name": "visible-quiz-learning-time",
+      "pass": true,
+      "details": {
+        "qStart": 1350,
+        "qEnd": 2440.699999988079
+      }
+    },
+    {
+      "name": "quiz-reload-resize-redraw",
+      "pass": true,
+      "details": {
+        "old": {
+          "width": 670,
+          "css": 669.90625,
+          "id": "Q132"
+        },
+        "resized": {
+          "width": 966,
+          "css": 966.21875,
+          "id": "Q132"
+        }
+      }
+    },
+    {
+      "name": "vf-all63-particles-stop",
+      "pass": true,
+      "details": {
+        "count": 63
+      }
+    },
+    {
+      "name": "five-metric-containers",
+      "pass": true
+    },
+    {
+      "name": "footer-exact",
+      "pass": true
+    },
+    {
+      "name": "no-browser-errors",
+      "pass": true,
+      "details": []
+    }
+  ],
+  "errors": []
+}

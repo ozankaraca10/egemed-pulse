@@ -1,0 +1,452 @@
+{
+  "date": "2026-09-17T17:53:17.027Z",
+  "kind": "Real Chromium; fixtures/API mocks identified per test",
+  "rows": [
+    {
+      "id": "T01-17-real-seconds-landing",
+      "status": "PASS",
+      "details": {
+        "url": "http://127.0.0.1:8765/cardai/",
+        "before": {
+          "normal": 0,
+          "af": 0,
+          "stemi": 0,
+          "pvc": 0,
+          "svt": 0,
+          "inferior": 0,
+          "vt": 0,
+          "vf": 0,
+          "pat": 0,
+          "flutter": 0,
+          "sintach": 0,
+          "lbbb": 0,
+          "rbbb": 0
+        },
+        "after": {
+          "normal": 0,
+          "af": 0,
+          "stemi": 0,
+          "pvc": 0,
+          "svt": 0,
+          "inferior": 0,
+          "vt": 0,
+          "vf": 0,
+          "pat": 0,
+          "flutter": 0,
+          "sintach": 0,
+          "lbbb": 0,
+          "rbbb": 0
+        }
+      }
+    },
+    {
+      "id": "T01-no-early-completion",
+      "status": "PASS",
+      "details": {
+        "realMs": 15505,
+        "observed": 15.483399999999957
+      }
+    },
+    {
+      "id": "T01-T21-watch-normal",
+      "status": "PASS",
+      "details": {
+        "mode": "normal",
+        "realMs": 16510,
+        "observed": 16
+      }
+    },
+    {
+      "id": "T01-T21-watch-af",
+      "status": "PASS",
+      "details": {
+        "mode": "af",
+        "realMs": 16519,
+        "observed": 16
+      }
+    },
+    {
+      "id": "T01-T21-watch-stemi",
+      "status": "PASS",
+      "details": {
+        "mode": "stemi",
+        "realMs": 16517,
+        "observed": 16
+      }
+    },
+    {
+      "id": "T01-T21-watch-pvc",
+      "status": "PASS",
+      "details": {
+        "mode": "pvc",
+        "realMs": 16514,
+        "observed": 16
+      }
+    },
+    {
+      "id": "T01-T21-watch-svt",
+      "status": "PASS",
+      "details": {
+        "mode": "svt",
+        "realMs": 16515,
+        "observed": 16
+      }
+    },
+    {
+      "id": "T01-T21-watch-inferior",
+      "status": "PASS",
+      "details": {
+        "mode": "inferior",
+        "realMs": 16515,
+        "observed": 16
+      }
+    },
+    {
+      "id": "T01-T21-watch-vt",
+      "status": "PASS",
+      "details": {
+        "mode": "vt",
+        "realMs": 16516,
+        "observed": 16
+      }
+    },
+    {
+      "id": "T01-T21-watch-vf",
+      "status": "PASS",
+      "details": {
+        "mode": "vf",
+        "realMs": 16517,
+        "observed": 16
+      }
+    },
+    {
+      "id": "T01-T21-watch-pat",
+      "status": "PASS",
+      "details": {
+        "mode": "pat",
+        "realMs": 16514,
+        "observed": 16
+      }
+    },
+    {
+      "id": "T01-T21-watch-flutter",
+      "status": "PASS",
+      "details": {
+        "mode": "flutter",
+        "realMs": 16504,
+        "observed": 16
+      }
+    },
+    {
+      "id": "T01-T21-watch-sintach",
+      "status": "PASS",
+      "details": {
+        "mode": "sintach",
+        "realMs": 16514,
+        "observed": 16
+      }
+    },
+    {
+      "id": "T01-T21-watch-lbbb",
+      "status": "PASS",
+      "details": {
+        "mode": "lbbb",
+        "realMs": 16514,
+        "observed": 16
+      }
+    },
+    {
+      "id": "T01-T21-watch-rbbb",
+      "status": "PASS",
+      "details": {
+        "mode": "rbbb",
+        "realMs": 16516,
+        "observed": 16
+      }
+    },
+    {
+      "id": "T02-10case-UI-submissions",
+      "status": "PASS",
+      "details": {
+        "caseRows": [
+          {
+            "id": "C104",
+            "answer": 3,
+            "canvasHash": 2442280450
+          },
+          {
+            "id": "C192",
+            "answer": 1,
+            "canvasHash": 2400762
+          },
+          {
+            "id": "C187",
+            "answer": 1,
+            "canvasHash": 2400762
+          },
+          {
+            "id": "C066",
+            "answer": 0,
+            "canvasHash": 1493093839
+          },
+          {
+            "id": "C197",
+            "answer": 1,
+            "canvasHash": 1542078418
+          },
+          {
+            "id": "C174",
+            "answer": 3,
+            "canvasHash": 3143308819
+          },
+          {
+            "id": "C122",
+            "answer": 1,
+            "canvasHash": 2659880785
+          },
+          {
+            "id": "C023",
+            "answer": 2,
+            "canvasHash": 1354773350
+          },
+          {
+            "id": "C074",
+            "answer": 3,
+            "canvasHash": 1591855531
+          },
+          {
+            "id": "C081",
+            "answer": 0,
+            "canvasHash": 2896035258
+          }
+        ]
+      }
+    },
+    {
+      "id": "T03-T11-E2E-score-LMS",
+      "status": "PASS",
+      "details": {
+        "quizRows": [
+          {
+            "id": "Q044",
+            "answer": 3,
+            "correct": 3,
+            "canvasHash": 3071064932
+          },
+          {
+            "id": "Q079",
+            "answer": 3,
+            "correct": 3,
+            "canvasHash": 3661238738
+          },
+          {
+            "id": "Q051",
+            "answer": 0,
+            "correct": 0,
+            "canvasHash": 585194996
+          },
+          {
+            "id": "Q144",
+            "answer": 3,
+            "correct": 3,
+            "canvasHash": 3522202196
+          },
+          {
+            "id": "Q008",
+            "answer": 2,
+            "correct": 2,
+            "canvasHash": 839771915
+          },
+          {
+            "id": "Q107",
+            "answer": 1,
+            "correct": 1,
+            "canvasHash": 1740390738
+          },
+          {
+            "id": "Q084",
+            "answer": 3,
+            "correct": 3,
+            "canvasHash": 3661238738
+          },
+          {
+            "id": "Q056",
+            "answer": 0,
+            "correct": 0,
+            "canvasHash": 585194996
+          },
+          {
+            "id": "Q167",
+            "answer": 2,
+            "correct": 1,
+            "canvasHash": 3005265051
+          },
+          {
+            "id": "Q178",
+            "answer": 3,
+            "correct": 2,
+            "canvasHash": 530420444
+          }
+        ],
+        "attemptScore": 80,
+        "lmsStatus": "passed",
+        "suspendChars": 1190,
+        "suspendBytes": 1190
+      }
+    },
+    {
+      "id": "T15-E2E-interactions",
+      "status": "PASS",
+      "details": {
+        "interactions": [
+          {
+            "id": "pulse_case_lkwo1q_1stg54g_1oz1ydu_C104",
+            "response": "d",
+            "correct": "d",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_case_lkwo1q_1stg54g_1oz1ydu_C192",
+            "response": "b",
+            "correct": "b",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_case_lkwo1q_1stg54g_1oz1ydu_C187",
+            "response": "b",
+            "correct": "b",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_case_lkwo1q_1stg54g_1oz1ydu_C066",
+            "response": "a",
+            "correct": "a",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_case_lkwo1q_1stg54g_1oz1ydu_C197",
+            "response": "b",
+            "correct": "b",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_case_lkwo1q_1stg54g_1oz1ydu_C174",
+            "response": "d",
+            "correct": "d",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_case_lkwo1q_1stg54g_1oz1ydu_C122",
+            "response": "b",
+            "correct": "b",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_case_lkwo1q_1stg54g_1oz1ydu_C023",
+            "response": "c",
+            "correct": "c",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_case_lkwo1q_1stg54g_1oz1ydu_C074",
+            "response": "d",
+            "correct": "d",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_case_lkwo1q_1stg54g_1oz1ydu_C081",
+            "response": "a",
+            "correct": "a",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_quiz_10kvugc_qo9ltf_1b04b46_Q044",
+            "response": "d",
+            "correct": "d",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_quiz_10kvugc_qo9ltf_1b04b46_Q079",
+            "response": "d",
+            "correct": "d",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_quiz_10kvugc_qo9ltf_1b04b46_Q051",
+            "response": "a",
+            "correct": "a",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_quiz_10kvugc_qo9ltf_1b04b46_Q144",
+            "response": "d",
+            "correct": "d",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_quiz_10kvugc_qo9ltf_1b04b46_Q008",
+            "response": "c",
+            "correct": "c",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_quiz_10kvugc_qo9ltf_1b04b46_Q107",
+            "response": "b",
+            "correct": "b",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_quiz_10kvugc_qo9ltf_1b04b46_Q084",
+            "response": "d",
+            "correct": "d",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_quiz_10kvugc_qo9ltf_1b04b46_Q056",
+            "response": "a",
+            "correct": "a",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_quiz_10kvugc_qo9ltf_1b04b46_Q167",
+            "response": "c",
+            "correct": "b",
+            "result": "wrong"
+          },
+          {
+            "id": "pulse_quiz_10kvugc_qo9ltf_1b04b46_Q178",
+            "response": "d",
+            "correct": "c",
+            "result": "wrong"
+          }
+        ]
+      }
+    },
+    {
+      "id": "T12-E2E-finish",
+      "status": "PASS",
+      "details": {
+        "finishCalls": 1,
+        "status": "passed"
+      }
+    },
+    {
+      "id": "T13-E2E-LMS-resume",
+      "status": "PASS",
+      "details": {
+        "samplesPreserved": true,
+        "score": 80,
+        "playing": false
+      }
+    },
+    {
+      "id": "E2E-runtime",
+      "status": "PASS",
+      "details": {
+        "errors": [],
+        "mockedDOM": false,
+        "SCORM": "API mock, no real LMS"
+      }
+    }
+  ]
+}

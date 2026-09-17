@@ -1,0 +1,76 @@
+{
+  "date": "2026-09-17T17:53:22.625Z",
+  "kind": "Real Chromium; fixtures/API mocks identified per test",
+  "rows": [
+    {
+      "id": "T11-visible-failed-save-and-retry",
+      "status": "PASS",
+      "details": {
+        "failed": "Kayıt başarısız · yeniden denenecek",
+        "retried": "İlerleme kaydedildi · LMS"
+      }
+    },
+    {
+      "id": "T11-failed-read-retry-restores-progress",
+      "status": "PASS",
+      "details": {
+        "blockedInitially": true,
+        "restoredViewSeconds": 13,
+        "samplePreserved": true
+      }
+    },
+    {
+      "id": "T13-malicious-state-real-DOM",
+      "status": "PASS",
+      "details": {
+        "sanitized": true,
+        "score": null,
+        "mode": "normal"
+      }
+    },
+    {
+      "id": "T14-active-learning-sections-and-modal",
+      "status": "PASS",
+      "details": {
+        "rows": [
+          {
+            "view": "case",
+            "delta": 736.6999999880791
+          },
+          {
+            "view": "quiz",
+            "delta": 752.1000000238419
+          },
+          {
+            "view": "about",
+            "delta": 8.5
+          }
+        ],
+        "modalDelta": 0
+      }
+    },
+    {
+      "id": "T05-quiz-resume-resize",
+      "status": "PASS",
+      "details": {
+        "width": 966,
+        "height": 300,
+        "cssWidth": 966.21875,
+        "cssHeight": 300,
+        "dpr": 1,
+        "dark": 4646,
+        "hash": 3618983036
+      }
+    },
+    {
+      "id": "T20-keyboard-caliper-live-feedback",
+      "status": "PASS",
+      "details": {
+        "before": 0.06,
+        "after": 0.065,
+        "measurementLive": null,
+        "labelled": true
+      }
+    }
+  ]
+}

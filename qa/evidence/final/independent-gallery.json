@@ -1,0 +1,110 @@
+{
+  "date": "2026-09-17T12:23:35.384Z",
+  "kind": "Real Chromium; fixtures/API mocks identified per test",
+  "rows": [
+    {
+      "id": "T07-T10-gallery-normal",
+      "status": "PASS",
+      "details": {
+        "file": "/Users/ozankaraca/Documents/Codex/EGEMED_PULSE/qa/evidence/final/leads-normal.png",
+        "kind": "All12leads rendered from actual model; visual interpretation reviewed separately"
+      }
+    },
+    {
+      "id": "T07-T10-gallery-af",
+      "status": "PASS",
+      "details": {
+        "file": "/Users/ozankaraca/Documents/Codex/EGEMED_PULSE/qa/evidence/final/leads-af.png",
+        "kind": "All12leads rendered from actual model; visual interpretation reviewed separately"
+      }
+    },
+    {
+      "id": "T07-T10-gallery-stemi",
+      "status": "PASS",
+      "details": {
+        "file": "/Users/ozankaraca/Documents/Codex/EGEMED_PULSE/qa/evidence/final/leads-stemi.png",
+        "kind": "All12leads rendered from actual model; visual interpretation reviewed separately"
+      }
+    },
+    {
+      "id": "T07-T10-gallery-pvc",
+      "status": "PASS",
+      "details": {
+        "file": "/Users/ozankaraca/Documents/Codex/EGEMED_PULSE/qa/evidence/final/leads-pvc.png",
+        "kind": "All12leads rendered from actual model; visual interpretation reviewed separately"
+      }
+    },
+    {
+      "id": "T07-T10-gallery-svt",
+      "status": "PASS",
+      "details": {
+        "file": "/Users/ozankaraca/Documents/Codex/EGEMED_PULSE/qa/evidence/final/leads-svt.png",
+        "kind": "All12leads rendered from actual model; visual interpretation reviewed separately"
+      }
+    },
+    {
+      "id": "T07-T10-gallery-inferior",
+      "status": "PASS",
+      "details": {
+        "file": "/Users/ozankaraca/Documents/Codex/EGEMED_PULSE/qa/evidence/final/leads-inferior.png",
+        "kind": "All12leads rendered from actual model; visual interpretation reviewed separately"
+      }
+    },
+    {
+      "id": "T07-T10-gallery-vt",
+      "status": "PASS",
+      "details": {
+        "file": "/Users/ozankaraca/Documents/Codex/EGEMED_PULSE/qa/evidence/final/leads-vt.png",
+        "kind": "All12leads rendered from actual model; visual interpretation reviewed separately"
+      }
+    },
+    {
+      "id": "T07-T10-gallery-vf",
+      "status": "PASS",
+      "details": {
+        "file": "/Users/ozankaraca/Documents/Codex/EGEMED_PULSE/qa/evidence/final/leads-vf.png",
+        "kind": "All12leads rendered from actual model; visual interpretation reviewed separately"
+      }
+    },
+    {
+      "id": "T07-T10-gallery-pat",
+      "status": "PASS",
+      "details": {
+        "file": "/Users/ozankaraca/Documents/Codex/EGEMED_PULSE/qa/evidence/final/leads-pat.png",
+        "kind": "All12leads rendered from actual model; visual interpretation reviewed separately"
+      }
+    },
+    {
+      "id": "T07-T10-gallery-flutter",
+      "status": "PASS",
+      "details": {
+        "file": "/Users/ozankaraca/Documents/Codex/EGEMED_PULSE/qa/evidence/final/leads-flutter.png",
+        "kind": "All12leads rendered from actual model; visual interpretation reviewed separately"
+      }
+    },
+    {
+      "id": "T07-T10-gallery-sintach",
+      "status": "PASS",
+      "details": {
+        "file": "/Users/ozankaraca/Documents/Codex/EGEMED_PULSE/qa/evidence/final/leads-sintach.png",
+        "kind": "All12leads rendered from actual model; visual interpretation reviewed separately"
+      }
+    },
+    {
+      "id": "T07-T10-gallery-lbbb",
+      "status": "PASS",
+      "details": {
+        "file": "/Users/ozankaraca/Documents/Codex/EGEMED_PULSE/qa/evidence/final/leads-lbbb.png",
+        "kind": "All12leads rendered from actual model; visual interpretation reviewed separately"
+      }
+    },
+    {
+      "id": "T07-T10-gallery-rbbb",
+      "status": "PASS",
+      "details": {
+        "file": "/Users/ozankaraca/Documents/Codex/EGEMED_PULSE/qa/evidence/final/leads-rbbb.png",
+        "kind": "All12leads rendered from actual model; visual interpretation reviewed separately"
+      }
+    }
+  ]
+}

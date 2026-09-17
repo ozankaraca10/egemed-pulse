@@ -1,0 +1,12 @@
+{
+  "before": {
+    "hidden": false,
+    "value": 0
+  },
+  "after": {
+    "hidden": false,
+    "value": 1.263
+  },
+  "nativeVisibility": true,
+  "mechanism": "Disabled Playwright focus emulation via CDP; no document.hidden replacement"
+}

@@ -1,108 +1,75 @@
-# EGEMED PULSE
+# EGEMED PULSE 6.0 — Kullanım
 
-EKG ile kalbin elektriksel etkinliğini, mekanik yanıtını, kapak durumlarını ve kan akışını ortak bir simülasyon saatinde gösteren Türkçe eğitim uygulaması.
+Türkçe EKG ve dolaşım eğitim uygulaması; 13 sentetik örüntü, 200 vaka ve 200 değerlendirme sorusu içerir. Her bölümün oturumu kendi havuzundan rastgele seçilen 10 benzersiz maddeden oluşur. Beş seçenekli maddeler eğitim amacıyla hazırlanmıştır; içerik ve sinyaller bağımsız klinisyen veya psikometrik doğrulamadan geçmemiştir.
 
-## Paket
+## Açma ve LMS'ye yükleme
 
-- Standart: **SCORM 1.2**, tek SCO.
-- Toplam 13 senaryo: normal sinüs ritmi, atriyal fibrilasyon, anterior ST elevasyonlu MI, inferior ST elevasyonlu MI, PVC, düzenli dar kompleks SVT, monomorfik ventriküler taşikardi, ventriküler fibrilasyon, paroksismal atriyal taşikardi, atriyal flutter, sinüs taşikardisi, sol dal bloğu ve sağ dal bloğu.
-- İçerik çevrimdışı çalışır. Sunucu, hesap veya API anahtarı gerekmez. Kaynak bağlantıları internet gerektirir.
-- Açık tema ve sabit %120 okunabilirlik ölçeği kullanılır.
-- 16:9 masaüstü ve sınıf ekranlarında kalp/dolaşım solda; üç derivasyon şeridi ve açıklama sağda tek ekrana sığar. Dar ekranlarda paneller alt alta yerleşir.
-- Ege Üniversitesi Tıp Fakültesi logosu paket içinde yereldir. Anatomi, eğitim amaçlı programlanmış bir şemadır; fotoğraf gerçekliğinde 3B model değildir.
-- Uygulamada sesli anlatım bulunmaz.
+- **Tek dosya:** `EGEMED_PULSE_Onizleme.html` dosyasını tarayıcıda açın. CSS, yedi JavaScript dosyası ve bütün görseller dosyanın içine gömülüdür.
+- **LMS:** `EGEMED_PULSE_SCORM_1.2.zip` dosyasını açmadan LMS'nin SCORM etkinliğine yükleyin. Standart **SCORM 1.2**, tek SCO; giriş `index.html`, puan aralığı 0–100 ve başarı eşiği 80'dir. ZIP kökündeki `imsmanifest.xml` dosyasının çevresine ek klasör koymayın.
+- **Klasör:** ZIP'i çıkarıp `index.html` dosyasını açabilirsiniz. Çalışma için sunucu, hesap, API anahtarı veya harici çalışma zamanı bağımlılığı gerekmez. Kaynak bağlantıları internet gerektirir.
 
-## LMS'ye yükleme
+Bağımsız kullanımda ilerleme yalnız tarayıcı izin verirse yerel depolamaya kaydedilir; LMS'ye gönderilmez. Özellikle `file://`, özel gezinme ve depolamayı engelleyen ayarlarda kayıt başarısız olabilir. Kayıt durumunu arayüzden kontrol edin; dosyayı başka tarayıcıya taşımak ilerlemeyi taşımaz.
 
-1. `EGEMED_PULSE_SCORM_1.2.zip` dosyasını açmadan LMS'nin SCORM etkinliğine yükleyin.
-2. Standart sorulursa **SCORM 1.2** seçin. Lansman kaynağı `index.html` olur.
-3. Puan aralığı 0–100, başarı eşiği 80'dir. Elli eşit ağırlıklı soruda geçer sonuç en az 40/50'dir.
-4. En az 1366×768, tercihen 16:9 pencere kullanın. Uygulamadaki **Tam ekran** düğmesi tarayıcının tam ekran API'sini kullanır.
-5. İlk kullanımda kendi LMS'nizde başlatma, ilerleme kaydı, puan raporu ve devam etme davranışını kontrol edin. Gerçek LMS üzerinde sertifikasyon yapılmamıştır.
+Hedef LMS'de içe aktarma, başlatma, yeniden açıp devam etme, puan, etkileşim raporu ve oturum bitirme davranışını kontrol edin. Gerçek LMS üzerinde doğrulama veya SCORM sertifikasyonu yapılmamıştır; API taklitleriyle yapılan tarayıcı testleri bunun yerini tutmaz.
 
-ZIP kökünde `imsmanifest.xml` bulunur. Paketi ayrıca bir üst klasör içine alıp yeniden sıkıştırmayın.
+## Öğrenme sırası
 
-## LMS dışında açma
+1. Landing’de **Simülatörü başlat** ile açılan **mod seçim ekranından** İnceleme, Uygulama veya Değerlendirme modunu seçin. Modlar açıktır; kartlardaki durum satırları yalnızca **öneri** gösterir (13 örüntüyü 16 sn izleme, 10 vakayı gönderme). İlk kullanımda gerçek sahne üzerinde üç adımlı tanıtım gösterilir; "Tekrar gösterme" ile kalıcı olarak kapatılabilir. İnceleme modunda her örüntüyü kartına tıklayarak veya klavyeyle bilinçli olarak seçin ve görünür, oynar durumda en az **16 gerçek saniye** inceleyin. Açılış ekranı, programatik değişim, başka bölüm, duraklatma, açık dialog, gizli sekme veya görünmeyen simülasyon gözleme eklenmez. Yenileme veya bölümden dönüş gözlemi kendiliğinden yeniden başlatmaz; kartı yeniden seçin. 2× hız gerçek süreyi kısaltmaz.
+2. Uygulama modunda oturumdaki **10 vaka yanıtını gönderin**. Yanlış fakat gönderilmiş yanıt da ilerlemeye sayılır; yalnız bir seçeneği işaretlemek yeterli değildir.
+3. Değerlendirme modunda oturumdaki 10 soruyu yanıtlayıp **Yanıtları değerlendir** düğmesine basın. En az **8/10 doğru = 80/100** geçer sonuçtur. Değerlendirme sırasında madde açıklaması gösterilmez; sonuç **Sonuçlar** ekranında özet, alan bazlı performans, zayıf alanlar ve açılır soru raporu olarak sunulur. Vaka oturumu sonundaki **Raporu gör** aynı şablonun vaka varyantını açar (vaka puanı LMS’ye yazılmaz).
 
-ZIP'i klasöre çıkarıp `index.html` dosyasını güncel bir tarayıcıda açabilirsiniz. `EGEMED_PULSE_Onizleme.html` tek dosya olarak da çalışır. Bağımsız kullanımda ilerleme, tarayıcı izin verirse yerel olarak saklanır; LMS'ye iletilmez.
+Bu eşikler öğretim akışı kurallarıdır; klinik yeterlilik veya güvenli sınav ölçümü değildir. **Başarı** için üç aşamanın tamamlanması gerekir (13/13 gözlem, 10/10 gönderilmiş vaka, en az 8/10 doğru); modlar arasında gezinti ise serbesttir. İstemci kodundaki yanıtlar görülebilir/değiştirilebilir; güvenlik sınırı oluşturmaz.
 
-## Üç derivasyonlu elektriksel etkinlik alanı
+## Devam etme, tekrar ve sıfırlama
 
-Elektriksel etkinlik görünümü, aynı zaman eksenini paylaşan üç kompakt sütundan oluşur:
+Oturum kimlikleri, seçilen madde kimlikleri, yanıtlar ve gönderim durumları kayıt başarılı olduğunda korunur. Yenileme ve bölüm dönüşü yeni soru örneklemez.
 
-| Derivasyon grubu | Seçenekler | Eğitim amacı |
-|---|---|---|
-| 1 | D1, D2, D3 | Ekstremite bipolar derivasyonları |
-| 2 | aVR, aVL, aVF | Artırılmış ekstremite derivasyonları |
-| 3 | V1, V2, V3, V4, V5, V6 | Prekordiyal derivasyonlar |
+| Eylem | Sonuç |
+|---|---|
+| Aynı 10 vakayı/soruyu yeniden dene | Aynı madde sırasını korur; ilgili oturumun yanıtlarını ve gönderimlerini temizler, yeni deneme kimliği oluşturur. |
+| Yeni 10 vaka/soru örneklemi | İlgili havuzdan yeni rastgele örneklem ve oturum kimliği oluşturur; ilgili yanıtları temizler. Bazı maddeler önceki örneklemle örtüşebilir. |
+| Başa al | Yalnız simülasyon zamanını sıfırlar; öğrenme ilerlemesini silmez. |
+| Hakkında → Yerel veriler → İlerlemeyi sıfırla | Onaydan sonra yerel gözlemleri, iki örneklemi, yanıtları, en iyi puanı, kontrol listesini ve araç kullanımını sıfırlar. |
 
-Her sütunun açılır menüsü bağımsızdır. Sütuna veya izine tıklamak o derivasyonu ölçümler için etkinleştirir. Senaryo seçildiğinde öğretici varsayılan üçlü otomatik yüklenir; kullanıcı daha sonra her sütunu değiştirebilir. MI ve dal bloğu örneklerindeki morfoloji seçilen derivasyona göre değişir.
+Tekrar veya yeni örneklem gözlem ilerlemesini ve geçmiş en iyi tamamlanmış değerlendirme puanını korur. Yeni veya yeniden başlatılan vaka oturumu ilerleme sayacını sıfırlar; başarı için üç aşamanın güncel durumu birlikte değerlendirilir. Önceden elde edilen başarı, geçerli geçmiş deneme ve o denemeye eşlik eden tamamlanmış vakalarla korunur. LMS'nin daha önce kabul ettiği `passed` durumu, tam yerel sıfırlamadan sonra da korunur; uygulama LMS başarı kaydını sıfırlamaz. Yerel puan geçmişi sıfırlanır.
 
-## Temel etkileşimler
+Eski v1–v5 kayıtlarında doğrulanabilen örüntü, simülasyon zamanı, en fazla 16 saniyelik gözlem ve AF profili korunur. Eski sabit 50 maddelik yanıtların yeni havuza güvenilir eşlemesi yoktur; eski yanıtlar, puan ve yerel başarı yeni havuza taşınmaz. LMS'de zaten kabul edilmiş `passed` ayrı olarak korunur. Okunamayan kayıt, bozuk JSON, desteklenmeyen sürüm/biçim veya 4096 bayttan büyük kayıt için güvenli başlangıç görünümü açılır; önceki kaydı ezmemek için yeni yazımlar engellenir. Kaydı yeniden okumayı deneyin veya Hakkında → Yerel veriler bölümünde ilerlemeyi sıfırlamayı açıkça onaylayın. Desteklenen sürümlerdeki geçersiz alanlar dar şemayla güvenli değerlere döner.
 
-- Yatay ritim şeridindeki senaryo kartları EKG'yi, açıklamayı, ölçümleri ve mekanik davranışı birlikte değiştirir.
-- Kalp, EKG veya açıklama paneli ayrı büyütülebilir. Aynı odak düğmesine ikinci kez basmak ya da **Bölünmüş** düğmesini kullanmak görünümü küçültür ve üç paneli geri getirir.
-- Arayüz, sabit %120 yazı ölçeğiyle 16:9 ekran için doğrulanmıştır.
-- **Normalle karşılaştır** seçili anomalinin arkasında kesikli normal ritim referansı gösterir. Ventriküler fibrilasyonda organize kompleks olmadığı için karşılaştırma anahtarı gösterilmez.
-- EKG'ye tıklama, seçilen sütunu etkinleştirir ve simülasyonu ilgili zamana taşır.
-- **Kaliper**, iki nokta arasındaki süre ve voltaj farkını hesaplar. Hazır R–R, PR, QRS ve ST/J ölçümleri de vardır.
-- **Rehberli tur**, elektriksel uyarıdan doluşa kadar kalp döngüsünü adım adım oynatır.
-- **Sistematik okuma**, hız, ritim, P, PR, QRS ve ST–T kontrol listesi sunar.
-- Vakalar alanında 50 klinik soru sentetik EKG ile sayfa sayfa sunulur. Vaka başlıkları tanıyı ele vermeyen klinik durum adlarıdır; vaka içinde ek süre kilidi yoktur.
-- **Eğitici** paneli gözlem sürelerini, vaka/test sonuçlarını ve kullanılan araçları özetler; CSV raporu indirir.
-- Oynat/duraklat tüm simülasyonu aynı anda yönetir. Arka plandaki sekme otomatik bekler.
-- 0,25× / 0,5× / 1× / 2× oynatma hızı yalnız simülasyon zamanını etkiler; hastanın kalp hızını değiştirmez.
-- Elektriksel uyarı, akış parçacıkları, kapaklar, anatomik etiketler ve koroner katman ayrı ayrı açılıp kapatılabilir.
-- **Başa al** simülasyon saatini sıfırlar, öğrenme ilerlemesini silmez.
-- Klavye: Space oynat/duraklat; 1–9 ilk dokuz senaryo; `[`/`]` tüm senaryolar arasında geçiş; sağ/sol ok olaylar; F tam ekran; C kaliper; Esc odaktan çıkış.
+## Görünüm ve araçlar
 
-## Tamamlama ve SCORM verileri
+Üst çubukta sekmeler yerine **mod çipi** ve **Mod Değiştir** düğmesi bulunur; **Hakkında** atıfları ve yerel veri araçlarını, **Yardım** kısayolları ve kapsam notunu gösterir. Değerlendirme modunda çıkış, yanıtları koruyan bir onay ister.
 
-Her bir 13 senaryo, en az **16 saniye gerçek izleme süresi** boyunca görünür ve oynar durumda incelenmelidir. Hız kontrolü süreyi kısaltmaz; zaman atlama, duraklatma, soru ekranı ve arka plandaki sekme süreye eklenmez.
+Açık tema ve ürün ailesi yazı ölçeği (14 px gövde) kullanılır; tarayıcı yakınlaştırması kullanılabilir. En az 1366×768 masaüstü pencere önerilir; dar ekranlarda paneller alt alta yerleşir. Tam ekran tarayıcının tam ekran API'sine bağlıdır. Uygulamada sesli anlatım yoktur.
 
-On üç simülasyon varyantının her biri en az 16 saniye izlendiğinde Vakalar ve Değerlendirme bölümleri birlikte açılır. Değerlendirme puanı en az 80/100 olursa `cmi.core.lesson_status=passed` kaydedilir. 50 soruda ilk geçer puan 80/100'dür. Başarı bir kez elde edilince korunur; en iyi puan saklanır.
+- Kalp, EKG veya açıklama panelini büyütmek için odak düğmesini; geri dönmek için aynı düğmeyi, **Bölünmüş** veya Esc'yi kullanın.
+- Üç eşzamanlı şerit menüsü: D1/D2/D3, aVR/aVL/aVF ve V1–V6. Sütuna tıklamak ölçüm derivasyonunu seçer. Senaryo değişiminde öğretici varsayılan üçlü yüklenir.
+- Vaka ve sorular kendi sentetik EKG ve derivasyon menülerine sahiptir. **Simülatörde aç** yalnız doğru gönderilmiş vakada görünür; **Vakaya dön** aynı vaka ve yanıt bağlamını korur.
+- **Normalle karşılaştır**, **Kaliper**, R–R/PR/QRS/QT ve J+20 ms ölçümleri, **Rehberli tur** ve **Sistematik okuma** incelemeyi destekler. Ölçülemeyen değerler sayısal sonuç gibi sunulmaz.
+- Oynat/duraklat ortak simülasyon saatini yönetir. 0,25×/0,5×/1×/2× yalnız simülasyon zamanını etkiler; hastanın elektriksel hızını değiştirmez.
+- **Hakkında** sayfası geliştirici/atıf kartlarını, kaynakları, sınırlılıkları ve **Yerel veriler** bölümünü (CSV raporu indir, ilerlemeyi sıfırla) içerir.
+- Klavye (İnceleme modu): Space oynat/duraklat; 1–9 ilk dokuz örüntü; `[`/`]` örüntüler arasında geçiş; sağ/sol ok olaylar; F tam ekran; C kaliper; Esc odaktan çıkış. Form alanlarında ve açık pencerelerde kısayollar devre dışı kalır; seçeneklerde ok tuşlarıyla gezinilir.
 
-Paket; puanı, durumu, son senaryo/zamanı, üç derivasyon seçimini, oynatma hızını, gözlem sürelerini, kontrol listesini, vaka sonuçlarını, araç kullanımını ve cevapları kaydeder. 50 değerlendirme sorusu ve 50 vaka yanıtı `cmi.interactions` üzerinden raporlanır (LMS desteklediğinde). Kayıt yaklaşık 10 saniyede bir, önemli etkileşimlerde ve sayfa kapanışında yapılır.
+## Kayıt ve oturum bitirme
 
-## Fizyolojik kapsam ve model varsayımları
+Kompakt sürüm 6 devam kaydı gözlemleri, 10+10 örneklemi, yanıtları, türetilen başarı için gerekli geçmiş denemeleri, derivasyonları, kontrol listesini ve araç kullanımını taşır. SCORM `suspend_data` kaydı 4096 baytı aşarsa kayıt reddedilir ve başarısızlık gösterilir. Puan LMS'ye en iyi tamamlanmış değerlendirme puanı olarak gönderilir. Gönderilen vaka/test yanıtları LMS desteklediğinde `cmi.interactions` üzerinden oturum ve madde kimlikleriyle raporlanır; tekrarlarda yeni deneme kayıtları oluşabilir.
 
-EKG kan hareketini değil elektriksel etkinliği kaydeder. Mekanik kasılma uyarıyı izler; kapaklar uygun basınç farkları oluştuğunda açılır. Model bu sırayı öğretir, gerçek hasta basınçlarını veya debisini hesaplamaz.
+Kayıt yaklaşık 10 saniyede bir ve önemli etkileşimlerde denenir. Aktif öğrenme süresi açılış, açık dialog ve gizli sekme sürelerini dışlar. Çekirdek ilerleme kaydı ile isteğe bağlı etkileşim raporunun başarısı ayrı gösterilir. Başarısız kayıtta ilerleme bellekte kalır ve sonraki kayıt denemeleri sürer; kayıt durumu ekranda ayrı bir gösterge olarak tutulmaz. Tarayıcının ani kapanışı son kayıt denemesini garanti etmez.
 
-- Normal sinüs ritmi: 75/dk, R–R 800 ms, PR 175 ms, QRS 80 ms.
-- Atriyal fibrilasyon: P dalgası ve organize atriyal kasılma yok; ince f dalgaları ve düzensiz R–R. Kontrollü/hızlı ventrikül yanıtı seçilebilir.
-- PVC: 75/dk temel ritimde erken, yaklaşık 140 ms geniş kompleks ve toparlanma aralığı.
-- Düzenli dar kompleks SVT: yaklaşık 167/dk, R–R 360 ms, QRS 80 ms; ayrı P dalgası gösterilmez.
-- Paroksismal atriyal taşikardi: yaklaşık 150/dk, düzenli dar QRS ve inferior derivasyonlarda farklı/invert P morfolojisi.
-- Atriyal flutter: atriyal hız yaklaşık 300/dk, 2:1 iletimle ventrikül hızı yaklaşık 150/dk; testere dişi aktivite inferior derivasyonlar ve V1'de belirgindir.
-- Sinüs taşikardisi: yaklaşık 120/dk, her QRS öncesinde sinüs P dalgası ve dar kompleks.
-- Monomorfik ventriküler taşikardi: yaklaşık 158/dk, düzenli ve yaklaşık 180 ms geniş kompleks; mekanik yanıt azaltılmıştır.
-- Ventriküler fibrilasyon: organize QRS ve etkili ejeksiyon yoktur; sinyal kaotik eğitim örneğidir.
-- Sol dal bloğu: yaklaşık 160 ms geniş QRS; V1'de derin negatif, I/aVL/V6'da geniş-çentikli pozitif morfoloji ve gecikmiş sol ventrikül yanıtı.
-- Sağ dal bloğu: yaklaşık 140 ms geniş QRS; V1'de rSR' benzeri görünüm, I/V6'da geniş terminal S ve gecikmiş sağ ventrikül yanıtı.
-- Anterior STEMI: V1–V4'te belirgin sentetik ST/J yükselmesi, inferior karşılıkta hafif resiprokal değişim.
-- İnferior STEMI: D2, D3 ve aVF'de sentetik ST/J yükselmesi; D1/aVL'de resiprokal değişim.
+Ayrı bir bitirme düğmesi yoktur. İlerleme düzenli olarak kaydedilir; sekme kapanırken uygulama son kaydı yapıp LMS bitirme çağrısını (LMSFinish) **otomatik** dener. Yeni bir LMS kaydı için dersi LMS'den yeniden açın.
 
-MI bölgeleri, koroner tıkanma ve duvar hareketi şematiktir. Tek bir derivasyon tanı koydurmaz; komşu derivasyonlar, klinik tablo ve diğer incelemeler birlikte değerlendirilir. Üretilen sinyaller sentetiktir ve tanısal cihaz çıktısı değildir.
+## Model ve kaynak sınırları
 
-Şemada sağ kalp ekranın solundadır. Mavi parçacıklar oksijeni az, kırmızı parçacıklar oksijeni fazla kanı; sarı çizgiler elektriksel uyarıyı temsil eder. Bir küçük EKG karesi yatayda 0,04 saniye, düşeyde 0,1 mV eşdeğeridir; fiziksel milimetre ekran ölçeğine bağlıdır.
+Örüntüler: normal sinüs ritmi, AF, anterior ve inferior ST elevasyonlu MI örnekleri, PVC, düzenli dar kompleks SVT, monomorfik VT, VF, fokal/paroksismal atriyal taşikardi, 2:1 atriyal flutter, sinüs taşikardisi, LBBB ve RBBB.
 
-## Kaynaklar
+EKG elektriksel etkinliktir; kan hareketi değildir. Sinyaller, anatomik şekiller, koroner alanlar, kapaklar ve mekanik yanıtlar sentetik öğretim şemalarıdır. Model gerçek hasta basıncı, debisi, nabzı, damar tıkanması veya sonucu hesaplamaz; tanı ve tedavi kararında kullanılmaz. VF'de etkili ileri akım ve organize ejeksiyon yoktur; VT'nin klinik nabız/hemodinamik durumu çizimden çıkarılamaz. MI'de tek derivasyon kesin tanı/damar belirlemez. Kaliper zamanı ve voltajı sentetik modelden ölçer; ekrandaki fiziksel milimetre ölçeğe bağlıdır.
 
-1. Camm AJ ve ark. Atrial fibrillation guideline. *European Heart Journal*. [DOI: 10.1093/eurheartj/ehq278](https://doi.org/10.1093/eurheartj/ehq278).
-2. Page RL ve ark. 2015 ACC/AHA/HRS supraventriküler taşikardi kılavuzu. [DOI: 10.1161/CIR.0000000000000311](https://doi.org/10.1161/CIR.0000000000000311).
-3. Al-Khatib SM ve ark. 2017 AHA/ACC/HRS ventriküler aritmi kılavuzu. [DOI: 10.1161/CIR.0000000000000549](https://doi.org/10.1161/CIR.0000000000000549).
-4. Surawicz B ve ark. AHA/ACCF/HRS intraventriküler iletim bozuklukları standardizasyon önerileri. [DOI: 10.1161/CIRCULATIONAHA.108.191095](https://doi.org/10.1161/CIRCULATIONAHA.108.191095).
-5. Wagner GS ve ark. AHA/ACCF/HRS akut iskemi ve infarktüs EKG standardizasyon önerileri. [DOI: 10.1016/j.jacc.2008.12.016](https://doi.org/10.1016/j.jacc.2008.12.016).
-6. Klabunde RE. [CV Physiology: Cardiac Cycle](https://cvphysiology.com/heart-disease/hd002).
+Kaynaklar 16 Eylül 2026 tarihinde denetlendi. Bunlar kavramları destekler; 400 maddenin geçerliği veya modelin klinik doğrulaması değildir. Tam erişim sınırları proje kökündeki `MEDICAL_SOURCES.md` belgesindedir.
 
-Kontrol tarihi: 15 Eylül 2026. Kaynaklar klinik kavramları destekler; yazılımın tanısal veya hemodinamik doğrulaması anlamına gelmez.
-
-## Yapılan doğrulamalar
-
-On üç deterministik model ve derivasyona özgü MI/dal bloğu morfolojileri; üç bağımsız derivasyon menüsü; oynat/duraklat senkronizasyonu; açık tema; sabit %120 okunabilirlik ölçeği; açılıp yeniden küçülebilen panel odağı; 1366×768 ve 1920×1080 görünüm; dar ekran uyumu; ölçüm, karşılaştırma, rehber, vaka ve rapor araçları otomatik olarak sınanır.
-
-SCORM 1.2 API test düzeneğinde başlatma, 80/100 `passed` kaydı, 100 etkileşime kadar raporlama, v5 kaldığı yerden devam ve oturumu tek kez bitirme doğrulanır. Bunlar otomatik yazılım testleridir; hedef LMS içe aktarma testi ve klinik uzman validasyonu yerine geçmez.
+- [ESC AF 2024](https://doi.org/10.1093/eurheartj/ehae176), [ESC SVT 2019](https://doi.org/10.1093/eurheartj/ehz467).
+- [ESC ventriküler aritmiler 2022](https://doi.org/10.1093/eurheartj/ehac262), [AHA ALS 2025](https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-advanced-life-support).
+- [ESC ACS 2023](https://doi.org/10.1093/eurheartj/ehad191), [AHA/ACCF/HRS ileti standardı 2009](https://doi.org/10.1161/CIRCULATIONAHA.108.191095).
+- [Klabunde: ekstremite derivasyonları](https://cvphysiology.com/arrhythmias/a013a), [kardiyak döngü](https://cvphysiology.com/heart-disease/hd002).
 
 ## Hak sahipliği
 
-Bu uygulama Ege Üniversitesi Tıp Fakültesi Dekanlığı tarafından geliştirilmiştir. Tüm hakları saklıdır. © 2026
+Bu uygulama Ege Üniversitesi Tıp Fakültesi Dekanlığı tarafından geliştirilmiştir. Tüm hakları saklıdır © 2026

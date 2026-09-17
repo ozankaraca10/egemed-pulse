@@ -1,0 +1,24 @@
+{
+  "url": "http://127.0.0.1:8765/baseline/EGEMED_PULSE_Onizleme.html",
+  "kind": "Real headed Chromium; native document.hidden, no property mocking",
+  "before": {
+    "hidden": false,
+    "state": "visible",
+    "viewed": 0.9833999999999999
+  },
+  "hiddenStart": {
+    "hidden": true,
+    "state": "hidden",
+    "viewed": 1
+  },
+  "hiddenEnd": {
+    "hidden": true,
+    "state": "hidden",
+    "viewed": 1
+  },
+  "after": {
+    "hidden": false,
+    "state": "visible",
+    "viewed": 1.5000000000000007
+  }
+}

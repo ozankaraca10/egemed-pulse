@@ -1,0 +1,108 @@
+{
+  "module": {
+    "name": "EGEMED Pulse™",
+    "subtitle": "Etkileşimli EKG Simülatörü",
+    "institution": "Ege Üniversitesi Tıp Fakültesi Dekanlığı",
+    "description": "Ege Üniversitesi Tıp Fakültesi Dekanlığı tarafından, tıp fakültesi öğrencilerinin EKG yorumlama becerilerini geliştirmek amacıyla hazırlanmıştır. Tüm hakları saklıdır © 2026.",
+    "logo": "assets/ege-tip-logo.png",
+    "logoSource": "https://egelogo.ege.edu.tr/",
+    "evidence": {
+      "statement": "Yapılandırılmış, göreve özgü EKG yorumlama eğitiminin yorumlama yeterliğini geliştirdiği sistematik derleme ve meta-analizle gösterilmiştir.[1]",
+      "citation": "Oh S-Y, Cook DA, Van Gerven PWM, Nicholson J, Fairbrother H, Smeenk FWJM, Pusic MV. Physician training for electrocardiogram interpretation: a systematic review and meta-analysis. Acad Med. 2022;97(4):593–602. doi:10.1097/ACM.0000000000004607",
+      "doi": "10.1097/ACM.0000000000004607",
+      "url": "https://doi.org/10.1097/ACM.0000000000004607"
+    }
+  },
+  "credits": [
+    {
+      "role": "Yazılım geliştirme, öğretim ve ölçme-değerlendirme tasarımı",
+      "people": [
+        { "name": "Doç. Dr. Ozan KARACA", "url": "https://unisis.ege.edu.tr/researcher=ozan.karaca" }
+      ]
+    },
+    {
+      "role": "Öğretim tasarımı ve tıbbi validasyon",
+      "people": [
+        { "name": "Prof. Dr. Hatice ŞAHİN", "url": "https://unisis.ege.edu.tr/researcher=hatice.sahin" },
+        { "name": "Prof. Dr. Burcu BARUTÇUOĞLU", "url": "https://unisis.ege.edu.tr/researcher=burcu.barutcuoglu" },
+        { "name": "Prof. Dr. İpek KAPLAN BULUT", "url": "https://unisis.ege.edu.tr/researcher=ipek.kaplan.bulut" }
+      ]
+    },
+    {
+      "role": "Kullanıcı kabul testleri",
+      "people": [
+        { "name": "Öğrenci 1" },
+        { "name": "Öğrenci 2" },
+        { "name": "Öğrenci 3" }
+      ]
+    }
+  ],
+  "datasets": [],
+  "references": [
+    {
+      "id": "AF2024",
+      "title": "2024 ESC Atriyal Fibrilasyon Kılavuzu",
+      "org": "Avrupa Kardiyoloji Derneği (ESC)",
+      "year": 2024,
+      "url": "https://doi.org/10.1093/eurheartj/ehae176",
+      "use": "AF: ayrık düzenli P yokluğu, düzensiz ventriküler yanıt; atriyal katkı kaybı."
+    },
+    {
+      "id": "SVT2019",
+      "title": "2019 ESC Supraventriküler Taşikardi Kılavuzu",
+      "org": "Avrupa Kardiyoloji Derneği (ESC)",
+      "year": 2019,
+      "url": "https://doi.org/10.1093/eurheartj/ehz467",
+      "use": "Dar kompleks taşikardi ayırımı; fokal atriyal taşikardi ve flutter örnekleri."
+    },
+    {
+      "id": "VA2022",
+      "title": "2022 ESC Ventriküler Aritmiler Kılavuzu",
+      "org": "Avrupa Kardiyoloji Derneği (ESC)",
+      "year": 2022,
+      "url": "https://doi.org/10.1093/eurheartj/ehac262",
+      "use": "PVC, VT ve VF örneklerinin elektriksel tanımı."
+    },
+    {
+      "id": "ALS2025",
+      "title": "2025 AHA Adult Advanced Life Support",
+      "org": "American Heart Association (AHA)",
+      "year": 2025,
+      "url": "https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-advanced-life-support",
+      "use": "VF arrest bağlamı; VF modelinde etkili ejeksiyon ve düzenli nabız yoktur."
+    },
+    {
+      "id": "ACS2023",
+      "title": "2023 ESC Akut Koroner Sendromlar Kılavuzu",
+      "org": "Avrupa Kardiyoloji Derneği (ESC)",
+      "year": 2023,
+      "url": "https://doi.org/10.1093/eurheartj/ehad191",
+      "use": "İskemik belirtilerle EKG değerlendirmesi; anterior ve inferior ST dağılım örnekleri."
+    },
+    {
+      "id": "BBB2009",
+      "title": "AHA/ACCF/HRS İntraventriküler İleti Standardı",
+      "org": "AHA / ACCF / HRS",
+      "year": 2009,
+      "url": "https://doi.org/10.1161/CIRCULATIONAHA.108.191095",
+      "use": "LBBB ve RBBB örneklerinde geniş QRS ve derivasyona özgü morfoloji."
+    },
+    {
+      "id": "ECG",
+      "title": "Klabunde: Bipolar Ekstremite Derivasyonları",
+      "org": "Cardiovascular Physiology Concepts",
+      "year": 2020,
+      "url": "https://cvphysiology.com/arrhythmias/a013a",
+      "use": "I, II, III ve artırılmış derivasyonların matematiksel türetimi."
+    },
+    {
+      "id": "CYCLE",
+      "title": "Klabunde: Kardiyak Döngü",
+      "org": "Cardiovascular Physiology Concepts",
+      "year": 2020,
+      "url": "https://cvphysiology.com/heart-disease/hd002",
+      "use": "Elektriksel etkinlik, mekanik kasılma, kapaklar ve ejeksiyon ayrımı."
+    }
+  ],
+  "note": "EKG sinyalleri bu modülde tamamen sentetiktir; harici bir EKG veri seti kullanılmamıştır. Kaynak kapsamı ve erişim sınırları proje kökündeki MEDICAL_SOURCES.md dosyasında listelenir."
+}

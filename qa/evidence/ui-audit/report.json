@@ -1,0 +1,37 @@
+{
+  "date": "2026-09-17T17:56:36.807Z",
+  "url": "http://127.0.0.1:8765/cardai/",
+  "failures": [],
+  "notes": [
+    {
+      "name": "fs-landing-to-app",
+      "detail": {
+        "fsAfterStart": null
+      }
+    },
+    {
+      "name": "fs-tutorial-clickable",
+      "detail": {}
+    },
+    {
+      "name": "fs-app-to-landing",
+      "detail": {}
+    },
+    {
+      "name": "fs-landing-return-view",
+      "detail": {
+        "resume": "modes"
+      }
+    },
+    {
+      "name": "mode-stability",
+      "detail": {
+        "modes": 13
+      }
+    }
+  ],
+  "summary": {
+    "checks": 5,
+    "failures": 0
+  }
+}

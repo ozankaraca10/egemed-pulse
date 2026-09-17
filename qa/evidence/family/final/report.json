@@ -1,0 +1,185 @@
+{
+  "screens": {
+    "1366-01-landing": {
+      "sw": 1366,
+      "iw": 1366,
+      "overflow": false
+    },
+    "1366-02-tutorial": {
+      "sw": 1366,
+      "iw": 1366,
+      "overflow": false
+    },
+    "1366-03-modes": {
+      "sw": 1366,
+      "iw": 1366,
+      "overflow": false
+    },
+    "1366-04-review": {
+      "sw": 1366,
+      "iw": 1366,
+      "overflow": false
+    },
+    "1366-05-case-question": {
+      "sw": 1366,
+      "iw": 1366,
+      "overflow": false
+    },
+    "1366-06-case-feedback": {
+      "sw": 1366,
+      "iw": 1366,
+      "overflow": false
+    },
+    "1366-07-case-end": {
+      "sw": 1366,
+      "iw": 1366,
+      "overflow": false
+    },
+    "1366-08-exam": {
+      "sw": 1366,
+      "iw": 1366,
+      "overflow": false
+    },
+    "1366-09-exam-submitted": {
+      "sw": 1366,
+      "iw": 1366,
+      "overflow": false
+    },
+    "1366-10-results": {
+      "sw": 1366,
+      "iw": 1366,
+      "overflow": false
+    },
+    "1366-11-about": {
+      "sw": 1366,
+      "iw": 1366,
+      "overflow": false
+    },
+    "1366-12-results-case": {
+      "sw": 1366,
+      "iw": 1366,
+      "overflow": false
+    },
+    "768-01-landing": {
+      "sw": 768,
+      "iw": 768,
+      "overflow": false
+    },
+    "768-02-tutorial": {
+      "sw": 768,
+      "iw": 768,
+      "overflow": false
+    },
+    "768-03-modes": {
+      "sw": 768,
+      "iw": 768,
+      "overflow": false
+    },
+    "768-04-review": {
+      "sw": 768,
+      "iw": 768,
+      "overflow": false
+    },
+    "768-05-case-question": {
+      "sw": 768,
+      "iw": 768,
+      "overflow": false
+    },
+    "768-06-case-feedback": {
+      "sw": 768,
+      "iw": 768,
+      "overflow": false
+    },
+    "768-07-case-end": {
+      "sw": 768,
+      "iw": 768,
+      "overflow": false
+    },
+    "768-08-exam": {
+      "sw": 768,
+      "iw": 768,
+      "overflow": false
+    },
+    "768-09-exam-submitted": {
+      "sw": 768,
+      "iw": 768,
+      "overflow": false
+    },
+    "768-10-results": {
+      "sw": 768,
+      "iw": 768,
+      "overflow": false
+    },
+    "768-11-about": {
+      "sw": 768,
+      "iw": 768,
+      "overflow": false
+    },
+    "768-12-results-case": {
+      "sw": 768,
+      "iw": 768,
+      "overflow": false
+    },
+    "390-01-landing": {
+      "sw": 390,
+      "iw": 390,
+      "overflow": false
+    },
+    "390-02-tutorial": {
+      "sw": 390,
+      "iw": 390,
+      "overflow": false
+    },
+    "390-03-modes": {
+      "sw": 390,
+      "iw": 390,
+      "overflow": false
+    },
+    "390-04-review": {
+      "sw": 390,
+      "iw": 390,
+      "overflow": false
+    },
+    "390-05-case-question": {
+      "sw": 390,
+      "iw": 390,
+      "overflow": false
+    },
+    "390-06-case-feedback": {
+      "sw": 390,
+      "iw": 390,
+      "overflow": false
+    },
+    "390-07-case-end": {
+      "sw": 390,
+      "iw": 390,
+      "overflow": false
+    },
+    "390-08-exam": {
+      "sw": 390,
+      "iw": 390,
+      "overflow": false
+    },
+    "390-09-exam-submitted": {
+      "sw": 390,
+      "iw": 390,
+      "overflow": false
+    },
+    "390-10-results": {
+      "sw": 390,
+      "iw": 390,
+      "overflow": false
+    },
+    "390-11-about": {
+      "sw": 390,
+      "iw": 390,
+      "overflow": false
+    },
+    "390-12-results-case": {
+      "sw": 390,
+      "iw": 390,
+      "overflow": false
+    }
+  },
+  "errors": []
+}

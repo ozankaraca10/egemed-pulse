@@ -1,0 +1,732 @@
+{
+  "date": "2026-09-17T17:49:19.101Z",
+  "kind": "Real Chromium; fixtures/API mocks identified per test",
+  "rows": [
+    {
+      "id": "T01-landing",
+      "status": "PASS",
+      "details": {
+        "before": {
+          "normal": 0,
+          "af": 0,
+          "stemi": 0,
+          "pvc": 0,
+          "svt": 0,
+          "inferior": 0,
+          "vt": 0,
+          "vf": 0,
+          "pat": 0,
+          "flutter": 0,
+          "sintach": 0,
+          "lbbb": 0,
+          "rbbb": 0
+        },
+        "after": {
+          "normal": 0,
+          "af": 0,
+          "stemi": 0,
+          "pvc": 0,
+          "svt": 0,
+          "inferior": 0,
+          "vt": 0,
+          "vf": 0,
+          "pat": 0,
+          "flutter": 0,
+          "sintach": 0,
+          "lbbb": 0,
+          "rbbb": 0
+        }
+      }
+    },
+    {
+      "id": "T03-pool-session-schema",
+      "status": "PASS",
+      "details": {
+        "pools": [
+          {
+            "count": 200,
+            "ids": 200,
+            "invalid": []
+          },
+          {
+            "count": 200,
+            "ids": 200,
+            "invalid": []
+          }
+        ],
+        "sessions": [
+          {
+            "id": "j26bxp_idql8n_pyevsb",
+            "ids": [
+              "C029",
+              "C167",
+              "C076",
+              "C011",
+              "C089",
+              "C134",
+              "C200",
+              "C061",
+              "C109",
+              "C045"
+            ],
+            "answers": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "submitted": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "id": "1mcazus_7t8kf1_f0p672",
+            "ids": [
+              "Q183",
+              "Q081",
+              "Q083",
+              "Q108",
+              "Q030",
+              "Q140",
+              "Q138",
+              "Q014",
+              "Q114",
+              "Q097"
+            ],
+            "answers": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "submitted": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "T01-programmatic-no-intent",
+      "status": "PASS",
+      "details": {
+        "before": 0,
+        "after": 0
+      }
+    },
+    {
+      "id": "T01-keyboard-pause-dialog",
+      "status": "PASS",
+      "details": {
+        "selected": 1.2166000000000006,
+        "paused": 1.2667000000000002,
+        "helpDelta": 0,
+        "resetDelta": 0
+      }
+    },
+    {
+      "id": "T01-navigation-and-reload",
+      "status": "PASS",
+      "details": {
+        "sameSample": true,
+        "sameObservation": true
+      }
+    },
+    {
+      "id": "T02-open-access-with-hints",
+      "status": "PASS",
+      "details": {
+        "source": "Locks loosened; hints remain",
+        "hints": {
+          "locked": 0,
+          "status": [
+            "13/13 örüntü izlendi",
+            "Oturum: 0/10 gönderildi",
+            "Öneri: önce oturumdaki 10 vaka yanıtını gönderin — 0/10 gönderildi"
+          ]
+        },
+        "gates": {
+          "simComplete": true,
+          "casesComplete": false,
+          "casesUnlocked": true,
+          "quizUnlocked": false,
+          "passed": false
+        }
+      }
+    },
+    {
+      "id": "T05-T06-case-ecg-controls-gating",
+      "status": "PASS",
+      "details": {
+        "initial": {
+          "width": 696,
+          "height": 300,
+          "cssWidth": 696,
+          "cssHeight": 300,
+          "dpr": 1,
+          "dark": 3194,
+          "hash": 1742013373
+        },
+        "changed": {
+          "width": 696,
+          "height": 300,
+          "cssWidth": 696,
+          "cssHeight": 300,
+          "dpr": 1,
+          "dark": 3023,
+          "hash": 3095019453
+        },
+        "resized": {
+          "width": 1004,
+          "height": 300,
+          "cssWidth": 1003.765625,
+          "cssHeight": 300,
+          "dpr": 1,
+          "dark": 4115,
+          "hash": 3992767759
+        },
+        "feedback": "Yanlış\n\nA. Çeldirici:\nBu ifade aVL içindir; sağ kol aVR yerine sol kol yönünü verir.\n\nB. Çeldirici:\nBu ifade aVF içindir; sağ kol yerine inferior artırılmış yönü verir.\n\nC. Çeldirici:\nBu bipolar III ifadesidir; artırılmış aVR değildir.\n\nD. Doğru seçenek:\nSağ kol potansiyeli diğer iki ekstremitenin ortalamasına karşı ölçülür; I, II dönüşümü negatif yarım toplamdır.\n\nE. Seçilen çeldirici:\nSağ kol referans yönü için gereken eksi işareti kaybolmuştur."
+      }
+    },
+    {
+      "id": "T02-ten-cases-no-timer",
+      "status": "PASS",
+      "details": {
+        "durationMs": 903,
+        "submitted": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "id": "T05-T06-return-same-case",
+      "status": "PASS",
+      "details": {
+        "caseId": "C045"
+      }
+    },
+    {
+      "id": "T05-T03-quiz-ten-pages-score",
+      "status": "PASS",
+      "details": {
+        "pages": [
+          {
+            "id": "Q183",
+            "hash": 2602594806,
+            "answer": 2,
+            "correct": 2
+          },
+          {
+            "id": "Q081",
+            "hash": 3305644639,
+            "answer": 0,
+            "correct": 0
+          },
+          {
+            "id": "Q083",
+            "hash": 3138221233,
+            "answer": 2,
+            "correct": 2
+          },
+          {
+            "id": "Q108",
+            "hash": 2906501816,
+            "answer": 2,
+            "correct": 2
+          },
+          {
+            "id": "Q030",
+            "hash": 1747382936,
+            "answer": 4,
+            "correct": 4
+          },
+          {
+            "id": "Q140",
+            "hash": 2956661926,
+            "answer": 4,
+            "correct": 4
+          },
+          {
+            "id": "Q138",
+            "hash": 1116449954,
+            "answer": 2,
+            "correct": 2
+          },
+          {
+            "id": "Q014",
+            "hash": 2317776689,
+            "answer": 3,
+            "correct": 3
+          },
+          {
+            "id": "Q114",
+            "hash": 2970935755,
+            "answer": 4,
+            "correct": 3
+          },
+          {
+            "id": "Q097",
+            "hash": 1258170571,
+            "answer": 2,
+            "correct": 1
+          }
+        ],
+        "attempt": 80,
+        "best": 80,
+        "passed": true
+      }
+    },
+    {
+      "id": "T03-retry-new-continue",
+      "status": "PASS",
+      "details": {
+        "retrySame": true,
+        "newDifferent": true,
+        "resumeSame": true,
+        "best": 80
+      }
+    },
+    {
+      "id": "T09-vf-no-forward-flow",
+      "status": "PASS",
+      "details": {
+        "particleCount": 63,
+        "pulseText": "VF: etkili mekanik nabız yok"
+      }
+    },
+    {
+      "id": "T16-layout-focus-fullscreen",
+      "status": "PASS",
+      "details": [
+        {
+          "w": 1366,
+          "h": 768,
+          "layout": {
+            "width": 1366,
+            "viewport": 1366,
+            "scale": "",
+            "cards": [
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              }
+            ],
+            "metrics": 5
+          }
+        },
+        {
+          "w": 1920,
+          "h": 1080,
+          "layout": {
+            "width": 1920,
+            "viewport": 1920,
+            "scale": "",
+            "cards": [
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 126.046875,
+                "railBottom": 131.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              }
+            ],
+            "metrics": 5
+          }
+        },
+        {
+          "w": 390,
+          "h": 844,
+          "layout": {
+            "width": 390,
+            "viewport": 390,
+            "scale": "",
+            "cards": [
+              {
+                "bottom": 192,
+                "railBottom": 197,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 192,
+                "railBottom": 197,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 192,
+                "railBottom": 197,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 192,
+                "railBottom": 197,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 192,
+                "railBottom": 197,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 192,
+                "railBottom": 197,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 192,
+                "railBottom": 197,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 192,
+                "railBottom": 197,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 192,
+                "railBottom": 197,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 192,
+                "railBottom": 197,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 192,
+                "railBottom": 197,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 192,
+                "railBottom": 197,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 192,
+                "railBottom": 197,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              }
+            ],
+            "metrics": 5
+          }
+        },
+        {
+          "w": 768,
+          "h": 1024,
+          "layout": {
+            "width": 768,
+            "viewport": 768,
+            "scale": "",
+            "cards": [
+              {
+                "bottom": 171.046875,
+                "railBottom": 176.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 171.046875,
+                "railBottom": 176.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 171.046875,
+                "railBottom": 176.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 171.046875,
+                "railBottom": 176.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 171.046875,
+                "railBottom": 176.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 171.046875,
+                "railBottom": 176.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 171.046875,
+                "railBottom": 176.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 171.046875,
+                "railBottom": 176.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 171.046875,
+                "railBottom": 176.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 171.046875,
+                "railBottom": 176.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 171.046875,
+                "railBottom": 176.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 171.046875,
+                "railBottom": 176.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              },
+              {
+                "bottom": 171.046875,
+                "railBottom": 176.046875,
+                "scrollHeight": 48,
+                "clientHeight": 48
+              }
+            ],
+            "metrics": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "T16-af-profile-reachable",
+      "status": "PASS",
+      "details": {
+        "x": 1211,
+        "y": 205.046875,
+        "width": 118,
+        "height": 32
+      }
+    },
+    {
+      "id": "T17-brand-footer",
+      "status": "PASS",
+      "details": {
+        "footers": [
+          "EGEMED Pulse™ Etkileşimli EKG Simülatörü, Ege Üniversitesi Tıp Fakültesi Dekanlığı tarafından geliştirilmiştir. Tüm hakları saklıdır © 2026",
+          "EGEMED Pulse™ Etkileşimli EKG Simülatörü, Ege Üniversitesi Tıp Fakültesi Dekanlığı tarafından geliştirilmiştir. Tüm hakları saklıdır © 2026"
+        ],
+        "landing": "EGEMEDPulse™⤢Tam ekranⓘYardımⓘHakkındaElektriksel etkinliği, mekanik yanıtı ve dolaşımı birlikte keşfedin.13 sentetik örüntü, 12 derivasyon, 200 vaka ve 200 değerlendirme maddesi. Her oturumda rastgele 10 vaka ve 10 soru.Simülatörü başlat →Nasıl kullanılır?|ⓘ Hakkında ve kaynaklarNEDEN GÜVENİLİR?13 sentetik örüntü12 derivasyon; bağımsız klinisyen doğrulaması yok — sınırlarımızı açıkça yazıyoruz.200 vaka · 200 soruHer oturumda rastgele 10 vaka ve 10 soru.SCORM 1.2Puan ve durum LMS’e raporlanır.Sinyaller sentetik öğretim şemalarıdır; klinik tanı için kullanılmaz.EGEMED Pulse™ Etkileşimli EKG Simülatörü, Ege Üniversitesi Tıp Fakültesi Dekanlığı tarafından geliştirilmiştir. Tüm hakları saklıdır © 2026"
+      }
+    },
+    {
+      "id": "T18-runtime-health",
+      "status": "PASS",
+      "details": {
+        "errors": [],
+        "externalRequests": []
+      }
+    }
+  ]
+}

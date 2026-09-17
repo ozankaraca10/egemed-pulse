@@ -1,0 +1,68 @@
+{
+  "scope": "Real Chromium; local storage fixtures and nativeAPI mock, not actualLMS",
+  "results": [
+    {
+      "name": "local-future-preserved",
+      "pass": true
+    },
+    {
+      "name": "local-future-explicit-reset-recovers",
+      "pass": true
+    },
+    {
+      "name": "local-invalid-preserved",
+      "pass": true
+    },
+    {
+      "name": "local-invalid-explicit-reset-recovers",
+      "pass": true
+    },
+    {
+      "name": "local-oversize-preserved",
+      "pass": true
+    },
+    {
+      "name": "local-oversize-explicit-reset-recovers",
+      "pass": true
+    },
+    {
+      "name": "optional-count-failure-no-invented-index",
+      "pass": true,
+      "details": {
+        "index": null,
+        "saved": true,
+        "result": {
+          "ok": true,
+          "core": "saved",
+          "interactions": "failed-pending",
+          "errors": [
+            "LMSGetValue: error 401"
+          ]
+        },
+        "writes": []
+      }
+    },
+    {
+      "name": "optional-count-retry-dense-index7",
+      "pass": true,
+      "details": {
+        "saved": true,
+        "data": {
+          "cmi.suspend_data": "{\"version\":6,\"mode\":\"normal\",\"time\":2,\"bestScore\":null,\"passed\":false,\"assessed\":false}",
+          "cmi.core.lesson_location": "normal:2.00",
+          "cmi.core.score.min": "0",
+          "cmi.core.score.max": "100",
+          "cmi.core.lesson_status": "incomplete",
+          "cmi.core.session_time": "0000:00:00.00",
+          "cmi.core.exit": "suspend",
+          "cmi.interactions.7.id": "pulse_case_count_retry_C001",
+          "cmi.interactions.7.type": "choice",
+          "cmi.interactions.7.correct_responses.0.pattern": "a",
+          "cmi.interactions.7.student_response": "b",
+          "cmi.interactions.7.result": "wrong"
+        },
+        "pending": 0
+      }
+    }
+  ]
+}

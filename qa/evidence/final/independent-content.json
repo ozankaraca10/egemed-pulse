@@ -1,0 +1,737 @@
+{
+  "date": "2026-09-17T17:53:25.804Z",
+  "kind": "Real Chromium; fixtures/API mocks identified per test",
+  "rows": [
+    {
+      "id": "T03-T04-all400-schema-mapping-neutrality",
+      "status": "PASS",
+      "details": {
+        "count": 400,
+        "invalid": []
+      }
+    },
+    {
+      "id": "T04-unique-content-and-position-distribution",
+      "status": "PASS",
+      "details": {
+        "pools": [
+          {
+            "count": 200,
+            "exactText": 200,
+            "distinctModeDecision": 200,
+            "correctPositions": [
+              40,
+              40,
+              40,
+              40,
+              40
+            ]
+          },
+          {
+            "count": 200,
+            "exactText": 200,
+            "distinctModeDecision": 200,
+            "correctPositions": [
+              40,
+              40,
+              40,
+              40,
+              40
+            ]
+          }
+        ],
+        "crossSectionSharedConcepts": 160,
+        "limitation": "Case and assessment repeat learning concepts; this is not400independentclinicalconditions."
+      }
+    },
+    {
+      "id": "T04-T08-all-numeric-targets-model",
+      "status": "PASS",
+      "details": {
+        "checked": 85,
+        "rows": [
+          {
+            "id": "C004",
+            "mode": "normal",
+            "decision": "rr800",
+            "expected": 75,
+            "correct": "75/dk",
+            "pass": true
+          },
+          {
+            "id": "C005",
+            "mode": "normal",
+            "decision": "pr175",
+            "expected": 175,
+            "correct": "175 ms",
+            "pass": true
+          },
+          {
+            "id": "C006",
+            "mode": "normal",
+            "decision": "q80",
+            "expected": 80,
+            "correct": "80 ms",
+            "pass": true
+          },
+          {
+            "id": "C026",
+            "mode": "af",
+            "decision": "q80",
+            "expected": 80,
+            "correct": "80 ms",
+            "pass": true
+          },
+          {
+            "id": "C035",
+            "mode": "stemi",
+            "decision": "st32",
+            "expected": 0.32,
+            "correct": "+0.32 mV",
+            "pass": true
+          },
+          {
+            "id": "C040",
+            "mode": "stemi",
+            "decision": "pr175",
+            "expected": 175,
+            "correct": "175 ms",
+            "pass": true
+          },
+          {
+            "id": "C041",
+            "mode": "stemi",
+            "decision": "q80",
+            "expected": 80,
+            "correct": "80 ms",
+            "pass": true
+          },
+          {
+            "id": "C050",
+            "mode": "pvc",
+            "decision": "q140",
+            "expected": 140,
+            "correct": "140 ms",
+            "pass": true
+          },
+          {
+            "id": "C054",
+            "mode": "pvc",
+            "decision": "pr175",
+            "expected": 175,
+            "correct": "175 ms",
+            "pass": true
+          },
+          {
+            "id": "C056",
+            "mode": "pvc",
+            "decision": "q80",
+            "expected": 80,
+            "correct": "80 ms",
+            "pass": true
+          },
+          {
+            "id": "C063",
+            "mode": "svt",
+            "decision": "rr360",
+            "expected": 167,
+            "correct": "Yaklaşık 167/dk",
+            "pass": true
+          },
+          {
+            "id": "C069",
+            "mode": "svt",
+            "decision": "q80",
+            "expected": 80,
+            "correct": "80 ms",
+            "pass": true
+          },
+          {
+            "id": "C080",
+            "mode": "inferior",
+            "decision": "st20",
+            "expected": 0.2,
+            "correct": "+0.20 mV",
+            "pass": true
+          },
+          {
+            "id": "C081",
+            "mode": "inferior",
+            "decision": "iii28",
+            "expected": 0.28,
+            "correct": "+0.28 mV",
+            "pass": true
+          },
+          {
+            "id": "C082",
+            "mode": "inferior",
+            "decision": "avf24",
+            "expected": 0.24,
+            "correct": "+0.24 mV",
+            "pass": true
+          },
+          {
+            "id": "C083",
+            "mode": "inferior",
+            "decision": "avl18",
+            "expected": -0.18,
+            "correct": "-0.18 mV",
+            "pass": true
+          },
+          {
+            "id": "C088",
+            "mode": "inferior",
+            "decision": "pr175",
+            "expected": 175,
+            "correct": "175 ms",
+            "pass": true
+          },
+          {
+            "id": "C089",
+            "mode": "inferior",
+            "decision": "q80",
+            "expected": 80,
+            "correct": "80 ms",
+            "pass": true
+          },
+          {
+            "id": "C093",
+            "mode": "vt",
+            "decision": "rr380",
+            "expected": 158,
+            "correct": "Yaklaşık 158/dk",
+            "pass": true
+          },
+          {
+            "id": "C094",
+            "mode": "vt",
+            "decision": "q180",
+            "expected": 180,
+            "correct": "180 ms",
+            "pass": true
+          },
+          {
+            "id": "C126",
+            "mode": "pat",
+            "decision": "rr400",
+            "expected": 150,
+            "correct": "150/dk",
+            "pass": true
+          },
+          {
+            "id": "C127",
+            "mode": "pat",
+            "decision": "pr140",
+            "expected": 140,
+            "correct": "140 ms",
+            "pass": true
+          },
+          {
+            "id": "C129",
+            "mode": "pat",
+            "decision": "q80",
+            "expected": 80,
+            "correct": "80 ms",
+            "pass": true
+          },
+          {
+            "id": "C142",
+            "mode": "flutter",
+            "decision": "rr400",
+            "expected": 150,
+            "correct": "150/dk",
+            "pass": true
+          },
+          {
+            "id": "C144",
+            "mode": "flutter",
+            "decision": "q80",
+            "expected": 80,
+            "correct": "80 ms",
+            "pass": true
+          },
+          {
+            "id": "C155",
+            "mode": "sintach",
+            "decision": "rr500",
+            "expected": 120,
+            "correct": "120/dk",
+            "pass": true
+          },
+          {
+            "id": "C158",
+            "mode": "sintach",
+            "decision": "pr175",
+            "expected": 175,
+            "correct": "175 ms",
+            "pass": true
+          },
+          {
+            "id": "C159",
+            "mode": "sintach",
+            "decision": "q80",
+            "expected": 80,
+            "correct": "80 ms",
+            "pass": true
+          },
+          {
+            "id": "C169",
+            "mode": "lbbb",
+            "decision": "prL175",
+            "expected": 175,
+            "correct": "175 ms",
+            "pass": true
+          },
+          {
+            "id": "C170",
+            "mode": "lbbb",
+            "decision": "q160",
+            "expected": 160,
+            "correct": "160 ms",
+            "pass": true
+          },
+          {
+            "id": "C175",
+            "mode": "lbbb",
+            "decision": "qt430",
+            "expected": 430,
+            "correct": "430 ms",
+            "pass": true
+          },
+          {
+            "id": "C184",
+            "mode": "rbbb",
+            "decision": "prR175",
+            "expected": 175,
+            "correct": "175 ms",
+            "pass": true
+          },
+          {
+            "id": "C185",
+            "mode": "rbbb",
+            "decision": "q140",
+            "expected": 140,
+            "correct": "140 ms",
+            "pass": true
+          },
+          {
+            "id": "C189",
+            "mode": "rbbb",
+            "decision": "qt410",
+            "expected": 410,
+            "correct": "410 ms",
+            "pass": true
+          },
+          {
+            "id": "C196",
+            "mode": "normal",
+            "decision": "grid200",
+            "expected": 200,
+            "correct": "200 ms",
+            "pass": true
+          },
+          {
+            "id": "C197",
+            "mode": "pvc",
+            "decision": "pvcAverage",
+            "expected": 75,
+            "correct": "75/dk",
+            "pass": true
+          },
+          {
+            "id": "C198",
+            "mode": "stemi",
+            "decision": "anteriorAVL",
+            "expected": 0.06,
+            "correct": "+0.06 mV",
+            "pass": true
+          },
+          {
+            "id": "C200",
+            "mode": "rbbb",
+            "decision": "pToQR315",
+            "expected": 315,
+            "correct": "315 ms",
+            "pass": true
+          },
+          {
+            "id": "Q001",
+            "mode": "normal",
+            "decision": "rr800",
+            "expected": 75,
+            "correct": "75/dk",
+            "pass": true
+          },
+          {
+            "id": "Q002",
+            "mode": "normal",
+            "decision": "pr175",
+            "expected": 175,
+            "correct": "175 ms",
+            "pass": true
+          },
+          {
+            "id": "Q003",
+            "mode": "normal",
+            "decision": "q80",
+            "expected": 80,
+            "correct": "80 ms",
+            "pass": true
+          },
+          {
+            "id": "Q004",
+            "mode": "normal",
+            "decision": "qt350",
+            "expected": 350,
+            "correct": "350 ms",
+            "pass": true
+          },
+          {
+            "id": "Q020",
+            "mode": "af",
+            "decision": "q80",
+            "expected": 80,
+            "correct": "80 ms",
+            "pass": true
+          },
+          {
+            "id": "Q033",
+            "mode": "stemi",
+            "decision": "st32",
+            "expected": 0.32,
+            "correct": "+0.32 mV",
+            "pass": true
+          },
+          {
+            "id": "Q036",
+            "mode": "stemi",
+            "decision": "rr800",
+            "expected": 75,
+            "correct": "75/dk",
+            "pass": true
+          },
+          {
+            "id": "Q037",
+            "mode": "stemi",
+            "decision": "pr175",
+            "expected": 175,
+            "correct": "175 ms",
+            "pass": true
+          },
+          {
+            "id": "Q038",
+            "mode": "stemi",
+            "decision": "q80",
+            "expected": 80,
+            "correct": "80 ms",
+            "pass": true
+          },
+          {
+            "id": "Q039",
+            "mode": "stemi",
+            "decision": "qt350",
+            "expected": 350,
+            "correct": "350 ms",
+            "pass": true
+          },
+          {
+            "id": "Q049",
+            "mode": "pvc",
+            "decision": "q140",
+            "expected": 140,
+            "correct": "140 ms",
+            "pass": true
+          },
+          {
+            "id": "Q050",
+            "mode": "pvc",
+            "decision": "q80",
+            "expected": 80,
+            "correct": "80 ms",
+            "pass": true
+          },
+          {
+            "id": "Q054",
+            "mode": "pvc",
+            "decision": "pr175",
+            "expected": 175,
+            "correct": "175 ms",
+            "pass": true
+          },
+          {
+            "id": "Q055",
+            "mode": "pvc",
+            "decision": "qt410",
+            "expected": 410,
+            "correct": "410 ms",
+            "pass": true
+          },
+          {
+            "id": "Q062",
+            "mode": "svt",
+            "decision": "rr360",
+            "expected": 167,
+            "correct": "Yaklaşık 167/dk",
+            "pass": true
+          },
+          {
+            "id": "Q063",
+            "mode": "svt",
+            "decision": "q80",
+            "expected": 80,
+            "correct": "80 ms",
+            "pass": true
+          },
+          {
+            "id": "Q067",
+            "mode": "svt",
+            "decision": "qt245",
+            "expected": 245,
+            "correct": "245 ms",
+            "pass": true
+          },
+          {
+            "id": "Q077",
+            "mode": "inferior",
+            "decision": "st20",
+            "expected": 0.2,
+            "correct": "+0.20 mV",
+            "pass": true
+          },
+          {
+            "id": "Q078",
+            "mode": "inferior",
+            "decision": "iii28",
+            "expected": 0.28,
+            "correct": "+0.28 mV",
+            "pass": true
+          },
+          {
+            "id": "Q079",
+            "mode": "inferior",
+            "decision": "avf24",
+            "expected": 0.24,
+            "correct": "+0.24 mV",
+            "pass": true
+          },
+          {
+            "id": "Q080",
+            "mode": "inferior",
+            "decision": "avl18",
+            "expected": -0.18,
+            "correct": "-0.18 mV",
+            "pass": true
+          },
+          {
+            "id": "Q087",
+            "mode": "inferior",
+            "decision": "pr175",
+            "expected": 175,
+            "correct": "175 ms",
+            "pass": true
+          },
+          {
+            "id": "Q088",
+            "mode": "inferior",
+            "decision": "q80",
+            "expected": 80,
+            "correct": "80 ms",
+            "pass": true
+          },
+          {
+            "id": "Q092",
+            "mode": "vt",
+            "decision": "rr380",
+            "expected": 158,
+            "correct": "Yaklaşık 158/dk",
+            "pass": true
+          },
+          {
+            "id": "Q093",
+            "mode": "vt",
+            "decision": "q180",
+            "expected": 180,
+            "correct": "180 ms",
+            "pass": true
+          },
+          {
+            "id": "Q094",
+            "mode": "vt",
+            "decision": "qt345",
+            "expected": 345,
+            "correct": "345 ms",
+            "pass": true
+          },
+          {
+            "id": "Q124",
+            "mode": "pat",
+            "decision": "pr140",
+            "expected": 140,
+            "correct": "140 ms",
+            "pass": true
+          },
+          {
+            "id": "Q125",
+            "mode": "pat",
+            "decision": "rr400",
+            "expected": 150,
+            "correct": "150/dk",
+            "pass": true
+          },
+          {
+            "id": "Q126",
+            "mode": "pat",
+            "decision": "q80",
+            "expected": 80,
+            "correct": "80 ms",
+            "pass": true
+          },
+          {
+            "id": "Q127",
+            "mode": "pat",
+            "decision": "qt245",
+            "expected": 245,
+            "correct": "245 ms",
+            "pass": true
+          },
+          {
+            "id": "Q140",
+            "mode": "flutter",
+            "decision": "rr400",
+            "expected": 150,
+            "correct": "150/dk",
+            "pass": true
+          },
+          {
+            "id": "Q141",
+            "mode": "flutter",
+            "decision": "q80",
+            "expected": 80,
+            "correct": "80 ms",
+            "pass": true
+          },
+          {
+            "id": "Q143",
+            "mode": "flutter",
+            "decision": "qt245",
+            "expected": 245,
+            "correct": "245 ms",
+            "pass": true
+          },
+          {
+            "id": "Q154",
+            "mode": "sintach",
+            "decision": "rr500",
+            "expected": 120,
+            "correct": "120/dk",
+            "pass": true
+          },
+          {
+            "id": "Q155",
+            "mode": "sintach",
+            "decision": "pr175",
+            "expected": 175,
+            "correct": "175 ms",
+            "pass": true
+          },
+          {
+            "id": "Q156",
+            "mode": "sintach",
+            "decision": "q80",
+            "expected": 80,
+            "correct": "80 ms",
+            "pass": true
+          },
+          {
+            "id": "Q157",
+            "mode": "sintach",
+            "decision": "qt245",
+            "expected": 245,
+            "correct": "245 ms",
+            "pass": true
+          },
+          {
+            "id": "Q168",
+            "mode": "lbbb",
+            "decision": "q160",
+            "expected": 160,
+            "correct": "160 ms",
+            "pass": true
+          },
+          {
+            "id": "Q169",
+            "mode": "lbbb",
+            "decision": "prL175",
+            "expected": 175,
+            "correct": "175 ms",
+            "pass": true
+          },
+          {
+            "id": "Q170",
+            "mode": "lbbb",
+            "decision": "qt430",
+            "expected": 430,
+            "correct": "430 ms",
+            "pass": true
+          },
+          {
+            "id": "Q176",
+            "mode": "lbbb",
+            "decision": "rr800",
+            "expected": 75,
+            "correct": "75/dk",
+            "pass": true
+          },
+          {
+            "id": "Q183",
+            "mode": "rbbb",
+            "decision": "q140",
+            "expected": 140,
+            "correct": "140 ms",
+            "pass": true
+          },
+          {
+            "id": "Q184",
+            "mode": "rbbb",
+            "decision": "prR175",
+            "expected": 175,
+            "correct": "175 ms",
+            "pass": true
+          },
+          {
+            "id": "Q185",
+            "mode": "rbbb",
+            "decision": "qt410",
+            "expected": 410,
+            "correct": "410 ms",
+            "pass": true
+          },
+          {
+            "id": "Q191",
+            "mode": "rbbb",
+            "decision": "rr800",
+            "expected": 75,
+            "correct": "75/dk",
+            "pass": true
+          },
+          {
+            "id": "Q198",
+            "mode": "inferior",
+            "decision": "inferiorAVR",
+            "expected": -0.06,
+            "correct": "-0.06 mV",
+            "pass": true
+          },
+          {
+            "id": "Q199",
+            "mode": "lbbb",
+            "decision": "pToQL335",
+            "expected": 335,
+            "correct": "335 ms",
+            "pass": true
+          }
+        ]
+      }
+    }
+  ]
+}

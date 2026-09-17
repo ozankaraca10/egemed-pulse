@@ -1,0 +1,36 @@
+{
+  "rows": [
+    {
+      "before": {
+        "hidden": false,
+        "state": "visible",
+        "viewed": 0
+      },
+      "window": {
+        "windowId": 1401466967,
+        "bounds": {
+          "left": 22,
+          "top": 30,
+          "width": 1282,
+          "height": 794,
+          "windowState": "normal"
+        }
+      }
+    },
+    {
+      "minimized": {
+        "hidden": false,
+        "state": "visible",
+        "viewed": 0
+      }
+    },
+    {
+      "otherTab": {
+        "hidden": false,
+        "state": "visible",
+        "viewed": 0
+      }
+    }
+  ],
+  "warning": "Only rows with hidden=true demonstrate a native hidden state; no visibility property was mocked."
+}

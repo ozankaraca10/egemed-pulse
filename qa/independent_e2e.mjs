@@ -1,0 +1,33 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {chromium,logger,assert,state,canvasEvidence,evidence,addMock} from './independent_support.mjs';
+const log=logger('independent-e2e'),url=process.env.PULSE_TARGET||'http://127.0.0.1:8765/cardai/';
+const browser=await chromium.launch({headless:true}),context=await browser.newContext({viewport:{width:1366,height:768}});
+await addMock(context);const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(url);
+try{
+ const atStart=await state(page);await page.waitForTimeout(17000);let s=await state(page);assert(Object.values(s.viewed).every(v=>v===0),'Landing auto completed');log.record('T01-17-real-seconds-landing',true,{url,before:atStart.viewed,after:s.viewed});
+ await page.locator('#startSimulator').click();if(await page.locator('#tutorialPanel').isVisible())await page.locator('#tutorialSkip').click();await page.locator('.mode-card.learn .btn').click();const modes=await page.evaluate(()=>CardAIModel.MODES);
+ const observations=[];
+ for(let i=0;i<modes.length;i++){
+  const m=modes[i];await page.locator(`.rhythm-tab[data-mode="${m}"]`).click();if(!await page.evaluate(()=>CardAIController.playing))await page.locator('#playBtn').click();await page.locator('#speed').selectOption(i===0?'2':'1');
+  const t=Date.now();if(i===0){await page.waitForTimeout(15500);const halfway=(await state(page)).viewed[m];assert(halfway<16,'Speed2 or rounding completed before16real seconds');log.record('T01-no-early-completion',true,{realMs:Date.now()-t,observed:halfway});await page.waitForTimeout(1000);}else await page.waitForTimeout(16500);
+  s=await state(page);assert(s.viewed[m]===16,'Pattern didnot complete:'+m);assert(modes.slice(i+1).every(n=>s.viewed[n]===0),'Unselected pattern accruedtime');const item={mode:m,realMs:Date.now()-t,observed:s.viewed[m]};observations.push(item);log.record('T01-T21-watch-'+m,true,item);
+  
+ }
+ await page.evaluate(()=>CardAIController.showView('case'));assert((await state(page)).activeView==='case','Case view did not open');const session=await state(page),caseRows=[];
+ for(let i=0;i<10;i++){
+  await page.waitForTimeout(80);const item=await page.evaluate(()=>CardAIController.getItem('case',CardAIController.state.currentCase));const cv=await canvasEvidence(page,'#caseEcgCanvas');assert(cv.dark>60,'Emptycase');await page.locator(`input[name="activeCase"][value="${item.correct}"]`).check();await page.locator('#caseCheck').click();caseRows.push({id:item.id,answer:item.correct,canvasHash:cv.hash});if(i<9)await page.locator('#caseNext').click();
+ }
+ assert((await state(page)).caseSession.submitted.every(Boolean),'Cases incomplete');log.record('T02-10case-UI-submissions',true,{caseRows});await page.evaluate(()=>CardAIController.showView('quiz'));assert((await state(page)).activeView==='quiz','Quizgate failed');const quizRows=[];
+ for(let i=0;i<10;i++){
+  await page.waitForTimeout(80);const item=await page.evaluate(()=>CardAIController.getItem('quiz',CardAIController.state.quizPage));const cv=await canvasEvidence(page,'#quizEcgCanvas');assert(cv.dark>60,'Emptyquiz');const answer=i<8?item.correct:(item.correct+1)%5;await page.locator(`#quizForm input[value="${answer}"]`).check();await page.locator('#quizSubmit').click();quizRows.push({id:item.id,answer,correct:item.correct,canvasHash:cv.hash});if(i<9)await page.locator('#quizNext').click();
+ }
+ s=await state(page);assert(s.attemptScore===80&&s.passed,'8of10notpassed');const lms=await page.evaluate(()=>__lms);assert(lms.committed['cmi.core.lesson_status']==='passed'&&lms.committed['cmi.core.score.raw']==='80','LMS score/status');const suspend=lms.committed['cmi.suspend_data'];assert(suspend.length<=4096&&new TextEncoder().encode(suspend).length<=4096,'Oversizesuspend');
+ log.record('T03-T11-E2E-score-LMS',true,{quizRows,attemptScore:s.attemptScore,lmsStatus:lms.committed['cmi.core.lesson_status'],suspendChars:suspend.length,suspendBytes:new TextEncoder().encode(suspend).length});
+ const interactions=[];for(let n=0;n<+lms.data['cmi.interactions._count'];n++){const prefix=`cmi.interactions.${n}.`;interactions.push({id:lms.data[prefix+'id'],response:lms.data[prefix+'student_response'],correct:lms.data[prefix+'correct_responses.0.pattern'],result:lms.data[prefix+'result']});}
+ assert(interactions.length===20&&new Set(interactions.map(x=>x.id)).size===20,'Interaction count/id mismatch');for(const row of [...caseRows,...quizRows]){const it=interactions.find(x=>x.id.includes(row.id));assert(it,'Missinginteraction '+row.id);assert(it.response===String.fromCharCode(97+row.answer),'Wrongresponse '+row.id);assert(it.correct===String.fromCharCode(97+(row.correct??row.answer)),'Wrongcorrect_response '+row.id);}
+ log.record('T15-E2E-interactions',true,{interactions});await page.screenshot({path:path.join(evidence,'e2e-passed.png')});
+ const finishBefore=await page.evaluate(()=>__lms.calls.filter(c=>c[0]==='LMSFinish').length);await page.evaluate(()=>window.dispatchEvent(new Event('pagehide')));const finished=await page.evaluate(()=>__lms.calls.filter(c=>c[0]==='LMSFinish').length);assert(finished===finishBefore+1,'Finish not called on unload');await page.evaluate(()=>window.dispatchEvent(new Event('pagehide')));assert(await page.evaluate(()=>__lms.calls.filter(c=>c[0]==='LMSFinish').length)===finished,'Repeated finish');
+ log.record('T12-E2E-finish',true,{finishCalls:finished,status:await page.evaluate(()=>__lms.data['cmi.core.lesson_status'])});
+ const resumeContext=await browser.newContext({viewport:{width:1366,height:768}});await addMock(resumeContext,lms.committed);const resumed=await resumeContext.newPage();await resumed.goto(url);await resumed.locator('#startSimulator').click();const restored=await state(resumed);assert(JSON.stringify(restored.caseSession.ids)===JSON.stringify(session.caseSession.ids)&&JSON.stringify(restored.quizSession.ids)===JSON.stringify(session.quizSession.ids),'LMSresumesamples changed');assert(restored.attemptScore===80&&restored.passed,'LMSresume score');assert(!await resumed.evaluate(()=>CardAIController.playing),'LMSresumeautoplay');log.record('T13-E2E-LMS-resume',true,{samplesPreserved:true,score:restored.attemptScore,playing:false});await resumeContext.close();assert(!errors.length,'Browsererrors'+errors.join(';'));log.record('E2E-runtime',true,{errors,mockedDOM:false,SCORM:'API mock, no real LMS'});
+}catch(error){log.record('E2E-ABORT',false,{error:error.message});await page.screenshot({path:path.join(evidence,'e2e-failure.png')}).catch(()=>{});process.exitCode=1;}finally{await context.close();await browser.close();}
