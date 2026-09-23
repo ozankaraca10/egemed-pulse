@@ -10,23 +10,23 @@
   ],
   "outputs": {
     "EGEMED_PULSE_Onizleme.html": {
-      "bytes": 1921316,
-      "sha256": "ea8ca015a01c5dd132ac21ebe9cd3d4c01f9dffa288763c9b5c1649fb527ca29"
+      "bytes": 1743429,
+      "sha256": "63baddcd2fc9286414cd9d87ac3be10d0b66e30ca54c3a4865874af5c62d9c0f"
     },
     "EGEMED_PULSE_SCORM_1.2.zip": {
-      "bytes": 944019,
-      "sha256": "7212444f773e7dc4760903106ad7e7faf4710cab48decd9544c45448645b2edc"
+      "bytes": 805713,
+      "sha256": "ccd3f145f6ed8f497929e0afa98d3e68f9f6bc8ad821288078d8cdc0c0186aad"
     }
   },
   "product": "EGEMED PULSE",
   "source_files": {
     "KULLANIM.md": {
-      "bytes": 10954,
-      "sha256": "9b84bedbe7d678a8cc1c481e4eeeade825c7b248bbc51bddfc44cfaee42eddef"
+      "bytes": 12645,
+      "sha256": "8ef2d2640d7d848325aae247b2067365b0498e720eb95adb9ff1eb51de88b5e0"
     },
     "app.js": {
-      "bytes": 50009,
-      "sha256": "f64284793d78ca034caf5c4b8160eceb2ee9155c676aef1414cafb03a5b258d2"
+      "bytes": 52923,
+      "sha256": "afb620e18c185b99f7a6b128b3bdf7b8ae64079d24ce32808c77f8ca8cd831a8"
     },
     "assets/brand/ege-tip-seal-128.png": {
       "bytes": 28040,
@@ -41,28 +41,28 @@
       "sha256": "85ec3fa85248756aa1466036a7dcc71bb1efc814e26730cd1d7b9e2fe3cf731a"
     },
     "assets/egemed-pulse-landing.png": {
-      "bytes": 385455,
-      "sha256": "30054f52ad28cba57ab00bf091403d33b9365ede5e577c749ced296ddc23cf65"
+      "bytes": 236983,
+      "sha256": "f8228c246dd7244dbb5e48374cd50b3d37f12116f23da5034f99fae0f306942a"
     },
     "curriculum.js": {
-      "bytes": 158621,
-      "sha256": "9d18248d033bf8e8d3a6aa891a0440abd0e5398c9298dcf803ed7d592882e542"
+      "bytes": 166081,
+      "sha256": "8b03298ca5ffa349175f4a43b5685fb9f9f3ce8039caa524247fd5684fb0256b"
     },
     "features.js": {
-      "bytes": 46093,
-      "sha256": "3b1d3fcd8c38f426d7fba15b6396ef490b03b6834d7be602738bf0f042dd7bfc"
+      "bytes": 47535,
+      "sha256": "76745fc061c8f1e4087fba88d38596df224547747dd38579d3128fdf5121bb91"
     },
     "imsmanifest.xml": {
       "bytes": 1634,
       "sha256": "beccb6fd9201c82ade9d886d84c2cb19d629a700dead6a3764343fb81b9d70dc"
     },
     "index.html": {
-      "bytes": 36664,
-      "sha256": "a180ce938a64863510ccf32bc925060d44170d6957df29d71a0d2022ed754c3e"
+      "bytes": 39091,
+      "sha256": "351f0f3102ef8eb98d9e3abe526974349cfffe209cb29d1e60e55a9c257d46dc"
     },
     "landing.js": {
-      "bytes": 3207,
-      "sha256": "8a20603f6d8cc767b51e1867609b06be90669f5e0f0e82ea3c01d371e8ad5b51"
+      "bytes": 7439,
+      "sha256": "3d72c008cdb7dd2cc1c7867464bddba40b85859738963946385671302e8c5636"
     },
     "model.js": {
       "bytes": 12538,
@@ -73,19 +73,19 @@
       "sha256": "3a2cf98b0f1daf11514b92320439adf28f3fbbc15c202479586970fc6f3641fd"
     },
     "sources.json": {
-      "bytes": 4750,
-      "sha256": "29eba5603e5fbc7f9c2ef900147a9aa809e29c95f4b30ad919e00b5f28721b00"
+      "bytes": 5127,
+      "sha256": "857b0eadb24789043397f044704c394b205f62315055b464f79f6390bac779aa"
     },
     "state.js": {
-      "bytes": 7566,
-      "sha256": "1167443cfe0270f6b4159bc04440722b29b66d2ae9f60afd6232bc8bd5e34035"
+      "bytes": 7760,
+      "sha256": "43e1b06319b5a0da6e16d8b70dc46026f983de463e9c84a47259dd66aa75fcf8"
     },
     "styles.css": {
-      "bytes": 72751,
-      "sha256": "e2e4688dd703f2c8b5f3336280ce128ea3e5878c5dd3cba527d6ecb95fc13ff3"
+      "bytes": 73778,
+      "sha256": "8861071129fc23d1efce79f736d636e3176df79f1a2d2cea20f75bec25703ff1"
     }
   },
-  "source_set_sha256": "d8c3bca475bb178b9d17d08dabd045b501ac612d2338fefe91ffe847151bb9ba",
+  "source_set_sha256": "6272241c3f0dfb5496c0bc0f75ae869339c626160ce40bb56fd5b2a8b335b6ee",
   "version": "6.0",
   "zip_entries": [
     "KULLANIM.md",

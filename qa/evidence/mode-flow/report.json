@@ -1,0 +1,241 @@
+{
+  "date": "2026-09-21T19:54:39.422Z",
+  "url": "http://127.0.0.1:8765/cardai/",
+  "rows": [
+    {
+      "id": "F1-case-submit-no-lock",
+      "status": "PASS",
+      "details": {
+        "caseSubmitted0": true,
+        "feedbackText": "Doğru!\n\nTek şerit AVNRT, AVRT veya AT'yi kesin ayırmaz."
+      }
+    },
+    {
+      "id": "F1-quiz-submit-no-lock",
+      "status": "PASS",
+      "details": {
+        "quizSubmitted0": true
+      }
+    },
+    {
+      "id": "F6-auto-grade-on-10-10",
+      "status": "PASS",
+      "details": {
+        "activeView": "results",
+        "attemptScore": 100
+      }
+    },
+    {
+      "id": "F8-results-retry-navigates",
+      "status": "PASS",
+      "details": {
+        "activeView": "quiz",
+        "quizPage": 0
+      }
+    },
+    {
+      "id": "F4-keyboard-1-no-leak-in-quiz",
+      "status": "PASS",
+      "details": {
+        "activeView": "quiz"
+      }
+    },
+    {
+      "id": "F5-new-case-session-confirm-dialog",
+      "status": "PASS",
+      "details": {
+        "oldSessionId": "1ovswwi_l7osrw_42y2pk",
+        "newSessionId": "1v87fnv_1au0whu_ypto07",
+        "currentCase": 0,
+        "submittedAllFalse": true
+      }
+    },
+    {
+      "id": "F5-retry-no-dialog-when-untouched",
+      "status": "PASS",
+      "details": {
+        "dialogVisibleAfterFreshRetry": false
+      }
+    },
+    {
+      "id": "F7-progress-bar-percent",
+      "status": "PASS",
+      "details": {
+        "width": "30%",
+        "pct": 30
+      }
+    },
+    {
+      "id": "F9-fullscreen-root-via-f-key",
+      "status": "PASS",
+      "details": {
+        "focusedIsButton": true,
+        "fsElementIsRoot": true,
+        "fsEnabled": true,
+        "fullscreenFeatureCounter": {
+          "before": 0,
+          "after": 1
+        },
+        "note": "document.documentElement tam ekran oldu"
+      }
+    },
+    {
+      "id": "F10-footer-edge-to-edge-1366",
+      "status": "PASS",
+      "details": {
+        "left": 0,
+        "right": 1366,
+        "innerWidth": 1366,
+        "scrollWidth": 1366
+      }
+    },
+    {
+      "id": "F10-footer-edge-to-edge-390",
+      "status": "PASS",
+      "details": {
+        "left": 0,
+        "right": 390,
+        "innerWidth": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "id": "G1-ecg-zoom-1.25x",
+      "status": "PASS",
+      "details": {
+        "cw": 740.453125,
+        "pxPerSecond": 103.04361979166669,
+        "expectedOldPxPerSecond": 82.43489583333334,
+        "zoomRatio": 1.25
+      }
+    },
+    {
+      "id": "G2-compare-blue-dashed-visible",
+      "status": "PASS",
+      "details": {
+        "bluePixels": 884,
+        "keyDashed": "dashed"
+      }
+    },
+    {
+      "id": "G3-case-reference-same-baseline",
+      "status": "PASS",
+      "details": {
+        "itemId": "C158",
+        "itemMode": "sintach",
+        "total": 571,
+        "bottomQuarter": 0,
+        "caseCompareKeyVisible": true
+      }
+    },
+    {
+      "id": "G4-answer-leak-regex",
+      "status": "PASS",
+      "details": {
+        "totalItems": 400,
+        "ddxRhythmClassCount": 49
+      }
+    },
+    {
+      "id": "H1-case-zoom-and-caliper-consistency",
+      "status": "PASS",
+      "details": {
+        "dt1": 1644,
+        "dt2": 1096,
+        "ratio": 1.5
+      }
+    },
+    {
+      "id": "H1-case-zoom-max-disabled",
+      "status": "PASS",
+      "details": {
+        "label": "2×",
+        "inDisabledAt2x": true
+      }
+    },
+    {
+      "id": "H1-quiz-zoom-buttons-work",
+      "status": "PASS",
+      "details": {
+        "label": "1,25×"
+      }
+    },
+    {
+      "id": "H2-topbar-logo-invert-filter",
+      "status": "PASS",
+      "details": {
+        "iconFilter": "brightness(0) invert(1)"
+      }
+    },
+    {
+      "id": "H3-eg-brand-tag-responsive",
+      "status": "PASS",
+      "details": {
+        "tagVisible1366": true,
+        "tagVisible390": false
+      }
+    },
+    {
+      "id": "H4-progress-text-ekg-sonucu",
+      "status": "PASS",
+      "details": {
+        "progressText": "0 / 13 EKG sonucu · 16 gerçek sn"
+      }
+    },
+    {
+      "id": "H5-prompt-visible-and-cancel-closes",
+      "status": "PASS",
+      "details": {
+        "openOnLoad": 1,
+        "closedAfterCancel": 0
+      }
+    },
+    {
+      "id": "H5-remember-choice-persists",
+      "status": "PASS",
+      "details": {
+        "reopenedBeforeRemember": 1,
+        "flagSet": "1",
+        "reopenedAfterRemember": 0
+      }
+    },
+    {
+      "id": "H5-confirm-enters-real-fullscreen",
+      "status": "PASS",
+      "details": {
+        "isRootFullscreen": true,
+        "dialogClosedAfterConfirm": 0
+      }
+    },
+    {
+      "id": "L4-sound-toggle-off",
+      "status": "PASS",
+      "details": {
+        "pressedOnLoad": "true",
+        "pressedAfterClick": "false",
+        "storedAfterClick": "0"
+      }
+    },
+    {
+      "id": "L4-sound-pref-persists",
+      "status": "PASS",
+      "details": {
+        "pressedAfterReload": "false"
+      }
+    },
+    {
+      "id": "L4-sound-state-diagnostics",
+      "status": "PASS",
+      "details": {
+        "stateBeforeEnter": {
+          "enabled": false,
+          "running": false
+        },
+        "stateAfterEnter": {
+          "enabled": false,
+          "running": false
+        }
+      }
+    }
+  ]
+}

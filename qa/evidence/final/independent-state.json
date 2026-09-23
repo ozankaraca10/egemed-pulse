@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-17T22:52:28.956Z",
+  "date": "2026-09-21T11:56:23.347Z",
   "kind": "Real Chromium; fixtures/API mocks identified per test",
   "rows": [
     {
@@ -42,8 +42,8 @@
       "id": "T14-max-valid-suspend-roundtrip",
       "status": "PASS",
       "details": {
-        "bytes": 1665,
-        "characters": 1665
+        "bytes": 1680,
+        "characters": 1680
       }
     },
     {

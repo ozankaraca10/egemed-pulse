@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-17T22:57:41.638Z",
+  "date": "2026-09-21T11:28:32.235Z",
   "kind": "Real Chromium; fixtures/API mocks identified per test",
   "rows": [
     {
@@ -43,8 +43,8 @@
       "id": "T01-no-early-completion",
       "status": "PASS",
       "details": {
-        "realMs": 15507,
-        "observed": 15.483499999999967
+        "realMs": 15510,
+        "observed": 15.483599999999953
       }
     },
     {
@@ -52,7 +52,7 @@
       "status": "PASS",
       "details": {
         "mode": "normal",
-        "realMs": 16521,
+        "realMs": 16525,
         "observed": 16
       }
     },
@@ -70,7 +70,7 @@
       "status": "PASS",
       "details": {
         "mode": "stemi",
-        "realMs": 16504,
+        "realMs": 16516,
         "observed": 16
       }
     },
@@ -79,7 +79,7 @@
       "status": "PASS",
       "details": {
         "mode": "pvc",
-        "realMs": 16511,
+        "realMs": 16516,
         "observed": 16
       }
     },
@@ -88,7 +88,7 @@
       "status": "PASS",
       "details": {
         "mode": "svt",
-        "realMs": 16516,
+        "realMs": 16515,
         "observed": 16
       }
     },
@@ -97,7 +97,7 @@
       "status": "PASS",
       "details": {
         "mode": "inferior",
-        "realMs": 16504,
+        "realMs": 16516,
         "observed": 16
       }
     },
@@ -106,7 +106,7 @@
       "status": "PASS",
       "details": {
         "mode": "vt",
-        "realMs": 16515,
+        "realMs": 16516,
         "observed": 16
       }
     },
@@ -115,7 +115,7 @@
       "status": "PASS",
       "details": {
         "mode": "vf",
-        "realMs": 16504,
+        "realMs": 16516,
         "observed": 16
       }
     },
@@ -133,7 +133,7 @@
       "status": "PASS",
       "details": {
         "mode": "flutter",
-        "realMs": 16515,
+        "realMs": 16504,
         "observed": 16
       }
     },
@@ -142,7 +142,7 @@
       "status": "PASS",
       "details": {
         "mode": "sintach",
-        "realMs": 16518,
+        "realMs": 16516,
         "observed": 16
       }
     },
@@ -151,7 +151,7 @@
       "status": "PASS",
       "details": {
         "mode": "lbbb",
-        "realMs": 16515,
+        "realMs": 16516,
         "observed": 16
       }
     },
@@ -160,7 +160,7 @@
       "status": "PASS",
       "details": {
         "mode": "rbbb",
-        "realMs": 16516,
+        "realMs": 16517,
         "observed": 16
       }
     },
@@ -170,54 +170,54 @@
       "details": {
         "caseRows": [
           {
-            "id": "C191",
-            "answer": 0,
-            "canvasHash": 591270649
-          },
-          {
-            "id": "C118",
+            "id": "C140",
             "answer": 2,
-            "canvasHash": 3641772457
+            "canvasHash": 2916040701
           },
           {
-            "id": "C142",
+            "id": "C146",
             "answer": 1,
-            "canvasHash": 2300155977
+            "canvasHash": 3364675405
           },
           {
-            "id": "C072",
-            "answer": 1,
-            "canvasHash": 4207114495
+            "id": "C143",
+            "answer": 2,
+            "canvasHash": 2238528876
           },
           {
-            "id": "C020",
+            "id": "C128",
+            "answer": 0,
+            "canvasHash": 2799481797
+          },
+          {
+            "id": "C097",
+            "answer": 3,
+            "canvasHash": 3883212154
+          },
+          {
+            "id": "C074",
+            "answer": 2,
+            "canvasHash": 1591855531
+          },
+          {
+            "id": "C088",
+            "answer": 3,
+            "canvasHash": 437189654
+          },
+          {
+            "id": "C125",
             "answer": 4,
-            "canvasHash": 2137961192
-          },
-          {
-            "id": "C155",
-            "answer": 4,
-            "canvasHash": 1249101983
-          },
-          {
-            "id": "C070",
-            "answer": 4,
-            "canvasHash": 3296350428
+            "canvasHash": 3014887847
           },
           {
             "id": "C049",
-            "answer": 3,
+            "answer": 0,
             "canvasHash": 1542078418
           },
           {
-            "id": "C121",
-            "answer": 0,
-            "canvasHash": 1209660026
-          },
-          {
-            "id": "C011",
-            "answer": 0,
-            "canvasHash": 1307867941
+            "id": "C040",
+            "answer": 4,
+            "canvasHash": 2365847879
           }
         ]
       }
@@ -228,70 +228,70 @@
       "details": {
         "quizRows": [
           {
-            "id": "Q132",
-            "answer": 1,
-            "correct": 1,
-            "canvasHash": 3893817114
-          },
-          {
-            "id": "Q131",
-            "answer": 0,
-            "correct": 0,
-            "canvasHash": 1931946732
-          },
-          {
-            "id": "Q005",
-            "answer": 4,
-            "correct": 4,
-            "canvasHash": 3548437759
-          },
-          {
-            "id": "Q013",
-            "answer": 2,
-            "correct": 2,
-            "canvasHash": 839771915
-          },
-          {
-            "id": "Q106",
-            "answer": 0,
-            "correct": 0,
-            "canvasHash": 2520655068
-          },
-          {
-            "id": "Q174",
+            "id": "Q185",
             "answer": 3,
             "correct": 3,
-            "canvasHash": 847487078
+            "canvasHash": 826543521
           },
           {
-            "id": "Q173",
+            "id": "Q163",
             "answer": 2,
             "correct": 2,
-            "canvasHash": 530420444
+            "canvasHash": 1494729049
           },
           {
-            "id": "Q102",
+            "id": "Q069",
+            "answer": 4,
+            "correct": 4,
+            "canvasHash": 2942094384
+          },
+          {
+            "id": "Q148",
             "answer": 1,
             "correct": 1,
-            "canvasHash": 1548568271
+            "canvasHash": 1404796933
           },
           {
-            "id": "Q023",
-            "answer": 3,
-            "correct": 2,
-            "canvasHash": 3245316246
+            "id": "Q184",
+            "answer": 4,
+            "correct": 4,
+            "canvasHash": 1535159052
           },
           {
-            "id": "Q033",
+            "id": "Q094",
+            "answer": 4,
+            "correct": 4,
+            "canvasHash": 2856369256
+          },
+          {
+            "id": "Q017",
+            "answer": 4,
+            "correct": 4,
+            "canvasHash": 4138918775
+          },
+          {
+            "id": "Q189",
+            "answer": 3,
+            "correct": 3,
+            "canvasHash": 1535159052
+          },
+          {
+            "id": "Q004",
+            "answer": 2,
+            "correct": 1,
+            "canvasHash": 1831175877
+          },
+          {
+            "id": "Q104",
             "answer": 3,
             "correct": 2,
-            "canvasHash": 3340080879
+            "canvasHash": 2856369256
           }
         ],
         "attemptScore": 80,
         "lmsStatus": "passed",
-        "suspendChars": 1188,
-        "suspendBytes": 1188
+        "suspendChars": 1191,
+        "suspendBytes": 1191
       }
     },
     {
@@ -300,121 +300,121 @@
       "details": {
         "interactions": [
           {
-            "id": "pulse_case_rk43q3_afv0rx_r18b8r_C191",
-            "response": "a",
-            "correct": "a",
-            "result": "correct"
-          },
-          {
-            "id": "pulse_case_rk43q3_afv0rx_r18b8r_C118",
+            "id": "pulse_case_el9ep0_duf66m_17qeh3n_C140",
             "response": "c",
             "correct": "c",
             "result": "correct"
           },
           {
-            "id": "pulse_case_rk43q3_afv0rx_r18b8r_C142",
+            "id": "pulse_case_el9ep0_duf66m_17qeh3n_C146",
             "response": "b",
             "correct": "b",
             "result": "correct"
           },
           {
-            "id": "pulse_case_rk43q3_afv0rx_r18b8r_C072",
-            "response": "b",
-            "correct": "b",
+            "id": "pulse_case_el9ep0_duf66m_17qeh3n_C143",
+            "response": "c",
+            "correct": "c",
             "result": "correct"
           },
           {
-            "id": "pulse_case_rk43q3_afv0rx_r18b8r_C020",
-            "response": "e",
-            "correct": "e",
+            "id": "pulse_case_el9ep0_duf66m_17qeh3n_C128",
+            "response": "a",
+            "correct": "a",
             "result": "correct"
           },
           {
-            "id": "pulse_case_rk43q3_afv0rx_r18b8r_C155",
-            "response": "e",
-            "correct": "e",
-            "result": "correct"
-          },
-          {
-            "id": "pulse_case_rk43q3_afv0rx_r18b8r_C070",
-            "response": "e",
-            "correct": "e",
-            "result": "correct"
-          },
-          {
-            "id": "pulse_case_rk43q3_afv0rx_r18b8r_C049",
+            "id": "pulse_case_el9ep0_duf66m_17qeh3n_C097",
             "response": "d",
             "correct": "d",
             "result": "correct"
           },
           {
-            "id": "pulse_case_rk43q3_afv0rx_r18b8r_C121",
-            "response": "a",
-            "correct": "a",
-            "result": "correct"
-          },
-          {
-            "id": "pulse_case_rk43q3_afv0rx_r18b8r_C011",
-            "response": "a",
-            "correct": "a",
-            "result": "correct"
-          },
-          {
-            "id": "pulse_quiz_1xls73v_1rupikj_10q9lx0_Q132",
-            "response": "b",
-            "correct": "b",
-            "result": "correct"
-          },
-          {
-            "id": "pulse_quiz_1xls73v_1rupikj_10q9lx0_Q131",
-            "response": "a",
-            "correct": "a",
-            "result": "correct"
-          },
-          {
-            "id": "pulse_quiz_1xls73v_1rupikj_10q9lx0_Q005",
-            "response": "e",
-            "correct": "e",
-            "result": "correct"
-          },
-          {
-            "id": "pulse_quiz_1xls73v_1rupikj_10q9lx0_Q013",
+            "id": "pulse_case_el9ep0_duf66m_17qeh3n_C074",
             "response": "c",
             "correct": "c",
             "result": "correct"
           },
           {
-            "id": "pulse_quiz_1xls73v_1rupikj_10q9lx0_Q106",
-            "response": "a",
-            "correct": "a",
-            "result": "correct"
-          },
-          {
-            "id": "pulse_quiz_1xls73v_1rupikj_10q9lx0_Q174",
+            "id": "pulse_case_el9ep0_duf66m_17qeh3n_C088",
             "response": "d",
             "correct": "d",
             "result": "correct"
           },
           {
-            "id": "pulse_quiz_1xls73v_1rupikj_10q9lx0_Q173",
+            "id": "pulse_case_el9ep0_duf66m_17qeh3n_C125",
+            "response": "e",
+            "correct": "e",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_case_el9ep0_duf66m_17qeh3n_C049",
+            "response": "a",
+            "correct": "a",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_case_el9ep0_duf66m_17qeh3n_C040",
+            "response": "e",
+            "correct": "e",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_quiz_1dozunx_1o947ip_5f97jj_Q185",
+            "response": "d",
+            "correct": "d",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_quiz_1dozunx_1o947ip_5f97jj_Q163",
             "response": "c",
             "correct": "c",
             "result": "correct"
           },
           {
-            "id": "pulse_quiz_1xls73v_1rupikj_10q9lx0_Q102",
+            "id": "pulse_quiz_1dozunx_1o947ip_5f97jj_Q069",
+            "response": "e",
+            "correct": "e",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_quiz_1dozunx_1o947ip_5f97jj_Q148",
             "response": "b",
             "correct": "b",
             "result": "correct"
           },
           {
-            "id": "pulse_quiz_1xls73v_1rupikj_10q9lx0_Q023",
+            "id": "pulse_quiz_1dozunx_1o947ip_5f97jj_Q184",
+            "response": "e",
+            "correct": "e",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_quiz_1dozunx_1o947ip_5f97jj_Q094",
+            "response": "e",
+            "correct": "e",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_quiz_1dozunx_1o947ip_5f97jj_Q017",
+            "response": "e",
+            "correct": "e",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_quiz_1dozunx_1o947ip_5f97jj_Q189",
             "response": "d",
-            "correct": "c",
+            "correct": "d",
+            "result": "correct"
+          },
+          {
+            "id": "pulse_quiz_1dozunx_1o947ip_5f97jj_Q004",
+            "response": "c",
+            "correct": "b",
             "result": "wrong"
           },
           {
-            "id": "pulse_quiz_1xls73v_1rupikj_10q9lx0_Q033",
+            "id": "pulse_quiz_1dozunx_1o947ip_5f97jj_Q104",
             "response": "d",
             "correct": "c",
             "result": "wrong"

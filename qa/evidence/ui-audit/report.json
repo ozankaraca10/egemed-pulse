@@ -1,12 +1,18 @@
 {
-  "date": "2026-09-17T22:53:15.363Z",
+  "date": "2026-09-21T19:47:07.358Z",
   "url": "http://127.0.0.1:8765/cardai/",
   "failures": [],
   "notes": [
     {
-      "name": "fs-landing-to-app",
+      "name": "fs-landing-enter",
       "detail": {
-        "fsAfterStart": null
+        "fsLanding": true
+      }
+    },
+    {
+      "name": "fs-landing-to-app-persist",
+      "detail": {
+        "fsAfterStart": true
       }
     },
     {
@@ -14,7 +20,23 @@
       "detail": {}
     },
     {
-      "name": "fs-app-to-landing",
+      "name": "fs-toggle-off",
+      "detail": {
+        "fsOff": false
+      }
+    },
+    {
+      "name": "fs-app-enter",
+      "detail": {
+        "fsApp": true
+      }
+    },
+    {
+      "name": "fs-app-to-landing-persist",
+      "detail": {}
+    },
+    {
+      "name": "fs-landing-to-app-persist-2",
       "detail": {}
     },
     {
@@ -24,14 +46,20 @@
       }
     },
     {
-      "name": "mode-stability",
+      "name": "mode-stability 1366x768",
+      "detail": {
+        "modes": 13
+      }
+    },
+    {
+      "name": "mode-stability 1280x800",
       "detail": {
         "modes": 13
       }
     }
   ],
   "summary": {
-    "checks": 5,
+    "checks": 10,
     "failures": 0
   }
 }

@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-17T22:52:31.278Z",
+  "date": "2026-09-18T18:04:59.891Z",
   "kind": "Real Chromium; fixtures/API mocks identified per test",
   "rows": [
     {
@@ -304,10 +304,10 @@
       "details": {
         "idle": 0,
         "active": {
-          "ms": 704.8000000119209,
+          "ms": 703.8000000007451,
           "formatted": "0000:00:00.70"
         },
-        "stopped": 704.8000000119209
+        "stopped": 703.8000000007451
       }
     }
   ]

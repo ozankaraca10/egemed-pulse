@@ -3,7 +3,7 @@
     "name": "EGEMED Pulse™",
     "subtitle": "Etkileşimli EKG Simülatörü",
     "institution": "Ege Üniversitesi Tıp Fakültesi Dekanlığı",
-    "description": "Ege Üniversitesi Tıp Fakültesi Dekanlığı tarafından, tıp fakültesi öğrencilerinin EKG yorumlama becerilerini geliştirmek amacıyla hazırlanmıştır. Tüm hakları saklıdır © 2026.",
+    "description": "Ege Üniversitesi Tıp Fakültesi Dekanlığı tarafından, tıp fakültesi öğrencilerinin EKG yorumlama becerilerini geliştirmek amacıyla hazırlanmıştır. Tüm hakları saklıdır © 2026. Simülatörün tüm tıbbi içerik ve sinyal validasyonları Ege Üniversitesi Tıp Fakültesi Kardiyoloji Anabilim Dalı öğretim üyelerince yapılmıştır.",
     "logo": "assets/ege-tip-logo.png",
     "logoSource": "https://egelogo.ege.edu.tr/",
     "evidence": {
@@ -17,23 +17,44 @@
     {
       "role": "Yazılım geliştirme, öğretim ve ölçme-değerlendirme tasarımı",
       "people": [
-        { "name": "Doç. Dr. Ozan KARACA", "url": "https://unisis.ege.edu.tr/researcher=ozan.karaca" }
+        {
+          "name": "Doç. Dr. Ozan KARACA",
+          "url": "https://unisis.ege.edu.tr/researcher=ozan.karaca"
+        }
       ]
     },
     {
-      "role": "Öğretim tasarımı ve tıbbi validasyon",
+      "role": "Öğretim Tasarımı ve Tıbbi Danışmanlık",
       "people": [
-        { "name": "Prof. Dr. Hatice ŞAHİN", "url": "https://unisis.ege.edu.tr/researcher=hatice.sahin" },
-        { "name": "Prof. Dr. Burcu BARUTÇUOĞLU", "url": "https://unisis.ege.edu.tr/researcher=burcu.barutcuoglu" },
-        { "name": "Prof. Dr. İpek KAPLAN BULUT", "url": "https://unisis.ege.edu.tr/researcher=ipek.kaplan.bulut" }
+        {
+          "name": "Prof. Dr. Hatice ŞAHİN",
+          "url": "https://unisis.ege.edu.tr/researcher=hatice.sahin"
+        },
+        {
+          "name": "Prof. Dr. Burcu BARUTÇUOĞLU",
+          "url": "https://unisis.ege.edu.tr/researcher=burcu.barutcuoglu"
+        },
+        {
+          "name": "Prof. Dr. İpek KAPLAN BULUT",
+          "url": "https://unisis.ege.edu.tr/researcher=ipek.kaplan.bulut"
+        }
       ]
     },
     {
-      "role": "Kullanıcı kabul testleri",
+      "role": "Tıbbi İçerik Validasyonu",
       "people": [
-        { "name": "Öğrenci 1" },
-        { "name": "Öğrenci 2" },
-        { "name": "Öğrenci 3" }
+        {
+          "name": "Doç. Dr."
+        },
+        {
+          "name": "Doç. Dr."
+        },
+        {
+          "name": "Doç. Dr."
+        },
+        {
+          "name": "Doç. Dr."
+        }
       ]
     }
   ],

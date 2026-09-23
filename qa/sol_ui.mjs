@@ -4,6 +4,8 @@ const out=new URL('./evidence/sol-ui/',import.meta.url);fs.mkdirSync(out,{recurs
 const report={kind:'Real Chromium UI measurements',date:new Date().toISOString(),rows:[],errors:[]};
 const browser=await chromium.launch({headless:true});
 const page=await browser.newPage();page.on('pageerror',e=>report.errors.push(e.message));
+// H5: acilis tam ekran onerisi modal oldugu icin #startSimulator tikini engeller; testler icin bastan kapat.
+await page.addInitScript(()=>{try{localStorage.setItem('pulse.fsPromptDone','1');}catch{}});
 function rgb(hex){return hex.match(/[a-f\d]{2}/gi).map(x=>parseInt(x,16)/255).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4)}
 function contrast(a,b){const lum=x=>{const c=rgb(x);return c[0]*.2126+c[1]*.7152+c[2]*.0722};const l=[lum(a),lum(b)].sort((a,b)=>b-a);return(l[0]+.05)/(l[1]+.05)}
 report.contrast={primaryWhite:contrast('087493','ffffff'),focusWhite:contrast('065a80','ffffff'),bodyWhite:contrast('405f71','ffffff'),bodyTint:contrast('405f71','e3eff4')};

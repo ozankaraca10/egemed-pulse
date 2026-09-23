@@ -5,15 +5,15 @@
       "pass": true,
       "details": {
         "before": 0,
-        "after": 1193.0999999940395
+        "after": 1194.7000000029802
       }
     },
     {
       "name": "dialog-excludes-learning-time",
       "pass": true,
       "details": {
-        "modalStart": 1227.5,
-        "modalEnd": 1232.2000000178814
+        "modalStart": 1248.6000000089407,
+        "modalEnd": 1248.6000000089407
       }
     },
     {
@@ -32,8 +32,8 @@
       "name": "visible-quiz-learning-time",
       "pass": true,
       "details": {
-        "qStart": 1351,
-        "qEnd": 2439
+        "qStart": 1351.800000011921,
+        "qEnd": 2439.800000011921
       }
     },
     {
@@ -43,12 +43,12 @@
         "old": {
           "width": 670,
           "css": 669.90625,
-          "id": "Q152"
+          "id": "Q184"
         },
         "resized": {
           "width": 966,
           "css": 966.21875,
-          "id": "Q152"
+          "id": "Q184"
         }
       }
     },

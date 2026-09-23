@@ -14,11 +14,11 @@
         "ids": 400,
         "valid": true,
         "answers": [
-          80,
-          80,
-          80,
-          80,
-          80
+          81,
+          68,
+          77,
+          85,
+          89
         ]
       }
     },
@@ -28,7 +28,7 @@
       "details": {
         "seconds": 16,
         "normal": 0,
-        "time": 34.66679999999984
+        "time": 34.66719999999977
       }
     },
     {
@@ -180,6 +180,11 @@
       "pass": true
     },
     {
+      "name": "auto-grade-opens-results",
+      "pass": true,
+      "details": "results"
+    },
+    {
       "name": "grade-eight-is80",
       "pass": true,
       "details": {
@@ -193,16 +198,16 @@
       "pass": true,
       "details": {
         "ids": [
-          "Q092",
-          "Q164",
-          "Q011",
-          "Q055",
-          "Q017",
-          "Q156",
-          "Q059",
-          "Q149",
-          "Q198",
-          "Q148"
+          "Q026",
+          "Q079",
+          "Q153",
+          "Q188",
+          "Q022",
+          "Q057",
+          "Q049",
+          "Q127",
+          "Q036",
+          "Q074"
         ],
         "attempt": null,
         "best": 80,

@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-17T17:49:19.101Z",
+  "date": "2026-09-21T11:38:21.949Z",
   "kind": "Real Chromium; fixtures/API mocks identified per test",
   "rows": [
     {
@@ -56,18 +56,18 @@
         ],
         "sessions": [
           {
-            "id": "j26bxp_idql8n_pyevsb",
+            "id": "1cdj815_166zaq_i4khw9",
             "ids": [
-              "C029",
-              "C167",
-              "C076",
-              "C011",
-              "C089",
-              "C134",
-              "C200",
-              "C061",
-              "C109",
-              "C045"
+              "C074",
+              "C039",
+              "C107",
+              "C009",
+              "C138",
+              "C090",
+              "C175",
+              "C018",
+              "C026",
+              "C184"
             ],
             "answers": [
               null,
@@ -95,18 +95,18 @@
             ]
           },
           {
-            "id": "1mcazus_7t8kf1_f0p672",
+            "id": "1gac7_j1mx5j_1188htd",
             "ids": [
-              "Q183",
-              "Q081",
-              "Q083",
-              "Q108",
-              "Q030",
-              "Q140",
-              "Q138",
-              "Q014",
-              "Q114",
-              "Q097"
+              "Q045",
+              "Q060",
+              "Q104",
+              "Q172",
+              "Q192",
+              "Q031",
+              "Q067",
+              "Q082",
+              "Q116",
+              "Q019"
             ],
             "answers": [
               null,
@@ -148,8 +148,8 @@
       "id": "T01-keyboard-pause-dialog",
       "status": "PASS",
       "details": {
-        "selected": 1.2166000000000006,
-        "paused": 1.2667000000000002,
+        "selected": 1.2166999999999994,
+        "paused": 1.2499999999999996,
         "helpDelta": 0,
         "resetDelta": 0
       }
@@ -170,7 +170,7 @@
         "hints": {
           "locked": 0,
           "status": [
-            "13/13 örüntü izlendi",
+            "13/13 EKG sonucu izlendi",
             "Oturum: 0/10 gönderildi",
             "Öneri: önce oturumdaki 10 vaka yanıtını gönderin — 0/10 gönderildi"
           ]
@@ -194,8 +194,8 @@
           "cssWidth": 696,
           "cssHeight": 300,
           "dpr": 1,
-          "dark": 3194,
-          "hash": 1742013373
+          "dark": 4419,
+          "hash": 1591855531
         },
         "changed": {
           "width": 696,
@@ -203,8 +203,8 @@
           "cssWidth": 696,
           "cssHeight": 300,
           "dpr": 1,
-          "dark": 3023,
-          "hash": 3095019453
+          "dark": 4075,
+          "hash": 399813450
         },
         "resized": {
           "width": 1004,
@@ -212,17 +212,17 @@
           "cssWidth": 1003.765625,
           "cssHeight": 300,
           "dpr": 1,
-          "dark": 4115,
-          "hash": 3992767759
+          "dark": 6043,
+          "hash": 2820844124
         },
-        "feedback": "Yanlış\n\nA. Çeldirici:\nBu ifade aVL içindir; sağ kol aVR yerine sol kol yönünü verir.\n\nB. Çeldirici:\nBu ifade aVF içindir; sağ kol yerine inferior artırılmış yönü verir.\n\nC. Çeldirici:\nBu bipolar III ifadesidir; artırılmış aVR değildir.\n\nD. Doğru seçenek:\nSağ kol potansiyeli diğer iki ekstremitenin ortalamasına karşı ölçülür; I, II dönüşümü negatif yarım toplamdır.\n\nE. Seçilen çeldirici:\nSağ kol referans yönü için gereken eksi işareti kaybolmuştur."
+        "feedback": "Yanlış\n\nYanıtınız: D. V3, V4 — anterior duvar\n\nDoğru yanıt: C. I, aVL, V5–V6 — lateral duvar\n\nBu üç derivasyon grubu kalbin lateral duvarını gösterir.\n\nSeçtiğiniz seçenek neden değil: V3–V4 anterior duvarı gösterir, lateral duvarı değil."
       }
     },
     {
       "id": "T02-ten-cases-no-timer",
       "status": "PASS",
       "details": {
-        "durationMs": 903,
+        "durationMs": 898,
         "submitted": [
           true,
           true,
@@ -241,7 +241,7 @@
       "id": "T05-T06-return-same-case",
       "status": "PASS",
       "details": {
-        "caseId": "C045"
+        "caseId": "C184"
       }
     },
     {
@@ -250,64 +250,64 @@
       "details": {
         "pages": [
           {
-            "id": "Q183",
-            "hash": 2602594806,
-            "answer": 2,
-            "correct": 2
-          },
-          {
-            "id": "Q081",
-            "hash": 3305644639,
+            "id": "Q045",
+            "hash": 1362100269,
             "answer": 0,
             "correct": 0
           },
           {
-            "id": "Q083",
-            "hash": 3138221233,
+            "id": "Q060",
+            "hash": 1076666438,
             "answer": 2,
             "correct": 2
           },
           {
-            "id": "Q108",
-            "hash": 2906501816,
+            "id": "Q104",
+            "hash": 1007057198,
             "answer": 2,
             "correct": 2
           },
           {
-            "id": "Q030",
-            "hash": 1747382936,
+            "id": "Q172",
+            "hash": 2901638844,
             "answer": 4,
             "correct": 4
           },
           {
-            "id": "Q140",
-            "hash": 2956661926,
-            "answer": 4,
-            "correct": 4
-          },
-          {
-            "id": "Q138",
-            "hash": 1116449954,
-            "answer": 2,
-            "correct": 2
-          },
-          {
-            "id": "Q014",
-            "hash": 2317776689,
+            "id": "Q192",
+            "hash": 3725701595,
             "answer": 3,
             "correct": 3
           },
           {
-            "id": "Q114",
-            "hash": 2970935755,
+            "id": "Q031",
+            "hash": 292684234,
+            "answer": 1,
+            "correct": 1
+          },
+          {
+            "id": "Q067",
+            "hash": 3399479756,
+            "answer": 1,
+            "correct": 1
+          },
+          {
+            "id": "Q082",
+            "hash": 439541252,
+            "answer": 4,
+            "correct": 4
+          },
+          {
+            "id": "Q116",
+            "hash": 3525595869,
             "answer": 4,
             "correct": 3
           },
           {
-            "id": "Q097",
-            "hash": 1258170571,
-            "answer": 2,
-            "correct": 1
+            "id": "Q019",
+            "hash": 2464340564,
+            "answer": 0,
+            "correct": 4
           }
         ],
         "attempt": 80,
@@ -320,9 +320,11 @@
       "status": "PASS",
       "details": {
         "retrySame": true,
+        "retryClearedSubmissions": true,
+        "retryKeptBestAttempt": true,
         "newDifferent": true,
         "resumeSame": true,
-        "best": 80
+        "best": 100
       }
     },
     {
@@ -526,80 +528,80 @@
             "scale": "",
             "cards": [
               {
-                "bottom": 192,
-                "railBottom": 197,
+                "bottom": 125,
+                "railBottom": 130,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 192,
-                "railBottom": 197,
+                "bottom": 125,
+                "railBottom": 130,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 192,
-                "railBottom": 197,
+                "bottom": 125,
+                "railBottom": 130,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 192,
-                "railBottom": 197,
+                "bottom": 125,
+                "railBottom": 130,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 192,
-                "railBottom": 197,
+                "bottom": 125,
+                "railBottom": 130,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 192,
-                "railBottom": 197,
+                "bottom": 125,
+                "railBottom": 130,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 192,
-                "railBottom": 197,
+                "bottom": 125,
+                "railBottom": 130,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 192,
-                "railBottom": 197,
+                "bottom": 125,
+                "railBottom": 130,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 192,
-                "railBottom": 197,
+                "bottom": 125,
+                "railBottom": 130,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 192,
-                "railBottom": 197,
+                "bottom": 125,
+                "railBottom": 130,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 192,
-                "railBottom": 197,
+                "bottom": 125,
+                "railBottom": 130,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 192,
-                "railBottom": 197,
+                "bottom": 125,
+                "railBottom": 130,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 192,
-                "railBottom": 197,
+                "bottom": 125,
+                "railBottom": 130,
                 "scrollHeight": 48,
                 "clientHeight": 48
               }
@@ -616,80 +618,80 @@
             "scale": "",
             "cards": [
               {
-                "bottom": 171.046875,
-                "railBottom": 176.046875,
+                "bottom": 177.546875,
+                "railBottom": 182.546875,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 171.046875,
-                "railBottom": 176.046875,
+                "bottom": 177.546875,
+                "railBottom": 182.546875,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 171.046875,
-                "railBottom": 176.046875,
+                "bottom": 177.546875,
+                "railBottom": 182.546875,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 171.046875,
-                "railBottom": 176.046875,
+                "bottom": 177.546875,
+                "railBottom": 182.546875,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 171.046875,
-                "railBottom": 176.046875,
+                "bottom": 177.546875,
+                "railBottom": 182.546875,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 171.046875,
-                "railBottom": 176.046875,
+                "bottom": 177.546875,
+                "railBottom": 182.546875,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 171.046875,
-                "railBottom": 176.046875,
+                "bottom": 177.546875,
+                "railBottom": 182.546875,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 171.046875,
-                "railBottom": 176.046875,
+                "bottom": 177.546875,
+                "railBottom": 182.546875,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 171.046875,
-                "railBottom": 176.046875,
+                "bottom": 177.546875,
+                "railBottom": 182.546875,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 171.046875,
-                "railBottom": 176.046875,
+                "bottom": 177.546875,
+                "railBottom": 182.546875,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 171.046875,
-                "railBottom": 176.046875,
+                "bottom": 177.546875,
+                "railBottom": 182.546875,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 171.046875,
-                "railBottom": 176.046875,
+                "bottom": 177.546875,
+                "railBottom": 182.546875,
                 "scrollHeight": 48,
                 "clientHeight": 48
               },
               {
-                "bottom": 171.046875,
-                "railBottom": 176.046875,
+                "bottom": 177.546875,
+                "railBottom": 182.546875,
                 "scrollHeight": 48,
                 "clientHeight": 48
               }
@@ -714,10 +716,10 @@
       "status": "PASS",
       "details": {
         "footers": [
-          "EGEMED Pulse™ Etkileşimli EKG Simülatörü, Ege Üniversitesi Tıp Fakültesi Dekanlığı tarafından geliştirilmiştir. Tüm hakları saklıdır © 2026",
-          "EGEMED Pulse™ Etkileşimli EKG Simülatörü, Ege Üniversitesi Tıp Fakültesi Dekanlığı tarafından geliştirilmiştir. Tüm hakları saklıdır © 2026"
+          "EGEMED Pulse™ Etkileşimli EKG Simülatörü, Ege Üniversitesi Tıp Fakültesi Dekanlığı tarafından geliştirilmiştir. Tüm hakları saklıdır © 2026Sinyaller sentetiktir · klinik tanı için kullanılmaz",
+          "EGEMED Pulse™ Etkileşimli EKG Simülatörü, Ege Üniversitesi Tıp Fakültesi Dekanlığı tarafından geliştirilmiştir. Tüm hakları saklıdır © 2026Sinyaller sentetiktir · klinik tanı için kullanılmaz"
         ],
-        "landing": "EGEMEDPulse™⤢Tam ekranⓘYardımⓘHakkındaElektriksel etkinliği, mekanik yanıtı ve dolaşımı birlikte keşfedin.13 sentetik örüntü, 12 derivasyon, 200 vaka ve 200 değerlendirme maddesi. Her oturumda rastgele 10 vaka ve 10 soru.Simülatörü başlat →Nasıl kullanılır?|ⓘ Hakkında ve kaynaklarNEDEN GÜVENİLİR?13 sentetik örüntü12 derivasyon; bağımsız klinisyen doğrulaması yok — sınırlarımızı açıkça yazıyoruz.200 vaka · 200 soruHer oturumda rastgele 10 vaka ve 10 soru.SCORM 1.2Puan ve durum LMS’e raporlanır.Sinyaller sentetik öğretim şemalarıdır; klinik tanı için kullanılmaz.EGEMED Pulse™ Etkileşimli EKG Simülatörü, Ege Üniversitesi Tıp Fakültesi Dekanlığı tarafından geliştirilmiştir. Tüm hakları saklıdır © 2026"
+        "landing": "EGEMEDPulse™Etkileşimli EKG SimülatörüYardımHakkındaEKG'yi, kalbi ve dolaşımı birlikte keşfedin.13 sentetik EKG sonucu, 12 derivasyon, 200 vaka ve 200 değerlendirme maddesi. Her oturumda rastgele 10 vaka ve 10 soru.Simülatörü başlat →Nasıl kullanılır? Hakkında ve kaynaklarNEDEN GÜVENİLİR?13 sentetik EKG sonucu12 derivasyon; bağımsız klinisyen doğrulaması yok — sınırlarımızı açıkça yazıyoruz.200 vaka · 200 soruHer oturumda rastgele 10 vaka ve 10 soru.SCORM 1.2Puan ve durum LMS’e raporlanır. Sinyaller sentetik öğretim şemalarıdır; klinik tanı için kullanılmaz.EGEMED Pulse™ Etkileşimli EKG Simülatörü, Ege Üniversitesi Tıp Fakültesi Dekanlığı tarafından geliştirilmiştir. Tüm hakları saklıdır © 2026Sinyaller sentetiktir · klinik tanı için kullanılmaz"
       }
     },
     {

@@ -266,7 +266,7 @@ Sol uygulamayı değiştirir; Astra eşzamanlı ürün dosyası yazmaz. Astra te
 
 ## Ürün ailesi hizalaması (16–17 Eylül 2026, Faz 0–6)
 
-EGEMED Ausculta ile ürün ailesi hizalaması `YONERGE_URUN_AILESI_UIUX_PLANI.md` planına göre altı fazda uygulandı. Çalışma zamanı yalnız `cardai/` içindedir; model, 400 maddelik içerik, kilit pedagojisi (13×16 sn → 10 vaka → 10 soru), 8/10 eşiği ve SCORM 1.2 şeması (sürüm 6) değiştirilmedi.
+EGEMED Ausculta ile ürün ailesi hizalaması `docs/gecmis/YONERGE_URUN_AILESI_UIUX_PLANI.md` planına göre altı fazda uygulandı. Çalışma zamanı yalnız `cardai/` içindedir; model, 400 maddelik içerik, kilit pedagojisi (13×16 sn → 10 vaka → 10 soru), 8/10 eşiği ve SCORM 1.2 şeması (sürüm 6) değiştirilmedi.
 
 - **Faz 0:** `styles.css` aile tokenlarına geçirildi; kabul: 39 tekil hex değeri yalnız `:root` içinde, sabit px `font-size`/`border-radius` yok. Eski tokenlar köprülendi (`--text→--ink-900`, `--cyan→--blue-600`, `--radius→--r-lg`). %120 yazı ölçeği sistemi korundu (aile ölçeğine indirme kararı kullanıcı onayı bekliyor).
 - **Faz 1:** Lacivert aile üst çubuğu (marka bloğu landing'e döner, ⓘ Yardım + ⓘ Hakkında), tek satır ortak footer (™, 26 px mühür, kademeli kısalma), landing'de sol silik kurum amblemi ve "Neden güvenilir?" kutuları, tam sayfa Hakkında (geliştiriciler/kurum/kanıt atfı/kaynak kartları/sınırlılıklar). Dikey taşma ve tam ekranda siyah zemin hataları giderildi; masaüstünde `html,body{height:100%;overflow:hidden}` + `main>.view` kabuk kilidi eklendi.

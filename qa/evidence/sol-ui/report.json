@@ -1,6 +1,6 @@
 {
   "kind": "Real Chromium UI measurements",
-  "date": "2026-09-17T22:58:14.879Z",
+  "date": "2026-09-21T11:20:58.006Z",
   "rows": [
     {
       "id": "1366-normal",
@@ -824,7 +824,7 @@
     {
       "id": "1366-fullscreen-modal",
       "data": {
-        "fullscreen": "appRoot",
+        "fullscreen": "",
         "modal": {
           "x": 293,
           "y": 12,
@@ -880,22 +880,22 @@
         "pageWidth": 1366,
         "canvas": {
           "x": 35,
-          "y": 134.046875,
+          "y": 140.046875,
           "width": 669.90625,
           "height": 300,
-          "top": 134.046875,
+          "top": 140.046875,
           "right": 704.90625,
-          "bottom": 434.046875,
+          "bottom": 440.046875,
           "left": 35
         },
         "wrap": {
           "x": 35,
-          "y": 134.046875,
+          "y": 140.046875,
           "width": 669.90625,
           "height": 385,
-          "top": 134.046875,
+          "top": 140.046875,
           "right": 704.90625,
-          "bottom": 519.046875,
+          "bottom": 525.046875,
           "left": 35
         },
         "scrollWidth": 670
@@ -1723,7 +1723,7 @@
     {
       "id": "1920-fullscreen-modal",
       "data": {
-        "fullscreen": "appRoot",
+        "fullscreen": "",
         "modal": {
           "x": 570,
           "y": 12,
@@ -1779,22 +1779,22 @@
         "pageWidth": 1920,
         "canvas": {
           "x": 35,
-          "y": 134.046875,
+          "y": 140.046875,
           "width": 966.21875,
           "height": 300,
-          "top": 134.046875,
+          "top": 140.046875,
           "right": 1001.21875,
-          "bottom": 434.046875,
+          "bottom": 440.046875,
           "left": 35
         },
         "wrap": {
           "x": 35,
-          "y": 134.046875,
+          "y": 140.046875,
           "width": 966.21875,
           "height": 385,
-          "top": 134.046875,
+          "top": 140.046875,
           "right": 1001.21875,
-          "bottom": 519.046875,
+          "bottom": 525.046875,
           "left": 35
         },
         "scrollWidth": 966
@@ -2652,22 +2652,22 @@
         "pageWidth": 390,
         "canvas": {
           "x": 31,
-          "y": 473.5,
+          "y": 512.5,
           "width": 328,
           "height": 420,
-          "top": 473.5,
+          "top": 512.5,
           "right": 359,
-          "bottom": 893.5,
+          "bottom": 932.5,
           "left": 31
         },
         "wrap": {
           "x": 31,
-          "y": 473.5,
+          "y": 512.5,
           "width": 328,
           "height": 541,
-          "top": 473.5,
+          "top": 512.5,
           "right": 359,
-          "bottom": 1014.5,
+          "bottom": 1053.5,
           "left": 31
         },
         "scrollWidth": 328
@@ -3525,22 +3525,22 @@
         "pageWidth": 768,
         "canvas": {
           "x": 31,
-          "y": 185.546875,
+          "y": 191.546875,
           "width": 706,
           "height": 300,
-          "top": 185.546875,
+          "top": 191.546875,
           "right": 737,
-          "bottom": 485.546875,
+          "bottom": 491.546875,
           "left": 31
         },
         "wrap": {
           "x": 31,
-          "y": 185.546875,
+          "y": 191.546875,
           "width": 706,
           "height": 385,
-          "top": 185.546875,
+          "top": 191.546875,
           "right": 737,
-          "bottom": 570.546875,
+          "bottom": 576.546875,
           "left": 31
         },
         "scrollWidth": 706

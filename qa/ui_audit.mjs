@@ -11,31 +11,40 @@ const ok=(name,detail)=>notes.push({name,detail});
 const hitTest=async(p,selector)=>{await p.evaluate(sel=>{const el=document.querySelector(sel);if(el)el.scrollIntoView({block:'center',inline:'center'});},selector).catch(()=>{});await p.waitForTimeout(120);
  return p.evaluate(sel=>{const el=document.querySelector(sel);if(!el)return {ok:false,why:'missing'};const r=el.getBoundingClientRect();if(r.width<1||r.height<1)return {ok:false,why:'zero-size'};if(r.bottom<0||r.top>innerHeight||r.right<0||r.left>innerWidth)return {ok:false,why:'outside-viewport '+JSON.stringify({x:Math.round(r.x),y:Math.round(r.y)})};const t=document.elementFromPoint(Math.max(0,Math.min(innerWidth-1,r.left+r.width/2)),Math.max(0,Math.min(innerHeight-1,r.top+r.height/2)));if(!t)return {ok:false,why:'no-target'};return el.contains(t)||t===el?{ok:true,target:t.id||t.className||t.tagName}:{ok:false,why:'covered by '+(t.id||t.className||t.tagName)};},selector);};
 
-// 1) Tam ekran kök geçişleri ve tıklanabilirlik
+// 1) Tam ekran kök geçişleri ve tıklanabilirlik (kök artık document.documentElement; landing<->app geçişinde tam ekran korunur)
 {
-  const p=await browser.newPage({viewport:{width:1366,height:768}});const errs=[];p.on('pageerror',e=>errs.push(e.message));
+  const p=await browser.newPage({viewport:{width:1366,height:768}});await p.addInitScript(()=>{try{localStorage.setItem('pulse.fsPromptDone','1');}catch{}});const errs=[];p.on('pageerror',e=>errs.push(e.message));
+  const isRootFs=()=>p.evaluate(()=>document.fullscreenElement===document.documentElement);
   await p.goto(url);
   await p.click('#landingFullscreen');await p.waitForTimeout(350);
+  const fsLanding=await isRootFs();
+  if(!fsLanding)fail('fs-landing-enter',{fsLanding});else ok('fs-landing-enter',{fsLanding});
   await p.click('#startSimulator');await p.waitForTimeout(450);
-  const fsAfterStart=await p.evaluate(()=>document.fullscreenElement?.id||null);
+  const fsAfterStart=await isRootFs();
   const startHit=await hitTest(p,'#landingPage') ;
-  if(fsAfterStart!==null)fail('fs-landing-to-app',{fsAfterStart});
-  else ok('fs-landing-to-app',{fsAfterStart});
+  if(!fsAfterStart)fail('fs-landing-to-app-persist',{fsAfterStart});
+  else ok('fs-landing-to-app-persist',{fsAfterStart});
   if(await p.locator('#tutorialPanel').isVisible()){const tutHit=await hitTest(p,'#tutorialSkip');if(!tutHit.ok)fail('fs-tutorial-clickable',tutHit);else ok('fs-tutorial-clickable',{});}
   if(await p.locator('#tutorialPanel').isVisible())await p.evaluate(()=>document.getElementById('tutorialSkip').click());
   await p.locator('.mode-card.learn .btn').click();await p.waitForTimeout(250);
   await p.locator('#fullscreenBtn').click();await p.waitForTimeout(350);
-  const fsApp=await p.evaluate(()=>document.fullscreenElement?.id||null);
-  if(fsApp!=='appRoot')fail('fs-app-enter',{fsApp});
+  const fsOff=await isRootFs();
+  if(fsOff)fail('fs-toggle-off',{fsOff});else ok('fs-toggle-off',{fsOff});
+  await p.locator('#fullscreenBtn').click();await p.waitForTimeout(350);
+  const fsApp=await isRootFs();
+  if(!fsApp)fail('fs-app-enter',{fsApp});else ok('fs-app-enter',{fsApp});
   for(const sel of ['#playBtn','.rhythm-tab[data-mode="af"]','#modeSwitch','#helpBtn']){const r=await hitTest(p,sel);if(!r.ok)fail('fs-hit '+sel,r);}
   await p.click('#brandHome');await p.waitForTimeout(450);
-  const fsAfterBrand=await p.evaluate(()=>document.fullscreenElement?.id||null);
+  const fsAfterBrand=await isRootFs();
   const landingVisible=await p.locator('#landingPage').isVisible();
   const ctaHit=await hitTest(p,'#startSimulator');
-  if(fsAfterBrand!==null||!landingVisible||!ctaHit.ok)fail('fs-app-to-landing',{fsAfterBrand,landingVisible,ctaHit});else ok('fs-app-to-landing',{});
+  if(!fsAfterBrand||!landingVisible||!ctaHit.ok)fail('fs-app-to-landing-persist',{fsAfterBrand,landingVisible,ctaHit});else ok('fs-app-to-landing-persist',{});
   await p.click('#startSimulator');await p.waitForTimeout(300);
   const resume=await p.evaluate(()=>CardAIController.state.activeView);
+  const fsAfterResume=await isRootFs();
+  if(!fsAfterResume)fail('fs-landing-to-app-persist-2',{fsAfterResume});else ok('fs-landing-to-app-persist-2',{});
   ok('fs-landing-return-view',{resume});
+  await p.evaluate(()=>{if(document.fullscreenElement)document.exitFullscreen();});
   if(errs.length)fail('fs-page-errors',errs.slice(0,2));
   await p.close();
 }
@@ -52,7 +61,7 @@ const expectedFooter=w=>{
 };
 const viewControls={sim:['#playBtn','.rhythm-tab[data-mode="af"]','#ecgCanvas','#caliperBtn'],modes:['.mode-card.learn .btn','.mode-card.practice .btn','.mode-card.assessment .btn'],case:['#caseContinue','#caseNext','#caseView .lead-chip[data-question-lead="case"]'],quiz:['#quizNext','#quizView .lead-chip[data-question-lead="quiz"]'],results:['#resultsRetry','#resultsStudy'],about:['#downloadReport','#resetProgress','#aboutView .back-sim']};
 for(const [w,h] of sizes){
-  const p=await browser.newPage({viewport:{width:w,height:h}});const errs=[];p.on('pageerror',e=>errs.push(e.message));
+  const p=await browser.newPage({viewport:{width:w,height:h}});await p.addInitScript(()=>{try{localStorage.setItem('pulse.fsPromptDone','1');}catch{}});const errs=[];p.on('pageerror',e=>errs.push(e.message));
   await p.goto(url);await p.click('#startSimulator');
   if(await p.locator('#tutorialPanel').isVisible())await p.evaluate(()=>document.getElementById('tutorialSkip').click());
   await p.evaluate(()=>{const C=CardAIController;for(const m of CardAIModel.MODES)C.state.viewed[m]=16;C.state.caseSession.submitted.fill(true);C.derivePrerequisites();C.progress();});
@@ -79,31 +88,48 @@ for(const [w,h] of sizes){
   await p.close();
 }
 
-// 3) Örüntü değişiminde EKG paneli kararlılığı (13 mod) + panel içi taşma
-{
-  const p=await browser.newPage({viewport:{width:1366,height:768}});
+// 3) Örüntü değişiminde EKG paneli kararlılığı (13 mod) + panel içi taşma + kanvas genlik taşması (EKG paneli geometri/taşma)
+const ecgAmplitudeCheck=async p=>p.evaluate(()=>{
+  const C=window.CardAIController,g=C.geom,m=C.model,leads=C.state.leads;
+  let topClip=Infinity,bottomClip=Infinity;
+  for(const lead of leads){
+    for(let t=g.leftTime;t<=g.leftTime+g.windowSeconds+.05;t+=.01){
+      const y=g.base-m.signal(t,lead)*g.mv;
+      if(y<topClip)topClip=y;
+      if(g.ch-y<bottomClip)bottomClip=g.ch-y;
+    }
+  }
+  return {topClip,bottomClip,base:g.base,ch:g.ch,mv:g.mv};
+});
+for(const [aw,ah] of [[1366,768],[1280,800]]){
+  const p=await browser.newPage({viewport:{width:aw,height:ah}});await p.addInitScript(()=>{try{localStorage.setItem('pulse.fsPromptDone','1');}catch{}});
   await p.goto(url);await p.click('#startSimulator');
   if(await p.locator('#tutorialPanel').isVisible())await p.evaluate(()=>document.getElementById('tutorialSkip').click());
   await p.locator('.mode-card.learn .btn').click();await p.waitForTimeout(250);
   const rows=[];
   for(const mode of await p.evaluate(()=>CardAIModel.MODES)){
     await p.locator(`.rhythm-tab[data-mode="${mode}"]`).click();await p.waitForTimeout(220);
-    rows.push(await p.evaluate(m=>{const g=s=>{const e=document.querySelector(s);const r=e.getBoundingClientRect();return {t:Math.round(r.top),h:Math.round(r.height)};};const panel=document.querySelector('.ecg-panel');return {mode:m,controls:g('.three-lead-controls'),screen:g('.ecg-screen'),toolbar:g('.ecg-toolbar'),metrics:g('.metrics'),panelOverflow:panel.scrollHeight-panel.clientHeight,afVisible:!document.getElementById('afProfile').hidden};},mode));
+    const row=await p.evaluate(m=>{const g=s=>{const e=document.querySelector(s);const r=e.getBoundingClientRect();return {t:Math.round(r.top),h:Math.round(r.height)};};const panel=document.querySelector('.ecg-panel');return {mode:m,controls:g('.three-lead-controls'),screen:g('.ecg-screen'),toolbar:g('.ecg-toolbar'),metrics:g('.metrics'),panelOverflow:panel.scrollHeight-panel.clientHeight,afVisible:!document.getElementById('afProfile').hidden};},mode);
+    row.amp=await ecgAmplitudeCheck(p);
+    rows.push(row);
+    if(row.amp.topClip<0||row.amp.bottomClip<0)fail(`ecg-amplitude-clip ${aw}x${ah} `+mode,row.amp);
   }
-  const base=rows[0];
-  for(const row of rows){
-    if(row.screen.t!==base.screen.t||row.metrics.t!==base.metrics.t)fail('mode-shift '+row.mode,{screen:row.screen,metrics:row.metrics,base:{screen:base.screen,metrics:base.metrics}});
-    if(row.screen.h<100)fail('mode-screen-shrink '+row.mode,row.screen);
-    if(row.panelOverflow>1)fail('mode-panel-overflow '+row.mode,{overflow:row.panelOverflow});
-    if(row.afVisible!==(row.mode==='af'))fail('mode-af-toggle '+row.mode,{afVisible:row.afVisible});
+  if(aw===1366&&ah===768){
+    const base=rows[0];
+    for(const row of rows){
+      if(row.screen.t!==base.screen.t||row.metrics.t!==base.metrics.t)fail('mode-shift '+row.mode,{screen:row.screen,metrics:row.metrics,base:{screen:base.screen,metrics:base.metrics}});
+      if(row.screen.h<100)fail('mode-screen-shrink '+row.mode,row.screen);
+      if(row.panelOverflow>1)fail('mode-panel-overflow '+row.mode,{overflow:row.panelOverflow});
+      if(row.afVisible!==(row.mode==='af'))fail('mode-af-toggle '+row.mode,{afVisible:row.afVisible});
+    }
   }
-  ok('mode-stability',{modes:rows.length});
+  ok(`mode-stability ${aw}x${ah}`,{modes:rows.length});
   await p.close();
 }
 
 // 4) Diyaloglar (yardım, sınav çıkışı, sıfırlama) + tam ekranda diyalog
 {
-  const p=await browser.newPage({viewport:{width:1366,height:768}});
+  const p=await browser.newPage({viewport:{width:1366,height:768}});await p.addInitScript(()=>{try{localStorage.setItem('pulse.fsPromptDone','1');}catch{}});
   await p.goto(url);await p.click('#startSimulator');
   if(await p.locator('#tutorialPanel').isVisible())await p.evaluate(()=>document.getElementById('tutorialSkip').click());
   await p.evaluate(()=>{const C=CardAIController;for(const m of CardAIModel.MODES)C.state.viewed[m]=16;C.state.caseSession.submitted.fill(true);C.derivePrerequisites();C.progress();CardAIController.showView('quiz');});
@@ -127,7 +153,7 @@ for(const [w,h] of sizes){
 
 // 5) Öğretici açıkken sahne denetimleri erişilebilir mi
 {
-  const p=await browser.newPage({viewport:{width:1366,height:768}});
+  const p=await browser.newPage({viewport:{width:1366,height:768}});await p.addInitScript(()=>{try{localStorage.setItem('pulse.fsPromptDone','1');}catch{}});
   await p.goto(url);await p.click('#startSimulator');await p.waitForTimeout(300);
   if(await p.locator('#tutorialPanel').isVisible()){
     for(const sel of ['.rhythm-tab[data-mode="af"]','#playBtn','#caliperBtn','#ecgCanvas']){const r=await hitTest(p,sel);if(!r.ok)fail('tutorial-blocks '+sel,r);}
@@ -137,7 +163,7 @@ for(const [w,h] of sizes){
 
 // 6) Kanvas çizimi: her görünümde içerik var mı, yeniden boyutlamada güncelleniyor mu
 {
-  const p=await browser.newPage({viewport:{width:1366,height:768}});
+  const p=await browser.newPage({viewport:{width:1366,height:768}});await p.addInitScript(()=>{try{localStorage.setItem('pulse.fsPromptDone','1');}catch{}});
   await p.goto(url);await p.click('#startSimulator');
   if(await p.locator('#tutorialPanel').isVisible())await p.evaluate(()=>document.getElementById('tutorialSkip').click());
   await p.evaluate(()=>{const C=CardAIController;for(const m of CardAIModel.MODES)C.state.viewed[m]=16;C.state.caseSession.submitted.fill(true);C.derivePrerequisites();C.showView('case');});

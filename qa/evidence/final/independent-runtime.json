@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-17T17:53:22.625Z",
+  "date": "2026-09-21T11:27:01.736Z",
   "kind": "Real Chromium; fixtures/API mocks identified per test",
   "rows": [
     {
@@ -35,15 +35,15 @@
         "rows": [
           {
             "view": "case",
-            "delta": 736.6999999880791
+            "delta": 738.3999999910593
           },
           {
             "view": "quiz",
-            "delta": 752.1000000238419
+            "delta": 752.9000000059605
           },
           {
             "view": "about",
-            "delta": 8.5
+            "delta": 9.299999997019768
           }
         ],
         "modalDelta": 0
@@ -58,8 +58,8 @@
         "cssWidth": 966.21875,
         "cssHeight": 300,
         "dpr": 1,
-        "dark": 4646,
-        "hash": 3618983036
+        "dark": 5448,
+        "hash": 337740248
       }
     },
     {

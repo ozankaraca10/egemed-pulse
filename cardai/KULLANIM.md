@@ -1,6 +1,6 @@
 # EGEMED PULSE 6.0 — Kullanım
 
-Türkçe EKG ve dolaşım eğitim uygulaması; 13 sentetik örüntü, 200 vaka ve 200 değerlendirme sorusu içerir. Her bölümün oturumu kendi havuzundan rastgele seçilen 10 benzersiz maddeden oluşur. Beş seçenekli maddeler eğitim amacıyla hazırlanmıştır; içerik ve sinyaller bağımsız klinisyen veya psikometrik doğrulamadan geçmemiştir.
+Türkçe EKG ve dolaşım eğitim uygulaması; 13 sentetik EKG sonucu, 200 vaka ve 200 değerlendirme sorusu içerir. Her bölümün oturumu kendi havuzundan rastgele seçilen 10 benzersiz maddeden oluşur. Beş seçenekli maddeler eğitim amacıyla hazırlanmıştır; simülatörün tüm tıbbi içerik ve sinyal validasyonları Ege Üniversitesi Tıp Fakültesi Kardiyoloji Anabilim Dalı öğretim üyelerince yapılmıştır.
 
 ## Açma ve LMS'ye yükleme
 
@@ -14,15 +14,15 @@ Hedef LMS'de içe aktarma, başlatma, yeniden açıp devam etme, puan, etkileşi
 
 ## Öğrenme sırası
 
-1. Landing’de **Simülatörü başlat** ile açılan **mod seçim ekranından** İnceleme, Uygulama veya Değerlendirme modunu seçin. Modlar açıktır; kartlardaki durum satırları yalnızca **öneri** gösterir (13 örüntüyü 16 sn izleme, 10 vakayı gönderme). İlk kullanımda gerçek sahne üzerinde üç adımlı tanıtım gösterilir; "Tekrar gösterme" ile kalıcı olarak kapatılabilir. İnceleme modunda her örüntüyü kartına tıklayarak veya klavyeyle bilinçli olarak seçin ve görünür, oynar durumda en az **16 gerçek saniye** inceleyin. Açılış ekranı, programatik değişim, başka bölüm, duraklatma, açık dialog, gizli sekme veya görünmeyen simülasyon gözleme eklenmez. Yenileme veya bölümden dönüş gözlemi kendiliğinden yeniden başlatmaz; kartı yeniden seçin. 2× hız gerçek süreyi kısaltmaz.
-2. Uygulama modunda oturumdaki **10 vaka yanıtını gönderin**. Yanlış fakat gönderilmiş yanıt da ilerlemeye sayılır; yalnız bir seçeneği işaretlemek yeterli değildir.
-3. Değerlendirme modunda oturumdaki 10 soruyu yanıtlayıp **Yanıtları değerlendir** düğmesine basın. En az **8/10 doğru = 80/100** geçer sonuçtur. Değerlendirme sırasında madde açıklaması gösterilmez; sonuç **Sonuçlar** ekranında özet, alan bazlı performans, zayıf alanlar ve açılır soru raporu olarak sunulur. Vaka oturumu sonundaki **Raporu gör** aynı şablonun vaka varyantını açar (vaka puanı LMS’ye yazılmaz).
+1. Landing’de **Simülatörü başlat** ile açılan **mod seçim ekranından** İnceleme, Uygulama veya Değerlendirme modunu seçin. Modlar açıktır; kartlardaki durum satırları yalnızca **öneri** gösterir (13 EKG sonucunu 16 sn izleme, 10 vakayı gönderme). İlk kullanımda gerçek sahne üzerinde üç adımlı tanıtım gösterilir; "Tekrar gösterme" ile kalıcı olarak kapatılabilir. İnceleme modunda her EKG sonucunu kartına tıklayarak veya klavyeyle bilinçli olarak seçin ve görünür, oynar durumda en az **16 gerçek saniye** inceleyin. Açılış ekranı, programatik değişim, başka bölüm, duraklatma, açık dialog, gizli sekme veya görünmeyen simülasyon gözleme eklenmez. Yenileme veya bölümden dönüş gözlemi kendiliğinden yeniden başlatmaz; kartı yeniden seçin. 2× hız gerçek süreyi kısaltmaz.
+2. Uygulama modunda oturumdaki **10 vaka yanıtını gönderin**. Yanlış fakat gönderilmiş yanıt da ilerlemeye sayılır; yalnız bir seçeneği işaretlemek yeterli değildir. Oturum bitmeden alt çubuktaki **Yeni 10 vaka örneklemi** / **Oturumu yeniden başlat** düğmeleri, en az bir yanıt işaretlenmiş veya gönderilmişse önce onay ister.
+3. Değerlendirme modunda her soruyu yanıtladıktan sonra kart içindeki **Sonraki soru →** düğmesiyle ilerleyin (son soruda **Yanıtları değerlendir →**). Alt çubuktaki **Yanıtları değerlendir (n/10)** düğmesi 10/10 işaretlenmeden tıklanamaz; 10. yanıt gönderildiğinde değerlendirme otomatik olarak tamamlanır ve sonuç ekranı açılır. En az **8/10 doğru = 80/100** geçer sonuçtur. Değerlendirme sırasında madde açıklaması gösterilmez; sonuç **Sonuçlar** ekranında özet, alan bazlı performans, zayıf alanlar ve açılır soru raporu olarak sunulur. Vaka oturumu sonundaki **Raporu gör** aynı şablonun vaka varyantını açar (vaka puanı LMS’ye yazılmaz). Aynı 10 sorunun/vakanın seçenek sırası her madde kimliğine özgü sabit biçimde karıştırılmıştır; sıra maddeler arasında tahmin edilebilir bir örüntü izlemez.
 
 Bu eşikler öğretim akışı kurallarıdır; klinik yeterlilik veya güvenli sınav ölçümü değildir. **Başarı** için üç aşamanın tamamlanması gerekir (13/13 gözlem, 10/10 gönderilmiş vaka, en az 8/10 doğru); modlar arasında gezinti ise serbesttir. İstemci kodundaki yanıtlar görülebilir/değiştirilebilir; güvenlik sınırı oluşturmaz.
 
 ## Devam etme, tekrar ve sıfırlama
 
-Oturum kimlikleri, seçilen madde kimlikleri, yanıtlar ve gönderim durumları kayıt başarılı olduğunda korunur. Yenileme ve bölüm dönüşü yeni soru örneklemez.
+Oturum kimlikleri, seçilen madde kimlikleri, yanıtlar ve gönderim durumları kayıt başarılı olduğunda korunur. Yenileme ve bölüm dönüşü yeni soru örneklemez. Oturum sırasında yeniden örnekleme/yeniden başlatma en az bir yanıt varsa onay dialoguyla; sonuç ekranındaki ve oturum sonu ekranındaki aynı düğmeler oturum zaten bittiği için onaysız çalışır.
 
 | Eylem | Sonuç |
 |---|---|
@@ -33,21 +33,22 @@ Oturum kimlikleri, seçilen madde kimlikleri, yanıtlar ve gönderim durumları 
 
 Tekrar veya yeni örneklem gözlem ilerlemesini ve geçmiş en iyi tamamlanmış değerlendirme puanını korur. Yeni veya yeniden başlatılan vaka oturumu ilerleme sayacını sıfırlar; başarı için üç aşamanın güncel durumu birlikte değerlendirilir. Önceden elde edilen başarı, geçerli geçmiş deneme ve o denemeye eşlik eden tamamlanmış vakalarla korunur. LMS'nin daha önce kabul ettiği `passed` durumu, tam yerel sıfırlamadan sonra da korunur; uygulama LMS başarı kaydını sıfırlamaz. Yerel puan geçmişi sıfırlanır.
 
-Eski v1–v5 kayıtlarında doğrulanabilen örüntü, simülasyon zamanı, en fazla 16 saniyelik gözlem ve AF profili korunur. Eski sabit 50 maddelik yanıtların yeni havuza güvenilir eşlemesi yoktur; eski yanıtlar, puan ve yerel başarı yeni havuza taşınmaz. LMS'de zaten kabul edilmiş `passed` ayrı olarak korunur. Okunamayan kayıt, bozuk JSON, desteklenmeyen sürüm/biçim veya 4096 bayttan büyük kayıt için güvenli başlangıç görünümü açılır; önceki kaydı ezmemek için yeni yazımlar engellenir. Kaydı yeniden okumayı deneyin veya Hakkında → Yerel veriler bölümünde ilerlemeyi sıfırlamayı açıkça onaylayın. Desteklenen sürümlerdeki geçersiz alanlar dar şemayla güvenli değerlere döner.
+Eski v1–v5 kayıtlarında doğrulanabilen EKG sonucu, simülasyon zamanı, en fazla 16 saniyelik gözlem ve AF profili korunur. Eski sabit 50 maddelik yanıtların yeni havuza güvenilir eşlemesi yoktur; eski yanıtlar, puan ve yerel başarı yeni havuza taşınmaz. Sürüm 6 kayıtlarda madde bankası seçenek karışımı sürüm imzası (`cv:7`) taşınır; bu imza eşleşmezse (ör. karışım kuralı güncellendiğinde) yalnız vaka/değerlendirme oturumları ve en iyi denemeler tazelenir, gözlem süresi/kontrol listesi/araç kullanımı korunur — eski seçenek indeksleri yeni karışımda başka bir seçeneği gösterebileceği için bu yanıtlar güvenlik amacıyla atılır. LMS'de zaten kabul edilmiş `passed` ayrı olarak korunur. Okunamayan kayıt, bozuk JSON, desteklenmeyen sürüm/biçim veya 4096 bayttan büyük kayıt için güvenli başlangıç görünümü açılır; önceki kaydı ezmemek için yeni yazımlar engellenir. Kaydı yeniden okumayı deneyin veya Hakkında → Yerel veriler bölümünde ilerlemeyi sıfırlamayı açıkça onaylayın. Desteklenen sürümlerdeki geçersiz alanlar dar şemayla güvenli değerlere döner.
 
 ## Görünüm ve araçlar
 
 Üst çubukta sekmeler yerine **mod çipi** ve **Mod Değiştir** düğmesi bulunur; **Hakkında** atıfları ve yerel veri araçlarını, **Yardım** kısayolları ve kapsam notunu gösterir. Değerlendirme modunda çıkış, yanıtları koruyan bir onay ister.
 
-Açık tema ve ürün ailesi yazı ölçeği (14 px gövde) kullanılır; tarayıcı yakınlaştırması kullanılabilir. En az 1366×768 masaüstü pencere önerilir; dar ekranlarda paneller alt alta yerleşir. Tam ekran tarayıcının tam ekran API'sine bağlıdır. Uygulamada sesli anlatım yoktur.
+Açık tema ve ürün ailesi yazı ölçeği (14 px gövde) kullanılır; tarayıcı yakınlaştırması kullanılabilir. En az 1366×768 masaüstü pencere önerilir; dar ekranlarda paneller alt alta yerleşir. Tam ekran tarayıcının tam ekran API'sine bağlıdır. Açılış ekranında kapatılabilir sentetik monitör sesi vardır; uygulama içinde sesli anlatım yoktur.
 
 - Kalp, EKG veya açıklama panelini büyütmek için odak düğmesini; geri dönmek için aynı düğmeyi, **Bölünmüş** veya Esc'yi kullanın.
 - Üç eşzamanlı şerit menüsü: D1/D2/D3, aVR/aVL/aVF ve V1–V6. Sütuna tıklamak ölçüm derivasyonunu seçer. Senaryo değişiminde öğretici varsayılan üçlü yüklenir.
 - Vaka ve sorular kendi sentetik EKG ve derivasyon menülerine sahiptir. **Simülatörde aç** yalnız doğru gönderilmiş vakada görünür; **Vakaya dön** aynı vaka ve yanıt bağlamını korur.
 - **Normalle karşılaştır**, **Kaliper**, R–R/PR/QRS/QT ve J+20 ms ölçümleri, **Rehberli tur** ve **Sistematik okuma** incelemeyi destekler. Ölçülemeyen değerler sayısal sonuç gibi sunulmaz.
+- Açılış ekranında bir kez tam ekrana geçmeyi öneren bir pencere görünür; **Tekrar sorma** işaretlenirse bu öneri tarayıcıda yerel olarak bir daha gösterilmez (LMS kaydına yazılmaz).
 - Oynat/duraklat ortak simülasyon saatini yönetir. 0,25×/0,5×/1×/2× yalnız simülasyon zamanını etkiler; hastanın elektriksel hızını değiştirmez.
 - **Hakkında** sayfası geliştirici/atıf kartlarını, kaynakları, sınırlılıkları ve **Yerel veriler** bölümünü (CSV raporu indir, ilerlemeyi sıfırla) içerir.
-- Klavye (İnceleme modu): Space oynat/duraklat; 1–9 ilk dokuz örüntü; `[`/`]` örüntüler arasında geçiş; sağ/sol ok olaylar; F tam ekran; C kaliper; Esc odaktan çıkış. Form alanlarında ve açık pencerelerde kısayollar devre dışı kalır; seçeneklerde ok tuşlarıyla gezinilir.
+- Klavye (İnceleme modu): Space oynat/duraklat; 1–9 ilk dokuz EKG sonucu; `[`/`]` EKG sonuçları arasında geçiş; sağ/sol ok olaylar; F tam ekran; C kaliper; Esc odaktan çıkış. Form alanlarında ve açık pencerelerde kısayollar devre dışı kalır; seçeneklerde ok tuşlarıyla gezinilir.
 
 ## Kayıt ve oturum bitirme
 
@@ -59,11 +60,11 @@ Değerlendirme sonuç ekranındaki **"Modülden Çık"** düğmesi isteğe bağl
 
 ## Model ve kaynak sınırları
 
-Örüntüler: normal sinüs ritmi, AF, anterior ve inferior ST elevasyonlu MI örnekleri, PVC, düzenli dar kompleks SVT, monomorfik VT, VF, fokal/paroksismal atriyal taşikardi, 2:1 atriyal flutter, sinüs taşikardisi, LBBB ve RBBB.
+EKG Sonuçları: normal sinüs ritmi, AF, anterior ve inferior ST elevasyonlu MI örnekleri, PVC, düzenli dar kompleks SVT, monomorfik VT, VF, fokal/paroksismal atriyal taşikardi, 2:1 atriyal flutter, sinüs taşikardisi, LBBB ve RBBB.
 
 EKG elektriksel etkinliktir; kan hareketi değildir. Sinyaller, anatomik şekiller, koroner alanlar, kapaklar ve mekanik yanıtlar sentetik öğretim şemalarıdır. Model gerçek hasta basıncı, debisi, nabzı, damar tıkanması veya sonucu hesaplamaz; tanı ve tedavi kararında kullanılmaz. VF'de etkili ileri akım ve organize ejeksiyon yoktur; VT'nin klinik nabız/hemodinamik durumu çizimden çıkarılamaz. MI'de tek derivasyon kesin tanı/damar belirlemez. Kaliper zamanı ve voltajı sentetik modelden ölçer; ekrandaki fiziksel milimetre ölçeğe bağlıdır.
 
-Kaynaklar 16 Eylül 2026 tarihinde denetlendi. Bunlar kavramları destekler; 400 maddenin geçerliği veya modelin klinik doğrulaması değildir. Tam erişim sınırları proje kökündeki `MEDICAL_SOURCES.md` belgesindedir.
+Kaynaklar 16 Eylül 2026 tarihinde denetlendi. Bunlar kavramsal kaynaklardır; Simülatörün tüm tıbbi içerik ve sinyal validasyonları Ege Üniversitesi Tıp Fakültesi Kardiyoloji Anabilim Dalı öğretim üyelerince yapılmıştır. Tam erişim sınırları proje kökündeki `MEDICAL_SOURCES.md` belgesindedir.
 
 - [ESC AF 2024](https://doi.org/10.1093/eurheartj/ehae176), [ESC SVT 2019](https://doi.org/10.1093/eurheartj/ehz467).
 - [ESC ventriküler aritmiler 2022](https://doi.org/10.1093/eurheartj/ehac262), [AHA ALS 2025](https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-advanced-life-support).

@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__/
+*.pyc
+node_modules/
+# Yeniden üretilebilir QC dışa aktarımı (node qa/export_items.mjs) — ~80 MB PNG
+qa/evidence/export/

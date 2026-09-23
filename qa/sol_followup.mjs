@@ -1,5 +1,7 @@
 import {chromium} from '/Users/ozankaraca/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs';import fs from 'node:fs';
 const browser=await chromium.launch({headless:true});const page=await browser.newPage({viewport:{width:1366,height:768}}),results=[],errors=[];page.on('pageerror',e=>errors.push(e.message));function check(name,pass,details){results.push({name,pass:!!pass,details});if(!pass)throw Error(name+': '+JSON.stringify(details));}
+// H5: acilis tam ekran onerisi modal oldugu icin #startSimulator tikini engeller; testler icin bastan kapat.
+await page.addInitScript(()=>{try{localStorage.setItem('pulse.fsPromptDone','1');}catch{}});
 try{await page.goto('http://127.0.0.1:8765/cardai/');await page.click('#startSimulator');if(await page.locator('#tutorialPanel').isVisible())await page.click('#tutorialSkip');await page.evaluate(()=>{for(const m of CardAIModel.MODES)CardAIController.state.viewed[m]=16;CardAIController.showView('case');});
 const before=await page.evaluate(()=>CardAIScorm.activeMilliseconds);await page.waitForTimeout(1200);const after=await page.evaluate(()=>CardAIScorm.activeMilliseconds);check('visible-case-learning-time',after-before>1100,{before,after});
 await page.click('#helpBtn');const modalStart=await page.evaluate(()=>CardAIScorm.activeMilliseconds);await page.waitForTimeout(850);const modalEnd=await page.evaluate(()=>CardAIScorm.activeMilliseconds);check('dialog-excludes-learning-time',modalEnd-modalStart<60,{modalStart,modalEnd});await page.click('#closeInfo');
